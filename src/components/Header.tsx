@@ -37,7 +37,7 @@ export default function Header() {
           <Link href="/" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-zippy-orange transition-colors">HOME</Link>
           <Link href="/about" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-zippy-orange transition-colors">ABOUT</Link>
           <Link href="/programs" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-zippy-orange transition-colors">PROGRAMS</Link>
-          <Link href="/stories" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-zippy-orange transition-colors">RIDING STORIES</Link>
+          <Link href="/stories" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-zippy-orange transition-colors">RIDERS STORIES</Link>
           <Link href="/beyond" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-zippy-orange transition-colors">BEYOND THE RIDE</Link>
           <Link href="/join" className="px-8 py-2 h-full flex items-center bg-[#F2EBD9] text-[#85431E] font-black text-xs tracking-widest  hover:bg-zippy-orange hover:text-[#F2EBD9] transition-all">JOIN ZIPPY</Link>
         </nav>

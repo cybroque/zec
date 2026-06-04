@@ -52,3 +52,11 @@ body {
 .animate-slide-up {
   animation: slide-up 1s ease-out forwards;
 }
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
