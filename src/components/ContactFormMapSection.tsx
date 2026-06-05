@@ -4,12 +4,27 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+const INTEREST_OPTIONS = [
+  "Riding Programs",
+  "Children's camps",
+  "Horse boarding",
+  "Buy a horse",
+  "Book a venue",
+  "Consultation",
+  "Photoshoot",
+  "Horse Rent / Lease",
+  "Franchise"
+];
+
 export default function ContactFormMapSection() {
   const [showTooltip, setShowTooltip] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Riding Programs");
 
   return (
     <section className="w-full bg-[#F5F1E8] py-16 md:py-24">
-      <div className="container mx-auto px-8 md:px-16 max-w-6xl">
+      {/* Aligned with Header container */}
+      <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
 
           {/* LEFT: Form + Location text */}
@@ -21,7 +36,7 @@ export default function ContactFormMapSection() {
                 Time to take action
               </h1>
 
-              <div className="p-6 md:p-8" style={{ backgroundColor: "#EDE5D4" }}>
+              <div className="p-6 md:p-8" style={{ backgroundColor: "#F2EBD9" }}>
                 <div className="mb-5">
                   <label className="text-[#85431E]/70 text-xs tracking-widest uppercase mb-2 block font-light">
                     Your name
@@ -43,29 +58,39 @@ export default function ContactFormMapSection() {
                   />
                 </div>
 
-                <div className="mb-7">
+                <div className="mb-7 relative">
                   <label className="text-[#85431E]/70 text-xs tracking-widest uppercase mb-2 block font-light">
                     I&apos;m interested in:
                   </label>
-                  <div className="relative">
-                    <select className="w-full bg-white px-4 py-3 text-sm text-[#85431E] outline-none border-0 appearance-none cursor-pointer focus:ring-1 focus:ring-[#DA7347]/30">
-                      <option>Riding Programs</option>
-                      <option>Summer Camps</option>
-                      <option>Horse Training</option>
-                      <option>Buy a Horse</option>
-                      <option>Venue for Parties</option>
-                      <option>Equestrian Consultation</option>
-                      <option>Horse Rent / Lease</option>
-                      <option>Photoshoots</option>
-                      <option>Franchise</option>
-                      <option>Horse Boarding</option>
-                    </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg width="11" height="7" viewBox="0 0 11 7" fill="none">
-                        <path d="M1 1L5.5 5.5L10 1" stroke="#85431E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
+                  <div 
+                    className="w-full bg-white px-4 py-3 text-sm text-[#85431E] flex justify-between items-center cursor-pointer border-0 outline-none"
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  >
+                    <span>{selectedOption}</span>
+                    <svg width="11" height="7" viewBox="0 0 11 7" fill="none" className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}>
+                      <path d="M1 1L5.5 5.5L10 1" stroke="#85431E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
+
+                  {isDropdownOpen && (
+                    <div className="absolute top-full left-0 right-0 mt-1 z-20 shadow-xl rounded-sm overflow-hidden" style={{ backgroundColor: "#CFCDBC", border: "1px solid rgba(0,0,0,0.05)" }}>
+                      <div className="flex flex-col">
+                        {INTEREST_OPTIONS.map((opt, i) => (
+                          <div 
+                            key={i}
+                            className="px-4 py-3 text-sm text-[#93451E] cursor-pointer hover:bg-black/5"
+                            style={{ borderBottom: i < INTEREST_OPTIONS.length - 1 ? "1px solid #D2AA96" : "none" }}
+                            onClick={() => {
+                              setSelectedOption(opt);
+                              setIsDropdownOpen(false);
+                            }}
+                          >
+                            {opt}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex justify-end">
@@ -118,7 +143,7 @@ export default function ContactFormMapSection() {
 
             {/* Map — container locked to SVG's 733×982 aspect ratio so % positions are exact */}
             <div
-              className="relative w-full cursor-pointer"
+              className="relative w-full cursor-pointer mt-4"
               style={{ aspectRatio: "733/982" }}
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}

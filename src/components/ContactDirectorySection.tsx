@@ -19,7 +19,7 @@ const contacts = [
 
 export default function ContactDirectorySection() {
   return (
-    <section className="w-full bg-[#F5F1E8] py-16 md:py-20 border-t border-[#d4c9b4]">
+    <section className="w-full bg-[#F5F1E8] py-16 md:py-20">
       <div className="container mx-auto px-8 md:px-16 max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
 

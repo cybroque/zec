@@ -7,7 +7,7 @@ import StoriesInstagramSection from "@/components/StoriesInstagramSection";
 export default function ContactPage() {
   return (
     <main className="relative min-h-screen bg-[#F5F1E8]">
-      <Header />
+      <Header theme="light" />
       <div className="pt-24">
         <ContactFormMapSection />
         <ContactDirectorySection />
