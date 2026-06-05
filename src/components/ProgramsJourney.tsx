@@ -44,7 +44,7 @@ export default function ProgramsJourney() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Left Column - Content */}
           <div className="flex flex-col">
-            <h2 className="text-5xl md:text-[65px] font-gt-ultra leading-[1.1] tracking-tight mb-16">
+            <h2 className="text-5xl md:text-[65px] font-ultra leading-[1.1] tracking-tight mb-16">
               <span className="text-[#85431E]">Find your place</span>
               <br />
               <span className="text-[#DA7347]">in the saddle:</span>

@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionTemplate, useMotionValueEvent } from "framer-motion";
 
 const cardsData = [
   {
@@ -172,31 +172,85 @@ const cardsData = [
   }
 ];
 
+const navItems = [
+  "TRIAL EXPERIENCE",
+  "BEGINNER LEVEL",
+  "INTERMEDIATE/PRE-COMPETITIVE",
+  "ADVANCED/COMPETITIVE",
+  "SPECIALIZATION",
+];
+
+// Which nav label each card maps to
+const cardToNavIndex = [0, 1, 2, 3, 4, 4, 4, 4];
+
 export default function ProgramsCardsSection() {
   const targetRef = useRef<HTMLDivElement>(null);
-  
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const labelRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [activeNavIdx, setActiveNavIdx] = useState(0);
+  const [underline, setUnderline] = useState({ left: 0, width: 0 });
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
 
-  // Calculate the exact translation to stop at the last card
-  // At 0% progress: 0% translation
-  // At 100% progress: -100% of container width + 100vw (stops exactly at right edge)
   const xPercent = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const vwOffset = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const x = useMotionTemplate`calc(${xPercent}% + ${vwOffset}vw)`;
 
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const cardIdx = Math.min(
+      Math.floor(latest * cardsData.length),
+      cardsData.length - 1
+    );
+    setActiveNavIdx(cardToNavIndex[cardIdx]);
+  });
+
+  useEffect(() => {
+    const labelEl = labelRefs.current[activeNavIdx];
+    const containerEl = navContainerRef.current;
+    if (labelEl && containerEl) {
+      setUnderline({ left: labelEl.offsetLeft, width: labelEl.offsetWidth });
+    }
+  }, [activeNavIdx]);
+
+  // Initialise underline after mount
+  useEffect(() => {
+    const labelEl = labelRefs.current[0];
+    const containerEl = navContainerRef.current;
+    if (labelEl && containerEl) {
+      setUnderline({ left: labelEl.offsetLeft, width: labelEl.offsetWidth });
+    }
+  }, []);
+
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-[#FFF8E5]">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        
-        {/* Top Navigation / Labels (Fixed within sticky) */}
-        <div className="absolute top-12 left-0 w-full px-8 md:px-16 flex gap-8 md:gap-16 text-[10px] md:text-xs font-bold tracking-widest text-[#85431E]/40 z-20">
-          <span className="text-[#DA7347] border-b border-[#DA7347] pb-1">TRIAL EXPERIENCE</span>
-          <span>BEGINNER LEVEL</span>
-          <span>INTERMEDIATE/PRE-COMPETITIVE</span>
-          <span>ADVANCED/COMPETITIVE</span>
-          <span>SPECIALIZATION</span>
+
+        {/* Top Navigation / Labels */}
+        <div
+          ref={navContainerRef}
+          className="absolute top-12 left-0 w-full px-8 md:px-16 z-20"
+        >
+          <div className="relative flex gap-8 md:gap-16 text-[10px] md:text-xs font-bold tracking-widest w-fit">
+            {/* Sliding underline */}
+            <motion.div
+              className="absolute bottom-0 h-px bg-[#DA7347]"
+              animate={{ left: underline.left, width: underline.width }}
+              transition={{ type: "spring", stiffness: 400, damping: 35 }}
+            />
+            {navItems.map((item, idx) => (
+              <span
+                key={item}
+                ref={(el) => { labelRefs.current[idx] = el; }}
+                className={`pb-1.5 transition-colors duration-300 ${
+                  activeNavIdx === idx ? "text-[#DA7347]" : "text-[#85431E]/40"
+                }`}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Cards Container */}

@@ -46,9 +46,13 @@ const socialLinks = [
   },
 ];
 
-export default function StoriesInstagramSection() {
+interface StoriesInstagramSectionProps {
+  bgColor?: string;
+}
+
+export default function StoriesInstagramSection({ bgColor = "#FFF8E5" }: StoriesInstagramSectionProps) {
   return (
-    <section className="w-full" style={{ backgroundColor: "#FFF8E5" }}>
+    <section className="w-full" style={{ backgroundColor: bgColor }}>
 
       {/* ── Heading ── */}
       <div className="container mx-auto max-w-6xl px-10 pt-24 pb-12 text-center">
@@ -140,9 +144,12 @@ export default function StoriesInstagramSection() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-[15px] md:text-base font-medium text-[#85431E] underline underline-offset-4 decoration-[#85431E]/40 hover:decoration-[#85431E] transition-all w-fit"
+                  className="flex items-center gap-2.5 text-[15px] md:text-base font-medium text-[#85431E] group transition-all w-fit"
                 >
-                  {link.label}
+                  <span className="flex-shrink-0 text-[#85431E]">{link.icon}</span>
+                  <span className="underline underline-offset-4 decoration-[#85431E]/30 group-hover:decoration-[#85431E] transition-all">
+                    {link.label}
+                  </span>
                 </a>
               ))}
             </div>

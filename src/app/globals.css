@@ -8,6 +8,8 @@
   
   --font-sans: var(--font-gt-ultra), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-gt-ultra), ui-sans-serif, system-ui, sans-serif;
+  --font-gt-ultra: var(--font-gt-ultra), ui-sans-serif, system-ui, sans-serif;
+  --font-ultra: var(--font-gt-ultra-ultra), var(--font-gt-ultra), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {

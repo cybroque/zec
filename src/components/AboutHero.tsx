@@ -19,7 +19,7 @@ export default function AboutHero() {
       {/* Content Container */}
       <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col justify-center h-full pt-32">
         <div className="w-full max-w-[100%] lg:max-w-[1000px] mt-10 md:mt-20">
-          <h1 className="font-gt-ultra text-[32px] sm:text-[40px] md:text-[54px] lg:text-[72px] leading-[1.1] tracking-tight text-[#FBEECC] mb-8 drop-shadow-sm md:whitespace-nowrap">
+          <h1 className="font-ultra text-[32px] sm:text-[40px] md:text-[54px] lg:text-[72px] leading-[1.1] tracking-tight text-[#FBEECC] mb-8 drop-shadow-sm md:whitespace-nowrap">
             It Started as a Bucket List.<br />
             It Became a Riding Center.
           </h1>

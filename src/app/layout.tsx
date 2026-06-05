@@ -43,6 +43,11 @@ const gtUltra = localFont({
   variable: "--font-gt-ultra",
 });
 
+const gtUltraUltra = localFont({
+  src: "../../public/fonts/GTUltra-Ultra.otf",
+  variable: "--font-gt-ultra-ultra",
+});
+
 export const metadata: Metadata = {
   title: "Zippy Equestrian Center | Real Riding. Real Feeling.",
   description: "Experience the thrill of riding in Bangalore.",
@@ -54,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${gtUltra.variable} antialiased`}>
+    <html lang="en" className={`${gtUltra.variable} ${gtUltraUltra.variable} antialiased`}>
       <body className="font-sans">
         {children}
       </body>

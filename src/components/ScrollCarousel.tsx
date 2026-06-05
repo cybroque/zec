@@ -9,7 +9,7 @@ const slides = [
     section: "START HERE",
     title: "Trial Ride",
     description: "Never been on a horse? This is how you start. One 30-minute session. Guided, safe, and genuinely fun.",
-    image: "/assets/images/pic1.jpg",
+    image: "/assets/images/r2.png",
     bgColor: "#DA7347", // Orange
     buttonText: "Book a Trial"
   },
@@ -18,7 +18,7 @@ const slides = [
     section: "FOR BEGINNERS",
     title: "Foundation Program",
     description: "Build strong riding fundamentals from posture and balance to walk, trot, and canter. Learn how to understand and work with your horse, both in and out of the saddle.",
-    image: "/assets/images/pic2.jpg",
+    image: "/assets/images/h1.png",
     bgColor: "#526FAE", // Dark Blue
     buttonText: "Book a Trial"
   },
@@ -27,7 +27,7 @@ const slides = [
     section: "ALREADY RIDING?",
     title: "Development • Performance • Dressage • Showjumping",
     description: "Move beyond the basics with structured training that builds control, balance, and discipline-specific skills. Progress from refinement to performance, with a clear path towards competitive riding.",
-    image: "/assets/images/pic3.jpg",
+    image: "/assets/images/h2.png",
     bgColor: "#1C2245", // Light Blue
     buttonText: "See all Programs"
   }
@@ -58,17 +58,17 @@ const ScrollCarousel = () => {
 
   return (
     <div ref={containerRef} className="relative h-[300vh] w-full bg-[#FFF8E5]">
-      <div className="sticky top-0 h-screen w-full flex flex-col">
+      <div className="sticky top-0 h-screen w-full flex flex-col pb-6 md:pb-12">
 
         {/* Intro Section */}
-        <div className="pt-32 md:pt-40 pb-12 px-6 text-center bg-[#FFF8E5]">
+        <div className="pt-20 md:pt-28 pb-8 px-6 text-center bg-[#FFF8E5]">
           <span className="text-sm md:text-md uppercase tracking-[0.3em] text-[#DA7347] font-medium mb-4 block">
             RIDE WITH US
           </span>
           <h2 className="text-4xl md:text-6xl font-normal text-[#85431E] mb-6 tracking-tight">
             Find Your Starting Point
           </h2>
-          <p className="text-sm md:text-md text-[#85431E]/80 max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-sm md:text-[18px] pb-5 text-[#85431E]/80 max-w-3xl mx-auto leading-relaxed font-light">
             We have programs for every level from your very first time in a saddle to riders who want to push
             further. New here? Start with a Trial Ride and we&apos;ll point you in the right direction.
           </p>
@@ -93,14 +93,14 @@ const ScrollCarousel = () => {
                 <span className="text-xs md:text-sm uppercase tracking-[0.3em] font-normal text-[#F2EBD9]/80 mb-4">
                   {slide.section}
                 </span>
-                <h3 className="text-2xl md:text-5xl font-normal text-[#F2EBD9] mb-8 tracking-tight">
+                <h3 className="text-2xl md:text-5xl font-normal text-[#F2EBD9] mb-4 md:mb-6 tracking-tight">
                   {slide.title}
                 </h3>
-                <p className="text-md md:text-lg font-extralight text-[#F2EBD9]/90 max-w-2xl mb-12">
+                <p className="text-md md:text-lg font-extralight text-[#F2EBD9]/90 max-w-2xl mb-6 md:mb-8">
                   {slide.description}
                 </p>
 
-                <div className="flex flex-col items-start gap-12">
+                <div className="flex flex-col items-start gap-6 md:gap-8">
                   <button className="group flex items-center gap-4 px-8 py-3 border border-white/60 rounded-sm hover:bg-white hover:text-[#DA7347] transition-all duration-500 text-white">
                     <span className="text-sm font-light uppercase tracking-widest">{slide.buttonText}</span>
                     <svg

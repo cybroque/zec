@@ -21,7 +21,7 @@ export default function ProgramsHero() {
         <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-end max-w-[1400px] mx-auto">
           {/* Left Heading */}
           <div className="md:col-span-7 lg:col-span-7">
-            <h1 className="text-white font-gt-ultra text-[50px] md:text-[65px] lg:text-[85px] leading-[1.05] tracking-tight mb-4 md:mb-0">
+            <h1 className="text-white font-ultra text-[50px] md:text-[65px] lg:text-[85px] leading-[1.05] tracking-tight mb-4 md:mb-0">
               Your equestrian<br />
               journey starts here.
             </h1>

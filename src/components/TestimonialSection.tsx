@@ -9,11 +9,11 @@ const TestimonialSection = () => {
 
           {/* Left Column: Heading */}
           <div className="flex flex-col">
-            <h2 className="text-5xl md:text-[85px] font-light leading-[1.1] text-[#85431E] mb-12 tracking-tight">
+            <h2 className="text-5xl md:text-[85px] font-light leading-[1.1] text-[#85431E] mb-10 tracking-tight">
               Words from<br />
               the <span className="text-[#DA7347]">horseback</span>
             </h2>
-            <p className="text-sm md:text-[13px] text-[#85431E]/60 max-w-md leading-relaxed tracking-wider font-medium">
+            <p className="text-sm md:text-[18px] text-[#85431E]/60 max-w-[900px] leading-relaxed tracking-wider font-medium">
               Every rider at ZEC started exactly the same way: curious, a little nervous, and wondering if this was really for them. Here&apos;s what happened next.
             </p>
           </div>
@@ -33,11 +33,11 @@ const TestimonialSection = () => {
             </div>
 
             <div className="flex flex-col">
-              <blockquote className="text-2xl md:text-[42px] font-light leading-[1.3] text-[#4A2D1B] mb-12 tracking-tight">
+              <blockquote className="text-2xl md:text-[35px] font-light leading-[1.3] text-[#4A2D1B] mb-12 tracking-tight">
                 I booked a trial session thinking I&apos;d do it once. That was eight months ago. I&apos;m now in the Intermediate program and I can&apos;t imagine my weekends without it.
               </blockquote>
 
-              <div className="flex flex-wrap items-center gap-x-2 text-md md:text-lg">
+              <div className="flex flex-wrap items-center gap-x-2 text-md md:text-[20px]">
                 <span className="font-bold text-[#1A1A1A]">Priya S</span>
                 <span className="text-[#1A1A1A]/40">·</span>
                 <span className="text-[#DA7347] font-medium">Bangalore</span>

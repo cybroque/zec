@@ -8,7 +8,7 @@ const Footer = () => {
     <footer 
       className="relative w-full px-6 pt-48 pb-8 md:pt-64 md:pb-10"
       style={{
-        background: 'linear-gradient(to bottom, #FFF8E5 0%, #D27C55 150px, #D27C55 100%)'
+        background: 'linear-gradient(to bottom, #FFF8E5 0%, #DA7347 150px, #DA7347 100%)'
       }}
     >
       <div className="container mx-auto max-w-7xl">

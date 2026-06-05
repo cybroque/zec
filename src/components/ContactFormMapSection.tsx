@@ -15,14 +15,28 @@ const INTEREST_OPTIONS = [
   "Horse Rent / Lease",
   "Franchise"
 ];
+const COUNTRY_CODES = [
+  { code: "+91", flag: "🇮🇳", name: "India" },
+  { code: "+1", flag: "🇺🇸", name: "United States" },
+  { code: "+44", flag: "🇬🇧", name: "United Kingdom" },
+  { code: "+61", flag: "🇦🇺", name: "Australia" },
+  { code: "+971", flag: "🇦🇪", name: "UAE" },
+  { code: "+65", flag: "🇸🇬", name: "Singapore" },
+  { code: "+49", flag: "🇩🇪", name: "Germany" },
+  { code: "+33", flag: "🇫🇷", name: "France" },
+  { code: "+81", flag: "🇯🇵", name: "Japan" },
+  { code: "+86", flag: "🇨🇳", name: "China" },
+];
 
 export default function ContactFormMapSection() {
   const [showTooltip, setShowTooltip] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Riding Programs");
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(COUNTRY_CODES[0]);
 
   return (
-    <section className="w-full bg-[#F5F1E8] py-16 md:py-24">
+    <section className="w-full bg-transparent py-16 md:py-24">
       {/* Aligned with Header container */}
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
@@ -43,19 +57,54 @@ export default function ContactFormMapSection() {
                   </label>
                   <input
                     type="text"
-                    className="w-full bg-white px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0 focus:ring-1 focus:ring-[#DA7347]/30"
+                    className="w-full bg-[#FFFCF4] px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0 focus:ring-1 focus:ring-[#DA7347]/30"
                   />
                 </div>
 
-                <div className="mb-5">
+                <div className="mb-5 relative">
                   <label className="text-[#85431E]/70 text-xs tracking-widest uppercase mb-2 block font-light">
                     Contact Number
                   </label>
-                  <input
-                    type="tel"
-                    className="w-full bg-white px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0 focus:ring-1 focus:ring-[#DA7347]/30"
-                    placeholder="+91"
-                  />
+                  <div className="flex bg-[#FFFCF4] focus-within:ring-1 focus-within:ring-[#DA7347]/30">
+                    <div 
+                      className="flex items-center gap-2 px-3 py-3 cursor-pointer border-r border-[#DA7347]/20"
+                      onClick={() => {
+                        setIsCountryDropdownOpen(!isCountryDropdownOpen);
+                        if (!isCountryDropdownOpen) setIsDropdownOpen(false);
+                      }}
+                    >
+                      <span className="text-sm text-[#1a1a1a]">{selectedCountry.code}</span>
+                      <svg width="10" height="6" viewBox="0 0 11 7" fill="none" className={`transition-transform duration-200 ${isCountryDropdownOpen ? 'rotate-180' : ''}`}>
+                        <path d="M1 1L5.5 5.5L10 1" stroke="#DA7347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <input
+                      type="tel"
+                      className="flex-1 bg-transparent px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0"
+                      placeholder="Phone number"
+                    />
+                  </div>
+
+                  {isCountryDropdownOpen && (
+                    <div className="absolute top-full left-0 mt-1 z-50 w-64 shadow-xl rounded-sm overflow-hidden bg-[#FFF8E5] border border-black/5 max-h-60 overflow-y-auto">
+                      <div className="flex flex-col">
+                        {COUNTRY_CODES.map((country, i) => (
+                          <div 
+                            key={i}
+                            className="px-4 py-3 flex items-center gap-3 text-sm text-[#85431E] cursor-pointer hover:bg-[#FFF8E5] hover:text-white transition-colors"
+                            onClick={() => {
+                              setSelectedCountry(country);
+                              setIsCountryDropdownOpen(false);
+                            }}
+                          >
+                            <span className="text-lg">{country.flag}</span>
+                            <span className="font-medium w-10">{country.code}</span>
+                            <span className="truncate">{country.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mb-7 relative">
@@ -63,23 +112,26 @@ export default function ContactFormMapSection() {
                     I&apos;m interested in:
                   </label>
                   <div 
-                    className="w-full bg-white px-4 py-3 text-sm text-[#85431E] flex justify-between items-center cursor-pointer border-0 outline-none"
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="w-full bg-[#FFFCF4] px-4 py-3 text-sm text-[#DA7347] flex justify-between items-center cursor-pointer border-0 outline-none"
+                    onClick={() => {
+                      setIsDropdownOpen(!isDropdownOpen);
+                      if (!isDropdownOpen) setIsCountryDropdownOpen(false);
+                    }}
                   >
                     <span>{selectedOption}</span>
                     <svg width="11" height="7" viewBox="0 0 11 7" fill="none" className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}>
-                      <path d="M1 1L5.5 5.5L10 1" stroke="#85431E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M1 1L5.5 5.5L10 1" stroke="#DA7347" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
 
                   {isDropdownOpen && (
-                    <div className="absolute top-full left-0 right-0 mt-1 z-20 shadow-xl rounded-sm overflow-hidden" style={{ backgroundColor: "#CFCDBC", border: "1px solid rgba(0,0,0,0.05)" }}>
+                    <div className="absolute top-full left-0 right-0 mt-1 z-50 shadow-xl rounded-sm overflow-hidden bg-[#F2EBD9]/80 backdrop-blur-md border border-black/5">
                       <div className="flex flex-col">
                         {INTEREST_OPTIONS.map((opt, i) => (
                           <div 
                             key={i}
-                            className="px-4 py-3 text-sm text-[#93451E] cursor-pointer hover:bg-black/5"
-                            style={{ borderBottom: i < INTEREST_OPTIONS.length - 1 ? "1px solid #D2AA96" : "none" }}
+                            className="px-4 py-3 text-sm text-[#85431E] cursor-pointer hover:bg-black/5"
+                            style={{ borderBottom: i < INTEREST_OPTIONS.length - 1 ? "1px solid #DA7347" : "none" }}
                             onClick={() => {
                               setSelectedOption(opt);
                               setIsDropdownOpen(false);

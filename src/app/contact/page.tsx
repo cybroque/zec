@@ -6,12 +6,12 @@ import StoriesInstagramSection from "@/components/StoriesInstagramSection";
 
 export default function ContactPage() {
   return (
-    <main className="relative min-h-screen bg-[#F5F1E8]">
+    <main className="relative min-h-screen bg-[#FFFBF2]">
       <Header theme="light" />
-      <div className="pt-24">
+      <div className="pt-36">
         <ContactFormMapSection />
         <ContactDirectorySection />
-        <StoriesInstagramSection />
+        <StoriesInstagramSection bgColor="#FFFBF2" />
       </div>
       <Footer />
     </main>

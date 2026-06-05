@@ -5,7 +5,7 @@ export default function StoriesHero() {
     <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
       {/* Background image */}
       <Image
-        src="/assets/images/aboutimg.png"
+        src="/assets/images/riders-hero.png"
         alt="Zippy riders group photo"
         fill
         priority
@@ -14,7 +14,12 @@ export default function StoriesHero() {
       />
 
       {/* Gradient overlay — strong at bottom, fades upward */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+      <div 
+        className="absolute inset-0" 
+        style={{
+          background: "linear-gradient(to top, #85431E 0%, rgba(114, 57, 25, 0) 50%)"
+        }}
+      />
 
       {/* Bottom-left content */}
       <div className="absolute bottom-0 left-0 px-8 md:px-16 pb-16 md:pb-24 max-w-2xl">
