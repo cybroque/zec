@@ -26,6 +26,7 @@ const TestimonialSection = () => {
                   src="/assets/images/quotationmark.png"
                   alt="Quotation Mark"
                   fill
+                  sizes="64px"
                   className="object-contain"
                 />
               </div>

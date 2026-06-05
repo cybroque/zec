@@ -26,6 +26,7 @@ export default function Header() {
               alt="Zippy Equestrian Logo"
               fill
               unoptimized
+              sizes="(max-width: 768px) 128px, 192px"
               className="object-contain object-left"
               priority
             />

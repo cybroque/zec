@@ -202,6 +202,7 @@ export default function StoriesRidersSection() {
                       src={rider.image}
                       alt={rider.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, 38vw"
                       className="object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />

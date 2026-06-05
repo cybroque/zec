@@ -27,6 +27,7 @@ const ZippyFamilySection = () => {
                 src="/assets/images/zippybroncos.svg"
                 alt="Zippy Broncos Logo"
                 fill
+                sizes="160px"
                 className="object-contain"
               />
             </div>
@@ -38,6 +39,7 @@ const ZippyFamilySection = () => {
                 src="/assets/images/zippypremier.svg"
                 alt="Zippy Premier Logo"
                 fill
+                sizes="(max-width: 768px) 112px, 240px"
                 className="object-contain"
               />
             </div>

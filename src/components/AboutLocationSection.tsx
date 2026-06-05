@@ -27,6 +27,7 @@ export default function AboutLocationSection() {
               src="/assets/images/about-map.svg"
               alt="ZEC Location Map"
               fill
+              sizes="(max-width: 768px) 100vw, 640px"
               className="object-contain"
             />
             {/* Address card */}

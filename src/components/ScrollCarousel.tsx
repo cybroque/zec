@@ -141,6 +141,7 @@ const ScrollCarousel = () => {
                   src={slide.image}
                   alt={slide.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 45vw"
                   className="object-cover"
                   priority={index === 0}
                 />
@@ -154,6 +155,7 @@ const ScrollCarousel = () => {
               src={slides[activeIndex].image}
               alt={slides[activeIndex].title}
               fill
+              sizes="100vw"
               className="object-cover"
             />
           </div>

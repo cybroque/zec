@@ -80,6 +80,7 @@ export default function AboutInstructorsSection() {
                     src={instructor.image}
                     alt={instructor.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
                     className="object-cover"
                   />
                 </div>
@@ -103,7 +104,7 @@ export default function AboutInstructorsSection() {
             {instructors.map((instructor) => (
               <div key={instructor.id} className="flex flex-col items-center text-center">
                 <div className="relative w-[220px] shadow-2xl mb-6 rounded-sm overflow-hidden" style={{ aspectRatio: "4/5" }}>
-                  <Image src={instructor.image} alt={instructor.name} fill className="object-cover" />
+                  <Image src={instructor.image} alt={instructor.name} fill sizes="220px" className="object-cover" />
                 </div>
                 <h3 className="text-[#FFF8E5] text-xl font-normal mb-1.5">{instructor.name}</h3>
                 <p className="text-[#FFF8E5]/80 text-[10px] uppercase tracking-widest font-light mb-3">{instructor.role}</p>
@@ -145,6 +146,7 @@ export default function AboutInstructorsSection() {
                 src="/assets/images/about-map.svg"
                 alt="ZEC Location Map"
                 fill
+                sizes="(max-width: 768px) 100vw, 580px"
                 className="object-contain"
               />
 

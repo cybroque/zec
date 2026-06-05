@@ -9,6 +9,7 @@ export default function AboutStorySection() {
           src="/assets/images/aboutpattern.svg"
           alt="Decorative pattern"
           fill
+          sizes="(max-width: 768px) 70vw, (max-width: 1024px) 50vw, 40vw"
           className="object-contain object-top object-right"
         />
       </div>
@@ -40,6 +41,7 @@ export default function AboutStorySection() {
                   src="/assets/images/aboutimg1.svg"
                   alt="Dilip Kirani - Founding Partner"
                   fill
+                  sizes="(max-width: 640px) 240px, (max-width: 1024px) 260px, 280px"
                   className="object-cover"
                 />
               </div>

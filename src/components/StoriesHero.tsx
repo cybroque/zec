@@ -9,6 +9,7 @@ export default function StoriesHero() {
         alt="Zippy riders group photo"
         fill
         priority
+        sizes="100vw"
         className="object-cover object-center"
       />
 

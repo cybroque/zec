@@ -125,6 +125,7 @@ export default function ProgramsJourney() {
                 src={item.image}
                 alt={item.title}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className={`object-cover transition-opacity duration-700 ease-in-out ${
                   activeIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"
                 }`}
