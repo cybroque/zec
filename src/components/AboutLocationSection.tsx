@@ -22,12 +22,18 @@ export default function AboutLocationSection() {
           </div>
 
           {/* Right: Map */}
-          <div className="relative w-full max-w-[640px] ml-auto aspect-square">
+          <div 
+            className="relative w-full max-w-[540px] ml-auto aspect-square self-end"
+            style={{
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 100%)",
+              maskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 100%)"
+            }}
+          >
             <Image
               src="/assets/images/about-map.svg"
               alt="ZEC Location Map"
               fill
-              sizes="(max-width: 768px) 100vw, 640px"
+              sizes="(max-width: 768px) 100vw, 540px"
               className="object-contain"
             />
             {/* Address card */}

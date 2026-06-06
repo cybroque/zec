@@ -13,14 +13,14 @@ const TestimonialSection = () => {
               Words from<br />
               the <span className="text-[#DA7347]">horseback</span>
             </h2>
-            <p className="text-sm md:text-[18px] text-[#85431E]/60 max-w-[900px] leading-relaxed tracking-wider font-medium">
+            <p className="text-sm md:text-[18px] text-[#85431E]/60 max-w-[900px] leading-normal tracking-wider font-medium">
               Every rider at ZEC started exactly the same way: curious, a little nervous, and wondering if this was really for them. Here&apos;s what happened next.
             </p>
           </div>
 
           {/* Right Column: Testimonial */}
           <div className="relative pt-12">
-            <div className="absolute top-0 left-0 -translate-x-8 -translate-y-4">
+            <div className="absolute top-12 left-0 -translate-x-8 -translate-y-4">
               <div className="relative w-16 h-12 opacity-80">
                 <Image
                   src="/assets/images/quotationmark.png"
@@ -33,7 +33,7 @@ const TestimonialSection = () => {
             </div>
 
             <div className="flex flex-col">
-              <blockquote className="text-2xl md:text-[35px] font-light leading-[1.3] text-[#4A2D1B] mb-12 tracking-tight">
+              <blockquote className="text-2xl pl-4 md:text-[34px] font-light leading-[1.3] text-[#4A2D1B] mb-12 tracking-tight">
                 I booked a trial session thinking I&apos;d do it once. That was eight months ago. I&apos;m now in the Intermediate program and I can&apos;t imagine my weekends without it.
               </blockquote>
 

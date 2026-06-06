@@ -81,7 +81,7 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32 items-start">
           {/* Left Column */}
           <div className="flex flex-col items-start max-w-xl">
-            <span className="text-[15px] md:text-2xl uppercase  text-[#DA7347] font-normal mb-8">
+            <span className="text-[15px] md:text-2xl uppercase  text-[#DA7347] font-gt-ultra mb-8">
               WELCOME TO ZEC
             </span>
             <h2 className="text-5xl md:text-[75px] font-normal text-[#85431E] leading-[1.2] mb-12 tracking-[-0.03em]">
@@ -105,14 +105,14 @@ const AboutSection = () => {
           </div>
 
           {/* Right Column */}
-          <div className="flex flex-col gap-10 text-[#85431E]/80 max-w-2xl">
-            <p className="text-md md:text-md font-light tracking-tight">
+          <div className="flex flex-col gap-10 pt-10 text-gt-ultra text-[#85431E]/80 max-w-2xl">
+            <p className="text-md md:text-[16px] font-light tracking-tight">
               Zippy Equestrian Center is Bangalore&apos;s riding center built for people who are
               curious about horses. Located in JP Nagar, right in the heart of the city, we&apos;ve
               been putting first-timers, families and serious riders on horseback ever since
               we opened our gates.
             </p>
-            <p className="text-md md:text-lg font-light tracking-tight">
+            <p className="text-md md:text-[16px] font-light tracking-tight">
               Whether you&apos;re booking a single trial session to tick something off your list, or
               you&apos;re looking to ride every week and actually get good at it, you&apos;ve come to
               the right place. Everyone starts somewhere and most of our riders started

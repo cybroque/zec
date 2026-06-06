@@ -62,7 +62,7 @@ const ScrollCarousel = () => {
 
         {/* Intro Section */}
         <div className="pt-20 md:pt-28 pb-8 px-6 text-center bg-[#FFF8E5]">
-          <span className="text-sm md:text-md uppercase tracking-[0.3em] text-[#DA7347] font-medium mb-4 block">
+          <span className="text-sm md:text-lg uppercase tracking-[0.3em] text-[#DA7347] font-medium mb-4 block">
             RIDE WITH US
           </span>
           <h2 className="text-4xl md:text-6xl font-normal text-[#85431E] mb-6 tracking-tight">

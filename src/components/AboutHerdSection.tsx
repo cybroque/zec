@@ -62,13 +62,13 @@ export default function AboutHerdSection() {
         <div className="mb-10" style={{ paddingLeft: "clamp(24px, 11.4vw, 172px)", paddingRight: "clamp(24px, 4vw, 80px)" }}>
           <h2
             className="font-normal leading-[1.1] text-[#85431e] mb-6"
-            style={{ fontSize: "clamp(32px, 4vw, 58px)" }}
+            style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
           >
             Meet the Herd
           </h2>
           <p
             className="font-light text-[#85431e] leading-[1.25]"
-            style={{ fontSize: "clamp(15px, 1.5vw, 22px)", maxWidth: "764px" }}
+            style={{ fontSize: "clamp(12px, 1.2vw, 18px)", maxWidth: "764px" }}
           >
             Every horse at Zippy Equestrian Center is well cared for, regularly vetted, and matched to
             each rider&apos;s level by our instructors. Getting to know the horses is one of the best

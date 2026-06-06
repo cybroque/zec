@@ -48,9 +48,10 @@ const socialLinks = [
 
 interface StoriesInstagramSectionProps {
   bgColor?: string;
+  hideFooter?: boolean;
 }
 
-export default function StoriesInstagramSection({ bgColor = "#FFF8E5" }: StoriesInstagramSectionProps) {
+export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFooter = false }: StoriesInstagramSectionProps) {
   return (
     <section className="w-full" style={{ backgroundColor: bgColor }}>
 
@@ -113,49 +114,51 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5" }: Stories
       </div>
 
       {/* ── "Follow us" + social links ── */}
-      <div className="container mx-auto max-w-5xl px-10 pt-20 pb-24">
-        <div className="text-center mb-16 md:mb-20">
-          <p
-            className="text-[#85431E] font-medium"
-            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
-          >
-            Follow us for stable updates and rider stories.
-          </p>
-        </div>
-
-        <div className="flex flex-col md:flex-row justify-center items-stretch gap-12 md:gap-24 max-w-4xl mx-auto">
-          <div className="flex-1 max-w-[320px] md:text-right">
-            <p className="text-[#85431E] text-[15px] md:text-base leading-[1.6] md:text-left inline-block max-w-[280px]">
-              Learn about Horses and get the best tips on riding, taking care, competitions, and most importantly having fun!
+      {!hideFooter && (
+        <div className="container mx-auto max-w-5xl px-10 pt-20 pb-24">
+          <div className="text-center mb-16 md:mb-20">
+            <p
+              className="text-[#85431E] font-medium"
+              style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
+            >
+              Follow us for stable updates and rider stories.
             </p>
           </div>
 
-          <div className="w-[1px] bg-[#85431E]/30 hidden md:block" />
+          <div className="flex flex-col md:flex-row justify-center items-stretch gap-12 md:gap-24 max-w-4xl mx-auto">
+            <div className="flex-1 max-w-[720px] md:text-left">
+              <p className="text-[#85431E] text-[15px] md:text-base leading-[1.6] md:text-left inline-block max-w-[340px]">
+                Learn about Horses and get the best tips on riding, taking care, competitions, and most importantly having fun!
+              </p>
+            </div>
 
-          <div className="flex-1 max-w-[320px]">
-            <p
-              className="font-bold text-[#000000] mb-5"
-              style={{ fontSize: "0.9rem", letterSpacing: "0.05em", textTransform: "uppercase" }}
-            >
-              Follow Us On
-            </p>
-            <div className="flex flex-col gap-3">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="flex items-center gap-2.5 text-[15px] md:text-base font-medium text-[#85431E] group transition-all w-fit"
-                >
-                  <span className="flex-shrink-0 text-[#85431E]">{link.icon}</span>
-                  <span className="underline underline-offset-4 decoration-[#85431E]/30 group-hover:decoration-[#85431E] transition-all">
-                    {link.label}
-                  </span>
-                </a>
-              ))}
+            <div className="w-[1px] bg-black hidden md:block" />
+
+            <div className="flex-1 max-w-[320px]">
+              <p
+                className="font-bold text-[#000000] mb-5"
+                style={{ fontSize: "0.9rem", letterSpacing: "0.05em", textTransform: "uppercase" }}
+              >
+                Follow Us On
+              </p>
+              <div className="flex flex-col gap-3">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="flex items-center gap-2.5 text-[15px] md:text-base font-medium text-[#85431E] group transition-all w-fit"
+                  >
+                    <span className="flex-shrink-0 text-[#85431E]">{link.icon}</span>
+                    <span className="underline underline-offset-4 decoration-[#85431E]/30 group-hover:decoration-[#85431E] transition-all">
+                      {link.label}
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
     </section>
   );

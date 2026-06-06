@@ -71,10 +71,10 @@ const ActivitiesSection = () => {
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center max-w-5xl mx-auto mb-20 md:mb-28">
-          <h2 className="text-[42px] md:text-[80px] font-normal text-[#DA7347] mb-8 leading-[1.1] tracking-tight">
+          <h2 className="text-[42px] md:text-[60px] font-normal text-[#DA7347] mb-8 leading-[1.1] tracking-tight">
             For All Seasons & All Reasons
           </h2>
-          <p className="text-md md:text-xl text-[#1a1a1a] max-w-4xl mx-auto leading-[1.6] font-light opacity-90 px-4">
+          <p className="text-md md:text-md text-[#1a1a1a] max-w-3xl mx-auto leading-[1.6] font-normal opacity-90 px-4">
             ZEC is more than a riding school. From summer camps for kids to corporate experiences,
             photoshoots, and venue hire there&apos;s always something on at the stables.
           </p>

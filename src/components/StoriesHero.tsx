@@ -17,18 +17,18 @@ export default function StoriesHero() {
       <div 
         className="absolute inset-0" 
         style={{
-          background: "linear-gradient(to top, #85431E 0%, rgba(114, 57, 25, 0) 50%)"
+          background: "linear-gradient(to top, #53321eff 0%, rgba(29, 17, 11, 0.47) 40%)"
         }}
       />
 
       {/* Bottom-left content */}
-      <div className="absolute bottom-0 left-0 px-8 md:px-16 pb-16 md:pb-24 max-w-2xl">
-        <p className="text-[11px] tracking-[0.3em] text-[#DA7347] uppercase font-medium mb-3">
-          Featured Stories
-        </p>
-        <h1 className="text-5xl md:text-7xl font-bold text-white leading-none mb-4">
+      <div className="absolute bottom-12 left-0 px-8 md:px-16 pb-16 md:pb-24 max-w-2xl">
+        <h1 className="text-5xl md:text-7xl font-normal text-white leading-none mb-4">
           Rider Stories
         </h1>
+        <p className="text-[16px] text-[#F2EBD9] font-gt-ultra  tracking-[0.3em] uppercase font-bold mb-3">
+          Featured Stories
+        </p>
         <p className="text-white/85 text-sm md:text-base leading-relaxed">
           Every rider at Zippy Equestrian Center has a before and an after.
           Here&apos;s what that journey looks like — in their own words. These

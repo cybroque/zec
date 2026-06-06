@@ -11,18 +11,18 @@ const ZippyFamilySection = () => {
 
           {/* Left Column: Text */}
           <div className="flex flex-col text-center md:text-left">
-            <h2 className="text-[36px] md:text-7xl font-light leading-[1.05] tracking-tight">
+            <h2 className="text-[36px] md:text-6xl font-light leading-[1.05] tracking-tight">
               <span className="text-[#85431E] block">Part of the</span>
               <span className="text-[#DA7347]">Zippy Family</span>
             </h2>
-            <p className="text-lg md:text-2xl text-[#85431E]/80 mt-3 font-medium tracking-tight">
+            {/* <p className="text-lg md:text-2xl text-[#85431E]/80 mt-3 font-medium tracking-tight">
               Wherever you&apos;re there&apos;s a Zippy
-            </p>
+            </p> */}
           </div>
 
           {/* Right Column: Logos */}
-          <div className="flex items-center gap-6 md:gap-12">
-            <div className="relative w-40 h-40 md:w-40 md:h-40">
+          <div className="flex items-center gap-6 md:gap-12 pr-32">
+            <div className="relative w-24 h-24 md:w-32 md:h-32">
               <Image
                 src="/assets/images/zippybroncos.svg"
                 alt="Zippy Broncos Logo"
@@ -32,9 +32,9 @@ const ZippyFamilySection = () => {
               />
             </div>
 
-            <div className="h-12 md:h-20 w-[1px] bg-[#85431E]/15" aria-hidden="true" />
+            <div className="h-12 md:h-30 w-[2px] bg-[#85431E]" aria-hidden="true" />
 
-            <div className="relative w-28 h-12 md:w-60 md:h-36">
+            <div className="relative w-34 h-34 md:w-52 md:h-52">
               <Image
                 src="/assets/images/zippypremier.svg"
                 alt="Zippy Premier Logo"

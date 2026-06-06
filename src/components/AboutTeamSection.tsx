@@ -33,7 +33,7 @@ export default function AboutTeamSection() {
           Meet the people behind
         </h2>
 
-        <div className="relative max-w-[1100px] mx-auto">
+        <div className="relative max-w-[1800px] mx-auto">
           {/* Background Pattern */}
           <div className="absolute top-[-30px] md:top-[-60px] left-0 w-full h-[120px] md:h-[160px] z-0 pointer-events-none flex justify-center">
             <div className="relative w-full h-full max-w-[900px] mx-auto">

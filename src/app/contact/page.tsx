@@ -11,7 +11,7 @@ export default function ContactPage() {
       <div className="pt-36">
         <ContactFormMapSection />
         <ContactDirectorySection />
-        <StoriesInstagramSection bgColor="#FFFBF2" />
+        <StoriesInstagramSection bgColor="#FFFBF2" hideFooter={true} />
       </div>
       <Footer />
     </main>

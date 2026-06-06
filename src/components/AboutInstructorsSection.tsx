@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform, useMotionTemplate, animate } from "framer-motion";
 
 const instructors = [
   {
@@ -38,15 +38,17 @@ export default function AboutInstructorsSection() {
   const containerRef = useRef<HTMLElement>(null);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "start 20%"],
-  });
+  const isInView = useInView(containerRef, { amount: 0.15, once: true });
+  const progress = useMotionValue(0);
 
-  const color1 = useTransform(scrollYProgress, [0, 1], ["#1C2245", "#1C2245"]);
-  const color2 = useTransform(scrollYProgress, [0, 1], ["#1C2245", "#85431E"]);
-  const color3 = useTransform(scrollYProgress, [0, 1], ["#1C2245", "#85431E"]);
-  const background = useMotionTemplate`linear-gradient(to bottom, ${color1} 0%, ${color2} 40%, ${color3} 100%)`;
+  useEffect(() => {
+    animate(progress, isInView ? 1 : 0, { duration: 0.8, ease: "easeInOut" });
+  }, [isInView, progress]);
+
+  const color1 = useTransform(progress, [0, 1], ["#1C2245", "#1C2245"]);
+  const color2 = useTransform(progress, [0, 1], ["#1C2245", "#85431E"]);
+  const color3 = useTransform(progress, [0, 1], ["#1C2245", "#85431E"]);
+  const background = useMotionTemplate`linear-gradient(to bottom, ${color1} 0px, ${color2} 120px, ${color3} 100%)`;
 
   return (
     <motion.section
@@ -55,7 +57,7 @@ export default function AboutInstructorsSection() {
       style={{ background }}
     >
       {/* ── Instructors ── */}
-      <div className="py-16 md:py-24">
+      <div className="pt-24 pb-16 md:pt-42 md:pb-24">
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
@@ -69,12 +71,12 @@ export default function AboutInstructorsSection() {
           </div>
 
           {/* Desktop Grid — staggered layout */}
-          <div className="hidden md:grid grid-cols-12 gap-y-4 relative w-full">
+          <div className="hidden md:grid grid-cols-12 gap-y-14 relative w-full">
             {instructors.map((instructor) => (
               <div key={instructor.id} className="contents">
                 <div
                   className={`${instructor.gridImage} relative shadow-2xl rounded-sm overflow-hidden`}
-                  style={{ aspectRatio: "4/5", maxHeight: "340px" }}
+                  style={{ aspectRatio: "4/5", maxHeight: "300px" }}
                 >
                   <Image
                     src={instructor.image}
@@ -116,8 +118,8 @@ export default function AboutInstructorsSection() {
       </div>
 
       {/* ── Location / Map ── */}
-      <div className="py-12 md:py-16">
-        <div className="container mx-auto px-6 md:px-12">
+      <div className="pt-24 pb-0 md:pt-32">
+        <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 items-center">
             {/* Left: Text */}
             <div className="flex flex-col gap-6">
@@ -135,10 +137,14 @@ export default function AboutInstructorsSection() {
               </p>
             </div>
 
-            {/* Right: Map — hover anywhere on map to show address card */}
+            {/* Right: Map */}
             <div
-              className="relative w-full max-w-[580px] ml-auto cursor-pointer"
-              style={{ aspectRatio: "733/982" }}
+              className="relative w-full max-w-[500px] lg:max-w-[600px] ml-auto cursor-pointer"
+              style={{ 
+                aspectRatio: "733/982",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 100%)",
+                maskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 100%)"
+              }}
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
             >
@@ -146,15 +152,11 @@ export default function AboutInstructorsSection() {
                 src="/assets/images/about-map.svg"
                 alt="ZEC Location Map"
                 fill
-                sizes="(max-width: 768px) 100vw, 580px"
+                sizes="(max-width: 768px) 100vw, 600px"
                 className="object-contain"
               />
 
-              {/*
-                Dot marker: cx=250.313 cy=557.88 in 733×982 SVG
-                → 34.1% from left, 56.8% from top
-                Pulsing ring shown over the dot when hovering
-              */}
+              {/* Dot marker */}
               <div
                 className="absolute pointer-events-none"
                 style={{ left: "calc(34.1% - 10px)", top: "calc(56.8% - 10px)", width: 20, height: 20 }}
@@ -166,12 +168,12 @@ export default function AboutInstructorsSection() {
                 />
               </div>
 
-              {/* Address card — appears at dot position, extends right */}
+              {/* Address card */}
               <motion.div
                 initial={false}
                 animate={showTooltip ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
                 transition={{ duration: 0.22, ease: "easeOut" }}
-                className="absolute pointer-events-none"
+                className="absolute pointer-events-none z-30"
                 style={{ left: "34.65%", top: "57.43%", width: "52%" }}
               >
                 <div

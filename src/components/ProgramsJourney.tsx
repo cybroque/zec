@@ -44,7 +44,7 @@ export default function ProgramsJourney() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Left Column - Content */}
           <div className="flex flex-col">
-            <h2 className="text-5xl md:text-[65px] font-ultra leading-[1.1] tracking-tight mb-16">
+            <h2 className="text-5xl md:text-[65px] leading-[1.1] tracking-tight mb-16">
               <span className="text-[#85431E]">Find your place</span>
               <br />
               <span className="text-[#DA7347]">in the saddle:</span>
@@ -64,7 +64,7 @@ export default function ProgramsJourney() {
                       onClick={() => setActiveIndex(index)}
                       className="w-full flex items-center justify-between py-6 text-left focus:outline-none group"
                     >
-                      <span className="text-lg md:text-[22px] font-sans text-[#1A1A1A] font-medium transition-colors">
+                      <span className="text-lg md:text-[18px] font-sans text-[#1A1A1A] font-medium transition-colors">
                         {item.title}
                       </span>
                       <span className="ml-4 flex-shrink-0 text-[#1A1A1A] transition-transform duration-300">
