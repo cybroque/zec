@@ -11,6 +11,7 @@ export default function AboutStorySection() {
           fill
           sizes="(max-width: 768px) 70vw, (max-width: 1024px) 50vw, 40vw"
           className="object-contain object-top object-right"
+          loading="eager"
         />
       </div>
 
@@ -44,6 +45,7 @@ export default function AboutStorySection() {
                   fill
                   sizes="(max-width: 640px) 240px, (max-width: 1024px) 260px, 280px"
                   className="object-cover"
+                  loading="eager"
                 />
               </div>
             </div>

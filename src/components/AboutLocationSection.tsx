@@ -35,6 +35,7 @@ export default function AboutLocationSection() {
               fill
               sizes="(max-width: 768px) 100vw, 540px"
               className="object-contain"
+              loading="eager"
             />
             {/* Address card */}
             <div className="absolute bottom-8 right-4 md:bottom-12 md:right-8 bg-[#FFF8E5]/90 backdrop-blur-sm p-4 md:p-5 max-w-[210px] shadow-lg">

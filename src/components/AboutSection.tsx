@@ -49,10 +49,10 @@ const StatItem = ({ number, label }: { number: string, label: string }) => {
 
   return (
     <div ref={itemRef} className="flex flex-col items-center text-center group">
-      <span className="text-5xl md:text-7xl font-light text-[#DA7347] mb-6 transition-transform duration-500 group-hover:scale-105">
+      <span className="text-5xl md:text-7xl font-gt-ultra-fine text-[#DA7347] mb-6 transition-transform duration-500 group-hover:scale-105">
         {count}{suffix}
       </span>
-      <span className="text-[12px] md:text-lg text-[#DA7347] leading-[1.6] whitespace-pre-line font-light">
+      <span className="text-[15px] md:text-[22px] font-gt-ultra text-[#DA7347] leading-[1.6] whitespace-pre-line font-light">
         {label}
       </span>
     </div>
@@ -88,8 +88,8 @@ const AboutSection = () => {
               Horses, People<br />
               Good Time
             </h2>
-            <button className="group flex items-center gap-8 px-8 py-5 border border-[#DA7347]/40 rounded-sm hover:bg-[#DA7347] hover:text-[#FFF8E5] transition-all duration-500 shadow-sm">
-              <span className="text-lg font-light text-[#DA7347] transition-colors group-hover:text-inherit">Read our story</span>
+            <button className="group flex items-center gap-8 px-4 py-4 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-[#FFF8E5] transition-all duration-500 shadow-sm">
+              <span className="text-lg font-gt-ultra text-[#DA7347] transition-colors group-hover:text-inherit">Read our story</span>
               <svg
                 width="28"
                 height="28"
@@ -105,7 +105,7 @@ const AboutSection = () => {
           </div>
 
           {/* Right Column */}
-          <div className="flex flex-col gap-10 pt-10 text-gt-ultra text-[#85431E]/80 max-w-2xl">
+          <div className="flex flex-col gap-10 pt-10 font-gt-ultra text-[#85431E]/80 max-w-2xl">
             <p className="text-md md:text-[16px] font-light tracking-tight">
               Zippy Equestrian Center is Bangalore&apos;s riding center built for people who are
               curious about horses. Located in JP Nagar, right in the heart of the city, we&apos;ve

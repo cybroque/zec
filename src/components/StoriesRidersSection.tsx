@@ -204,6 +204,7 @@ export default function StoriesRidersSection() {
                       fill
                       sizes="(max-width: 768px) 100vw, 38vw"
                       className="object-cover object-top"
+                      loading="eager"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">

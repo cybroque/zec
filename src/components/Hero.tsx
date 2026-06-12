@@ -1,21 +1,22 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
+
 
   return (
     <section className="relative h-screen min-h-[700px] w-full overflow-hidden flex items-center justify-center text-center font-sans">
       {/* Video Background Placeholder */}
       <div className="absolute inset-0 z-0 bg-[#FFF8E5]">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/60 z-10" />
         <Image 
-          src="/assets/images/herosectionimg.svg" 
+          src="/assets/images/hero_main.png" 
           alt="Zippy Equestrian Hero" 
           fill
           unoptimized
           priority
-          className="object-cover object-center opacity-90"
+          className="object-cover object-center"
         />
       </div>
 
@@ -34,9 +35,9 @@ export default function Hero() {
           <button className="px-10 py-5 bg-[#DA7347] text-[#F2EBD9] font-normal text-sm tracking-[0.15em] rounded-sm hover:bg-white hover:text-zippy-orange transition-all duration-300 shadow-2xl">
             Book a trial ride
           </button>
-          <button className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/30 text-[#F2EBD9] font-normal text-sm tracking-[0.15em] rounded-sm hover:bg-white/20 transition-all duration-300">
+          <Link href="/programs" className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/30 text-[#F2EBD9] font-normal text-sm tracking-[0.15em] rounded-sm hover:bg-white/20 transition-all duration-300">
             Explore Programs
-          </button>
+          </Link>
         </div>
       </div>
 

@@ -321,6 +321,7 @@ export default function ProgramsCardsSection() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 420px"
+                  loading="eager"
                 />
               </div>
             </div>

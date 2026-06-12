@@ -29,6 +29,7 @@ const ZippyFamilySection = () => {
                 fill
                 sizes="160px"
                 className="object-contain"
+                loading="eager"
               />
             </div>
 
@@ -41,6 +42,7 @@ const ZippyFamilySection = () => {
                 fill
                 sizes="(max-width: 768px) 112px, 240px"
                 className="object-contain"
+                loading="eager"
               />
             </div>
           </div>

@@ -187,6 +187,7 @@ export default function BeyondServicesSection() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 40vw"
+                    loading="eager"
                   />
                 </div>
 

@@ -84,6 +84,7 @@ export default function AboutInstructorsSection() {
                     fill
                     sizes="(max-width: 768px) 100vw, 25vw"
                     className="object-cover"
+                    loading="eager"
                   />
                 </div>
                 <div className={`${instructor.gridText} flex flex-col justify-center pl-6 lg:pl-10`}>
@@ -106,7 +107,7 @@ export default function AboutInstructorsSection() {
             {instructors.map((instructor) => (
               <div key={instructor.id} className="flex flex-col items-center text-center">
                 <div className="relative w-[220px] shadow-2xl mb-6 rounded-sm overflow-hidden" style={{ aspectRatio: "4/5" }}>
-                  <Image src={instructor.image} alt={instructor.name} fill sizes="220px" className="object-cover" />
+                  <Image src={instructor.image} alt={instructor.name} fill sizes="220px" className="object-cover" loading="eager" />
                 </div>
                 <h3 className="text-[#FFF8E5] text-xl font-normal mb-1.5">{instructor.name}</h3>
                 <p className="text-[#FFF8E5]/80 text-[10px] uppercase tracking-widest font-light mb-3">{instructor.role}</p>
@@ -154,6 +155,7 @@ export default function AboutInstructorsSection() {
                 fill
                 sizes="(max-width: 768px) 100vw, 600px"
                 className="object-contain"
+                loading="eager"
               />
 
               {/* Dot marker */}

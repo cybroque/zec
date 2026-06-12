@@ -97,7 +97,7 @@ export default function AboutHerdSection() {
                   style={{ height: "330px" }}
                 >
                   <div className="absolute inset-0 opacity-80 overflow-hidden rounded-[6px]">
-                    <Image src={horse.image} alt={horse.name} fill sizes="254px" className="object-cover" />
+                    <Image src={horse.image} alt={horse.name} fill sizes="254px" className="object-cover" loading="eager" />
                   </div>
                   <div
                     className="absolute inset-0 rounded-[6px]"

@@ -143,7 +143,7 @@ const ScrollCarousel = () => {
                   fill
                   sizes="(max-width: 768px) 100vw, 45vw"
                   className="object-cover"
-                  priority={index === 0}
+                  loading="eager"
                 />
               </div>
             ))}
@@ -157,6 +157,7 @@ const ScrollCarousel = () => {
               fill
               sizes="100vw"
               className="object-cover"
+              loading="eager"
             />
           </div>
 

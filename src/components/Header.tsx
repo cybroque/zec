@@ -43,24 +43,13 @@ export default function Header({ theme = "dark" }: HeaderProps) {
         </Link>
 
         {/* Navigation - Desktop */}
-        <nav className="hidden lg:flex items-center bg-[#F2EBD9] backdrop-blur-sm rounded-md overflow-hidden h-14 shadow-xl">
-          <Link href="/" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-[#DA7347] transition-colors">HOME</Link>
-          <Link href="/about" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-[#DA7347] transition-colors">ABOUT</Link>
-          <Link href="/programs" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-[#DA7347] transition-colors">PROGRAMS</Link>
-          <Link href="/stories" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-[#DA7347] transition-colors">RIDERS STORIES</Link>
-          <Link href="/beyond" className="px-6 py-2 text-[11px] font-medium tracking-widest text-[#85431E] hover:text-[#DA7347] transition-colors">BEYOND THE RIDE</Link>
-          <Link href="/contact" className="px-8 py-2 h-full flex items-center bg-[#F2EBD9] text-[#85431E] font-black text-xs tracking-widest hover:bg-[#DA7347] hover:text-[#F2EBD9] transition-all">JOIN ZIPPY</Link>
-          
-          {/* Hamburger menu inside nav block for light theme */}
-          {isLight && (
-            <button className="px-4 h-full flex items-center text-[#85431E] border-l border-[#85431E]/20 hover:bg-[#DA7347] hover:text-white transition-colors">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
-            </button>
-          )}
+        <nav className={`hidden lg:flex items-center backdrop-blur-sm rounded-md overflow-hidden h-14 shadow-xl ${isLight ? 'bg-[#F2EBD9]' : 'bg-[#DA7347]'}`}>
+          <Link href="/" className={`px-6 py-2 text-[11px] font-medium tracking-widest transition-colors ${isLight ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>HOME</Link>
+          <Link href="/about" className={`px-6 py-2 text-[11px] font-medium tracking-widest transition-colors ${isLight ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>ABOUT</Link>
+          <Link href="/programs" className={`px-6 py-2 text-[11px] font-medium tracking-widest transition-colors ${isLight ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>PROGRAMS</Link>
+          <Link href="/stories" className={`px-6 py-2 text-[11px] font-medium tracking-widest transition-colors ${isLight ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>RIDERS STORIES</Link>
+          <Link href="/beyond" className={`px-6 py-2 text-[11px] font-medium tracking-widest transition-colors ${isLight ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>BEYOND THE RIDE</Link>
+          <Link href="/contact" className={`px-8 py-2 h-full flex items-center font-black text-xs tracking-widest transition-all hover:bg-white hover:text-[#DA7347]`}>JOIN ZIPPY</Link>
         </nav>
 
         {/* Mobile Menu Toggle */}
