@@ -2,55 +2,78 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Reveal from "@/components/ui/Reveal";
 
 const journeyItems = [
   {
     id: 0,
     title: "Never ridden before?",
-    description: (
+    renderDescription: (scrollToCard: (index: number) => void) => (
       <>
-        Start with the <span className="text-[#DA7347]">Trial Ride</span>. One
+        Start with the <button onClick={(e) => { e.stopPropagation(); scrollToCard(0); }} className="text-[#DA7347] font-medium hover:underline focus:outline-none">Trial Ride</button>. One
         session, no commitment.
       </>
     ),
-    image: "/assets/images/pic2.jpg",
+    image: "/assets/images/program-img.svg",
   },
   {
     id: 1,
     title: "Ridden before, but want to improve?",
-    description: (
+    renderDescription: (scrollToCard: (index: number) => void) => (
       <>
-        The <span className="text-[#DA7347]">Beginners Program</span> is built
+        The <button onClick={(e) => { e.stopPropagation(); scrollToCard(1); }} className="text-[#DA7347] font-medium hover:underline focus:outline-none">Beginners Program</button> is built
         for you.
       </>
     ),
-    image: "/assets/images/pic3.jpg",
+    image: "/assets/images/program-img.svg",
   },
   {
     id: 2,
     title: "Already riding and want to push further?",
-    description:
-      "Join our intermediate programs designed to refine your technique and build confidence in the saddle.",
-    image: "/assets/images/pic5.jpg",
+    renderDescription: (scrollToCard: (index: number) => void) => (
+      <>
+        Join our <button onClick={(e) => { e.stopPropagation(); scrollToCard(2); }} className="text-[#DA7347] font-medium hover:underline focus:outline-none">Intermediate Programs</button> designed to refine your technique and build confidence in the saddle.
+      </>
+    ),
+    image: "/assets/images/program-img.svg",
   },
 ];
 
 export default function ProgramsJourney() {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const scrollToCard = (index: number) => {
+    const section = document.getElementById("programs-cards");
+    if (section) {
+      const rect = section.getBoundingClientRect();
+      const absoluteTop = window.scrollY + rect.top;
+      
+      const scrollableDistance = window.innerHeight * 2; // 200vh since total is 300vh and sticky takes 100vh
+      const targetScroll = absoluteTop + (index / 6) * scrollableDistance;
+      
+      window.scrollTo({
+        top: targetScroll,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
-    <section className="bg-[#FFF8E5] py-20 md:py-32 px-6">
-      <div className="container mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+    <section className="bg-[#FFF8E5] py-20 md:py-32">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start pt-8 lg:pt-12">
           {/* Left Column - Content */}
           <div className="flex flex-col">
-            <h2 className="text-5xl md:text-[65px] leading-[1.1] tracking-tight mb-16">
-              <span className="text-[#85431E]">Find your place</span>
-              <br />
-              <span className="text-[#DA7347]">in the saddle:</span>
-            </h2>
+            <Reveal>
+              <h2 className="text-5xl md:text-[65px] leading-[1.1] tracking-tight mb-16">
+                <span className="text-[#85431E]">Find your place</span>
+                <br />
+                <span className="text-[#DA7347]">in the saddle:</span>
+              </h2>
+            </Reveal>
 
-            <div className="flex flex-col w-full border-t border-[#85431E]/20">
+            <Reveal delay={0.2}>
+              <div className="flex flex-col w-full border-t border-[#85431E]/20">
               {journeyItems.map((item, index) => {
                 const isActive = activeIndex === index;
 
@@ -107,7 +130,7 @@ export default function ProgramsJourney() {
                     >
                       <div className="overflow-hidden">
                         <p className="pb-6 text-[#1A1A1A]/80 text-base md:text-lg leading-relaxed pr-8">
-                          {item.description}
+                          {item.renderDescription(scrollToCard)}
                         </p>
                       </div>
                     </div>
@@ -115,23 +138,23 @@ export default function ProgramsJourney() {
                 );
               })}
             </div>
+            </Reveal>
           </div>
 
           {/* Right Column - Image */}
           <div className="relative w-full aspect-[4/3] lg:aspect-[1.2/1] overflow-hidden rounded-sm">
-            {journeyItems.map((item, index) => (
-              <Image
-                key={item.id}
-                src={item.image}
-                alt={item.title}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                loading="eager"
-                className={`object-cover transition-opacity duration-700 ease-in-out ${
-                  activeIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"
-                }`}
-              />
-            ))}
+            <Reveal delay={0.3}>
+              <div className="w-full h-full relative">
+                <Image
+                  src="/assets/images/program-img.svg"
+                  alt="Program level"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  loading="eager"
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>

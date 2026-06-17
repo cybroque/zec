@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "@/components/ui/Reveal";
 
 export default function AboutStorySection() {
   return (
@@ -20,41 +21,53 @@ export default function AboutStorySection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-16 items-start">
             {/* Left Column: Top 3 Paragraphs */}
             <div className="pl-16 lg:col-span-7 flex flex-col text-[#FFF8E5] font-extralight text-[15px] md:text-[17px] leading-[1.4]">
-              <h2 className="text-white font-sans text-xl md:text-2xl font-bold tracking-[0.1em] uppercase mb-12 md:mb-16">
-                Where it all began
-              </h2>
+              <Reveal>
+                <h2 className="text-white font-sans text-xl md:text-2xl font-bold tracking-[0.1em] uppercase mb-12 md:mb-16">
+                  Where it all began
+                </h2>
+              </Reveal>
               <div className="flex flex-col gap-4 max-w-xl">
-                <p>
-                  After finishing his engineering degree, Dilip Kirani (Founding Partner) wanted to try something he'd always meant to get around to, 'Horse riding'.
-                </p>
-                <p>
-                  He and a friend booked a session at a riding center in Bangalore. It wasn&apos;t what he&apos;d hoped for. The experience felt rushed, the instruction wasn&apos;t right and they left feeling like they&apos;d missed something.
-                </p>
-                <p>
-                  Taking matters into his own hands, he bought a horse and set up a small facility in South Bangalore just to ride, enjoy and maintain his own horses. There was no grand plan. It was a passion project.
-                </p>
+                <Reveal delay={0.2}>
+                  <p>
+                    After finishing his engineering degree, Dilip Kirani (Founding Partner) wanted to try something he'd always meant to get around to, 'Horse riding'.
+                  </p>
+                </Reveal>
+                <Reveal delay={0.4}>
+                  <p>
+                    He and a friend booked a session at a riding center in Bangalore. It wasn&apos;t what he&apos;d hoped for. The experience felt rushed, the instruction wasn&apos;t right and they left feeling like they&apos;d missed something.
+                  </p>
+                </Reveal>
+                <Reveal delay={0.6}>
+                  <p>
+                    Taking matters into his own hands, he bought a horse and set up a small facility in South Bangalore just to ride, enjoy and maintain his own horses. There was no grand plan. It was a passion project.
+                  </p>
+                </Reveal>
               </div>
             </div>
 
             {/* Right Column: Image */}
             <div className="lg:col-span-5 flex justify-center lg:justify-left">
-              <div className="relative w-full max-w-[240px] sm:max-w-[260px] lg:max-w-[280px] aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
-                <Image
-                  src="/assets/images/about-main.svg"
-                  alt="Dilip Kirani - Founding Partner"
-                  fill
-                  sizes="(max-width: 640px) 240px, (max-width: 1024px) 260px, 280px"
-                  className="object-cover"
-                  loading="eager"
-                />
-              </div>
+              <Reveal delay={0.3}>
+                <div className="relative w-full max-w-[240px] sm:max-w-[260px] lg:max-w-[280px] aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
+                  <Image
+                    src="/assets/images/about-main.svg"
+                    alt="Dilip Kirani - Founding Partner"
+                    fill
+                    sizes="(max-width: 640px) 240px, (max-width: 1024px) 260px, 280px"
+                    className="object-cover"
+                    loading="eager"
+                  />
+                </div>
+              </Reveal>
             </div>
 
             {/* Bottom Paragraph */}
             <div className="pl-16 lg:col-span-12 text-[#FFF8E5] font-normal text-[15px] md:text-[17px] leading-[1.4] max-w-[1000px]">
-              <p>
-                Over time, word spread. Friends came to ride. Then friends of friends. Then families with children and adults ticking riding off their list, and people who just wanted to spend their weekend somewhere different. The small setup became something real, a proper equestrian center, built entirely on the idea that horse riding should be open to everyone. That&apos;s still what Zippy Equestrian Center is today.
-              </p>
+              <Reveal delay={0.8}>
+                <p>
+                  Over time, word spread. Friends came to ride. Then friends of friends. Then families with children and adults ticking riding off their list, and people who just wanted to spend their weekend somewhere different. The small setup became something real, a proper equestrian center, built entirely on the idea that horse riding should be open to everyone. That&apos;s still what Zippy Equestrian Center is today.
+                </p>
+              </Reveal>
             </div>
           </div>
         </div>

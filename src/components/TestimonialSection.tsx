@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Reveal from '@/components/ui/Reveal';
 
 const TestimonialSection = () => {
   return (
@@ -9,42 +10,52 @@ const TestimonialSection = () => {
 
           {/* Left Column: Heading */}
           <div className="flex flex-col">
-            <h2 className="text-5xl md:text-[85px] font-light leading-[1.1] text-[#85431E] mb-10 tracking-tight">
-              Words from<br />
-              the <span className="text-[#DA7347]">horseback</span>
-            </h2>
-            <p className="text-sm md:text-[18px] text-[#85431E]/60 max-w-[900px] leading-normal tracking-wider font-medium">
-              Every rider at ZEC started exactly the same way: curious, a little nervous, and wondering if this was really for them. Here&apos;s what happened next.
-            </p>
+            <Reveal>
+              <h2 className="text-5xl md:text-[85px] font-light leading-[1.1] text-[#85431E] mb-10 tracking-tight">
+                Words from<br />
+                the <span className="text-[#DA7347]">horseback</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="text-sm md:text-[18px] text-[#85431E]/60 max-w-[900px] leading-normal r font-medium">
+                Every rider at ZEC started exactly the same way: curious, a little nervous, and wondering if this was really for them. Here&apos;s what happened next.
+              </p>
+            </Reveal>
           </div>
 
           {/* Right Column: Testimonial */}
           <div className="relative pt-12">
             <div className="absolute top-12 left-0 -translate-x-8 -translate-y-4">
-              <div className="relative w-16 h-12 opacity-80">
-                <Image
-                  src="/assets/images/quotationmark.png"
-                  alt="Quotation Mark"
-                  fill
-                  sizes="64px"
-                  className="object-contain"
-                  loading="eager"
-                />
-              </div>
+              <Reveal delay={0.3}>
+                <div className="relative w-16 h-12 opacity-80">
+                  <Image
+                    src="/assets/images/quotationmark.png"
+                    alt="Quotation Mark"
+                    fill
+                    sizes="64px"
+                    className="object-contain"
+                    loading="eager"
+                  />
+                </div>
+              </Reveal>
             </div>
 
             <div className="flex flex-col">
-              <blockquote className="text-2xl pl-4 md:text-[34px] font-light leading-[1.3] text-[#4A2D1B] mb-12 tracking-tight">
-                I booked a trial session thinking I&apos;d do it once. That was eight months ago. I&apos;m now in the Intermediate program and I can&apos;t imagine my weekends without it.
-              </blockquote>
+              <Reveal delay={0.4}>
+                <blockquote className="text-2xl pl-4 md:text-[34px] font-light leading-[1.3] text-[#4A2D1B] mb-12 tracking-tight">
+                  I booked a trial session thinking I&apos;d do it once. That was eight months ago. I&apos;m now in the Intermediate program and I can&apos;t imagine my weekends without it.
+                </blockquote>
+              </Reveal>
 
-              <div className="flex flex-wrap items-center gap-x-2 text-md md:text-[20px]">
-                <span className="font-bold text-[#1A1A1A]">Priya S</span>
-                <span className="text-[#1A1A1A]/40">·</span>
-                <span className="text-[#DA7347] font-medium">Bangalore</span>
-                <span className="text-[#1A1A1A]/40">·</span>
-                <span className="text-[#DA7347] font-light opacity-80">Started as a complete beginner</span>
-              </div>
+              <Reveal delay={0.6}>
+                <div className="flex flex-wrap items-center gap-x-2 text-md md:text-[20px]">
+                  <span className="font-bold text-[#1A1A1A]">Priya S</span>
+                  <span className="text-[#1A1A1A]/40">·</span>
+                  <span className="text-[#DA7347] font-medium">Bangalore</span>
+                  <span className="text-[#1A1A1A]/40">·</span>
+                  <span className="text-[#DA7347] font-light opacity-80">Started as a complete beginner</span>
+                </div>
+              </Reveal>
             </div>
           </div>
 

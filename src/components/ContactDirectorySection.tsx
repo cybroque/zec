@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Reveal from "@/components/ui/Reveal";
 
 const contacts = [
   {
@@ -25,22 +25,19 @@ export default function ContactDirectorySection() {
 
           {/* Left: Heading */}
           <div>
-            <h2 className="text-[#1a1a1a] text-3xl md:text-4xl font-light tracking-[0.08em] uppercase leading-tight">
-              Contact<br />Directory
-            </h2>
+            <Reveal>
+              <h2 className="text-[#1a1a1a] text-3xl md:text-4xl font-light tracking-[0.08em] uppercase leading-tight">
+                Contact<br />Directory
+              </h2>
+            </Reveal>
           </div>
 
           {/* Right: Contact entries */}
           <div className="flex flex-col gap-8">
             {contacts.map((contact, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-              >
-                <p className="text-[#DA7347] text-base font-light tracking-wide mb-2">
+              <Reveal key={i} delay={i * 0.1}>
+                <div>
+                  <p className="text-[#DA7347] text-base font-light  mb-2">
                   {contact.phone}
                 </p>
                 <div className="w-full h-px mb-3" style={{ backgroundColor: "#85431E33" }} />
@@ -52,10 +49,11 @@ export default function ContactDirectorySection() {
                     {contact.name}
                   </p>
                 )}
-                <p className="text-[#1a1a1a]/55 text-sm font-light leading-relaxed">
-                  {contact.description}
-                </p>
-              </motion.div>
+                  <p className="text-[#1a1a1a]/55 text-sm font-light leading-relaxed">
+                    {contact.description}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </div>
 

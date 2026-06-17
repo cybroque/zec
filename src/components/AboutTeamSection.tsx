@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
+import Reveal from "@/components/ui/Reveal";
 
 const teamMembers = [
   { name: "Narasimha Murthy", role: "Chief Advisor", image: "/assets/images/about-p1.png" },
@@ -29,9 +30,11 @@ export default function AboutTeamSection() {
   return (
     <section className="relative w-full bg-[#1C2245] py-16 md:py-24 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <h2 className="text-[#FFF8E5] font-sans text-3xl md:text-5xl font-normal tracking-wide text-center mb-16 md:mb-24">
-          Meet the people behind
-        </h2>
+        <Reveal>
+          <h2 className="text-[#FFF8E5] font-sans text-3xl md:text-5xl font-normal  text-center mb-16 md:mb-24">
+            Meet the people behind
+          </h2>
+        </Reveal>
 
         <div className="relative max-w-[1800px] mx-auto">
           {/* Background Pattern */}
@@ -67,8 +70,8 @@ export default function AboutTeamSection() {
                       transform: isHovered
                         ? "scale(1.06) translateY(-5px)"
                         : anyHovered
-                        ? "scale(0.95)"
-                        : "scale(1)",
+                          ? "scale(0.95)"
+                          : "scale(1)",
                       transition: "transform 0.4s cubic-bezier(0.4,0,0.2,1)",
                       willChange: "transform",
                     }}
@@ -82,7 +85,7 @@ export default function AboutTeamSection() {
                       loading="eager"
                     />
                   </div>
-                  <h3 className="text-[#FFF8E5] text-[18px] font-normal tracking-wide mb-1">
+                  <h3 className="text-[#FFF8E5] text-[18px] font-normal  mb-1">
                     {member.name}
                   </h3>
                   <p className="text-[#FFF8E5]/70 text-[10px] uppercase tracking-[0.15em] font-light">
@@ -105,7 +108,7 @@ export default function AboutTeamSection() {
                 <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden shadow-xl mb-3">
                   <Image src={member.image} alt={member.name} fill sizes="50vw" className="object-cover object-center" loading="eager" />
                 </div>
-                <h3 className="text-[#FFF8E5] text-[15px] font-normal tracking-wide mb-0.5">{member.name}</h3>
+                <h3 className="text-[#FFF8E5] text-[15px] font-normal  mb-0.5">{member.name}</h3>
                 <p className="text-[#FFF8E5]/70 text-[9px] uppercase tracking-[0.15em] font-light">{member.role}</p>
               </motion.div>
             ))}

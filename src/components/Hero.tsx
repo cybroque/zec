@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import Reveal from "@/components/ui/Reveal";
+
 export default function Hero() {
 
 
@@ -16,29 +18,35 @@ export default function Hero() {
           fill
           unoptimized
           priority
-          className="object-cover object-center"
+          className="object-center"
         />
       </div>
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-6 flex flex-col items-center">
-        <h1 className="text-[#F2EBD9] text-4xl md:text-7xl font-normal tracking-tight mb-8 mt-12 animate-slide-up">
-          Real Riding.<br className="md:hidden" /> Real Feeling.
-        </h1>
+        <Reveal>
+          <h1 className="text-[#F2EBD9] text-4xl md:text-7xl font-normal tracking-tight mb-8 mt-12">
+            Real Riding.<br className="md:hidden" /> Real Feeling.
+          </h1>
+        </Reveal>
 
-        <p className="text-[#F2EBD9]/90 text-md md:text-lg max-w-2xl mb-7 font-light leading-relaxed animate-slide-up [animation-delay:200ms]">
-          Bangalore&apos;s riding center for anyone who&apos;s ever been curious about horses.<br className="hidden md:block" />
-          No experience needed. Just show up.
-        </p>
+        <Reveal delay={0.2}>
+          <p className="text-[#F2EBD9]/90 text-md md:text-lg max-w-2xl mb-7 font-light leading-relaxed">
+            Bangalore&apos;s riding center for anyone who&apos;s ever been curious about horses.<br className="hidden md:block" />
+            No experience needed. Just show up.
+          </p>
+        </Reveal>
 
-        <div className="flex flex-col sm:flex-row gap-6 animate-slide-up [animation-delay:400ms]">
-          <button className="px-10 py-5 bg-[#DA7347] text-[#F2EBD9] font-normal text-sm tracking-[0.15em] rounded-sm hover:bg-white hover:text-zippy-orange transition-all duration-300 shadow-2xl">
-            Book a trial ride
-          </button>
-          <Link href="/programs" className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/30 text-[#F2EBD9] font-normal text-sm tracking-[0.15em] rounded-sm hover:bg-white/20 transition-all duration-300">
-            Explore Programs
-          </Link>
-        </div>
+        <Reveal delay={0.4}>
+          <div className="flex flex-col sm:flex-row gap-6">
+            <button className="px-10 py-5 bg-[#DA7347] text-[#F2EBD9] font-normal text-sm tracking-[0.15em] rounded-sm hover:bg-white hover:text-zippy-orange transition-all duration-300 shadow-2xl">
+              Book a trial ride
+            </button>
+            <Link href="/programs" className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/30 text-[#F2EBD9] font-normal text-sm tracking-[0.15em] rounded-sm hover:bg-white/20 transition-all duration-300">
+              Explore Programs
+            </Link>
+          </div>
+        </Reveal>
       </div>
 
       {/* Scroll Indicator */}

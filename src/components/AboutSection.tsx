@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import Reveal from '@/components/ui/Reveal';
 
 const StatItem = ({ number, label }: { number: string, label: string }) => {
   const [count, setCount] = useState(0);
@@ -73,7 +74,9 @@ const AboutSection = () => {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 mb-24 md:mb-48">
           {stats.map((stat, index) => (
-            <StatItem key={index} {...stat} />
+            <Reveal key={index} delay={0.1 * index}>
+              <StatItem {...stat} />
+            </Reveal>
           ))}
         </div>
 
@@ -81,43 +84,53 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32 items-start">
           {/* Left Column */}
           <div className="flex flex-col items-start max-w-xl">
-            <span className="text-[15px] md:text-2xl uppercase  text-[#DA7347] font-gt-ultra mb-8">
-              WELCOME TO ZEC
-            </span>
-            <h2 className="text-5xl md:text-[75px] font-normal text-[#85431E] leading-[1.2] mb-12 tracking-[-0.03em]">
-              Horses, People<br />
-              Good Time
-            </h2>
-            <button className="group flex items-center gap-8 px-4 py-4 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-[#FFF8E5] transition-all duration-500 shadow-sm">
-              <span className="text-lg font-gt-ultra text-[#DA7347] transition-colors group-hover:text-inherit">Read our story</span>
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="transition-transform duration-500 group-hover:translate-x-2 text-[#DA7347] group-hover:text-inherit"
-              >
-                <path d="M5 12H19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            <Reveal>
+              <span className="text-[15px] md:text-2xl uppercase  text-[#DA7347] font-gt-ultra mb-8 block">
+                WELCOME TO ZEC
+              </span>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <h2 className="text-5xl md:text-[75px] font-normal text-[#85431E] leading-[1.2] mb-12 tracking-[-0.03em]">
+                Horses, People<br />
+                Good Time
+              </h2>
+            </Reveal>
+            <Reveal delay={0.4}>
+              <button className="group flex items-center gap-8 px-4 py-4 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-[#FFF8E5] transition-all duration-500 shadow-sm">
+                <span className="text-lg font-gt-ultra text-[#DA7347] transition-colors group-hover:text-inherit">Read our story</span>
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="transition-transform duration-500 group-hover:translate-x-2 text-[#DA7347] group-hover:text-inherit"
+                >
+                  <path d="M5 12H19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </Reveal>
           </div>
 
           {/* Right Column */}
           <div className="flex flex-col gap-10 pt-10 font-gt-ultra text-[#85431E]/80 max-w-2xl">
-            <p className="text-md md:text-[16px] font-light tracking-tight">
-              Zippy Equestrian Center is Bangalore&apos;s riding center built for people who are
-              curious about horses. Located in JP Nagar, right in the heart of the city, we&apos;ve
-              been putting first-timers, families and serious riders on horseback ever since
-              we opened our gates.
-            </p>
-            <p className="text-md md:text-[16px] font-light tracking-tight">
-              Whether you&apos;re booking a single trial session to tick something off your list, or
-              you&apos;re looking to ride every week and actually get good at it, you&apos;ve come to
-              the right place. Everyone starts somewhere and most of our riders started
-              exactly where you are now.
-            </p>
+            <Reveal delay={0.3}>
+              <p className="text-md md:text-[16px] font-light tracking-tight">
+                Zippy Equestrian Center is Bangalore&apos;s riding center built for people who are
+                curious about horses. Located in JP Nagar, right in the heart of the city, we&apos;ve
+                been putting first-timers, families and serious riders on horseback ever since
+                we opened our gates.
+              </p>
+            </Reveal>
+            <Reveal delay={0.5}>
+              <p className="text-md md:text-[16px] font-light tracking-tight">
+                Whether you&apos;re booking a single trial session to tick something off your list, or
+                you&apos;re looking to ride every week and actually get good at it, you&apos;ve come to
+                the right place. Everyone starts somewhere and most of our riders started
+                exactly where you are now.
+              </p>
+            </Reveal>
           </div>
         </div>
       </div>

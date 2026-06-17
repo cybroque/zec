@@ -149,6 +149,9 @@ export default function StoriesRidersSection() {
           <motion.div
             key={rider.name}
             layout
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             onMouseEnter={() => setExpandedIndex(i)}
             onMouseLeave={() => setExpandedIndex(null)}
             style={{ backgroundColor: bg }}
@@ -166,21 +169,21 @@ export default function StoriesRidersSection() {
                   className="container mx-auto max-w-7xl px-8 md:px-16 grid grid-cols-3 items-center h-[110px]"
                 >
                   <span
-                    className="text-white/85 text-3xl md:text-4xl font-light tracking-wide"
+                    className="text-white/85 text-3xl md:text-4xl font-light "
                     style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                   >
                     {rider.name}
                   </span>
 
                   <div className="text-center">
-                    <span className="text-white/45 text-[11px] tracking-widest uppercase block mb-1">
+                    <span className="text-white/45 text-[11px]  uppercase block mb-1">
                       Joined ·
                     </span>
                     <span className="text-white/75 text-sm">{rider.joinedDate}</span>
                   </div>
 
                   <div className="text-right">
-                    <span className="text-white/45 text-[11px] tracking-widest uppercase block mb-1">
+                    <span className="text-white/45 text-[11px]  uppercase block mb-1">
                       {rider.location} ·
                     </span>
                     <span className="text-white/75 text-sm">{rider.startingLevel}</span>

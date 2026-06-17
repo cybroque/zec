@@ -46,6 +46,8 @@ const socialLinks = [
   },
 ];
 
+import Reveal from "@/components/ui/Reveal";
+
 interface StoriesInstagramSectionProps {
   bgColor?: string;
   hideFooter?: boolean;
@@ -57,15 +59,19 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
 
       {/* ── Heading ── */}
       <div className="container mx-auto max-w-6xl px-10 pt-24 pb-12 text-center">
-        <h2
-          className="font-bold text-[#6B3213] uppercase leading-tight mb-4"
-          style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)", letterSpacing: "0.1em" }}
-        >
-          Follow Their Journey on Instagram
-        </h2>
-        <p className="text-[#85431E]/80 text-base md:text-lg font-medium">
-          Real moments from the stables, every week.
-        </p>
+        <Reveal>
+          <h2
+            className="font-bold text-[#6B3213] uppercase leading-tight mb-4"
+            style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)", letterSpacing: "0.1em" }}
+          >
+            Follow Their Journey on Instagram
+          </h2>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className="text-[#85431E]/80 text-base md:text-lg font-medium">
+            Real moments from the stables, every week.
+          </p>
+        </Reveal>
       </div>
 
       {/* ── SVG band — edge to edge ── */}
@@ -85,29 +91,30 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
         <div style={{ width: "100%", paddingLeft: "3%", paddingRight: "3%", boxSizing: "border-box" }}>
           <div style={{ display: "flex", alignItems: "flex-start" }}>
             {waveOffsets.map((offset, i) => (
-              <div
-                key={i}
-                style={{
-                  flex:            "1 1 0",
-                  height:          CARD_HEIGHT,
-                  marginTop:       offset,
-                  marginLeft:      i > 0 ? "-1%" : "0",
-                  position:        "relative",
-                  zIndex:          i + 1,
-                  transform:       `rotate(${rotations[i]})`,
-                  backgroundColor: "#E5DCC8",
-                  border:          "none",
-                  display:         "flex",
-                  alignItems:      "center",
-                  justifyContent:  "center",
-                  padding:         "12px 14px",
-                  cursor:          "pointer",
-                }}
-              >
-                <span style={{ fontSize: 11, color: "#2C1A0E", fontWeight: 500, letterSpacing: "0.02em" }}>
-                  Instagram posts
-                </span>
-              </div>
+              <Reveal key={i} delay={0.1 * i}>
+                <div
+                  style={{
+                    flex:            "1 1 0",
+                    height:          CARD_HEIGHT,
+                    marginTop:       offset,
+                    marginLeft:      i > 0 ? "-1%" : "0",
+                    position:        "relative",
+                    zIndex:          i + 1,
+                    transform:       `rotate(${rotations[i]})`,
+                    backgroundColor: "#E5DCC8",
+                    border:          "none",
+                    display:         "flex",
+                    alignItems:      "center",
+                    justifyContent:  "center",
+                    padding:         "12px 14px",
+                    cursor:          "pointer",
+                  }}
+                >
+                  <span style={{ fontSize: 11, color: "#2C1A0E", fontWeight: 500, letterSpacing: "0.02em" }}>
+                    Instagram posts
+                  </span>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -117,44 +124,50 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
       {!hideFooter && (
         <div className="container mx-auto max-w-5xl px-10 pt-20 pb-24">
           <div className="text-center mb-16 md:mb-20">
-            <p
-              className="text-[#85431E] font-medium"
-              style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
-            >
-              Follow us for stable updates and rider stories.
-            </p>
+            <Reveal>
+              <p
+                className="text-[#85431E] font-medium"
+                style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
+              >
+                Follow us for stable updates and rider stories.
+              </p>
+            </Reveal>
           </div>
 
           <div className="flex flex-col md:flex-row justify-center items-stretch gap-12 md:gap-24 max-w-4xl mx-auto">
             <div className="flex-1 max-w-[720px] md:text-left">
-              <p className="text-[#85431E] text-[15px] md:text-base leading-[1.6] md:text-left inline-block max-w-[340px]">
-                Learn about Horses and get the best tips on riding, taking care, competitions, and most importantly having fun!
-              </p>
+              <Reveal delay={0.2}>
+                <p className="text-[#85431E] text-[15px] md:text-base leading-[1.6] md:text-left inline-block max-w-[340px]">
+                  Learn about Horses and get the best tips on riding, taking care, competitions, and most importantly having fun!
+                </p>
+              </Reveal>
             </div>
 
             <div className="w-[1px] bg-black hidden md:block" />
 
             <div className="flex-1 max-w-[320px]">
-              <p
-                className="font-bold text-[#000000] mb-5"
-                style={{ fontSize: "0.9rem", letterSpacing: "0.05em", textTransform: "uppercase" }}
-              >
-                Follow Us On
-              </p>
-              <div className="flex flex-col gap-3">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="flex items-center gap-2.5 text-[15px] md:text-base font-medium text-[#85431E] group transition-all w-fit"
-                  >
-                    <span className="flex-shrink-0 text-[#85431E]">{link.icon}</span>
-                    <span className="underline underline-offset-4 decoration-[#85431E]/30 group-hover:decoration-[#85431E] transition-all">
-                      {link.label}
-                    </span>
-                  </a>
-                ))}
-              </div>
+              <Reveal delay={0.4}>
+                <p
+                  className="font-bold text-[#000000] mb-5"
+                  style={{ fontSize: "0.9rem", letterSpacing: "0.05em", textTransform: "uppercase" }}
+                >
+                  Follow Us On
+                </p>
+                <div className="flex flex-col gap-3">
+                  {socialLinks.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className="flex items-center gap-2.5 text-[15px] md:text-base font-medium text-[#85431E] group transition-all w-fit"
+                    >
+                      <span className="flex-shrink-0 text-[#85431E]">{link.icon}</span>
+                      <span className="underline underline-offset-4 decoration-[#85431E]/30 group-hover:decoration-[#85431E] transition-all">
+                        {link.label}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>

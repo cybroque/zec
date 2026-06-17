@@ -1,28 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Reveal from "@/components/ui/Reveal";
 
 export default function BeyondContactSection() {
   return (
     <section className="bg-[#F5F1E8] py-16 md:py-20 px-6 md:px-16">
-      <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-center text-[#85431E] text-2xl md:text-3xl font-light mb-10"
-      >
-        Know more what Zippy has to offer
-      </motion.p>
+      <Reveal>
+        <p className="text-center text-[#85431E] text-2xl md:text-3xl font-light mb-10">
+          Know more what Zippy has to offer
+        </p>
+      </Reveal>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="max-w-5xl mx-auto flex flex-col md:flex-row overflow-hidden rounded-xl shadow-sm"
-      >
+      <Reveal delay={0.2}>
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row overflow-hidden rounded-xl shadow-sm">
         {/* Left: image */}
         <div className="relative w-full md:w-1/2 min-h-[300px] md:min-h-[450px] shrink-0">
           <Image
@@ -39,7 +30,7 @@ export default function BeyondContactSection() {
         <div className="w-full md:w-1/2 flex flex-col">
           {/* Top CTA */}
           <div className="flex-1 bg-[#1A1F3D] p-10 md:p-14 flex flex-col justify-between group cursor-pointer transition-colors hover:bg-[#161B35]">
-            <h3 className="text-white text-lg md:text-xl font-normal uppercase tracking-wide leading-snug mb-16">
+            <h3 className="text-white text-lg md:text-xl font-normal uppercase  leading-snug mb-16">
               FOR GENERAL ENQUIRIES
             </h3>
             <div className="flex items-center gap-3">
@@ -52,7 +43,7 @@ export default function BeyondContactSection() {
 
           {/* Bottom CTA */}
           <div className="flex-1 bg-[#5A74A8] p-10 md:p-14 flex flex-col justify-between group cursor-pointer transition-colors hover:bg-[#4E6593]">
-            <h3 className="text-white text-lg md:text-xl font-normal uppercase tracking-wide leading-snug mb-16">
+            <h3 className="text-white text-lg md:text-xl font-normal uppercase  leading-snug mb-16">
               FOR FRANCHISE/<br />COLLABORATIONS
             </h3>
             <div className="flex items-center gap-3">
@@ -63,7 +54,8 @@ export default function BeyondContactSection() {
             </div>
           </div>
         </div>
-      </motion.div>
+        </div>
+      </Reveal>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "@/components/ui/Reveal";
 
 export default function AboutLocationSection() {
   return (
@@ -7,22 +8,28 @@ export default function AboutLocationSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text */}
           <div className="flex flex-col gap-8">
-            <h2 className="text-[#FFF8E5] font-sans text-4xl md:text-6xl font-normal leading-[1.1]">
-              The Center That&apos;s<br />Right in the City.
-            </h2>
-            <p className="text-[#FFF8E5]/80 text-base md:text-lg font-light leading-relaxed max-w-md">
-              Zippy Equestrian Center is located in JP Nagar, 7th Phase, right in the heart of South
-              Bangalore with a well-maintained arena, proper stabling for our horses and everything
-              you need to show up, ride and leave with a smile.
-            </p>
-            <p className="text-[#FFF8E5] text-base md:text-lg font-light leading-relaxed max-w-md">
-              No lengthy commute, no remote farm, zero fuss. Just a fully equipped riding center
-              that is minutes away from where you are.
-            </p>
+            <Reveal>
+              <h2 className="text-[#FFF8E5] font-sans text-4xl md:text-6xl font-normal leading-[1.1]">
+                The Center That&apos;s<br />Right in the City.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="text-[#FFF8E5]/80 text-base md:text-lg font-light leading-relaxed max-w-md">
+                Zippy Equestrian Center is located in JP Nagar, 7th Phase, right in the heart of South
+                Bangalore with a well-maintained arena, proper stabling for our horses and everything
+                you need to show up, ride and leave with a smile.
+              </p>
+            </Reveal>
+            <Reveal delay={0.4}>
+              <p className="text-[#FFF8E5] text-base md:text-lg font-light leading-relaxed max-w-md">
+                No lengthy commute, no remote farm, zero fuss. Just a fully equipped riding center
+                that is minutes away from where you are.
+              </p>
+            </Reveal>
           </div>
 
           {/* Right: Map */}
-          <div 
+          <div
             className="relative w-full max-w-[540px] ml-auto aspect-square self-end"
             style={{
               WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 100%)",
@@ -39,7 +46,7 @@ export default function AboutLocationSection() {
             />
             {/* Address card */}
             <div className="absolute bottom-8 right-4 md:bottom-12 md:right-8 bg-[#FFF8E5]/90 backdrop-blur-sm p-4 md:p-5 max-w-[210px] shadow-lg">
-              <p className="text-[#85431E] text-[9px] uppercase tracking-widest font-bold mb-2">
+              <p className="text-[#85431E] text-[9px] uppercase  font-bold mb-2">
                 ZIPPY EQUESTRIAN CENTER
               </p>
               <p className="text-[#85431E]/80 text-[11px] font-light leading-relaxed">

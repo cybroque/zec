@@ -38,7 +38,7 @@ const services: Service[] = [
       "Professional training services for horses conducted by our experienced instructors. Whether you're looking to train a young horse or work on specific skills, our team brings the same structured, patient approach we use with our riders.",
     color: "#526FAE",
     image: "/assets/images/horse-training.png",
-    meta: { 
+    meta: {
       forWho: "All types of horses",
       season: "Any time of the year",
       duration: "As per the requirement",
@@ -111,45 +111,46 @@ const services: Service[] = [
 export default function BeyondServicesSection() {
   return (
     <section
-      className="relative w-full overflow-hidden"
+      className="relative w-full"
       style={{
         backgroundColor: "#F5F1E8",
       }}
     >
-      {/* Top Left SVG (Pre-rotated Pattern) */}
-      <img
-        src="/assets/images/top.svg"
-        alt=""
-        className="absolute top-0 pointer-events-none z-0"
-        style={{
-          left: "-28%",
-          width: "100%",
-          height: "140px",
-        }}
-      />
+      {/* Background SVGs wrapped in overflow-hidden to not break sticky */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <img
+          src="/assets/images/top.svg"
+          alt=""
+          className="absolute top-0 pointer-events-none"
+          style={{
+            left: "-28%",
+            width: "100%",
+            height: "140px",
+          }}
+        />
 
-      {/* Middle Right SVG (Vertical) */}
-      <img
-        src="/assets/images/beyond.svg"
-        alt=""
-        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none z-0"
-        style={{
-          width: "134px",
-          height: "60%",
-        }}
-      />
-      <img
-        src="/assets/images/beyond.svg"
-        alt=""
-        className="absolute left-0 bottom-0 pointer-events-none z-0 transform -scale-x-100"
-        style={{
-          width: "134px",
-          height: "70%",
-        }}
-      />
+        <img
+          src="/assets/images/beyond.svg"
+          alt=""
+          className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
+          style={{
+            width: "134px",
+            height: "60%",
+          }}
+        />
+        <img
+          src="/assets/images/beyond.svg"
+          alt=""
+          className="absolute left-0 bottom-0 pointer-events-none transform -scale-x-100"
+          style={{
+            width: "134px",
+            height: "70%",
+          }}
+        />
+      </div>
 
-      {/* Service cards — inset with horizontal padding, pushed below SVG strip */}
-      <div className="relative z-10 pt-[200px] pb-16 px-2 md:px-2 lg:px-2 max-w-7xl mx-auto flex flex-col">
+      {/* Service cards — spaced out so they scroll up and stick */}
+      <div className="relative z-10 pt-[200px] pb-16 lg:pb-32 px-2 md:px-2 lg:px-2 max-w-7xl mx-auto flex flex-col gap-16 md:gap-32">
         {services.map((service, index) => {
           let staggerClass = "";
           if (index % 3 === 1) staggerClass = "md:ml-[1%]";
@@ -166,14 +167,17 @@ export default function BeyondServicesSection() {
           return (
             <div
               key={service.title}
-              className={`relative w-full md:w-[98%] ${index > 0 ? "-mt-2 md:-mt-[1%]" : ""} ${staggerClass}`}
-              style={{ zIndex: services.length - index }}
+              className={`sticky w-full md:w-[98%] ${staggerClass}`}
+              style={{ 
+                top: `calc(20vh + ${index * 12}px)`,
+                zIndex: index 
+              }}
             >
               <motion.div
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
                 className={`flex flex-col md:flex-row w-full mb-0 shadow-2xl ${rotateClass}`}
               >
                 {/* Left: image */}
@@ -197,7 +201,7 @@ export default function BeyondServicesSection() {
                   style={{ backgroundColor: service.color }}
                 >
                   <div>
-                    <h2 className="text-3xl md:text-[34px] tracking-wide uppercase text-[#FFF8E5] font-medium mb-4">
+                    <h2 className="text-3xl md:text-[34px]  uppercase text-[#FFF8E5] font-medium mb-4">
                       {service.title}
                     </h2>
                     <p className="text-white text-[14px] md:text-[15px] leading-relaxed font-light max-w-2xl">
@@ -231,12 +235,12 @@ export default function BeyondServicesSection() {
                       <div className="flex-1" />
                     )}
 
-                    <button 
+                    <button
                       className="mt-6 sm:mt-0 self-end bg-[#FFF8E5] px-5 py-3 text-[13px] text-[#DA7347] font-medium flex items-center gap-3 hover:bg-[#FFF8E5]/90 transition-colors shrink-0 rounded-sm"
                     >
                       {service.cta}
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                   </div>

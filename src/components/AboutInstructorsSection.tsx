@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useInView, useMotionValue, useTransform, useMotionTemplate, animate } from "framer-motion";
+import Reveal from "@/components/ui/Reveal";
 
 const instructors = [
   {
@@ -61,43 +62,52 @@ export default function AboutInstructorsSection() {
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-            <h2 className="text-[#FFF8E5] font-sans text-3xl md:text-5xl font-normal tracking-wide mb-5">
-              The People You&apos;ll Ride With
-            </h2>
-            <p className="text-[#FFF8E5]/80 text-sm md:text-base leading-relaxed font-light max-w-2xl mx-auto">
-              The right guidance changes everything. And that&apos;s exactly what you&apos;ll find here,
-              instructors who care about how you ride and how you feel while doing it.
-            </p>
+            <Reveal>
+              <h2 className="text-[#FFF8E5] font-sans text-3xl md:text-5xl font-normal  mb-5">
+                The People You&apos;ll Ride With
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="text-[#FFF8E5]/80 text-sm md:text-base leading-relaxed font-light max-w-2xl mx-auto">
+                The right guidance changes everything. And that&apos;s exactly what you&apos;ll find here,
+                instructors who care about how you ride and how you feel while doing it.
+              </p>
+            </Reveal>
           </div>
 
           {/* Desktop Grid — staggered layout */}
           <div className="hidden md:grid grid-cols-12 gap-y-14 relative w-full">
             {instructors.map((instructor) => (
               <div key={instructor.id} className="contents">
-                <div
+                <Reveal
                   className={`${instructor.gridImage} relative shadow-2xl rounded-sm overflow-hidden`}
-                  style={{ aspectRatio: "4/5", maxHeight: "300px" }}
+                  delay={0.1 * instructor.id}
                 >
-                  <Image
-                    src={instructor.image}
-                    alt={instructor.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 25vw"
-                    className="object-cover"
-                    loading="eager"
-                  />
-                </div>
-                <div className={`${instructor.gridText} flex flex-col justify-center pl-6 lg:pl-10`}>
+                  <div style={{ aspectRatio: "4/5", maxHeight: "300px" }} className="w-full h-full relative">
+                    <Image
+                      src={instructor.image}
+                      alt={instructor.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                      className="object-cover"
+                      loading="eager"
+                    />
+                  </div>
+                </Reveal>
+                <Reveal
+                  className={`${instructor.gridText} flex flex-col justify-center pl-6 lg:pl-10`}
+                  delay={(0.1 * instructor.id) + 0.15}
+                >
                   <h3 className="text-[#FFF8E5] text-lg lg:text-2xl font-normal mb-1.5">
                     {instructor.name}
                   </h3>
-                  <p className="text-[#FFF8E5]/80 text-[10px] uppercase tracking-widest font-light mb-3">
+                  <p className="text-[#FFF8E5]/80 text-[10px] uppercase  font-light mb-3">
                     {instructor.role}
                   </p>
                   <p className="text-[#DA7347] text-sm font-light leading-relaxed max-w-[280px]">
                     {instructor.desc}
                   </p>
-                </div>
+                </Reveal>
               </div>
             ))}
           </div>
@@ -105,14 +115,16 @@ export default function AboutInstructorsSection() {
           {/* Mobile */}
           <div className="flex md:hidden flex-col gap-12">
             {instructors.map((instructor) => (
-              <div key={instructor.id} className="flex flex-col items-center text-center">
-                <div className="relative w-[220px] shadow-2xl mb-6 rounded-sm overflow-hidden" style={{ aspectRatio: "4/5" }}>
-                  <Image src={instructor.image} alt={instructor.name} fill sizes="220px" className="object-cover" loading="eager" />
+              <Reveal key={instructor.id} delay={0.2}>
+                <div className="flex flex-col items-center text-center">
+                  <div className="relative w-[220px] shadow-2xl mb-6 rounded-sm overflow-hidden" style={{ aspectRatio: "4/5" }}>
+                    <Image src={instructor.image} alt={instructor.name} fill sizes="220px" className="object-cover" loading="eager" />
+                  </div>
+                  <h3 className="text-[#FFF8E5] text-xl font-normal mb-1.5">{instructor.name}</h3>
+                  <p className="text-[#FFF8E5]/80 text-[10px] uppercase  font-light mb-3">{instructor.role}</p>
+                  <p className="text-[#DA7347] text-sm font-light leading-relaxed max-w-[260px]">{instructor.desc}</p>
                 </div>
-                <h3 className="text-[#FFF8E5] text-xl font-normal mb-1.5">{instructor.name}</h3>
-                <p className="text-[#FFF8E5]/80 text-[10px] uppercase tracking-widest font-light mb-3">{instructor.role}</p>
-                <p className="text-[#DA7347] text-sm font-light leading-relaxed max-w-[260px]">{instructor.desc}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -124,24 +136,30 @@ export default function AboutInstructorsSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 items-center">
             {/* Left: Text */}
             <div className="flex flex-col gap-6">
-              <h2 className="text-[#FFF8E5] font-sans text-4xl md:text-5xl lg:text-[58px] font-normal leading-[1.1]">
-                The Center That&apos;s<br />Right in the City.
-              </h2>
-              <p className="text-[#f2ebd9]/80 text-base md:text-[19px] font-light leading-[1.25] max-w-md">
-                Zippy Equestrian Center is located in JP Nagar, 7th Phase, right in the heart of
-                South Bangalore with a well-maintained arena, proper stabling for our horses and
-                everything you need to show up, ride and leave with a smile.
-              </p>
-              <p className="text-white text-base md:text-[19px] font-normal leading-[1.25] max-w-md">
-                No lengthy commute, no remote farm, zero fuss. Just a fully equipped riding center
-                that is minutes away from where you are.
-              </p>
+              <Reveal>
+                <h2 className="text-[#FFF8E5] font-sans text-4xl md:text-5xl lg:text-[58px] font-normal leading-[1.1]">
+                  The Center That&apos;s<br />Right in the City.
+                </h2>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="text-[#f2ebd9]/80 text-base md:text-[19px] font-light leading-[1.25] max-w-md">
+                  Zippy Equestrian Center is located in JP Nagar, 7th Phase, right in the heart of
+                  South Bangalore with a well-maintained arena, proper stabling for our horses and
+                  everything you need to show up, ride and leave with a smile.
+                </p>
+              </Reveal>
+              <Reveal delay={0.4}>
+                <p className="text-white text-base md:text-[19px] font-normal leading-[1.25] max-w-md">
+                  No lengthy commute, no remote farm, zero fuss. Just a fully equipped riding center
+                  that is minutes away from where you are.
+                </p>
+              </Reveal>
             </div>
 
             {/* Right: Map */}
             <div
               className="relative w-full max-w-[500px] lg:max-w-[600px] ml-auto cursor-pointer"
-              style={{ 
+              style={{
                 aspectRatio: "733/982",
                 WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 100%)",
                 maskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 100%)"
@@ -164,9 +182,8 @@ export default function AboutInstructorsSection() {
                 style={{ left: "calc(34.1% - 10px)", top: "calc(56.8% - 10px)", width: 20, height: 20 }}
               >
                 <div
-                  className={`w-full h-full rounded-full border-2 border-[#DA7347] transition-opacity duration-300 ${
-                    showTooltip ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`w-full h-full rounded-full border-2 border-[#DA7347] transition-opacity duration-300 ${showTooltip ? "opacity-100" : "opacity-0"
+                    }`}
                 />
               </div>
 
@@ -182,7 +199,7 @@ export default function AboutInstructorsSection() {
                   className="backdrop-blur-[3px] rounded-[7px] p-4"
                   style={{ background: "rgba(218,115,71,0.4)" }}
                 >
-                  <p className="text-[#f2ebd9] text-[9px] uppercase tracking-widest font-bold mb-2">
+                  <p className="text-[#f2ebd9] text-[9px] uppercase  font-bold mb-2">
                     Zippy Equestrian Center
                   </p>
                   <p className="text-[#f2ebd9]/90 text-[11px] font-light leading-relaxed">
