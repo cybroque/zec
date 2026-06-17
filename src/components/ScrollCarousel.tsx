@@ -189,7 +189,7 @@ const ScrollCarousel = () => {
                       alt={slide.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 40vw"
-                      className="object-contain object-right"
+                      className="object-cover object-right"
                       loading="eager"
                     />
                   </HoverImage>
@@ -205,7 +205,7 @@ const ScrollCarousel = () => {
                   alt={slides[activeIndex].title}
                   fill
                   sizes="100vw"
-                  className="object-contain"
+                  className="object-cover"
                   loading="eager"
                 />
               </HoverImage>
