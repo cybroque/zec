@@ -8,7 +8,7 @@ import Reveal from "@/components/ui/Reveal";
 const teamMembers = [
   { name: "Narasimha Murthy", role: "Chief Advisor", image: "/assets/images/about-p1.png" },
   { name: "Dilip Kirani", role: "Founder & CEO", image: "/assets/images/about-p2.png" },
-  { name: "Nouman", role: "Operational Head", image: "/assets/images/about-p3.png" },
+  { name: "Mohamed Nouman", role: "Operational Head", image: "/assets/images/about-p3.png" },
   { name: "Barath Manoharan", role: "Chief of Training", image: "/assets/images/about-p4.png" },
 ];
 
@@ -68,9 +68,9 @@ export default function AboutTeamSection() {
                     className="relative w-full aspect-[3/4] rounded-lg overflow-hidden shadow-xl mb-4"
                     style={{
                       transform: isHovered
-                        ? "scale(1.06) translateY(-5px)"
+                        ? "scale(1.03) translateY(-3px)"
                         : anyHovered
-                          ? "scale(0.95)"
+                          ? "scale(0.98)"
                           : "scale(1)",
                       transition: "transform 0.4s cubic-bezier(0.4,0,0.2,1)",
                       willChange: "transform",

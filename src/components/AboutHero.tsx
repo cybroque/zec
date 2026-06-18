@@ -7,10 +7,10 @@ export default function AboutHero() {
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
-          src="/assets/images/aboutimg.png" // The image used in the mockup
+          src="/assets/images/about-hero.svg" // The image used in the mockup
           alt="Woman in riding gear"
           fill
-          className="object-cover object-[70%_20%] md:object-[90%_20%]"
+          className="object-cover object-[80%_20%]"
           priority
           sizes="100vw"
         />

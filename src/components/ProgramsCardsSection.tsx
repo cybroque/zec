@@ -165,15 +165,15 @@ export default function ProgramsCardsSection() {
     "#D6EDFF",
     "#CBDDF2",
     "#E6CFC0",
-    "#C0C8E6",
-    "#C0C8E6",
+    "#E6CFC0",
+    "#E6CFC0",
     "#FFF8E5"
   ];
 
   const sectionBgColor = useTransform(scrollYProgress, colorStops, sectionBgColors);
 
   return (
-    <motion.section id="programs-cards" ref={targetRef} style={{ backgroundColor: sectionBgColor }} className="relative h-[300vh]">
+    <motion.section id="programs-cards" ref={targetRef} style={{ backgroundColor: sectionBgColor }} className="relative h-[300vh] z-[60]">
       <div className="sticky top-0 flex flex-col h-screen overflow-hidden justify-between py-6 md:py-8">
 
         {/* Top Title */}
@@ -186,6 +186,7 @@ export default function ProgramsCardsSection() {
         </div>
 
         {/* Cards Container */}
+        <Reveal delay={0.3}>
         <motion.div
           style={{ x }}
           className="flex w-max items-stretch flex-1 py-4 md:py-6 overflow-hidden pr-6 md:pr-12"
@@ -200,7 +201,7 @@ export default function ProgramsCardsSection() {
                 <div className="w-px bg-black/10 mx-3 md:mx-6 h-full" />
               )}
 
-              <div className="flex-shrink-0 w-[85vw] md:w-[429px] flex flex-col h-full max-h-[591px]">
+              <div className="flex-shrink-0 w-[85vw] md:w-[429px] flex flex-col h-[591px]">
                 {/* Category Header */}
                 <div className={`uppercase text-[11px] md:text-xl font-normal  ${card.categoryColor} min-h-[16px] mb-2 md:mb-3 flex-shrink-0`}>
                   {card.category}
@@ -259,6 +260,7 @@ export default function ProgramsCardsSection() {
             </div>
           ))}
         </motion.div>
+        </Reveal>
 
         {/* Bottom Banner */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-8 z-30 flex-shrink-0 pb-2 md:pb-4">

@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 export default function AboutPage() {
   return (
     <main className="relative min-h-screen bg-zippy-dark-blue">
-      <Header />
+      <Header disableThemeChangeOnScroll={true} navVariant="cream" />
       <AboutHero />
       <AboutStorySection />
       <AboutTeamSection />

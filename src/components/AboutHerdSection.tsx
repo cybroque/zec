@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Reveal from "./ui/Reveal";
 
 const CARD_W = 254;
 const CARD_GAP = 35;
@@ -59,6 +60,7 @@ export default function AboutHerdSection() {
         style={{ paddingTop: "clamp(48px, 8vw, 120px)", paddingBottom: "clamp(48px, 8vw, 120px)" }}
       >
         {/* Header — left-aligned*/}
+        <Reveal delay={0.3}>
         <div className="mb-10" style={{ paddingLeft: "clamp(24px, 11.4vw, 172px)", paddingRight: "clamp(24px, 4vw, 80px)" }}>
           <h2
             className="font-normal leading-[1.1] text-[#85431e] mb-6"
@@ -75,8 +77,10 @@ export default function AboutHerdSection() {
             parts of riding here and it starts the moment you arrive.
           </p>
         </div>
+        </Reveal>
 
         {/* Scrolling track */}
+        
         <div className="overflow-hidden">
           <motion.div
             ref={trackRef}
@@ -92,8 +96,9 @@ export default function AboutHerdSection() {
             {horses.map((horse, i) => (
               <div key={i} className="flex-none" style={{ width: `${CARD_W}px` }}>
                 {/* Card image —  layer structure */}
+                <Reveal delay={0.4}>
                 <div
-                  className="relative rounded-[6px] overflow-hidden"
+                  className="relative rounded-[6px] overflow-hidden hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out"
                   style={{ height: "330px" }}
                 >
                   <div className="absolute inset-0 opacity-80 overflow-hidden rounded-[6px]">
@@ -108,8 +113,10 @@ export default function AboutHerdSection() {
                     }}
                   />
                 </div>
+                </Reveal>
 
                 {/* Info below card */}
+                <Reveal delay={0.4}>
                 <div className="mt-[15px]">
                   <p className="text-[#85431e] font-normal leading-[1.25]" style={{ fontSize: "22px" }}>
                     {horse.name}
@@ -121,10 +128,12 @@ export default function AboutHerdSection() {
                     {horse.breed}
                   </p>
                 </div>
+                </Reveal>
               </div>
             ))}
           </motion.div>
         </div>
+       
       </section>
     </div>
   );

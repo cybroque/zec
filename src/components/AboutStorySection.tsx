@@ -46,20 +46,18 @@ export default function AboutStorySection() {
             </div>
 
             {/* Right Column: Image */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-left">
-              <Reveal delay={0.3}>
-                <div className="relative w-full max-w-[240px] sm:max-w-[260px] lg:max-w-[280px] aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
-                  <Image
-                    src="/assets/images/about-main.svg"
-                    alt="Dilip Kirani - Founding Partner"
-                    fill
-                    sizes="(max-width: 640px) 240px, (max-width: 1024px) 260px, 280px"
-                    className="object-cover"
-                    loading="eager"
-                  />
-                </div>
-              </Reveal>
-            </div>
+            <Reveal delay={0.3} className="lg:col-span-5 flex justify-center lg:justify-start">
+              <div className="relative w-full max-w-[240px] sm:max-w-[260px] lg:max-w-[280px] aspect-[4/5] rounded-lg overflow-hidden shadow-2xl hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
+                <Image
+                  src="/assets/images/about-main.svg"
+                  alt="Dilip Kirani - Founding Partner"
+                  fill
+                  sizes="(max-width: 640px) 240px, (max-width: 1024px) 260px, 280px"
+                  className="object-cover"
+                  loading="eager"
+                />
+              </div>
+            </Reveal>
 
             {/* Bottom Paragraph */}
             <div className="pl-16 lg:col-span-12 text-[#FFF8E5] font-normal text-[15px] md:text-[17px] leading-[1.4] max-w-[1000px]">
