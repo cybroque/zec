@@ -40,7 +40,7 @@ export default function AboutTeamSection() {
           {/* Background Pattern */}
           <div className="absolute top-[-30px] md:top-[-60px] left-0 w-full h-[120px] md:h-[160px] z-0 pointer-events-none flex justify-center">
             <div className="relative w-full h-full max-w-[900px] mx-auto">
-              <Image src="/assets/images/aboutpattern2.svg" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain object-top" />
+              <Image loading="eager" fetchPriority="low" src="/assets/images/aboutpattern2.svg" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain object-top" />
             </div>
           </div>
 
@@ -76,7 +76,7 @@ export default function AboutTeamSection() {
                       willChange: "transform",
                     }}
                   >
-                    <Image
+                    <Image loading="eager" fetchPriority="low"
                       src={member.image}
                       alt={member.name}
                       fill
@@ -105,7 +105,7 @@ export default function AboutTeamSection() {
             {teamMembers.map((member, index) => (
               <motion.div key={index} variants={cardVariants} className="flex flex-col items-center text-center">
                 <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden shadow-xl mb-3">
-                  <Image src={member.image} alt={member.name} fill sizes="50vw" className="object-cover object-center" />
+                  <Image loading="eager" fetchPriority="low" src={member.image} alt={member.name} fill sizes="50vw" className="object-cover object-center" />
                 </div>
                 <h3 className="text-[#FFF8E5] text-[15px] font-normal  mb-0.5">{member.name}</h3>
                 <p className="text-[#FFF8E5]/70 text-[9px] uppercase tracking-[0.15em] font-light">{member.role}</p>

@@ -28,7 +28,7 @@ const TestimonialSection = () => {
             <div className="absolute top-12 left-0 -translate-x-8 -translate-y-4">
               <Reveal delay={0.3}>
                 <div className="relative w-16 h-12 opacity-80">
-                  <Image
+                  <Image loading="eager" fetchPriority="low"
                     src="/assets/images/quotationmark.png"
                     alt="Quotation Mark"
                     fill

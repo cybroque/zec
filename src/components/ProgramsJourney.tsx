@@ -145,7 +145,7 @@ export default function ProgramsJourney() {
           <div className="relative w-full aspect-[4/3] lg:aspect-[1.2/1] overflow-hidden rounded-sm">
             <Reveal delay={0.3} className="w-full h-full">
               <div className="w-full h-full relative">
-                <Image
+                <Image loading="eager" fetchPriority="low"
                   src="/assets/images/program-img.svg"
                   alt="Program level"
                   fill

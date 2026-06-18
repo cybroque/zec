@@ -18,7 +18,7 @@ const ActivityCard = ({
   return (
     <div className="relative group overflow-hidden rounded-sm aspect-[423/556.5] w-full">
       {/* Image */}
-      <Image
+      <Image loading="eager" fetchPriority="low"
         src={imageSrc}
         alt={title}
         fill

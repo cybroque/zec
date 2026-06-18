@@ -16,7 +16,7 @@ export default function BeyondContactSection() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row overflow-hidden rounded-xl shadow-sm">
         {/* Left: image */}
         <div className="relative w-full md:w-1/2 min-h-[300px] md:min-h-[450px] shrink-0">
-          <Image
+          <Image loading="eager" fetchPriority="low"
             src="/assets/images/know-more.png"
             alt="Know more about Zippy Equestrian Center"
             fill

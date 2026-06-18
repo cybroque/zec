@@ -170,7 +170,7 @@ const ScrollCarousel = () => {
             {/* Right Side: Image */}
             <div className="hidden md:block w-[40%] relative z-10 overflow-visible">
               {/* Invisible spacer to dictate container height proportionally to image aspect ratio */}
-              <Image
+              <Image loading="eager" fetchPriority="low"
                 src="/assets/images/r2.svg"
                 alt="spacer"
                 width={744}
@@ -184,7 +184,7 @@ const ScrollCarousel = () => {
                     }`}
                 >
                   <HoverImage className="w-full h-full">
-                    <Image
+                    <Image loading="eager" fetchPriority="low"
                       src={slide.image}
                       alt={slide.title}
                       fill
@@ -199,7 +199,7 @@ const ScrollCarousel = () => {
             {/* Mobile Image (shown only on mobile, placed between content and intro) */}
             <div className="md:hidden w-full aspect-video relative">
               <HoverImage className="w-full h-full">
-                <Image
+                <Image loading="eager" fetchPriority="low"
                   src={slides[activeIndex].image}
                   alt={slides[activeIndex].title}
                   fill

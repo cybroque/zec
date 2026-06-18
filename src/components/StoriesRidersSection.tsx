@@ -206,7 +206,7 @@ export default function StoriesRidersSection() {
                 >
                   {/* Left: photo with name overlay */}
                   <div className="relative w-[38%] min-h-[380px] flex-shrink-0">
-                    <Image
+                    <Image loading="eager" fetchPriority="low"
                       src={rider.image}
                       alt={rider.name}
                       fill

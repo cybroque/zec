@@ -211,7 +211,7 @@ export default function ProgramsCardsSection() {
                 <div className="flex flex-col flex-1 shadow-sm hover:shadow-lg overflow-hidden rounded-md md:rounded-sm transition-all duration-500 ease-out hover:scale-[1.015] hover:-translate-y-1 group cursor-pointer">
                   {/* Image */}
                   <div className="relative h-[22vh] min-h-[130px] max-h-[194px] w-full flex-shrink-0">
-                    <Image
+                    <Image loading="eager" fetchPriority="low"
                       src={card.image}
                       alt={card.title}
                       fill

@@ -185,7 +185,7 @@ export default function BeyondServicesSection() {
                   className="relative w-full md:w-[40%] shrink-0"
                   style={{ minHeight: "340px" }}
                 >
-                  <Image
+                  <Image loading="eager" fetchPriority="low"
                     src={service.image}
                     alt={service.title}
                     fill

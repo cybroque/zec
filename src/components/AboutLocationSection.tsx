@@ -36,7 +36,7 @@ export default function AboutLocationSection() {
               maskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 100%)"
             }}
           >
-            <Image
+            <Image loading="eager" fetchPriority="low"
               src="/assets/images/about-map.svg"
               alt="ZEC Location Map"
               fill
