@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Reveal from "@/components/ui/Reveal";
 
 type Rider = {
   name: string;
@@ -36,7 +37,7 @@ const riders: Rider[] = [
     beforeQuote: "I'd never been near a horse in my life. I booked the trial on a whim after seeing a photo on Instagram. I was nervous the whole drive there.",
     afterMonths: 6,
     afterQuote: "Can trot independently and canter with support. Competed in the first inter-club event. Confident around all the horses at ZEC.",
-    image: "/assets/images/r1.png",
+    image: "/assets/images/rider1.svg",
   },
   {
     name: "Priya S",
@@ -48,7 +49,7 @@ const riders: Rider[] = [
     beforeQuote: "I'd never been near a horse in my life. I booked the trial on a whim after seeing a photo on Instagram. I was nervous the whole drive there.",
     afterMonths: 8,
     afterQuote: "Completed Beginners and Novice programs. Now in Intermediate. Can trot independently and has been introduced to canter.",
-    image: "/assets/images/r2.png",
+    image: "/assets/images/rider2.svg",
   },
   {
     name: "Tushita",
@@ -60,7 +61,7 @@ const riders: Rider[] = [
     beforeQuote: "Horses seemed majestic but intimidating. I wasn't sure I'd last more than a few sessions.",
     afterMonths: 8,
     afterQuote: "Now rides three days a week. Has started learning jumping fundamentals and helps newer riders settle in.",
-    image: "/assets/images/r3.png",
+    image: "/assets/images/rider3.svg",
   },
   {
     name: "Arnav",
@@ -72,7 +73,7 @@ const riders: Rider[] = [
     beforeQuote: "I wanted something different from the gym. Horses were on the bucket list since childhood.",
     afterMonths: 5,
     afterQuote: "Progressed to Novice program in five months. Now working on posting trot and balance exercises.",
-    image: "/assets/images/r4.png",
+    image: "/assets/images/rider4.svg",
   },
   {
     name: "Anagha",
@@ -84,7 +85,7 @@ const riders: Rider[] = [
     beforeQuote: "I was scared of large animals. My daughter convinced me to try the trial ride and I never looked back.",
     afterMonths: 7,
     afterQuote: "Rides confidently on all horses in the school string. Recently started light trail rides on weekend sessions.",
-    image: "/assets/images/r5.png",
+    image: "/assets/images/rider5.svg",
   },
   {
     name: "Ritesh",
@@ -96,7 +97,7 @@ const riders: Rider[] = [
     beforeQuote: "Rode a couple of times on holiday trips but never had proper training. Wanted to do it right.",
     afterMonths: 4,
     afterQuote: "Built solid fundamentals. Now working through the Intermediate syllabus with focus on seat and contact.",
-    image: "/assets/images/r6.png",
+    image: "/assets/images/rider6.svg",
   },
   {
     name: "Kavya",
@@ -108,7 +109,7 @@ const riders: Rider[] = [
     beforeQuote: "I was the person who always said 'I'd love to try that someday.' ZEC made someday happen.",
     afterMonths: 9,
     afterQuote: "One of our most consistent riders. Currently preparing for the regional beginner category event.",
-    image: "/assets/images/r7.png",
+    image: "/assets/images/rider7.svg",
   },
   {
     name: "Sameer",
@@ -120,7 +121,7 @@ const riders: Rider[] = [
     beforeQuote: "Came in knowing nothing. The first time I sat on a horse I thought I was going to fall off.",
     afterMonths: 3,
     afterQuote: "Trotting independently after three months. Quick learner — will move to Novice in the next cycle.",
-    image: "/assets/images/r8.png",
+    image: "/assets/images/rider8.svg",
   },
   {
     name: "Divya",
@@ -132,7 +133,7 @@ const riders: Rider[] = [
     beforeQuote: "I joined with my daughter. She was the brave one — I just wanted to keep up with her.",
     afterMonths: 12,
     afterQuote: "Now rides at the same level as her daughter. They school together on Saturday mornings. A family that rides together.",
-    image: "/assets/images/r9.png",
+    image: "/assets/images/rider9.svg",
   },
 ];
 
@@ -141,22 +142,26 @@ export default function StoriesRidersSection() {
 
   return (
     <section className="w-full">
+      {/* Preload images in the background so they display instantly on hover */}
+      <div className="hidden">
+        {riders.map((rider) => (
+          <Image key={`preload-${rider.name}`} src={rider.image} alt="" width={10} height={10} priority />
+        ))}
+      </div>
+
       {riders.map((rider, i) => {
         const bg = rowColors[i % rowColors.length];
         const isExpanded = expandedIndex === i;
 
         return (
-          <motion.div
-            key={rider.name}
-            layout
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            onMouseEnter={() => setExpandedIndex(i)}
-            onMouseLeave={() => setExpandedIndex(null)}
-            style={{ backgroundColor: bg }}
-            className="w-full overflow-hidden"
-          >
+          <Reveal key={rider.name} delay={0.05 * i} className="w-full">
+            <motion.div
+              layout
+              onMouseEnter={() => setExpandedIndex(i)}
+              onMouseLeave={() => setExpandedIndex(null)}
+              style={{ backgroundColor: bg }}
+              className="w-full overflow-hidden"
+            >
             <AnimatePresence initial={false} mode="wait">
               {!isExpanded ? (
                 /* ── Collapsed row ── */
@@ -165,8 +170,8 @@ export default function StoriesRidersSection() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                  className="container mx-auto max-w-7xl px-8 md:px-16 grid grid-cols-3 items-center h-[110px]"
+                  transition={{ duration: 0.32 }}
+                  className="w-full px-8 md:px-16 grid grid-cols-3 items-center h-[110px]"
                 >
                   <span
                     className="text-white/85 text-3xl md:text-4xl font-light "
@@ -196,7 +201,7 @@ export default function StoriesRidersSection() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.22 }}
+                  transition={{ duration: 0.32 }}
                   className="flex min-h-[380px]"
                 >
                   {/* Left: photo with name overlay */}
@@ -207,10 +212,9 @@ export default function StoriesRidersSection() {
                       fill
                       sizes="(max-width: 768px) 100vw, 38vw"
                       className="object-cover object-top"
-                      loading="eager"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                    <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
                       <h3
                         className="text-white text-3xl md:text-4xl font-bold leading-none mb-2"
                         style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
@@ -249,7 +253,8 @@ export default function StoriesRidersSection() {
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.div>
+            </motion.div>
+          </Reveal>
         );
       })}
     </section>

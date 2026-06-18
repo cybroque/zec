@@ -150,7 +150,6 @@ export default function ProgramsJourney() {
                   alt="Program level"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  loading="eager"
                   className="object-cover"
                 />
               </div>

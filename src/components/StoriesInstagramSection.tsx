@@ -5,7 +5,6 @@ const rotations = ["-2deg", "2deg", "-2deg", "2deg"]; // alternating tilts
 
 const socialLinks = [
   { 
-    label: "Instagram", 
     href: "#",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -15,8 +14,7 @@ const socialLinks = [
       </svg>
     )
   },
-  { 
-    label: "Facebook",  
+  {   
     href: "#",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -25,7 +23,6 @@ const socialLinks = [
     )
   },
   { 
-    label: "Linked In", 
     href: "#",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -35,8 +32,7 @@ const socialLinks = [
       </svg>
     )
   },
-  { 
-    label: "Whatsapp",  
+  {  
     href: "#",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -61,7 +57,7 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
       <div className="container mx-auto max-w-6xl px-10 pt-24 pb-12 text-center">
         <Reveal>
           <h2
-            className="font-bold text-[#6B3213] uppercase leading-tight mb-4"
+            className="text-[#6B3213] uppercase leading-tight mb-4"
             style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)", letterSpacing: "0.1em" }}
           >
             Follow Their Journey on Instagram
@@ -91,7 +87,7 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
         <div style={{ width: "100%", paddingLeft: "3%", paddingRight: "3%", boxSizing: "border-box" }}>
           <div style={{ display: "flex", alignItems: "flex-start" }}>
             {waveOffsets.map((offset, i) => (
-              <Reveal key={i} delay={0.1 * i}>
+              <Reveal key={i} delay={0.1 * i} className="flex-1">
                 <div
                   style={{
                     flex:            "1 1 0",
@@ -153,7 +149,7 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
                 >
                   Follow Us On
                 </p>
-                <div className="flex flex-col gap-3">
+                <div className="flex gap-3">
                   {socialLinks.map((link) => (
                     <a
                       key={link.label}

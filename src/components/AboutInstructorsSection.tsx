@@ -88,7 +88,6 @@ export default function AboutInstructorsSection() {
                         fill
                         sizes="(max-width: 768px) 100vw, 25vw"
                         className="object-cover"
-                        loading="eager"
                       />
                     </div>
                   </Reveal>
@@ -116,7 +115,7 @@ export default function AboutInstructorsSection() {
               <Reveal key={instructor.id} delay={0.2}>
                 <div className="flex flex-col items-center text-center">
                   <div className="relative w-[248px] h-[332px] shadow-2xl mb-6 rounded-sm overflow-hidden hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
-                    <Image src={instructor.image} alt={instructor.name} fill sizes="248px" className="object-cover" loading="eager" />
+                    <Image src={instructor.image} alt={instructor.name} fill sizes="248px" className="object-cover" />
                   </div>
                   <h3 className="text-[#FFF8E5] text-xl font-normal mb-1.5">{instructor.name}</h3>
                   <p className="text-[#FFF8E5]/80 text-[10px] uppercase  font-light mb-3">{instructor.role}</p>
@@ -172,7 +171,6 @@ export default function AboutInstructorsSection() {
                 fill
                 sizes="(max-width: 768px) 100vw, 700px"
                 className="object-contain"
-                loading="eager"
               />
 
               {/* Dot marker */}

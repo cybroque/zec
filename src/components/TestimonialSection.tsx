@@ -34,7 +34,6 @@ const TestimonialSection = () => {
                     fill
                     sizes="64px"
                     className="object-contain"
-                    loading="eager"
                   />
                 </div>
               </Reveal>

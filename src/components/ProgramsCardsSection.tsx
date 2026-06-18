@@ -24,7 +24,7 @@ const cardsData = [
     bgColor: "bg-[#D9734A]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/pic1.jpg"
+    image: "/assets/images/d1.svg"
   },
   {
     id: "foundation",
@@ -44,7 +44,7 @@ const cardsData = [
     bgColor: "bg-[#F2F9FF]",
     textColor: "text-[#242A59]",
     featureBorder: "border-[#242A59]/20",
-    image: "/assets/images/pic2.jpg"
+    image: "/assets/images/d2.svg"
   },
   {
     id: "development",
@@ -64,7 +64,7 @@ const cardsData = [
     bgColor: "bg-[#5A7BB5]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/pic3.jpg"
+    image: "/assets/images/d3.svg"
   },
   {
     id: "performance",
@@ -84,7 +84,7 @@ const cardsData = [
     bgColor: "bg-[#91572D]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/pic4.jpg"
+    image: "/assets/images/d4.svg"
   },
   {
     id: "dressage",
@@ -104,7 +104,7 @@ const cardsData = [
     bgColor: "bg-[#242A59]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/pic5.jpg"
+    image: "/assets/images/d5.svg"
   },
   {
     id: "showjumping",
@@ -124,7 +124,7 @@ const cardsData = [
     bgColor: "bg-[#242A59]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/pic6.jpg"
+    image: "/assets/images/d6.svg"
   },
   {
     id: "practice",
@@ -141,7 +141,7 @@ const cardsData = [
     bgColor: "bg-[#111111]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/pic1.jpg"
+    image: "/assets/images/d7.svg"
   }
 ];
 
@@ -217,7 +217,6 @@ export default function ProgramsCardsSection() {
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 429px"
-                      loading="eager"
                     />
                   </div>
 

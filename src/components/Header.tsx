@@ -58,7 +58,7 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
           <Link href="/programs" className={`px-6 py-2 text-[11px] font-medium transition-colors ${navVariant === 'cream' ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>PROGRAMS</Link>
           <Link href="/stories" className={`px-6 py-2 text-[11px] font-medium transition-colors ${navVariant === 'cream' ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>RIDERS STORIES</Link>
           <Link href="/beyond" className={`px-6 py-2 text-[11px] font-medium transition-colors ${navVariant === 'cream' ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>BEYOND THE RIDE</Link>
-          <Link href="/contact" className={`px-8 py-2 h-full flex items-center font-black text-xs transition-all ${navVariant === 'cream' ? 'bg-[#85431E] text-[#FFF8E5] hover:bg-[#DA7347]' : (isLight ? 'hover:bg-white hover:text-[#85431E]' : 'hover:bg-white hover:text-[#DA7347]')}`}>JOIN ZIPPY</Link>
+          <Link href="/contact" className={`px-8 py-2 h-full flex items-center font-black text-xs transition-all ${navVariant === 'cream' ? 'bg-[#85431E] text-[#FFF8E5] hover:bg-[#DA7347]' : 'bg-white text-[#DA7347]'}`}>JOIN ZIPPY</Link>
         </nav>
 
         {/* Mobile Menu Toggle */}

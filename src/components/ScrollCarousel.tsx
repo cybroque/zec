@@ -190,7 +190,6 @@ const ScrollCarousel = () => {
                       fill
                       sizes="(max-width: 768px) 100vw, 40vw"
                       className="object-cover object-right"
-                      loading="eager"
                     />
                   </HoverImage>
                 </div>
@@ -206,7 +205,6 @@ const ScrollCarousel = () => {
                   fill
                   sizes="100vw"
                   className="object-cover"
-                  loading="eager"
                 />
               </HoverImage>
             </div>

@@ -9,6 +9,7 @@ interface RevealProps {
   duration?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
   className?: string;
+  once?: boolean;
 }
 
 export default function Reveal({
@@ -17,6 +18,7 @@ export default function Reveal({
   duration = 0.6,
   direction = "up",
   className = "",
+  once = true,
 }: RevealProps) {
   // Define variants based on direction
   const variants = {
@@ -46,7 +48,7 @@ export default function Reveal({
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.2 }}
+      viewport={{ once, amount: 0.2 }}
       className={className}
     >
       {children}

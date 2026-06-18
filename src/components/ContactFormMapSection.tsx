@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
 
@@ -16,18 +16,7 @@ const INTEREST_OPTIONS = [
   "Horse Rent / Lease",
   "Franchise"
 ];
-const COUNTRY_CODES = [
-  { code: "+91", flag: "🇮🇳", name: "India" },
-  { code: "+1", flag: "🇺🇸", name: "United States" },
-  { code: "+44", flag: "🇬🇧", name: "United Kingdom" },
-  { code: "+61", flag: "🇦🇺", name: "Australia" },
-  { code: "+971", flag: "🇦🇪", name: "UAE" },
-  { code: "+65", flag: "🇸🇬", name: "Singapore" },
-  { code: "+49", flag: "🇩🇪", name: "Germany" },
-  { code: "+33", flag: "🇫🇷", name: "France" },
-  { code: "+81", flag: "🇯🇵", name: "Japan" },
-  { code: "+86", flag: "🇨🇳", name: "China" },
-];
+import { COUNTRY_CODES } from "@/data/countryCodes";
 
 export default function ContactFormMapSection() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -36,10 +25,28 @@ export default function ContactFormMapSection() {
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(COUNTRY_CODES[0]);
 
+  const countryDropdownRef = useRef<HTMLDivElement>(null);
+  const programDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target as Node)) {
+        setIsCountryDropdownOpen(false);
+      }
+      if (programDropdownRef.current && !programDropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <section className="w-full bg-transparent py-16 md:py-24">
       {/* Aligned with Header container */}
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="container mx-auto px-6 md:px-12 roun">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
 
           {/* LEFT: Form + Location text */}
@@ -63,7 +70,7 @@ export default function ContactFormMapSection() {
                   />
                 </div>
 
-                <div className="mb-5 relative">
+                <div className="mb-5 relative" ref={countryDropdownRef}>
                   <label className="text-[#85431E]/70 text-xs  uppercase mb-2 block font-light">
                     Contact Number
                   </label>
@@ -93,7 +100,7 @@ export default function ContactFormMapSection() {
                         {COUNTRY_CODES.map((country, i) => (
                           <div
                             key={i}
-                            className="px-4 py-3 flex items-center gap-3 text-sm text-[#85431E] cursor-pointer hover:bg-[#FFF8E5] hover:text-white transition-colors"
+                            className="px-4 py-3 flex items-center gap-3 text-sm text-[#85431E] cursor-pointer hover:bg-black/10 transition-colors"
                             onClick={() => {
                               setSelectedCountry(country);
                               setIsCountryDropdownOpen(false);
@@ -109,7 +116,7 @@ export default function ContactFormMapSection() {
                   )}
                 </div>
 
-                <div className="mb-7 relative">
+                <div className="mb-7 relative" ref={programDropdownRef}>
                   <label className="text-[#85431E]/70 text-xs  uppercase mb-2 block font-light">
                     I&apos;m interested in:
                   </label>
@@ -210,7 +217,6 @@ export default function ContactFormMapSection() {
                 src="/assets/images/contact-map.svg"
                 alt="ZEC Location Map"
                 fill
-                loading="eager"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-contain"
               />
