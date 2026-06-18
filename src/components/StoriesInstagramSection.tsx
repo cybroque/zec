@@ -150,16 +150,13 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
                   Follow Us On
                 </p>
                 <div className="flex gap-3">
-                  {socialLinks.map((link) => (
+                  {socialLinks.map((link, index) => (
                     <a
-                      key={link.label}
+                      key={index}
                       href={link.href}
                       className="flex items-center gap-2.5 text-[15px] md:text-base font-medium text-[#85431E] group transition-all w-fit"
                     >
                       <span className="flex-shrink-0 text-[#85431E]">{link.icon}</span>
-                      <span className="underline underline-offset-4 decoration-[#85431E]/30 group-hover:decoration-[#85431E] transition-all">
-                        {link.label}
-                      </span>
                     </a>
                   ))}
                 </div>
