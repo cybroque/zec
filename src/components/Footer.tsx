@@ -20,7 +20,6 @@ const Footer = () => {
           {/* Left Column: Logos */}
           <div className="flex flex-col justify-center h-full">
             {/* Horse Rider Logo — aligns with CTA section */}
-            <Reveal>
               <div className="flex justify-start mb-16 md:mb-20">
               <div
                 className="relative w-56 h-56 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px] bg-[#7A4027]"
@@ -36,10 +35,7 @@ const Footer = () => {
                 }}
               />
             </div>
-            </Reveal>
-
             {/* Zippy Equestrian Center — aligns with nav links */}
-            <Reveal delay={0.2}>
               <div className="flex items-start justify-start">
               <div
                 className="relative w-48 h-16 md:w-[240px] md:h-[68px] lg:w-[280px] lg:h-[80px] bg-[#7A4027]"
@@ -55,14 +51,12 @@ const Footer = () => {
                 }}
               />
             </div>
-            </Reveal>
           </div>
 
           {/* Right Column: CTA and Links */}
           <div className="flex flex-col justify-center h-full max-w-lg mx-auto md:mx-0 md:pl-8 lg:pl-16">
 
             {/* Top CTA Section */}
-            <Reveal delay={0.2}>
               <div className="text-[#F2EBD9] text-center md:text-left mb-16 md:mb-20">
               <h2 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium leading-[1.15] mb-6 tracking-tight">
                 The rider in you is<br />just a ride away.
@@ -97,10 +91,8 @@ const Footer = () => {
                 </svg>
               </button>
             </div>
-            </Reveal>
 
             {/* Bottom Links Section */}
-            <Reveal delay={0.4}>
               <div className="grid grid-cols-2 gap-x-10 md:gap-x-16 gap-y-5 text-[#F2EBD9]">
               <Link href="/" className="text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline decoration-[#F2EBD9]/60 underline-offset-4">Zippy Home</Link>
               <Link href="/about" className="text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline decoration-[#F2EBD9]/60 underline-offset-4">About ZEC</Link>
@@ -109,17 +101,16 @@ const Footer = () => {
               <Link href="/beyond" className="text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline decoration-[#F2EBD9]/60 underline-offset-4">Beyond the ride</Link>
                 <Link href="/stories" className="text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline decoration-[#F2EBD9]/60 underline-offset-4">Rider Stories</Link>
               </div>
-            </Reveal>
+
           </div>
         </div>
 
         {/* Copyright Row */}
-        <Reveal delay={0.6}>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[#7A4027] text-xs lg:text-sm font-medium ">
             <p>© 2026 Zippy Equestrian Pvt Ltd.</p>
             <p className="text-center md:text-right">All Rights Reserved. ZEC and Zippy is a registered trademark of Zippy Equestrian Pvt Ltd.</p>
           </div>
-        </Reveal>
+       
 
       </div>
     </footer>
