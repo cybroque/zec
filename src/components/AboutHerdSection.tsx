@@ -54,7 +54,7 @@ export default function AboutHerdSection() {
       style={{ height: scrollDist > 0 ? `calc(100dvh + ${scrollDist}px)` : "auto" }}
     >
       <section
-        className={`w-full bg-[#f2ebd9] overflow-hidden flex flex-col justify-center ${
+        className={`w-full bg-[#FFF8E5] overflow-hidden flex flex-col justify-center ${
           scrollDist > 0 ? "sticky top-0 h-dvh" : ""
         }`}
         style={{ paddingTop: "clamp(48px, 8vw, 120px)", paddingBottom: "clamp(48px, 8vw, 120px)" }}

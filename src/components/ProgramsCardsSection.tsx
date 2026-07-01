@@ -173,7 +173,7 @@ export default function ProgramsCardsSection() {
   const sectionBgColor = useTransform(scrollYProgress, colorStops, sectionBgColors);
 
   return (
-    <motion.section id="programs-cards" ref={targetRef} style={{ backgroundColor: sectionBgColor }} className="relative h-[300vh] z-[60]">
+    <motion.section id="programs-cards" ref={targetRef} style={{ backgroundColor: sectionBgColor }} className="relative h-[300vh] z-[60] bg-[#FFF8E5]">
       <div className="sticky top-0 flex flex-col h-screen overflow-hidden justify-between py-6 md:py-8">
 
         {/* Top Title */}

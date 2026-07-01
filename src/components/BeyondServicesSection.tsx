@@ -110,12 +110,7 @@ const services: Service[] = [
 
 export default function BeyondServicesSection() {
   return (
-    <section
-      className="relative w-full"
-      style={{
-        backgroundColor: "#F5F1E8",
-      }}
-    >
+    <section className="relative w-full bg-[#F5F1E8]">
       {/* Background SVGs wrapped in overflow-hidden to not break sticky */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <img

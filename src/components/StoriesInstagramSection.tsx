@@ -51,7 +51,10 @@ interface StoriesInstagramSectionProps {
 
 export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFooter = false }: StoriesInstagramSectionProps) {
   return (
-    <section className="w-full" style={{ backgroundColor: bgColor }}>
+    <section 
+      className={`w-full ${bgColor === "#FFF8E5" ? "bg-[#FFF8E5]" : ""}`} 
+      style={bgColor !== "#FFF8E5" ? { backgroundColor: bgColor } : undefined}
+    >
 
       {/* ── Heading ── */}
       <div className="container mx-auto max-w-6xl px-10 pt-24 pb-12 text-center">
