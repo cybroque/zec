@@ -64,3 +64,20 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Footer active state: transition the app background */
+body {
+  transition: background-color 0.3s ease;
+}
+
+body.footer-active {
+  background-color: #DA7347 !important;
+}
+
+.bg-\[\#FFF8E5\] {
+  transition: background-color 0.3s ease !important;
+}
+
+body.footer-active .bg-\[\#FFF8E5\] {
+  background-color: #DA7347 !important;
+}
