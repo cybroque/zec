@@ -18,7 +18,7 @@ export default function Hero() {
       {/* Video Background Placeholder */}
       <div className="absolute inset-0 z-0 bg-[#FFF8E5]">
         <Image 
-          src="/assets/images/hero_main.png" 
+          src="/assets/images/hero_main.webp" 
           alt="Zippy Equestrian Hero" 
           fill
           priority

@@ -26,7 +26,7 @@ const services: Service[] = [
     description:
       "Give your child a summer they'll actually remember. Our summer camp programs introduce kids to horse riding, stable care, and equestrian life in a safe, supervised, and genuinely fun environment. Suitable for children with no prior riding experience.",
     color: "#DA7347",
-    image: "/assets/images/summer-camp.png",
+    image: "/assets/images/summer-camp.webp",
     meta: {
       forWho: "School students",
       season: "During summer vacation",
@@ -40,7 +40,7 @@ const services: Service[] = [
     description:
       "Professional training services for horses conducted by our experienced instructors. Whether you're looking to train a young horse or work on specific skills, our team brings the same structured, patient approach we use with our riders.",
     color: "#526FAE",
-    image: "/assets/images/horse-training.png",
+    image: "/assets/images/horse-training.webp",
     meta: {
       forWho: "All types of horses",
       season: "Any time of the year",
@@ -54,7 +54,7 @@ const services: Service[] = [
     description:
       "Looking to own a horse? We have horses available for sale which are well-trained, healthy, and suited to riders at different levels. Speak to us directly to find out what's currently available and what would be the right match for you.",
     color: "#85431E",
-    image: "/assets/images/buy.png",
+    image: "/assets/images/buy.webp",
     cta: "Find available horses",
   },
   {
@@ -63,7 +63,7 @@ const services: Service[] = [
     description:
       "Our grounds are available for private events, birthday parties, and group get-togethers. There's no venue in South Bangalore quite like it; an equestrian center with open space, a warm atmosphere, and an experience your guests won't forget.",
     color: "#AE5834",
-    image: "/assets/images/venue.png",
+    image: "/assets/images/venue.webp",
     meta: {
       forWho: "All types of events",
       season: "Any time of the year",
@@ -77,7 +77,7 @@ const services: Service[] = [
     description:
       "Planning to start your own equestrian facility? Looking for guidance on horse management, program design, or facility setup? We offer professional consultation services drawing on years of hands-on experience running a successful riding center in Bangalore.",
     color: "#1C2245",
-    image: "/assets/images/eque.png",
+    image: "/assets/images/eque.webp",
     cta: "Book a meeting",
   },
   {
@@ -86,7 +86,7 @@ const services: Service[] = [
     description:
       "Not ready to own, but want regular access to a specific horse? Our rent and lease arrangements give riders a consistent partnership with a horse; ideal for riders who want to train more seriously without the full commitment of ownership.",
     color: "#85431E",
-    image: "/assets/images/horse.png",
+    image: "/assets/images/horse.webp",
     cta: "Find available horses",
   },
   {
@@ -95,7 +95,7 @@ const services: Service[] = [
     description:
       "Our stables at Zippy make for a stunning photoshoot location: natural light, beautiful horses, and an environment that photographs unlike anything in the city. Available for personal shoots, brand shoots, and professional productions. Horses can be included with prior arrangement.",
     color: "#526FAE",
-    image: "/assets/images/photo.png",
+    image: "/assets/images/photo.webp",
     cta: "Book a meeting",
   },
   {
@@ -104,7 +104,7 @@ const services: Service[] = [
     description:
       "Interested in bringing the Zippy Equestrian Center model to your city? We're open to conversations about franchise opportunities with people who share our commitment to accessible, high-quality equestrian experiences.",
     color: "#DA7347",
-    image: "/assets/images/franchise.png",
+    image: "/assets/images/franchise.webp",
     cta: "Talk to our manager",
   },
   {
@@ -113,7 +113,7 @@ const services: Service[] = [
     description:
       "We provide boarding facilities for privately-owned horses: safe stabling, daily care, feeding, and regular exercise under professional supervision. Ideal for horse owners who want their animal in experienced hands within the city.",
     color: "#1C2245",
-    image: "/assets/images/boarding.png",
+    image: "/assets/images/boarding.webp",
     cta: "Find your horse a home",
   },
 ];
@@ -193,7 +193,7 @@ export default function BeyondServicesSection() {
                   className="relative w-full md:w-[40%] shrink-0"
                   style={{ minHeight: "340px" }}
                 >
-                  <Image loading="eager" fetchPriority="low"
+                  <Image loading="lazy"
                     src={service.image}
                     alt={service.title}
                     fill

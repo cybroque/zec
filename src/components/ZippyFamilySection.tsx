@@ -32,7 +32,7 @@ const ZippyFamilySection = () => {
                 rel="noopener noreferrer"
                 className="relative w-24 h-24 md:w-32 md:h-32 block hover:scale-105 transition-transform duration-300"
               >
-                <Image loading="eager" fetchPriority="low"
+                <Image loading="lazy"
                   src="/assets/images/zippybroncos.svg"
                   alt="Zippy Broncos Logo"
                   fill
@@ -45,7 +45,7 @@ const ZippyFamilySection = () => {
 
               <div className="relative w-34 h-34 md:w-52 md:h-52 mt-2 hover:scale-105 transition-transform duration-300">
                 <h1 className='uppercase text-[#641C17] text-md md:pl-10 md:pt-8 '>Coming Soon</h1>
-                <Image loading="eager" fetchPriority="low"
+                <Image loading="lazy"
                   src="/assets/images/zippypremier.svg"
                   alt="Zippy Premier Logo"
                   fill

@@ -21,7 +21,7 @@ const ActivityCard = ({
   return (
     <Link href={href} className="relative group block overflow-hidden rounded-sm aspect-[423/556.5] w-full cursor-pointer">
       {/* Image */}
-      <Image loading="eager" fetchPriority="low"
+      <Image loading="lazy"
         src={imageSrc}
         alt={title}
         fill
@@ -53,21 +53,21 @@ const ActivitiesSection = () => {
     {
       title: "Summer camps",
       description: "For kids who want more than a screen this summer.",
-      imageSrc: "/assets/images/season1.svg",
+      imageSrc: "/assets/images/season1.webp",
       overlayColor: "rgba(214, 122, 91, 0.65)", // #d67a5b with alpha
       href: "/beyond#summer-camps"
     },
     {
       title: "Parties and Venues",
       description: "Host your next get-together at the stables.",
-      imageSrc: "/assets/images/season2.svg",
+      imageSrc: "/assets/images/season2.webp",
       overlayColor: "rgba(46, 88, 185, 0.65)", // #2e58b9 with alpha
       href: "/beyond"
     },
     {
       title: "Photoshoots",
       description: "The most beautiful backdrop in South Bangalore.",
-      imageSrc: "/assets/images/season3.svg",
+      imageSrc: "/assets/images/season3.webp",
       overlayColor: "rgba(133, 67, 30, 0.65)", // #85431E with alpha
       href: "/beyond"
     }

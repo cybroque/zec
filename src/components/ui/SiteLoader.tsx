@@ -27,7 +27,7 @@ export default function SiteLoader() {
 
     // Preload the hero image; dismiss when it's ready
     const img = new window.Image();
-    img.src = "/assets/images/hero_main.png";
+    img.src = "/assets/images/hero_main.webp";
 
     if (img.complete) {
       // Cached — still give a brief moment so the logo renders

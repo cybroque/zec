@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
+import Link from "next/link";
 
 const cardsData = [
   {
@@ -24,7 +25,7 @@ const cardsData = [
     bgColor: "bg-[#D9734A]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d1.svg"
+    image: "/assets/images/d1.webp"
   },
   {
     id: "foundation",
@@ -44,7 +45,7 @@ const cardsData = [
     bgColor: "bg-[#F2F9FF]",
     textColor: "text-[#242A59]",
     featureBorder: "border-[#242A59]/20",
-    image: "/assets/images/d2.svg"
+    image: "/assets/images/d2.webp"
   },
   {
     id: "development",
@@ -64,7 +65,7 @@ const cardsData = [
     bgColor: "bg-[#5A7BB5]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d3.svg"
+    image: "/assets/images/d3.webp"
   },
   {
     id: "performance",
@@ -84,7 +85,7 @@ const cardsData = [
     bgColor: "bg-[#91572D]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d4.svg"
+    image: "/assets/images/d4.webp"
   },
   {
     id: "dressage",
@@ -124,7 +125,7 @@ const cardsData = [
     bgColor: "bg-[#242A59]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d6.svg"
+    image: "/assets/images/d6.webp"
   },
   {
     id: "practice",
@@ -141,9 +142,13 @@ const cardsData = [
     bgColor: "bg-[#111111]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d7.svg"
+    image: "/assets/images/d7.webp"
   }
 ];
+
+// Map card id → its index in cardsData
+const cardIndexMap: Record<string, number> = {};
+cardsData.forEach((c, i) => { cardIndexMap[c.id] = i; });
 
 export default function ProgramsCardsSection() {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -155,6 +160,33 @@ export default function ProgramsCardsSection() {
   const xPercent = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const vwOffset = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const x = useMotionTemplate`calc(${xPercent}% + ${vwOffset}vw)`;
+
+  // Hash-based card scroll: jump to the scroll position that reveals the target card
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (!hash || !(hash in cardIndexMap)) return;
+
+    const cardIndex = cardIndexMap[hash];
+    const totalCards = cardsData.length;
+
+    const scrollToCard = () => {
+      const el = targetRef.current;
+      if (!el) return;
+
+      const sectionTop = el.getBoundingClientRect().top + window.scrollY;
+      const sectionHeight = el.getBoundingClientRect().height;
+
+      // scrollYProgress goes 0→1 over sectionHeight, each card occupies 1/totalCards of that
+      const targetProgress = cardIndex / (totalCards - 1);
+      const targetScrollY = sectionTop + targetProgress * (sectionHeight - window.innerHeight);
+
+      window.scrollTo({ top: Math.max(0, targetScrollY), behavior: 'auto' });
+    };
+
+    // Wait for layout to settle after navigation
+    const t = setTimeout(scrollToCard, 200);
+    return () => clearTimeout(t);
+  }, []);
 
   // Create color stops evenly distributed across the scroll range
   const colorStops = cardsData.map((_, i) => i / Math.max(1, cardsData.length - 1));
@@ -211,7 +243,7 @@ export default function ProgramsCardsSection() {
                 <div className="flex flex-col flex-1 shadow-sm hover:shadow-lg overflow-hidden rounded-md md:rounded-sm transition-all duration-500 ease-out hover:scale-[1.015] hover:-translate-y-1 group cursor-pointer">
                   {/* Image */}
                   <div className="relative h-[22vh] min-h-[130px] max-h-[194px] w-full flex-shrink-0">
-                    <Image loading="eager" fetchPriority="low"
+                    <Image loading="lazy"
                       src={card.image}
                       alt={card.title}
                       fill
@@ -266,13 +298,13 @@ export default function ProgramsCardsSection() {
           <Reveal direction="none" delay={0.2}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
               <span className="text-[#D9734A] text-xs md:text-xl font-medium ">Pick your level and start ride withing us</span>
-              <button className="bg-[#D9734A] text-white px-5 py-2 md:py-3 text-sm md:text-md font-medium hover:bg-[#C2613D] transition-colors flex items-center gap-2 rounded-sm">
+              <Link href={"/contact"} className="bg-[#D9734A] text-white px-5 py-2 md:py-3 text-sm md:text-md font-medium hover:bg-[#C2613D] transition-colors flex items-center gap-2 rounded-sm">
                 Enroll now
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
-              </button>
+              </Link>
             </div>
           </Reveal>
         </div>

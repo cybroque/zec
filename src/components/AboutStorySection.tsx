@@ -6,7 +6,7 @@ export default function AboutStorySection() {
     <section className="relative w-full bg-[#1C2245] py-20 md:py-24 overflow-hidden">
       {/* Top right pattern */}
       <div className="absolute top-0 right-0 w-[70%] md:w-[50%] lg:w-[40%] max-w-[600px] aspect-square opacity-60 pointer-events-none">
-        <Image loading="eager" fetchPriority="low"
+        <Image loading="lazy"
           src="/assets/images/aboutpattern.svg"
           alt="Decorative pattern"
           fill
@@ -47,8 +47,8 @@ export default function AboutStorySection() {
             {/* Right Column: Image */}
             <Reveal delay={0.12} className="lg:col-span-5 flex justify-center lg:justify-start">
               <div className="relative w-full max-w-[240px] sm:max-w-[260px] lg:max-w-[280px] aspect-[4/5] rounded-lg overflow-hidden shadow-2xl hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
-                <Image loading="eager" fetchPriority="low"
-                  src="/assets/images/about-main.svg"
+                <Image loading="lazy"
+                  src="/assets/images/about-main.webp"
                   alt="Dilip Kirani - Founding Partner"
                   fill
                   sizes="(max-width: 640px) 240px, (max-width: 1024px) 260px, 280px"

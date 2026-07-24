@@ -213,7 +213,7 @@ export default function ContactFormMapSection() {
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
             >
-              <Image loading="eager" fetchPriority="low"
+              <Image loading="lazy"
                 src="/assets/images/contact-map.svg"
                 alt="ZEC Location Map"
                 fill

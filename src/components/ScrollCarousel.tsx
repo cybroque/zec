@@ -12,7 +12,7 @@ const slides = [
     section: "START HERE",
     title: "Trial Ride",
     description: "Never been on a horse? This is how you start. One 30-minute session. Guided, safe, and genuinely fun.",
-    image: "/assets/images/r2.svg",
+    image: "/assets/images/r2.webp",
     bgColor: "#DA7347", // Orange
     buttonText: "Book a Trial",
     link: "/programs#programs-cards"
@@ -22,20 +22,20 @@ const slides = [
     section: "FOR BEGINNERS",
     title: "Foundation Program",
     description: "Build strong riding fundamentals from posture and balance to walk, trot, and canter. Learn how to understand and work with your horse, both in and out of the saddle.",
-    image: "/assets/images/r4.svg",
+    image: "/assets/images/r4.webp",
     bgColor: "#526FAE", // Dark Blue
     buttonText: "Book a Trial",
-    link: "/programs#programs-cards"
+    link: "/programs#foundation"
   },
   {
     id: 3,
     section: "ALREADY RIDING?",
     title: "Development • Performance • Dressage • Showjumping",
     description: "Move beyond the basics with structured training that builds control, balance, and discipline-specific skills. Progress from refinement to performance, with a clear path towards competitive riding.",
-    image: "/assets/images/r3.svg",
+    image: "/assets/images/r3.webp",
     bgColor: "#1C2245", // Light Blue
     buttonText: "See all Programs",
-    link: "/programs#programs-cards"
+    link: "/programs#performance"
   }
 ];
 
@@ -44,23 +44,33 @@ const ScrollCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      if (!containerRef.current) return;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!containerRef.current) {
+            ticking = false;
+            return;
+          }
 
-      const { top, height } = containerRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
+          const { top, height } = containerRef.current.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
 
-      const totalScrollable = height - viewportHeight;
-      if (totalScrollable <= 0) return; // Disable scroll-linked logic on mobile where height is 100vh
-
-      const currentScroll = -top;
-
-      const progress = Math.max(0, Math.min(100, (currentScroll / totalScrollable) * 100));
-      const index = Math.min(slides.length - 1, Math.floor(progress / (100 / slides.length)));
-      setActiveIndex(index);
+          const totalScrollable = height - viewportHeight;
+          if (totalScrollable > 0) {
+            const currentScroll = -top;
+            const progress = Math.max(0, Math.min(100, (currentScroll / totalScrollable) * 100));
+            const index = Math.min(slides.length - 1, Math.floor(progress / (100 / slides.length)));
+            setActiveIndex(index);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -177,8 +187,8 @@ const ScrollCarousel = () => {
             {/* Right Side: Image */}
             <div className="hidden md:block w-[40%] relative z-10 overflow-visible">
               {/* Invisible spacer to dictate container height proportionally to image aspect ratio */}
-              <Image loading="eager" fetchPriority="low"
-                src="/assets/images/r2.svg"
+              <Image loading="lazy"
+                src="/assets/images/r2.webp"
                 alt="spacer"
                 width={744}
                 height={497}
@@ -191,7 +201,7 @@ const ScrollCarousel = () => {
                     }`}
                 >
                   <HoverImage className="w-full h-full">
-                    <Image loading="eager" fetchPriority="low"
+                    <Image loading="lazy"
                       src={slide.image}
                       alt={slide.title}
                       fill
@@ -206,7 +216,7 @@ const ScrollCarousel = () => {
             {/* Mobile Image (shown only on mobile, placed between content and intro) */}
             <div className="md:hidden w-full aspect-video relative">
               <HoverImage className="w-full h-full">
-                <Image loading="eager" fetchPriority="low"
+                <Image loading="lazy"
                   src={slides[activeIndex].image}
                   alt={slides[activeIndex].title}
                   fill

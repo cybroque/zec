@@ -37,7 +37,7 @@ const riders: Rider[] = [
     beforeQuote: "I'd never been near a horse in my life. I booked the trial on a whim after seeing a photo on Instagram. I was nervous the whole drive there.",
     afterMonths: 6,
     afterQuote: "Can trot independently and canter with support. Competed in the first inter-club event. Confident around all the horses at ZEC.",
-    image: "/assets/images/rider1.svg",
+    image: "/assets/images/rider1.webp",
   },
   {
     name: "Priya S",
@@ -49,7 +49,7 @@ const riders: Rider[] = [
     beforeQuote: "I'd never been near a horse in my life. I booked the trial on a whim after seeing a photo on Instagram. I was nervous the whole drive there.",
     afterMonths: 8,
     afterQuote: "Completed Beginners and Novice programs. Now in Intermediate. Can trot independently and has been introduced to canter.",
-    image: "/assets/images/rider2.svg",
+    image: "/assets/images/rider2.webp",
   },
   {
     name: "Tushita",
@@ -61,7 +61,7 @@ const riders: Rider[] = [
     beforeQuote: "Horses seemed majestic but intimidating. I wasn't sure I'd last more than a few sessions.",
     afterMonths: 8,
     afterQuote: "Now rides three days a week. Has started learning jumping fundamentals and helps newer riders settle in.",
-    image: "/assets/images/rider3.svg",
+    image: "/assets/images/rider3.webp",
   },
   {
     name: "Arnav",
@@ -73,7 +73,7 @@ const riders: Rider[] = [
     beforeQuote: "I wanted something different from the gym. Horses were on the bucket list since childhood.",
     afterMonths: 5,
     afterQuote: "Progressed to Novice program in five months. Now working on posting trot and balance exercises.",
-    image: "/assets/images/rider4.svg",
+    image: "/assets/images/rider4.webp",
   },
   {
     name: "Anagha",
@@ -85,7 +85,7 @@ const riders: Rider[] = [
     beforeQuote: "I was scared of large animals. My daughter convinced me to try the trial ride and I never looked back.",
     afterMonths: 7,
     afterQuote: "Rides confidently on all horses in the school string. Recently started light trail rides on weekend sessions.",
-    image: "/assets/images/rider5.svg",
+    image: "/assets/images/rider5.webp",
   },
   {
     name: "Ritesh",
@@ -97,7 +97,7 @@ const riders: Rider[] = [
     beforeQuote: "Rode a couple of times on holiday trips but never had proper training. Wanted to do it right.",
     afterMonths: 4,
     afterQuote: "Built solid fundamentals. Now working through the Intermediate syllabus with focus on seat and contact.",
-    image: "/assets/images/rider6.svg",
+    image: "/assets/images/rider6.webp",
   },
   {
     name: "Kavya",
@@ -109,7 +109,7 @@ const riders: Rider[] = [
     beforeQuote: "I was the person who always said 'I'd love to try that someday.' ZEC made someday happen.",
     afterMonths: 9,
     afterQuote: "One of our most consistent riders. Currently preparing for the regional beginner category event.",
-    image: "/assets/images/rider7.svg",
+    image: "/assets/images/rider7.webp",
   },
   {
     name: "Sameer",
@@ -121,7 +121,7 @@ const riders: Rider[] = [
     beforeQuote: "Came in knowing nothing. The first time I sat on a horse I thought I was going to fall off.",
     afterMonths: 3,
     afterQuote: "Trotting independently after three months. Quick learner — will move to Novice in the next cycle.",
-    image: "/assets/images/rider8.svg",
+    image: "/assets/images/rider8.webp",
   },
   {
     name: "Divya",
@@ -133,7 +133,7 @@ const riders: Rider[] = [
     beforeQuote: "I joined with my daughter. She was the brave one — I just wanted to keep up with her.",
     afterMonths: 12,
     afterQuote: "Now rides at the same level as her daughter. They school together on Saturday mornings. A family that rides together.",
-    image: "/assets/images/rider9.svg",
+    image: "/assets/images/rider9.webp",
   },
 ];
 
@@ -206,7 +206,7 @@ export default function StoriesRidersSection() {
                 >
                   {/* Left: photo with name overlay */}
                   <div className="relative w-[38%] min-h-[380px] flex-shrink-0">
-                    <Image loading="eager" fetchPriority="low"
+                    <Image loading="lazy"
                       src={rider.image}
                       alt={rider.name}
                       fill

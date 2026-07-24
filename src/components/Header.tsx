@@ -6,10 +6,10 @@ import { useState, useEffect, useCallback } from "react";
 
 // Map of route → hero image to silently prefetch when the user hovers the link
 const ROUTE_PREFETCH: Record<string, string> = {
-  "/about":    "/assets/images/about-hero.svg",
-  "/programs": "/assets/images/pro-hero.svg",
-  "/beyond":   "/assets/images/beyond-hero.png",
-  "/stories":  "/assets/images/riders-hero.png",
+  "/about":    "/assets/images/about-hero.webp",
+  "/programs": "/assets/images/pro-hero.webp",
+  "/beyond":   "/assets/images/beyond-hero.webp",
+  "/stories":  "/assets/images/riders-hero.webp",
 };
 
 /** Kicks off a background download so the image is cached before navigation. */
@@ -30,13 +30,20 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
   const [isPastHero, setIsPastHero] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      setIsScrolled(currentY > 50);
-      
-      // Switch to light theme when scrolling past the hero section (~100vh)
-      // Minus 80px to transition smoothly right as it crosses the boundary
-      setIsPastHero(currentY > window.innerHeight - 80);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+          setIsScrolled(currentY > 50);
+          
+          // Switch to light theme when scrolling past the hero section (~100vh)
+          // Minus 80px to transition smoothly right as it crosses the boundary
+          setIsPastHero(currentY > window.innerHeight - 80);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     
