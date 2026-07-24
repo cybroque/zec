@@ -33,7 +33,7 @@ export default function BeyondContactSection() {
               FOR GENERAL ENQUIRIES
             </h3>
             <div className="flex items-center gap-3">
-              <span className="text-white font-light text-base md:text-lg">Give us a call</span>
+              <a href="tel:+919901794713" className="text-white font-light text-base md:text-lg">Give us a call</a>
               <svg className="w-6 h-6 text-white font-light group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>

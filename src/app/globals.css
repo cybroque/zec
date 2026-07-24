@@ -71,13 +71,27 @@ body.footer-active {
 [class*="bg-[#FFF8E5]"],
 [class*="bg-[#f2ebd9]"],
 [class*="bg-[#F5F1E8]"],
-[class*="bg-[#f5f1e8]"] {
+[class*="bg-[#f5f1e8]"],
+[class*="bg-[#FFFBF2]"] {
   transition: background-color 0.3s ease !important;
 }
 
 body.footer-active [class*="bg-[#FFF8E5]"],
 body.footer-active [class*="bg-[#f2ebd9]"],
 body.footer-active [class*="bg-[#F5F1E8]"],
-body.footer-active [class*="bg-[#f5f1e8]"] {
+body.footer-active [class*="bg-[#f5f1e8]"],
+body.footer-active [class*="bg-[#FFFBF2]"] {
   background-color: #DA7347 !important;
+}
+
+/* Instagram section transitions for footer */
+body.footer-active .insta-heading-text {
+  color: #F2EBD9 !important;
+  transition: color 0.3s ease;
+}
+
+body.footer-active .insta-btn {
+  background-color: #FFF8E5 !important;
+  color: #DA7347 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

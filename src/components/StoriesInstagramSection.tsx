@@ -1,48 +1,14 @@
-/* 4 cards — alternating high/low wave, solid warm fill */
-const CARD_HEIGHT = 360;
-const waveOffsets = [0, 28, 0, 28]; // cards 1&3 high, 2&4 lower
-const rotations = ["-2deg", "2deg", "-2deg", "2deg"]; // alternating tilts
+"use client";
+
+import Image from "next/image";
+import Reveal from "@/components/ui/Reveal";
 
 const socialLinks = [
-  { 
-    href: "#",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-      </svg>
-    )
-  },
-  {   
-    href: "#",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-      </svg>
-    )
-  },
-  { 
-    href: "#",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-        <rect x="2" y="9" width="4" height="12"></rect>
-        <circle cx="4" cy="4" r="2"></circle>
-      </svg>
-    )
-  },
-  {  
-    href: "#",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-      </svg>
-    )
-  },
+  { name: "Instagram", href: "#" },
+  { name: "Facebook", href: "#" },
+  { name: "Linked In", href: "#" },
+  { name: "Whatsapp", href: "#" },
 ];
-
-import Reveal from "@/components/ui/Reveal";
 
 interface StoriesInstagramSectionProps {
   bgColor?: string;
@@ -55,111 +21,123 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
       className={`w-full ${bgColor === "#FFF8E5" ? "bg-[#FFF8E5]" : ""}`} 
       style={bgColor !== "#FFF8E5" ? { backgroundColor: bgColor } : undefined}
     >
-
       {/* ── Heading ── */}
       <div className="container mx-auto max-w-6xl px-10 pt-24 pb-12 text-center">
         <Reveal>
           <h2
-            className="text-[#6B3213] uppercase leading-tight mb-4"
-            style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)", letterSpacing: "0.1em" }}
+            className="text-[#6B3213] uppercase leading-tight mb-4 font-normal insta-heading-text transition-colors duration-300"
+            style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)", letterSpacing: "0.02em" }}
           >
-            Follow Their Journey on Instagram
+            GLIMPSES FROM ZIPPY
           </h2>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="text-[#85431E]/80 text-base md:text-lg font-medium">
-            Real moments from the stables, every week.
+          <p className="text-[#85431E]/80 text-base md:text-lg font-medium insta-heading-text transition-colors duration-300">
+            Real moments right from the stables
           </p>
         </Reveal>
       </div>
 
-      {/* ── SVG band — edge to edge ── */}
-      <div
-        style={{
-          width:            "100%",
-          backgroundColor:  "transparent",
-          backgroundImage:  "url('/assets/images/insta-bg.svg')",
-          backgroundSize:   "100% 100%",
-          backgroundRepeat: "no-repeat",
-          paddingTop:       44,
-          paddingBottom:    48,
-          overflow:         "visible",
-        }}
-      >
-        {/* 4 cards spanning most of the full width */}
-        <div style={{ width: "100%", paddingLeft: "3%", paddingRight: "3%", boxSizing: "border-box" }}>
-          <div style={{ display: "flex", alignItems: "flex-start" }}>
-            {waveOffsets.map((offset, i) => (
-              <Reveal key={i} delay={0.1 * i} className="flex-1">
-                <div
-                  style={{
-                    flex:            "1 1 0",
-                    height:          CARD_HEIGHT,
-                    marginTop:       offset,
-                    marginLeft:      i > 0 ? "-1%" : "0",
-                    position:        "relative",
-                    zIndex:          i + 1,
-                    transform:       `rotate(${rotations[i]})`,
-                    backgroundColor: "#E5DCC8",
-                    border:          "none",
-                    display:         "flex",
-                    alignItems:      "center",
-                    justifyContent:  "center",
-                    padding:         "12px 14px",
-                    cursor:          "pointer",
-                  }}
-                >
-                  <span style={{ fontSize: 11, color: "#2C1A0E", fontWeight: 500, letterSpacing: "0.02em" }}>
-                    Instagram posts
-                  </span>
-                </div>
-              </Reveal>
-            ))}
+      {/* ── Image Grid ── */}
+      <div className="w-full overflow-x-auto pb-12 no-scrollbar">
+        <div className="flex gap-[8px] w-max">
+          {/* Dynamic Left Spacer for perfect centering on large screens and equal padding on small ones */}
+          <div className="flex-none" style={{ width: "max(40px, calc(50vw - 705px))" }} />
+          {/* Column 1 */}
+          <div className="flex flex-col gap-[6px] w-[324px]">
+            <Reveal delay={0.1} className="w-full h-[369px]">
+              <div className="relative w-full h-full bg-[#E5DCC8]">
+                <Image loading="lazy" src="/assets/images/g1.webp" alt="Zippy 1" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+              </div>
+            </Reveal>
+            <Reveal delay={0.2} className="w-full h-[216px]">
+              <div className="relative w-full h-full bg-[#E5DCC8]">
+                <Image loading="lazy" src="/assets/images/g2.webp" alt="Zippy 2" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+              </div>
+            </Reveal>
           </div>
+
+          {/* Column 2 */}
+          <div className="flex flex-col w-[331px]">
+            <Reveal delay={0.15} className="w-full h-[591px]">
+              <div className="relative w-full h-full bg-[#E5DCC8]">
+                <Image loading="lazy" src="/assets/images/g3.webp" alt="Zippy 3" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Column 3 */}
+          <div className="flex flex-col gap-[11px] w-[393px]">
+            <Reveal delay={0.2} className="w-full h-[337px]">
+              <div className="relative w-full h-full bg-[#E5DCC8]">
+                <Image loading="lazy" src="/assets/images/g4.webp" alt="Zippy 4" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+              </div>
+            </Reveal>
+            <Reveal delay={0.3} className="w-full h-[243px]">
+              <div className="relative w-full h-full bg-[#E5DCC8]">
+                <Image loading="lazy" src="/assets/images/g5.webp" alt="Zippy 5" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Column 4 */}
+          <div className="flex flex-col gap-[9px] w-[337px]">
+            <Reveal delay={0.25} className="w-full h-[319px]">
+              <div className="relative w-full h-full bg-[#E5DCC8]">
+                <Image loading="lazy" src="/assets/images/g6.webp" alt="Zippy 6" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+              </div>
+            </Reveal>
+            <Reveal delay={0.35} className="w-full h-[263px]">
+              <div className="relative w-full h-full bg-[#E5DCC8]">
+                <Image loading="lazy" src="/assets/images/g7.webp" alt="Zippy 7" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Dynamic Right Spacer */}
+          <div className="flex-none" style={{ width: "max(40px, calc(50vw - 705px))" }} />
         </div>
       </div>
 
       {/* ── "Follow us" + social links ── */}
       {!hideFooter && (
-        <div className="container mx-auto max-w-5xl px-10 pt-20 pb-24">
-          <div className="text-center mb-16 md:mb-20">
-            <Reveal>
-              <p
-                className="text-[#85431E] font-medium"
-                style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
-              >
-                Follow us for stable updates and rider stories.
-              </p>
-            </Reveal>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-center items-stretch gap-12 md:gap-24 max-w-4xl mx-auto">
-            <div className="flex-1 max-w-[720px] md:text-left">
+        <div className="container mx-auto max-w-5xl px-10 pt-16 pb-24 mt-8">
+          <div className="flex flex-col md:flex-row justify-center items-start gap-16 md:gap-20 max-w-4xl mx-auto">
+            
+            {/* Left text */}
+            <div className="flex-1 max-w-[420px] md:text-left">
+              <Reveal>
+                <h3 className="text-[#85431E] font-medium mb-8 insta-heading-text transition-colors duration-300" style={{ fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)" }}>
+                  Follow us for stable updates and rider stories
+                </h3>
+              </Reveal>
               <Reveal delay={0.2}>
-                <p className="text-[#85431E] text-[15px] md:text-base leading-[1.6] md:text-left inline-block max-w-[340px]">
+                <p className="text-[#85431E]/90 text-[14px] md:text-[15px] leading-[1.6] insta-heading-text transition-colors duration-300">
                   Learn about Horses and get the best tips on riding, taking care, competitions, and most importantly having fun!
                 </p>
               </Reveal>
             </div>
 
-            <div className="w-[1px] bg-black hidden md:block" />
+            {/* Vertical Divider */}
+            <div className="w-[1px] bg-black/40 hidden md:block self-stretch mx-4" />
 
-            <div className="flex-1 max-w-[320px]">
+            {/* Right social links */}
+            <div className="flex-1 max-w-[200px]">
               <Reveal delay={0.4}>
                 <p
-                  className="font-bold text-[#000000] mb-5"
+                  className="font-bold text-[#2C1A0E] mb-6 insta-heading-text transition-colors duration-300"
                   style={{ fontSize: "0.9rem", letterSpacing: "0.05em", textTransform: "uppercase" }}
                 >
-                  Follow Us On
+                  FOLLOW US ON
                 </p>
-                <div className="flex gap-3">
+                <div className="flex flex-col gap-4">
                   {socialLinks.map((link, index) => (
                     <a
                       key={index}
                       href={link.href}
-                      className="flex items-center gap-2.5 text-[15px] md:text-base font-medium text-[#85431E] group transition-all w-fit"
+                      className="text-[#85431E] font-medium text-[15px] underline decoration-[#85431E]/40 underline-offset-4 hover:decoration-[#85431E] transition-all w-fit insta-heading-text"
                     >
-                      <span className="flex-shrink-0 text-[#85431E]">{link.icon}</span>
+                      {link.name}
                     </a>
                   ))}
                 </div>
@@ -168,7 +146,6 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
           </div>
         </div>
       )}
-
     </section>
   );
 }
