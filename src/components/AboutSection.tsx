@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Reveal from '@/components/ui/Reveal';
+import Link from 'next/link';
 
 const StatItem = ({ number, label }: { number: string, label: string }) => {
   const [count, setCount] = useState(0);
@@ -96,7 +97,7 @@ const AboutSection = () => {
               </h2>
             </Reveal>
             <Reveal delay={0.4}>
-              <button className="group flex items-center gap-8 px-4 py-4 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-[#FFF8E5] transition-all duration-500 shadow-sm">
+              <Link href="/about" className="group flex items-center gap-8 px-4 py-4 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-[#FFF8E5] transition-all duration-500 shadow-sm">
                 <span className="text-lg font-gt-ultra text-[#DA7347] transition-colors group-hover:text-inherit">Read our story</span>
                 <svg
                   width="28"
@@ -109,7 +110,7 @@ const AboutSection = () => {
                   <path d="M5 12H19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </button>
+              </Link>
             </Reveal>
           </div>
 
