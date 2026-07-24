@@ -1,13 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useLoading } from "@/lib/LoadingContext";
 
 /**
  * PageLoader — thin orange progress bar at the top of the screen.
- * Runs on every route change and completes when the page's hero image
- * fires its onLoad event (via LoadingContext.stopLoading).
+ *
+ * Completes when:
+ *   a) the hero image's onLoad fires (via LoadingContext.stopLoading), OR
+ *   b) a 3-second safety timeout elapses — so it NEVER stays stuck.
+ *
+ * The `isLoading` guard uses a ref-based "session" counter so that an
+ * isLoading=false left over from the previous page doesn't immediately
+ * dismiss the bar before the new hero even mounts.
  */
 export default function PageLoader() {
   const { isLoading } = useLoading();
@@ -15,22 +21,44 @@ export default function PageLoader() {
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);
 
-  // New route → reset and animate to 85%
+  // Track whether we've seen startLoading() at least once this navigation
+  const loadingStartedRef = useRef(false);
+
+  const dismiss = (delay = 400) => {
+    setProgress(100);
+    setTimeout(() => {
+      setVisible(false);
+      setProgress(0);
+    }, delay);
+  };
+
+  // New route → show bar, ramp to 85%, arm a 3s safety timeout
   useEffect(() => {
+    loadingStartedRef.current = false; // reset for new page
     setProgress(0);
     setVisible(true);
     const ramp = setTimeout(() => setProgress(85), 80);
-    return () => clearTimeout(ramp);
+
+    // Safety valve — never stay stuck beyond 3 seconds
+    const safety = setTimeout(() => dismiss(300), 3000);
+
+    return () => {
+      clearTimeout(ramp);
+      clearTimeout(safety);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  // Hero image done → complete the bar, then hide
+  // Hero image done → complete immediately (but only after startLoading was called)
   useEffect(() => {
-    if (!isLoading && visible) {
-      setProgress(100);
-      const hide = setTimeout(() => setVisible(false), 400);
-      return () => clearTimeout(hide);
+    if (isLoading) {
+      loadingStartedRef.current = true; // hero called startLoading
     }
-  }, [isLoading, visible]);
+    if (!isLoading && loadingStartedRef.current && visible) {
+      dismiss();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
 
   if (!visible) return null;
 
@@ -55,3 +83,4 @@ export default function PageLoader() {
     </div>
   );
 }
+

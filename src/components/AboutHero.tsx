@@ -36,7 +36,7 @@ export default function AboutHero() {
               It Became a Riding Center.
             </h1>
           </Reveal>
-          <Reveal delay={0.2}>
+          <Reveal delay={0.1}>
             <p className="font-sans text-[15px] md:text-[17px] text-[#FBEECC] leading-[1.6] max-w-3xl font-medium opacity-95">
               Zippy Equestrian Center is Bangalore's home for horse riding, a place built from scratch by someone who felt exactly the way most of our students feel on day one: curious, slightly nervous, and not entirely sure what they were getting into.
             </p>

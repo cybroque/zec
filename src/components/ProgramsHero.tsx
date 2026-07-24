@@ -42,7 +42,7 @@ export default function ProgramsHero() {
 
           {/* Right Description */}
           <div className="md:col-span-5 lg:col-span-9 lg:col-start-9">
-            <Reveal delay={0.2}>
+            <Reveal delay={0.1}>
               <p className="text-[#FFF8E5] max-w-6xl text-sm md:text-[15px] font-sans leading-relaxed">
                 At Zippy, our programs are designed to guide riders through a structured journey from their very first interaction with a horse to competing at national and international levels. Every program is 45 mins a session and built around real skill development at a pace that works for you.</p>
               <p className="text-[#FFF8E5] max-w-6xl text-sm md:text-[15px] font-sans leading-relaxed lg:pt-4">Not sure which one to pick? Start with the <Link href="#programs-cards" className="text-[#DA7347]">Discovery Ride</Link>, our instructors will guide you from there.</p>

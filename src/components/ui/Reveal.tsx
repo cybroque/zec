@@ -15,7 +15,7 @@ interface RevealProps {
 export default function Reveal({
   children,
   delay = 0,
-  duration = 0.6,
+  duration = 0.4,
   direction = "up",
   className = "",
   once = true,
@@ -24,8 +24,8 @@ export default function Reveal({
   const variants = {
     hidden: {
       opacity: 0,
-      y: direction === "up" ? 30 : direction === "down" ? -30 : 0,
-      x: direction === "left" ? 30 : direction === "right" ? -30 : 0,
+      y: direction === "up" ? 16 : direction === "down" ? -16 : 0,
+      x: direction === "left" ? 16 : direction === "right" ? -16 : 0,
     },
     visible: {
       opacity: 1,
@@ -34,7 +34,7 @@ export default function Reveal({
       transition: {
         duration: duration,
         delay: delay,
-        ease: "easeOut" as const,
+        ease: [0.21, 0.47, 0.32, 0.98] as const,
       },
     },
   };
@@ -48,7 +48,7 @@ export default function Reveal({
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, amount: 0.2 }}
+      viewport={{ once, amount: 0.05, margin: "0px 0px -40px 0px" }}
       className={className}
     >
       {children}

@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Reveal from '@/components/ui/Reveal';
+import Link from 'next/link';
 
 const TestimonialSection = () => {
   return (
@@ -16,8 +17,8 @@ const TestimonialSection = () => {
                 the <span className="text-[#DA7347]">horseback</span>
               </h2>
             </Reveal>
-            <Reveal delay={0.2}>
-              <p className="text-sm md:text-[18px] text-[#85431E]/60 max-w-[900px] leading-normal r font-medium">
+            <Reveal delay={0.08}>
+              <p className="text-sm md:text-[18px] text-[#85431E]/60 max-w-[900px] leading-normal font-medium">
                 Every rider at ZEC started exactly the same way: curious, a little nervous, and wondering if this was really for them. Here&apos;s what happened next.
               </p>
             </Reveal>
@@ -26,7 +27,7 @@ const TestimonialSection = () => {
           {/* Right Column: Testimonial */}
           <div className="relative pt-12">
             <div className="absolute top-12 left-0 -translate-x-8 -translate-y-4">
-              <Reveal delay={0.3}>
+              <Reveal delay={0.12}>
                 <div className="relative w-16 h-12 opacity-80">
                   <Image loading="eager" fetchPriority="low"
                     src="/assets/images/quotationmark.png"
@@ -40,13 +41,18 @@ const TestimonialSection = () => {
             </div>
 
             <div className="flex flex-col">
-              <Reveal delay={0.4}>
-                <blockquote className="text-2xl pl-4 md:text-[34px] font-light leading-[1.3] text-[#4A2D1B] mb-12 tracking-tight">
-                  I booked a trial session thinking I&apos;d do it once. That was eight months ago. I&apos;m now in the Intermediate program and I can&apos;t imagine my weekends without it.
-                </blockquote>
+              <Reveal delay={0.15}>
+                <Link
+                  href="/stories"
+                  className="block text-2xl pl-4 md:text-[34px] font-light leading-[1.3] text-[#4A2D1B] hover:text-[#DA7347] mb-12 tracking-tight transition-colors cursor-pointer"
+                >
+                  <blockquote>
+                    I booked a trial session thinking I&apos;d do it once. That was eight months ago. I&apos;m now in the Intermediate program and I can&apos;t imagine my weekends without it.
+                  </blockquote>
+                </Link>
               </Reveal>
 
-              <Reveal delay={0.6}>
+              <Reveal delay={0.22}>
                 <div className="flex flex-wrap items-center gap-x-2 text-md md:text-[20px]">
                   <span className="font-bold text-[#1A1A1A]">Priya S</span>
                   <span className="text-[#1A1A1A]/40">·</span>

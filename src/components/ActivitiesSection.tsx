@@ -77,7 +77,7 @@ const ActivitiesSection = () => {
               For All Seasons & All Reasons
             </h2>
           </Reveal>
-          <Reveal delay={0.2}>
+          <Reveal delay={0.08}>
             <p className="text-md md:text-md text-[#1a1a1a] max-w-3xl mx-auto leading-[1.6] font-normal opacity-90 px-4">
               ZEC is more than a riding school. From summer camps for kids to corporate experiences,
               photoshoots, and venue hire there&apos;s always something on at the stables.
@@ -88,14 +88,14 @@ const ActivitiesSection = () => {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 lg:gap-6 mb-12">
           {activities.map((activity, index) => (
-            <Reveal key={index} delay={0.2 + (index * 0.2)}>
+            <Reveal key={index} delay={0.06 * (index + 1)}>
               <ActivityCard {...activity} />
             </Reveal>
           ))}
         </div>
 
         {/* Call to Action */}
-        <Reveal delay={0.4}>
+        <Reveal delay={0.2}>
           <div className="flex justify-center">
             <button className="group flex items-center gap-4 px-6 py-3 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-white transition-all duration-500">
               <span className="text-lg md:text-xl font-light text-[#DA7347] group-hover:text-inherit">

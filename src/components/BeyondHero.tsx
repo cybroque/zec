@@ -32,12 +32,12 @@ export default function BeyondHero() {
             The Equestrian Center
           </p>
         </Reveal>
-        <Reveal delay={0.2}>
+        <Reveal delay={0.08}>
           <h1 className="text-5xl md:text-7xl font-light text-[#FFF8E5] leading-[1.05] mb-5">
             For All Seasons &amp; All Reasons.
           </h1>
         </Reveal>
-        <Reveal delay={0.4}>
+        <Reveal delay={0.16}>
           <p className="text-[#FFF8E5] text-sm md:text-base leading-relaxed font-light max-w-xl">
             Whether you&apos;re looking to spend a weekend differently, find the right activity
             for your child, host an event at the stables or explore equestrian sport from a

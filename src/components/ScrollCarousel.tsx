@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Reveal from './ui/Reveal';
 import HoverImage from './ui/HoverImage';
 
@@ -13,7 +14,8 @@ const slides = [
     description: "Never been on a horse? This is how you start. One 30-minute session. Guided, safe, and genuinely fun.",
     image: "/assets/images/r2.svg",
     bgColor: "#DA7347", // Orange
-    buttonText: "Book a Trial"
+    buttonText: "Book a Trial",
+    link: "/programs#programs-cards"
   },
   {
     id: 2,
@@ -22,7 +24,8 @@ const slides = [
     description: "Build strong riding fundamentals from posture and balance to walk, trot, and canter. Learn how to understand and work with your horse, both in and out of the saddle.",
     image: "/assets/images/r4.svg",
     bgColor: "#526FAE", // Dark Blue
-    buttonText: "Book a Trial"
+    buttonText: "Book a Trial",
+    link: "/programs#programs-cards"
   },
   {
     id: 3,
@@ -31,7 +34,8 @@ const slides = [
     description: "Move beyond the basics with structured training that builds control, balance, and discipline-specific skills. Progress from refinement to performance, with a clear path towards competitive riding.",
     image: "/assets/images/r3.svg",
     bgColor: "#1C2245", // Light Blue
-    buttonText: "See all Programs"
+    buttonText: "See all Programs",
+    link: "/programs#programs-cards"
   }
 ];
 
@@ -139,7 +143,10 @@ const ScrollCarousel = () => {
                   </div>
 
                   <div className="flex flex-col items-start gap-6 md:gap-8">
-                    <button className="group flex items-center gap-4 px-8 py-3 border border-white/60 rounded-sm hover:bg-white hover:text-[#DA7347] transition-all duration-500 text-white">
+                    <Link
+                      href={slide.link}
+                      className="group flex items-center gap-4 px-8 py-3 border border-white/60 rounded-sm hover:bg-white hover:text-[#DA7347] transition-all duration-500 text-white"
+                    >
                       <span className="text-sm font-light ">{slide.buttonText}</span>
                       <svg
                         width="20"
@@ -150,7 +157,7 @@ const ScrollCarousel = () => {
                       >
                         <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                    </button>
+                    </Link>
 
                     {/* Indicators - Square Blocks */}
                     <div className="flex gap-3">

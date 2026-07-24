@@ -40,12 +40,12 @@ export default function StoriesHero() {
             Rider Stories
           </h1>
         </Reveal>
-        <Reveal delay={0.2}>
+        <Reveal delay={0.08}>
           <p className="text-[16px] text-[#F2EBD9] font-gt-ultra   uppercase font-bold mb-3">
             Featured Stories
           </p>
         </Reveal>
-        <Reveal delay={0.4}>
+        <Reveal delay={0.16}>
           <p className="text-white/85 text-sm md:text-base leading-relaxed">
             Every rider at Zippy Equestrian Center has a before and an after.
             Here&apos;s what that journey looks like — in their own words. These

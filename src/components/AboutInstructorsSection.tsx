@@ -67,7 +67,7 @@ export default function AboutInstructorsSection() {
                 The People You&apos;ll Ride With
               </h2>
             </Reveal>
-            <Reveal delay={0.2}>
+            <Reveal delay={0.08}>
               <p className="text-[#FFF8E5]/80 text-sm md:text-base leading-relaxed font-light max-w-2xl lg:max-w-[600px] mx-auto">
                 The right guidance changes everything. And that&apos;s exactly what you&apos;ll find here,
                 instructors who care about how you ride and how you feel while doing it.
@@ -80,7 +80,7 @@ export default function AboutInstructorsSection() {
             {instructors.map((instructor) => (
               <div key={instructor.id} className="contents">
                 <div className={instructor.gridImage}>
-                  <Reveal delay={0.1 * instructor.id} className="w-full h-full">
+                  <Reveal delay={0.05 * instructor.id} className="w-full h-full">
                     <div className="relative shadow-2xl rounded-sm overflow-hidden w-[248px] h-[332px] hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
                       <Image loading="eager" fetchPriority="low"
                         src={instructor.image}
@@ -93,7 +93,7 @@ export default function AboutInstructorsSection() {
                   </Reveal>
                 </div>
                 <div className={instructor.gridText}>
-                  <Reveal delay={(0.1 * instructor.id) + 0.15} className="flex flex-col justify-center pl-3 lg:pl-5 h-full">
+                  <Reveal delay={(0.05 * instructor.id) + 0.08} className="flex flex-col justify-center pl-3 lg:pl-5 h-full">
                     <h3 className="text-[#FFF8E5] text-lg lg:text-2xl font-normal mb-1.5">
                       {instructor.name}
                     </h3>
@@ -112,7 +112,7 @@ export default function AboutInstructorsSection() {
           {/* Mobile */}
           <div className="flex md:hidden flex-col gap-12">
             {instructors.map((instructor) => (
-              <Reveal key={instructor.id} delay={0.2}>
+              <Reveal key={instructor.id} delay={0.08}>
                 <div className="flex flex-col items-center text-center">
                   <div className="relative w-[248px] h-[332px] shadow-2xl mb-6 rounded-sm overflow-hidden hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
                     <Image loading="eager" fetchPriority="low" src={instructor.image} alt={instructor.name} fill sizes="248px" className="object-cover" />
@@ -138,14 +138,14 @@ export default function AboutInstructorsSection() {
                   The Center That&apos;s<br />Right in the City.
                 </h2>
               </Reveal>
-              <Reveal delay={0.2}>
+              <Reveal delay={0.08}>
                 <p className="text-[#f2ebd9]/80 text-base md:text-[15px] font-light leading-[1.25] max-w-[400px]">
                   Zippy Equestrian Center is located in JP Nagar, 7th Phase, right in the heart of
                   South Bangalore with a well-maintained arena, proper stabling for our horses and
                   everything you need to show up, ride and leave with a smile.
                 </p>
               </Reveal>
-              <Reveal delay={0.4}>
+              <Reveal delay={0.16}>
                 <p className="text-white text-base md:text-[15px] font-normal leading-[1.25] max-w-[420px]">
                   No lengthy commute, no remote farm, zero fuss. Just a fully equipped riding center
                   that is minutes away from where you are.

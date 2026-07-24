@@ -26,17 +26,17 @@ export default function AboutStorySection() {
                 </h2>
               </Reveal>
               <div className="flex flex-col gap-4 max-w-xl">
-                <Reveal delay={0.2}>
+                <Reveal delay={0.08}>
                   <p>
                     After finishing his engineering degree, Dilip Kirani (Founding Partner) wanted to try something he'd always meant to get around to, 'Horse riding'.
                   </p>
                 </Reveal>
-                <Reveal delay={0.4}>
+                <Reveal delay={0.16}>
                   <p>
                     He and a friend booked a session at a riding center in Bangalore. It wasn&apos;t what he&apos;d hoped for. The experience felt rushed, the instruction wasn&apos;t right and they left feeling like they&apos;d missed something.
                   </p>
                 </Reveal>
-                <Reveal delay={0.6}>
+                <Reveal delay={0.24}>
                   <p>
                     Taking matters into his own hands, he bought a horse and set up a small facility in South Bangalore just to ride, enjoy and maintain his own horses. There was no grand plan. It was a passion project.
                   </p>
@@ -45,7 +45,7 @@ export default function AboutStorySection() {
             </div>
 
             {/* Right Column: Image */}
-            <Reveal delay={0.3} className="lg:col-span-5 flex justify-center lg:justify-start">
+            <Reveal delay={0.12} className="lg:col-span-5 flex justify-center lg:justify-start">
               <div className="relative w-full max-w-[240px] sm:max-w-[260px] lg:max-w-[280px] aspect-[4/5] rounded-lg overflow-hidden shadow-2xl hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
                 <Image loading="eager" fetchPriority="low"
                   src="/assets/images/about-main.svg"
@@ -59,7 +59,7 @@ export default function AboutStorySection() {
 
             {/* Bottom Paragraph */}
             <div className="pl-16 lg:col-span-12 text-[#FFF8E5] font-normal text-[15px] md:text-[17px] leading-[1.4] max-w-[1000px]">
-              <Reveal delay={0.8}>
+              <Reveal delay={0.28}>
                 <p>
                   Over time, word spread. Friends came to ride. Then friends of friends. Then families with children and adults ticking riding off their list, and people who just wanted to spend their weekend somewhere different. The small setup became something real, a proper equestrian center, built entirely on the idea that horse riding should be open to everyone. That&apos;s still what Zippy Equestrian Center is today.
                 </p>
