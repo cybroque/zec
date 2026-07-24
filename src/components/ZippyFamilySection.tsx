@@ -43,8 +43,8 @@ const ZippyFamilySection = () => {
 
               <div className="h-12 md:h-36 w-[2px] bg-[#85431E]" aria-hidden="true" />
 
-              <div className="relative w-34 h-34 md:w-52 md:h-52 mt-2">
-                <h1 className='uppercase text-[#641C17] text-md md:pl-10 md:pt-8'>Coming Soon</h1>
+              <div className="relative w-34 h-34 md:w-52 md:h-52 mt-2 hover:scale-105 transition-transform duration-300">
+                <h1 className='uppercase text-[#641C17] text-md md:pl-10 md:pt-8 '>Coming Soon</h1>
                 <Image loading="eager" fetchPriority="low"
                   src="/assets/images/zippypremier.svg"
                   alt="Zippy Premier Logo"

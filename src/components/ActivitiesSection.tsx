@@ -3,20 +3,23 @@
 import React from 'react';
 import Image from 'next/image';
 import Reveal from '@/components/ui/Reveal';
+import Link from 'next/link';
 
 const ActivityCard = ({
   title,
   description,
   imageSrc,
-  overlayColor
+  overlayColor,
+  href
 }: {
   title: string;
   description: string;
   imageSrc: string;
   overlayColor: string;
+  href: string;
 }) => {
   return (
-    <div className="relative group overflow-hidden rounded-sm aspect-[423/556.5] w-full">
+    <Link href={href} className="relative group block overflow-hidden rounded-sm aspect-[423/556.5] w-full cursor-pointer">
       {/* Image */}
       <Image loading="eager" fetchPriority="low"
         src={imageSrc}
@@ -41,7 +44,7 @@ const ActivityCard = ({
           {description}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -51,19 +54,22 @@ const ActivitiesSection = () => {
       title: "Summer camps",
       description: "For kids who want more than a screen this summer.",
       imageSrc: "/assets/images/season1.svg",
-      overlayColor: "rgba(214, 122, 91, 0.65)" // #d67a5b with alpha
+      overlayColor: "rgba(214, 122, 91, 0.65)", // #d67a5b with alpha
+      href: "/beyond#summer-camps"
     },
     {
       title: "Parties and Venues",
       description: "Host your next get-together at the stables.",
       imageSrc: "/assets/images/season2.svg",
-      overlayColor: "rgba(46, 88, 185, 0.65)" // #2e58b9 with alpha
+      overlayColor: "rgba(46, 88, 185, 0.65)", // #2e58b9 with alpha
+      href: "/beyond"
     },
     {
       title: "Photoshoots",
       description: "The most beautiful backdrop in South Bangalore.",
       imageSrc: "/assets/images/season3.svg",
-      overlayColor: "rgba(133, 67, 30, 0.65)" // #85431E with alpha
+      overlayColor: "rgba(133, 67, 30, 0.65)", // #85431E with alpha
+      href: "/beyond"
     }
   ];
 
@@ -97,7 +103,7 @@ const ActivitiesSection = () => {
         {/* Call to Action */}
         <Reveal delay={0.2}>
           <div className="flex justify-center">
-            <button className="group flex items-center gap-4 px-6 py-3 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-white transition-all duration-500">
+            <Link href="/beyond" className="group flex items-center gap-4 px-6 py-3 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-white transition-all duration-500">
               <span className="text-lg md:text-xl font-light text-[#DA7347] group-hover:text-inherit">
                 See all activities
               </span>
@@ -124,7 +130,7 @@ const ActivitiesSection = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-            </button>
+            </Link>
           </div>
         </Reveal>
       </div>

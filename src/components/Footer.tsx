@@ -86,7 +86,7 @@ const Footer = () => {
               <p className="text-base md:text-lg opacity-90 mb-10 font-light leading-relaxed">
                 Your first ride is 30 minutes away. Call us<br />and let&apos;s get you started.
               </p>
-              <button className={`group flex items-center justify-center md:justify-start gap-4 px-8 py-4 border rounded transition-all duration-300 mx-auto md:mx-0 w-fit ${borderColor} ${buttonHover}`}>
+              <Link href="/contact" className={`group flex items-center justify-center md:justify-start gap-4 px-8 py-4 border rounded transition-all duration-300 mx-auto md:mx-0 w-fit ${borderColor} ${buttonHover}`}>
                 <span className="text-lg font-light">Book your trial ride</span>
                 <svg
                   width="24"
@@ -111,7 +111,7 @@ const Footer = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </button>
+              </Link>
             </div>
 
             {/* Bottom Links Section */}

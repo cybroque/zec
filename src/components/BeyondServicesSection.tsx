@@ -10,6 +10,7 @@ interface ServiceMeta {
 }
 
 interface Service {
+  id?: string;
   title: string;
   description: string;
   color: string;
@@ -20,6 +21,7 @@ interface Service {
 
 const services: Service[] = [
   {
+    id: "summer-camps",
     title: "Summer Camps",
     description:
       "Give your child a summer they'll actually remember. Our summer camp programs introduce kids to horse riding, stable care, and equestrian life in a safe, supervised, and genuinely fun environment. Suitable for children with no prior riding experience.",
@@ -33,6 +35,7 @@ const services: Service[] = [
     cta: "Book for next season",
   },
   {
+    id: "horse-training",
     title: "Horse Training",
     description:
       "Professional training services for horses conducted by our experienced instructors. Whether you're looking to train a young horse or work on specific skills, our team brings the same structured, patient approach we use with our riders.",
@@ -46,6 +49,7 @@ const services: Service[] = [
     cta: "Book your slot",
   },
   {
+    id: "buy-a-horse",
     title: "Buy a Horse",
     description:
       "Looking to own a horse? We have horses available for sale which are well-trained, healthy, and suited to riders at different levels. Speak to us directly to find out what's currently available and what would be the right match for you.",
@@ -54,6 +58,7 @@ const services: Service[] = [
     cta: "Find available horses",
   },
   {
+    id: "parties-and-venues",
     title: "Venue for Parties",
     description:
       "Our grounds are available for private events, birthday parties, and group get-togethers. There's no venue in South Bangalore quite like it; an equestrian center with open space, a warm atmosphere, and an experience your guests won't forget.",
@@ -67,6 +72,7 @@ const services: Service[] = [
     cta: "Book your slot",
   },
   {
+    id: "equestrian-consultation",
     title: "Equestrian Consultation",
     description:
       "Planning to start your own equestrian facility? Looking for guidance on horse management, program design, or facility setup? We offer professional consultation services drawing on years of hands-on experience running a successful riding center in Bangalore.",
@@ -75,6 +81,7 @@ const services: Service[] = [
     cta: "Book a meeting",
   },
   {
+    id: "horse-rent-lease",
     title: "Horse Rent / Lease",
     description:
       "Not ready to own, but want regular access to a specific horse? Our rent and lease arrangements give riders a consistent partnership with a horse; ideal for riders who want to train more seriously without the full commitment of ownership.",
@@ -83,6 +90,7 @@ const services: Service[] = [
     cta: "Find available horses",
   },
   {
+    id: "photoshoots",
     title: "Photoshoots",
     description:
       "Our stables at Zippy make for a stunning photoshoot location: natural light, beautiful horses, and an environment that photographs unlike anything in the city. Available for personal shoots, brand shoots, and professional productions. Horses can be included with prior arrangement.",
@@ -91,6 +99,7 @@ const services: Service[] = [
     cta: "Book a meeting",
   },
   {
+    id: "franchise",
     title: "Franchise",
     description:
       "Interested in bringing the Zippy Equestrian Center model to your city? We're open to conversations about franchise opportunities with people who share our commitment to accessible, high-quality equestrian experiences.",
@@ -99,6 +108,7 @@ const services: Service[] = [
     cta: "Talk to our manager",
   },
   {
+    id: "horse-boarding",
     title: "Horse Boarding",
     description:
       "We provide boarding facilities for privately-owned horses: safe stabling, daily care, feeding, and regular exercise under professional supervision. Ideal for horse owners who want their animal in experienced hands within the city.",
@@ -144,8 +154,11 @@ export default function BeyondServicesSection() {
         />
       </div>
 
+      {/* Anchor for summer-camps — placed at the top of the sticky section */}
+      <div id="summer-camps" className="absolute top-0 left-0 h-0 w-0 pointer-events-none" />
+
       {/* Service cards — spaced out so they scroll up and stick */}
-      <div className="relative z-10 pt-[200px] pb-16 lg:pb-32 px-2 md:px-2 lg:px-2 max-w-7xl mx-auto flex flex-col gap-16 md:gap-32">
+      <div className="relative z-10 pt-[200px] pb-24 md:pb-36 px-2 md:px-2 lg:px-2 max-w-7xl mx-auto flex flex-col gap-16 md:gap-32">
         {services.map((service, index) => {
           let staggerClass = "";
           if (index % 3 === 1) staggerClass = "md:ml-[1%]";
