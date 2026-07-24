@@ -1,20 +1,30 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect } from "react";
 import Reveal from "@/components/ui/Reveal";
+import { useLoading } from "@/lib/LoadingContext";
 
 export default function AboutHero() {
+  const { startLoading, stopLoading } = useLoading();
+
+  useEffect(() => {
+    startLoading();
+  }, [startLoading]);
+
   return (
     <section className="relative w-full h-[100svh] min-h-[600px] flex items-center overflow-hidden bg-[#9eb9da] pb-24">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
-          src="/assets/images/about-hero.svg" // The image used in the mockup
+          src="/assets/images/about-hero.svg"
           alt="Woman in riding gear"
           fill
-          className="object-cover object-[80%_20%]"
           priority
           sizes="100vw"
+          className="object-cover object-[80%_20%]"
+          onLoad={stopLoading}
         />
-
       </div>
 
       {/* Content Container */}
@@ -36,3 +46,4 @@ export default function AboutHero() {
     </section>
   );
 }
+

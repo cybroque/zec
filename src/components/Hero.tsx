@@ -2,11 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
+import { useEffect } from "react";
 import Reveal from "@/components/ui/Reveal";
+import { useLoading } from "@/lib/LoadingContext";
 
 export default function Hero() {
+  const { startLoading, stopLoading } = useLoading();
 
+  useEffect(() => {
+    startLoading();
+  }, [startLoading]);
 
   return (
     <section className="relative h-screen min-h-[700px] w-full overflow-hidden flex items-center justify-center text-center font-sans">
@@ -16,9 +21,10 @@ export default function Hero() {
           src="/assets/images/hero_main.png" 
           alt="Zippy Equestrian Hero" 
           fill
-          unoptimized
           priority
-          className="object-center"
+          sizes="100vw"
+          className="object-cover object-center"
+          onLoad={stopLoading}
         />
       </div>
 
@@ -56,3 +62,4 @@ export default function Hero() {
     </section>
   );
 }
+

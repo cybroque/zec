@@ -1,7 +1,17 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect } from "react";
 import Reveal from "@/components/ui/Reveal";
+import { useLoading } from "@/lib/LoadingContext";
 
 export default function BeyondHero() {
+  const { startLoading, stopLoading } = useLoading();
+
+  useEffect(() => {
+    startLoading();
+  }, [startLoading]);
+
   return (
     <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
       <Image
@@ -11,6 +21,7 @@ export default function BeyondHero() {
         priority
         sizes="100vw"
         className="object-cover object-top"
+        onLoad={stopLoading}
       />
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
@@ -37,3 +48,4 @@ export default function BeyondHero() {
     </section>
   );
 }
+

@@ -1,8 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import Reveal from "@/components/ui/Reveal";
+import { useLoading } from "@/lib/LoadingContext";
 
 export default function ProgramsHero() {
+  const { startLoading, stopLoading } = useLoading();
+
+  useEffect(() => {
+    startLoading();
+  }, [startLoading]);
+
   return (
     <section className="relative w-full h-screen min-h-[700px] flex items-center overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -10,8 +20,10 @@ export default function ProgramsHero() {
           src="/assets/images/pro-hero.svg"
           alt="Horse and rider"
           fill
-          className="object-cover object-center"
           priority
+          sizes="100vw"
+          className="object-cover object-center"
+          onLoad={stopLoading}
         />
       </div>
 
@@ -41,3 +53,4 @@ export default function ProgramsHero() {
     </section>
   );
 }
+
