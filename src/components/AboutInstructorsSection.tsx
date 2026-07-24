@@ -9,29 +9,20 @@ const instructors = [
   {
     id: 1,
     name: "Barath Manoharan",
-    role: "Head of Training",
+    role: "HEAD OF TRAINING",
     desc: "Equestrian national champion guiding our riders with confidence and real sportsman spirit",
-    image: "/assets/images/about-img1.png",
-    gridImage: "col-start-5 col-span-3",
-    gridText: "col-start-8 col-span-4",
+    image: "/assets/images/people-c.webp",
+    gridImage: "col-start-6 col-span-3",
+    gridText: "col-start-9 col-span-4",
   },
   {
     id: 2,
-    name: "Barath Manoharan",
-    role: "Head of Trainning",
-    desc: "Equestrian national champion guiding our riders with confidence and real sportsman spirit",
+    name: "Vishwa Premalal",
+    role: "TRAINER",
+    desc: "Equestrian and Showjumping rider and champion from Sri Lanka training our riders of all levels",
     image: "/assets/images/about-img2.png",
-    gridImage: "col-start-1 col-span-3",
-    gridText: "col-start-4 col-span-3",
-  },
-  {
-    id: 3,
-    name: "Barath Manoharan",
-    role: "Head of Trainning",
-    desc: "Equestrian national champion guiding our riders with confidence and real sportsman spirit",
-    image: "/assets/images/about-img3.png",
-    gridImage: "col-start-6 col-span-3",
-    gridText: "col-start-9 col-span-3",
+    gridImage: "col-start-2 col-span-3",
+    gridText: "col-start-5 col-span-4",
   },
 ];
 
@@ -82,7 +73,7 @@ export default function AboutInstructorsSection() {
                 <div className={instructor.gridImage}>
                   <Reveal delay={0.05 * instructor.id} className="w-full h-full">
                     <div className="relative shadow-2xl rounded-sm overflow-hidden w-[248px] h-[332px] hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
-                      <Image loading="eager" fetchPriority="low"
+                      <Image loading="lazy"
                         src={instructor.image}
                         alt={instructor.name}
                         fill
@@ -115,7 +106,7 @@ export default function AboutInstructorsSection() {
               <Reveal key={instructor.id} delay={0.08}>
                 <div className="flex flex-col items-center text-center">
                   <div className="relative w-[248px] h-[332px] shadow-2xl mb-6 rounded-sm overflow-hidden hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
-                    <Image loading="eager" fetchPriority="low" src={instructor.image} alt={instructor.name} fill sizes="248px" className="object-cover" />
+                    <Image loading="lazy" src={instructor.image} alt={instructor.name} fill sizes="248px" className="object-cover" />
                   </div>
                   <h3 className="text-[#FFF8E5] text-xl font-normal mb-1.5">{instructor.name}</h3>
                   <p className="text-[#FFF8E5]/80 text-[10px] uppercase  font-light mb-3">{instructor.role}</p>
@@ -165,7 +156,7 @@ export default function AboutInstructorsSection() {
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
             >
-              <Image loading="eager" fetchPriority="low"
+              <Image loading="lazy"
                 src="/assets/images/map2.svg"
                 alt="ZEC Location Map"
                 fill

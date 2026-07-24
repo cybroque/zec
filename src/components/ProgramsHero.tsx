@@ -14,10 +14,10 @@ export default function ProgramsHero() {
   }, [startLoading]);
 
   return (
-    <section className="relative w-full h-screen min-h-[700px] flex items-center overflow-hidden">
+    <section className="relative w-full h-screen min-h-[700px] flex items-center overflow-hidden bg-[#242A59]">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/images/pro-hero.svg"
+          src="/assets/images/pro-hero.webp"
           alt="Horse and rider"
           fill
           priority

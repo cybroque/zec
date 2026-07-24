@@ -13,10 +13,10 @@ export default function StoriesHero() {
   }, [startLoading]);
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#53321E]">
       {/* Background image */}
       <Image
-        src="/assets/images/riders-hero.png"
+        src="/assets/images/riders-hero.webp"
         alt="Zippy riders group photo"
         fill
         priority

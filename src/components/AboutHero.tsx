@@ -17,7 +17,7 @@ export default function AboutHero() {
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
-          src="/assets/images/about-hero.svg"
+          src="/assets/images/about-hero.webp"
           alt="Woman in riding gear"
           fill
           priority

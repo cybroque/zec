@@ -9,11 +9,13 @@ const CARD_W = 254;
 const CARD_GAP = 35;
 
 const horses = [
-  { name: "Vibranto", ageType: "12 Years | Mare",     breed: "Breed: Marwari",     image: "/assets/images/pic1.jpg" },
-  { name: "Vibranto", ageType: "12 Years | Stallion", breed: "Breed: Thoroughbred", image: "/assets/images/pic2.jpg" },
-  { name: "Vibranto", ageType: "12 Years | Gelding",  breed: "Breed: Arabian",      image: "/assets/images/pic3.jpg" },
-  { name: "Vibranto", ageType: "12 Years | Mare",     breed: "Breed: Warm Blood",   image: "/assets/images/pic4.jpg" },
-  { name: "Vibranto", ageType: "12 Years | Mare",     breed: "Breed: Marwari",      image: "/assets/images/pic5.jpg" },
+  { name: "Chargano fly PS", ageType: "10 Years | Gelding", breed: "Breed: Holsteiner", image: "/assets/images/herd0.webp" },
+  { name: "Maharaja", ageType: "9 Years | Gelding", breed: "Breed: Thoroughbred", image: "/assets/images/herd1.webp" },
+  { name: "Arjuna", ageType: "9 Years | Gelding", breed: "Breed: Thoroughbred", image: "/assets/images/herd2.webp" },
+  { name: "Gwen", ageType: "12 Years | Mare", breed: "Breed: Pony", image: "/assets/images/herd3.webp" },
+  { name: "CHF Party Time", ageType: "8 Years | Gelding", breed: "Breed: Irish Sport Horse", image: "/assets/images/herd4.webp" },
+  { name: "Dawn", ageType: "12 Years | Gelding", breed: "Breed: Arabian", image: "/assets/images/herd5.webp" },
+  { name: "Vedette Van Splabeek Z", ageType: "10 Years | Gelding", breed: "Breed: Zangersheide", image: "/assets/images/herd6.webp" },
 ];
 
 // Trailing empty slot so the last card never sits flush at the right edge
@@ -26,9 +28,14 @@ export default function AboutHerdSection() {
 
   useEffect(() => {
     const measure = () => {
-      if (!trackRef.current) return;
-      // How far the track overflows the viewport
-      const overflow = trackRef.current.scrollWidth - window.innerWidth;
+      if (!trackRef.current || !trackRef.current.parentElement) return;
+      // Calculate how much the scrolling track overflows its container (the right side of the screen)
+      const containerWidth = trackRef.current.parentElement.clientWidth;
+      // We want the last horse to stop exactly at the center of the container.
+      // The center of the last horse is (TRAIL_PX + CARD_W / 2) away from the right edge of the track.
+      // To center it, we add the distance (containerWidth / 2) minus that offset.
+      const extraScroll = (containerWidth / 2) - TRAIL_PX - (CARD_W / 2);
+      const overflow = trackRef.current.scrollWidth - containerWidth + extraScroll;
       setScrollDist(Math.max(0, overflow));
     };
     measure();
@@ -54,43 +61,41 @@ export default function AboutHerdSection() {
       style={{ height: scrollDist > 0 ? `calc(100dvh + ${scrollDist}px)` : "auto" }}
     >
       <section
-        className={`w-full bg-[#FFF8E5] overflow-hidden flex flex-col justify-center ${
+        className={`w-full bg-[#FFF8E5] overflow-hidden flex flex-col md:flex-row items-center ${
           scrollDist > 0 ? "sticky top-0 h-dvh" : ""
         }`}
         style={{ paddingTop: "clamp(48px, 8vw, 120px)", paddingBottom: "clamp(48px, 8vw, 120px)" }}
       >
-        {/* Header — left-aligned*/}
-        <Reveal delay={0.1}>
-        <div className="mb-10" style={{ paddingLeft: "clamp(24px, 11.4vw, 172px)", paddingRight: "clamp(24px, 4vw, 80px)" }}>
-          <h2
-            className="font-normal leading-[1.1] text-[#85431e] mb-6"
-            style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
-          >
-            Meet the Herd
-          </h2>
-          <p
-            className="font-light text-[#85431e] leading-[1.25]"
-            style={{ fontSize: "clamp(12px, 1.2vw, 18px)", maxWidth: "764px" }}
-          >
-            Every horse at Zippy Equestrian Center is well cared for, regularly vetted, and matched to
-            each rider&apos;s level by our instructors. Getting to know the horses is one of the best
-            parts of riding here and it starts the moment you arrive.
-          </p>
+        {/* Header — left-aligned */}
+        <div className="w-full md:w-1/3 xl:w-[40%] flex-shrink-0 z-10">
+          <Reveal delay={0.1}>
+            <div className="mb-10 md:mb-0" style={{ paddingLeft: "clamp(24px, 11.4vw, 172px)", paddingRight: "clamp(24px, 4vw, 40px)" }}>
+              <h2
+                className="font-normal leading-[1.1] text-[#85431e] mb-6"
+                style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
+              >
+                Meet the Herd
+              </h2>
+              <p
+                className="font-light text-[#85431e] leading-[1.25]"
+                style={{ fontSize: "clamp(12px, 1.2vw, 18px)", maxWidth: "400px" }}
+              >
+                Every horse at Zippy Equestrian Center is well-cared for, regularly vetted, and matched to
+                each rider&apos;s level by our instructors. Getting to know the horses is one
+                of the best parts of riding here and it starts the moment you arrive.
+              </p>
+            </div>
+          </Reveal>
         </div>
-        </Reveal>
 
         {/* Scrolling track */}
-        
-        <div className="overflow-hidden">
+        <div className="w-full md:w-2/3 xl:w-[60%] overflow-hidden pl-6 md:pl-0">
           <motion.div
             ref={trackRef}
             className="flex"
             style={{
               x,
               gap: `${CARD_GAP}px`,
-              // Left padding  margin (172/1512)
-              paddingLeft: "clamp(24px, 11.4vw, 172px)",
-              paddingRight: `${TRAIL_PX}px`,
             }}
           >
             {horses.map((horse, i) => (
@@ -101,17 +106,9 @@ export default function AboutHerdSection() {
                   className="relative rounded-[6px] overflow-hidden hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out"
                   style={{ height: "330px" }}
                 >
-                  <div className="absolute inset-0 opacity-80 overflow-hidden rounded-[6px]">
+                  <div className="absolute inset-0 overflow-hidden rounded-[6px]">
                     <Image loading="lazy" src={horse.image} alt={horse.name} fill sizes="254px" className="object-cover" />
                   </div>
-                  <div
-                    className="absolute inset-0 rounded-[6px]"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(214.8deg, rgba(133,67,30,0.8) 2.6%, rgba(218,115,71,0.8) 135%)",
-                      mixBlendMode: "hard-light",
-                    }}
-                  />
                 </div>
                 </Reveal>
 
@@ -131,6 +128,8 @@ export default function AboutHerdSection() {
                 </Reveal>
               </div>
             ))}
+            {/* Trailing empty slot to prevent flex padding collapse and ensure proper scroll math */}
+            <div className="flex-none" style={{ width: `${TRAIL_PX}px` }} />
           </motion.div>
         </div>
        

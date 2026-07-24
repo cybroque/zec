@@ -13,9 +13,9 @@ export default function BeyondHero() {
   }, [startLoading]);
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#FFF8E5]">
       <Image
-        src="/assets/images/beyond-hero.png"
+        src="/assets/images/beyond-hero.webp"
         alt="The Equestrian Center for All Seasons and All Reasons"
         fill
         priority
