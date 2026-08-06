@@ -144,7 +144,7 @@ const preload = (route: string): Promise<void> => {
     <div
       aria-label="Loading Zippy Equestrian Center"
       role="status"
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FFF8E5]"
+      className="site-loader fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FFF8E5]"
       style={{
         transition: "opacity 0.7s ease",
         opacity: phase === "fading" ? 0 : 1,

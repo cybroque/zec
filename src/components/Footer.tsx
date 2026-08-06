@@ -6,7 +6,7 @@ import { useInView, motion } from 'framer-motion';
 
 const PaintingLogo = ({ src, className, delay = 0 }: { src: string; className?: string; delay?: number }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { amount: 0.3 });
 
   const maskStyle = {
     maskImage: `url(${src})`,
@@ -24,19 +24,21 @@ const PaintingLogo = ({ src, className, delay = 0 }: { src: string; className?: 
       <motion.div
         className="relative w-full h-full bg-[#7A4027]"
         style={maskStyle}
-        initial={{ clipPath: 'inset(0 100% 0 0)' }}
-        animate={isInView ? { clipPath: 'inset(0 0% 0 0)' } : {}}
-        transition={{ duration: 1.8, delay, ease: [0.65, 0, 0.35, 1] }}
+        initial={{ clipPath: 'inset(0 0 100% 0)' }}
+        animate={isInView
+          ? { clipPath: 'inset(0 0 0% 0)' }
+          : { clipPath: 'inset(0 0 100% 0)' }}
+        transition={{ duration: 1.6, delay, ease: [0.45, 0, 0.35, 1] }}
       >
         <motion.div
-          className="absolute top-0 bottom-0 w-1/3"
+          className="absolute left-0 right-0 h-1/3"
           style={{
-            background: 'linear-gradient(to right, transparent, rgba(94,47,28,0.4) 55%, rgba(94,47,28,0.7) 100%)',
+            background: 'linear-gradient(to top, transparent, rgba(94,47,28,0.4) 45%, rgba(94,47,28,0.7) 100%)',
             filter: 'blur(8px)',
           }}
-          initial={{ left: '-40%' }}
-          animate={isInView ? { left: '100%' } : {}}
-          transition={{ duration: 1.8, delay, ease: [0.65, 0, 0.35, 1] }}
+          initial={{ bottom: '-40%' }}
+          animate={isInView ? { bottom: '100%' } : { bottom: '-40%' }}
+          transition={{ duration: 1.6, delay, ease: [0.45, 0, 0.35, 1] }}
         />
       </motion.div>
     </div>
