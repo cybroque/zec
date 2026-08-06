@@ -12,7 +12,8 @@ const slides = [
     section: "START HERE",
     title: "Trial Ride",
     description: "Never been on a horse? This is how you start. One 30-minute session. Guided, safe, and genuinely fun.",
-    image: "/assets/images/r2.webp",
+    image: "/assets/images/HomePage/Webp/ridewithus1.webp",
+    objectPosition: "50% 30%",
     bgColor: "#DA7347", // Orange
     buttonText: "Book a Trial",
     link: "/programs#programs-cards"
@@ -22,7 +23,9 @@ const slides = [
     section: "FOR BEGINNERS",
     title: "Foundation Program",
     description: "Build strong riding fundamentals from posture and balance to walk, trot, and canter. Learn how to understand and work with your horse, both in and out of the saddle.",
-    image: "/assets/images/r4.webp",
+    image: "/assets/images/HomePage/Webp/ridewithus2.webp",
+    objectPosition: "30% 70%",
+    scale: 1.30,
     bgColor: "#526FAE", // Dark Blue
     buttonText: "Book a Trial",
     link: "/programs#foundation"
@@ -32,7 +35,9 @@ const slides = [
     section: "ALREADY RIDING?",
     title: "Development • Performance • Dressage • Showjumping",
     description: "Move beyond the basics with structured training that builds control, balance, and discipline-specific skills. Progress from refinement to performance, with a clear path towards competitive riding.",
-    image: "/assets/images/r3.webp",
+    image: "/assets/images/HomePage/Webp/ridewithus3.webp",
+    objectPosition: "50% 40%",
+    scale: 1.32,
     bgColor: "#1C2245", // Light Blue
     buttonText: "See all Programs",
     link: "/programs#performance"
@@ -205,8 +210,16 @@ const ScrollCarousel = () => {
                       src={slide.image}
                       alt={slide.title}
                       fill
-                      sizes="(max-width: 768px) 100vw, 40vw"
-                      className="object-cover object-right"
+                      sizes="40vw"
+                      quality={100}
+                      className="object-cover"
+                      style={{
+                        objectPosition: slide.objectPosition,
+                        ...(slide.scale && {
+                          transform: `scale(${slide.scale})`,
+                          transformOrigin: slide.objectPosition
+                        })
+                      }}
                     />
                   </HoverImage>
                 </div>
@@ -221,7 +234,15 @@ const ScrollCarousel = () => {
                   alt={slides[activeIndex].title}
                   fill
                   sizes="100vw"
+                  quality={100}
                   className="object-cover"
+                  style={{
+                    objectPosition: slides[activeIndex].objectPosition,
+                    ...(slides[activeIndex].scale && {
+                      transform: `scale(${slides[activeIndex].scale})`,
+                      transformOrigin: slides[activeIndex].objectPosition
+                    })
+                  }}
                 />
               </HoverImage>
             </div>

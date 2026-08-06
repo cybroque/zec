@@ -10,12 +10,12 @@ export default function Hero() {
       {/* Video Background Placeholder */}
       <div className="absolute inset-0 z-0 bg-[#FFF8E5]">
         <Image 
-          src="/assets/images/hero_main.webp" 
+          src="/assets/images/HomePage/Webp/Hero.webp" 
           alt="Zippy Equestrian Hero" 
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[50%_26%]"
         />
       </div>
 
