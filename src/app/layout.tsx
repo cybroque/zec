@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import SiteLoader from "@/components/ui/SiteLoader";
-import PageLoader from "@/components/ui/PageLoader";
-import { LoadingProvider } from "@/lib/LoadingContext";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 const gtUltra = localFont({
   src: [
@@ -110,11 +108,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${gtUltra.variable} ${gtUltraUltra.variable} ${gtUltraFine.variable} ${gtUltraFineUltra.variable} antialiased`}>
       <body className="font-sans">
-        <LoadingProvider>
-          <SiteLoader />
-          <PageLoader />
-          {children}
-        </LoadingProvider>
+        <LoadingScreen />
+        {children}
       </body>
     </html>
   );

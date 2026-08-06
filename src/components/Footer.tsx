@@ -2,8 +2,46 @@
 
 import React, { useRef, useEffect } from 'react';
 import Link from 'next/link';
-import Reveal from "@/components/ui/Reveal";
-import { useInView } from 'framer-motion';
+import { useInView, motion } from 'framer-motion';
+
+const PaintingLogo = ({ src, className, delay = 0 }: { src: string; className?: string; delay?: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  const maskStyle = {
+    maskImage: `url(${src})`,
+    maskSize: 'contain',
+    maskRepeat: 'no-repeat',
+    maskPosition: 'center',
+    WebkitMaskImage: `url(${src})`,
+    WebkitMaskSize: 'contain',
+    WebkitMaskRepeat: 'no-repeat',
+    WebkitMaskPosition: 'center',
+  };
+
+  return (
+    <div ref={ref} className={`relative ${className}`}>
+      <motion.div
+        className="relative w-full h-full bg-[#7A4027]"
+        style={maskStyle}
+        initial={{ clipPath: 'inset(0 100% 0 0)' }}
+        animate={isInView ? { clipPath: 'inset(0 0% 0 0)' } : {}}
+        transition={{ duration: 1.8, delay, ease: [0.65, 0, 0.35, 1] }}
+      >
+        <motion.div
+          className="absolute top-0 bottom-0 w-1/3"
+          style={{
+            background: 'linear-gradient(to right, transparent, rgba(94,47,28,0.4) 55%, rgba(94,47,28,0.7) 100%)',
+            filter: 'blur(8px)',
+          }}
+          initial={{ left: '-40%' }}
+          animate={isInView ? { left: '100%' } : {}}
+          transition={{ duration: 1.8, delay, ease: [0.65, 0, 0.35, 1] }}
+        />
+      </motion.div>
+    </div>
+  );
+};
 
 const Footer = () => {
   const ref = useRef<HTMLElement>(null);
@@ -43,19 +81,7 @@ const Footer = () => {
           <div className="flex flex-col justify-center h-full">
             {/* Horse Rider Logo — aligns with CTA section */}
             <div className="flex justify-start mb-16 md:mb-20">
-              <div
-                className="relative w-56 h-56 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px] bg-[#7A4027]"
-                style={{
-                  maskImage: 'url(/assets/images/zippyfooter1.svg)',
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskImage: 'url(/assets/images/zippyfooter1.svg)',
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center'
-                }}
-              />
+              <PaintingLogo src="/assets/images/zippyfooter1.svg" className="w-56 h-56 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px]" />
             </div>
             {/* Zippy Equestrian Center — aligns with nav links */}
             <div className="flex items-start justify-start">

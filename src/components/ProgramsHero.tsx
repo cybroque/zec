@@ -2,17 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
 import Reveal from "@/components/ui/Reveal";
-import { useLoading } from "@/lib/LoadingContext";
 
 export default function ProgramsHero() {
-  const { startLoading, stopLoading } = useLoading();
-
-  useEffect(() => {
-    startLoading();
-  }, [startLoading]);
-
   return (
     <section className="relative w-full h-screen min-h-[700px] flex items-center overflow-hidden bg-[#242A59]">
       <div className="absolute inset-0 z-0">
@@ -23,7 +15,6 @@ export default function ProgramsHero() {
           priority
           sizes="100vw"
           className="object-cover object-center"
-          onLoad={stopLoading}
         />
       </div>
 

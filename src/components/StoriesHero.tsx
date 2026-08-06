@@ -1,17 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
 import Reveal from "@/components/ui/Reveal";
-import { useLoading } from "@/lib/LoadingContext";
 
 export default function StoriesHero() {
-  const { startLoading, stopLoading } = useLoading();
-
-  useEffect(() => {
-    startLoading();
-  }, [startLoading]);
-
   return (
     <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#53321E]">
       {/* Background image */}
@@ -22,7 +14,6 @@ export default function StoriesHero() {
         priority
         sizes="100vw"
         className="object-cover object-center"
-        onLoad={stopLoading}
       />
 
       {/* Gradient overlay — strong at bottom, fades upward */}

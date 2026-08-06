@@ -297,8 +297,8 @@ export default function ProgramsCardsSection() {
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-8 z-30 flex-shrink-0 pb-2 md:pb-4">
           <Reveal direction="none" delay={0.2}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-              <span className="text-[#D9734A] text-xs md:text-xl font-medium ">Pick your level and start ride withing us</span>
-              <Link href={"/contact"} className="bg-[#D9734A] text-white px-5 py-2 md:py-3 text-sm md:text-md font-medium hover:bg-[#C2613D] transition-colors flex items-center gap-2 rounded-sm">
+              <span className="bottom-banner-text text-[#D9734A] text-xs md:text-xl font-medium transition-colors duration-300">Pick your level and start ride withing us</span>
+              <Link href={"/contact"} className="bottom-banner-btn bg-[#D9734A] text-white px-5 py-2 md:py-3 text-sm md:text-md font-medium hover:bg-[#C2613D] transition-colors duration-300 flex items-center gap-2 rounded-sm border border-[#D9734A]">
                 Enroll now
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14" />

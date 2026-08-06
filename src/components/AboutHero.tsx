@@ -1,17 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
 import Reveal from "@/components/ui/Reveal";
-import { useLoading } from "@/lib/LoadingContext";
 
 export default function AboutHero() {
-  const { startLoading, stopLoading } = useLoading();
-
-  useEffect(() => {
-    startLoading();
-  }, [startLoading]);
-
   return (
     <section className="relative w-full h-[100svh] min-h-[600px] flex items-center overflow-hidden bg-[#9eb9da] pb-24">
       {/* Background Image */}
@@ -23,7 +15,6 @@ export default function AboutHero() {
           priority
           sizes="100vw"
           className="object-cover object-[80%_20%]"
-          onLoad={stopLoading}
         />
       </div>
 

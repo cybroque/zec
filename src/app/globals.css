@@ -95,3 +95,14 @@ body.footer-active .insta-btn {
   color: #DA7347 !important;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Bottom banner transitions for footer */
+body.footer-active .bottom-banner-text {
+  color: #F2EBD9 !important;
+}
+
+body.footer-active .bottom-banner-btn {
+  background-color: transparent !important;
+  border-color: #F2EBD9 !important;
+  color: #F2EBD9 !important;
+}

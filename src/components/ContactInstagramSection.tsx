@@ -10,7 +10,7 @@ interface ContactInstagramSectionProps {
 export default function ContactInstagramSection({ bgColor = "#FFFBF2" }: ContactInstagramSectionProps) {
   return (
     <section 
-      className={`w-full ${bgColor === "#FFFBF2" ? "bg-[#FFFBF2]" : ""}`} 
+      className={`w-full ${bgColor === "#FFF8E5" ? "bg-[#FFF8E5]" : ""}`} 
       style={bgColor !== "#FFFBF2" ? { backgroundColor: bgColor } : undefined}
     >
       {/* ── Heading ── */}

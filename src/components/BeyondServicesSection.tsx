@@ -41,7 +41,7 @@ const services: Service[] = [
     description:
       "Professional training services for horses conducted by our experienced instructors. Whether you're looking to train a young horse or work on specific skills, our team brings the same structured, patient approach we use with our riders.",
     color: "#526FAE",
-    image: "/assets/images/b1.png",
+    image: "/assets/images/horse-training.webp",
     meta: {
       forWho: "All types of horses",
       season: "Any time of the year",
@@ -55,7 +55,7 @@ const services: Service[] = [
     description:
       "Looking to own a horse? We have horses available for sale which are well-trained, healthy, and suited to riders at different levels. Speak to us directly to find out what's currently available and what would be the right match for you.",
     color: "#85431E",
-    image: "/assets/images/b6.png",
+    image: "/assets/images/buy.webp",
     cta: "Find available horses",
   },
   {
@@ -78,7 +78,7 @@ const services: Service[] = [
     description:
       "Planning to start your own equestrian facility? Looking for guidance on horse management, program design, or facility setup? We offer professional consultation services drawing on years of hands-on experience running a successful riding center in Bangalore.",
     color: "#1C2245",
-    image: "/assets/images/b5.png",
+    image: "/assets/images/eque.webp",
     cta: "Book a meeting",
   },
   {
@@ -87,7 +87,7 @@ const services: Service[] = [
     description:
       "Not ready to own, but want regular access to a specific horse? Our rent and lease arrangements give riders a consistent partnership with a horse; ideal for riders who want to train more seriously without the full commitment of ownership.",
     color: "#85431E",
-    image: "/assets/images/b4.png",
+    image: "/assets/images/horse.webp",
     cta: "Find available horses",
   },
   {
@@ -105,7 +105,7 @@ const services: Service[] = [
     description:
       "Interested in bringing the Zippy Equestrian Center model to your city? We're open to conversations about franchise opportunities with people who share our commitment to accessible, high-quality equestrian experiences.",
     color: "#DA7347",
-    image: "/assets/images/b3.png",
+    image: "/assets/images/franchise.webp",
     cta: "Talk to our manager",
   },
   {
@@ -114,7 +114,7 @@ const services: Service[] = [
     description:
       "We provide boarding facilities for privately-owned horses: safe stabling, daily care, feeding, and regular exercise under professional supervision. Ideal for horse owners who want their animal in experienced hands within the city.",
     color: "#1C2245",
-    image: "/assets/images/b2.png",
+    image: "/assets/images/boarding.webp",
     cta: "Find your horse a home",
   },
 ];

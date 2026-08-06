@@ -32,7 +32,7 @@ def extract_jpeg_from_svg(svg_path: Path) -> Path | None:
 def convert_to_webp(src: Path, dst: Path, quality: int = 82) -> bool:
     """Convert an image file to WebP using cwebp."""
     result = subprocess.run(
-        ["cwebp", "-q", str(quality), "-mt", str(src), "-o", str(dst)],
+        ["cwebp", "-metadata", "all", "-q", str(quality), "-mt", str(src), "-o", str(dst)],
         capture_output=True, text=True
     )
     if result.returncode == 0:
@@ -100,10 +100,7 @@ for svg_name in photo_svgs:
     webp_name = svg_path.stem + ".webp"
     webp_path = OUT_DIR / webp_name
     
-    if webp_path.exists():
-        print(f"  Skipping {svg_name} (WebP already exists)")
-        converted_svgs[svg_name] = webp_name
-        continue
+    # Force regeneration
     
     print(f"\nProcessing: {svg_name}")
     tmp_path = extract_jpeg_from_svg(svg_path)
@@ -134,10 +131,7 @@ for png_name in large_pngs:
     webp_name = png_path.stem + ".webp"
     webp_path = OUT_DIR / webp_name
     
-    if webp_path.exists():
-        print(f"  Skipping {png_name} (WebP already exists)")
-        converted_pngs[png_name] = webp_name
-        continue
+    # Force regeneration
     
     print(f"\nConverting: {png_name}")
     success = convert_to_webp(png_path, webp_path, quality=85)
