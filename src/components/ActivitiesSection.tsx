@@ -53,23 +53,23 @@ const ActivitiesSection = () => {
     {
       title: "Summer camps",
       description: "For kids who want more than a screen this summer.",
-      imageSrc: "/assets/images/season1.webp",
-      overlayColor: "rgba(214, 122, 91, 0.65)", // #d67a5b with alpha
+      imageSrc: "/assets/images/HomePage/Webp/summercamp.webp",
+      overlayColor: "rgba(135, 28, 7, 0.90)", // #d67a5b with alpha
       href: "/beyond#summer-camps"
     },
     {
       title: "Parties and Venues",
       description: "Host your next get-together at the stables.",
-      imageSrc: "/assets/images/season2.webp",
-      overlayColor: "rgba(46, 88, 185, 0.65)", // #2e58b9 with alpha
-      href: "/beyond"
+      imageSrc: "/assets/images/HomePage/Webp/party.webp",
+      overlayColor: "#2658C4", // #2e58b9 with alpha
+      href: "/beyond#summer-camps"
     },
     {
       title: "Photoshoots",
       description: "The most beautiful backdrop in South Bangalore.",
-      imageSrc: "/assets/images/season3.webp",
-      overlayColor: "rgba(133, 67, 30, 0.65)", // #85431E with alpha
-      href: "/beyond"
+      imageSrc: "/assets/images/HomePage/Webp/photoshoot.webp",
+      overlayColor: "#DA7347", // #85431E with alpha
+      href: "/beyond#summer-camps"
     }
   ];
 
@@ -103,7 +103,7 @@ const ActivitiesSection = () => {
         {/* Call to Action */}
         <Reveal delay={0.2}>
           <div className="flex justify-center">
-            <Link href="/beyond" className="group flex items-center gap-4 px-6 py-3 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-white transition-all duration-500">
+            <Link href="/beyond#summer-camps" className="group flex items-center gap-4 px-6 py-3 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-white transition-all duration-500">
               <span className="text-lg md:text-xl font-light text-[#DA7347] group-hover:text-inherit">
                 See all activities
               </span>
