@@ -9,12 +9,13 @@ export default function ProgramsHero() {
     <section className="relative w-full h-screen min-h-[700px] flex items-center overflow-hidden bg-[#242A59]">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/images/pro-hero.webp"
+          src="/assets/images/Programs/Webp/Hero.webp"
           alt="Horse and rider"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover"
+          style={{ transform: "scale(1.6)", transformOrigin: "10% 15%" }}
         />
       </div>
 

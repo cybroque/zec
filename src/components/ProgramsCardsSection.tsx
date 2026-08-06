@@ -25,7 +25,10 @@ const cardsData = [
     bgColor: "bg-[#D9734A]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d1.webp"
+    image: "/assets/images/Programs/Webp/r1.webp",
+    scale: 1.15,
+    translateY: 0,
+    transformOrigin: "40% 100%"
   },
   {
     id: "foundation",
@@ -45,7 +48,10 @@ const cardsData = [
     bgColor: "bg-[#F2F9FF]",
     textColor: "text-[#242A59]",
     featureBorder: "border-[#242A59]/20",
-    image: "/assets/images/d2.webp"
+    image: "/assets/images/Programs/Webp/r2.webp",
+    scale: 1,
+    translateY: 0,
+    transformOrigin: "50% 50%"
   },
   {
     id: "development",
@@ -65,7 +71,10 @@ const cardsData = [
     bgColor: "bg-[#5A7BB5]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d3.webp"
+    image: "/assets/images/Programs/Webp/r3.webp",
+    scale: 1,
+    translateY: 0,
+    transformOrigin: "50% 50%"
   },
   {
     id: "performance",
@@ -85,7 +94,10 @@ const cardsData = [
     bgColor: "bg-[#91572D]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d4.webp"
+    image: "/assets/images/Programs/Webp/r4.webp",
+    scale: 1,
+    translateY: 0,
+    transformOrigin: "50% 50%"
   },
   {
     id: "dressage",
@@ -105,7 +117,11 @@ const cardsData = [
     bgColor: "bg-[#242A59]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d5.svg"
+    image: "/assets/images/Programs/Webp/r5.webp",
+    scale: 1,
+    translateY: 0,
+    transformOrigin: "50% 50%",
+    objectPosition: "50% 20%"
   },
   {
     id: "showjumping",
@@ -125,7 +141,10 @@ const cardsData = [
     bgColor: "bg-[#242A59]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d6.webp"
+    image: "/assets/images/Programs/Webp/r6.webp",
+    scale: 1,
+    translateY: 0,
+    transformOrigin: "50% 50%"
   },
   {
     id: "practice",
@@ -142,7 +161,9 @@ const cardsData = [
     bgColor: "bg-[#111111]",
     textColor: "text-white",
     featureBorder: "border-white/20",
-    image: "/assets/images/d7.webp"
+    image: "/assets/images/Programs/Webp/r7.webp",
+    scale: 1,
+    transformOrigin: "50% 50%"
   }
 ];
 
@@ -242,13 +263,18 @@ export default function ProgramsCardsSection() {
                 {/* Card Body (Image + Content attached) */}
                 <div className="flex flex-col flex-1 shadow-sm hover:shadow-lg overflow-hidden rounded-md md:rounded-sm transition-all duration-500 ease-out hover:scale-[1.015] hover:-translate-y-1 group cursor-pointer">
                   {/* Image */}
-                  <div className="relative h-[22vh] min-h-[130px] max-h-[194px] w-full flex-shrink-0">
+                  <div className="relative h-[22vh] min-h-[130px] max-h-[194px] w-full flex-shrink-0 overflow-hidden">
                     <Image loading="lazy"
                       src={card.image}
                       alt={card.title}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 429px"
+                      style={{
+                        transform: `translateY(${card.translateY ?? 0}px) scale(${card.scale})`,
+                        transformOrigin: card.transformOrigin,
+                        objectPosition: card.objectPosition ?? "50% 50%"
+                      }}
                     />
                   </div>
 

@@ -14,7 +14,7 @@ const journeyItems = [
         session, no commitment.
       </>
     ),
-    image: "/assets/images/program-img.svg",
+    image: "/assets/images/Programs/Webp/p1.webp",
   },
   {
     id: 1,
@@ -146,7 +146,7 @@ export default function ProgramsJourney() {
             <Reveal delay={0.3} className="w-full h-full">
               <div className="w-full h-full relative">
                 <Image loading="eager" fetchPriority="low"
-                  src="/assets/images/program-img.svg"
+                  src="/assets/images/Programs/Webp/p1.webp"
                   alt="Program level"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
