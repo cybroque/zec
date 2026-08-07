@@ -49,10 +49,10 @@ export default function AboutInstructorsSection() {
       style={{ background }}
     >
       {/* ── Instructors ── */}
-      <div className="pt-24 pb-16 md:pt-42 md:pb-24 relative z-10">
+      <div className="pt-24 pb-16 md:pt-42 md:pb-24 max-md:pt-16 relative z-10">
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20 max-md:mb-10">
             <Reveal>
               <h2 className="text-[#FFF8E5] font-sans text-3xl md:text-5xl font-normal  mb-5">
                 The People You&apos;ll Ride With
@@ -146,7 +146,7 @@ export default function AboutInstructorsSection() {
 
             {/* Right: Map */}
             <div
-              className="relative w-full max-w-[450px] lg:max-w-[733px] ml-auto cursor-pointer mt-12 lg:-mt-[150px] lg:-mb-0 z-0"
+              className="relative w-full max-w-[450px] lg:max-w-[733px] ml-auto cursor-pointer mt-12 lg:-mt-[150px] lg:-mb-0 z-0 max-md:!mr-0"
               style={{
                 marginRight: "calc(-48vw + 100%)",
                 aspectRatio: "733/982",

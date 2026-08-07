@@ -91,7 +91,7 @@ const AboutSection = () => {
               </span>
             </Reveal>
             <Reveal delay={0.2}>
-              <h2 className="text-5xl md:text-[75px] font-normal text-[#85431E] leading-[1.2] mb-12 tracking-[-0.03em]">
+              <h2 className="text-5xl md:text-[75px] max-md:text-4xl font-normal text-[#85431E] leading-[1.2] mb-12 tracking-[-0.03em]">
                 Horses, People<br />
                 Good Time
               </h2>
@@ -115,7 +115,7 @@ const AboutSection = () => {
           </div>
 
           {/* Right Column */}
-          <div className="flex flex-col gap-10 pt-10 font-gt-ultra text-[#85431E]/80 max-w-2xl">
+          <div className="flex flex-col gap-10 pt-10 max-md:pt-0 font-gt-ultra text-[#85431E]/80 max-w-2xl">
             <Reveal delay={0.3}>
               <p className="text-md md:text-[16px] font-light tracking-tight">
                 Zippy Equestrian Center is Bangalore&apos;s riding center built for people who are

@@ -19,9 +19,9 @@ const contacts = [
 
 export default function ContactDirectorySection() {
   return (
-    <section className="w-full bg-transparent py-16 md:py-20">
-      <div className="container mx-auto px-8 md:px-16 max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+    <section className="w-full bg-transparent py-16 md:py-20 max-md:py-12">
+      <div className="container mx-auto px-8 md:px-16 max-w-6xl max-sm:px-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 max-md:gap-8">
 
           {/* Left: Heading */}
           <div>
@@ -33,7 +33,7 @@ export default function ContactDirectorySection() {
           </div>
 
           {/* Right: Contact entries */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-8 max-md:gap-6">
             {contacts.map((contact, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div>

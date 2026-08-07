@@ -28,10 +28,10 @@ export default function AboutTeamSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative w-full bg-[#1C2245] py-16 md:py-24 overflow-hidden">
+    <section className="relative w-full bg-[#1C2245] py-16 md:py-24 max-md:py-12 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <Reveal>
-          <h2 className="text-[#FFF8E5] font-sans text-3xl md:text-5xl font-normal  text-center mb-16 md:mb-24">
+          <h2 className="text-[#FFF8E5] font-sans text-3xl md:text-5xl font-normal  text-center mb-16 md:mb-24 max-md:mb-10">
             Meet the people behind
           </h2>
         </Reveal>

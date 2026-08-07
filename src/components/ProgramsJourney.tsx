@@ -65,7 +65,7 @@ export default function ProgramsJourney() {
           {/* Left Column - Content */}
           <div className="flex flex-col">
             <Reveal>
-              <h2 className="text-5xl md:text-[65px] leading-[1.1] tracking-tight mb-16">
+              <h2 className="text-5xl md:text-[65px] max-md:text-4xl leading-[1.1] tracking-tight mb-16 max-md:mb-8">
                 <span className="text-[#85431E]">Find your place</span>
                 <br />
                 <span className="text-[#DA7347]">in the saddle:</span>

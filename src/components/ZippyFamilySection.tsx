@@ -25,12 +25,12 @@ const ZippyFamilySection = () => {
 
           {/* Right Column: Logos */}
           <Reveal delay={0.2}>
-            <div className="flex items-center gap-6 md:gap-12 pr-32">
-              <a 
+            <div className="flex items-center gap-6 md:gap-12 pr-32 max-md:pr-0 max-md:gap-4">
+              <a
                 href="https://broncosequestrianclub.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative w-24 h-24 md:w-32 md:h-32 block hover:scale-105 transition-transform duration-300"
+                className="relative w-24 h-24 md:w-32 md:h-32 block hover:scale-105 transition-transform duration-300 max-sm:w-20 max-sm:h-20"
               >
                 <Image loading="lazy"
                   src="/assets/images/zippybroncos.svg"
@@ -43,7 +43,7 @@ const ZippyFamilySection = () => {
 
               <div className="h-12 md:h-36 w-[2px] bg-[#85431E]" aria-hidden="true" />
 
-              <div className="relative w-34 h-34 md:w-52 md:h-52 mt-2 hover:scale-105 transition-transform duration-300">
+              <div className="relative w-34 h-34 md:w-52 md:h-52 mt-2 hover:scale-105 transition-transform duration-300 max-sm:w-28 max-sm:h-28">
                 <h1 className='uppercase text-[#641C17] text-md md:pl-10 md:pt-8 '>Coming Soon</h1>
                 <Image loading="lazy"
                   src="/assets/images/zippypremier.svg"

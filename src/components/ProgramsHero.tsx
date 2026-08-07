@@ -6,7 +6,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function ProgramsHero() {
   return (
-    <section className="relative w-full h-screen min-h-[700px] flex items-center overflow-hidden bg-[#242A59]">
+    <section className="relative w-full h-screen min-h-[700px] max-md:min-h-[550px] flex items-center overflow-hidden bg-[#242A59]">
       <div className="absolute inset-0 z-0">
         <Image
           src="/assets/images/Programs/Webp/Hero.webp"
@@ -20,7 +20,7 @@ export default function ProgramsHero() {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-end pb-32 md:pb-68 h-full">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-end pb-32 md:pb-68 max-md:pb-16 h-full">
         <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-top">
           {/* Left Heading */}
           <div className="md:col-span-7 lg:col-span-7 pb-4">

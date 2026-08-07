@@ -25,7 +25,7 @@ const slides = [
     description: "Build strong riding fundamentals from posture and balance to walk, trot, and canter. Learn how to understand and work with your horse, both in and out of the saddle.",
     image: "/assets/images/HomePage/Webp/ridewithus2.webp",
     objectPosition: "30% 70%",
-    scale: 1.30,
+    scale: 1,
     bgColor: "#526FAE", // Dark Blue
     buttonText: "Book a Trial",
     link: "/programs#foundation"
@@ -54,7 +54,10 @@ const ScrollCarousel = () => {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          if (!containerRef.current) {
+          // Scroll-driven slides are a desktop-only behaviour (the section is
+          // pinned across 300vh there). On mobile the section is normal flow,
+          // so scrolling must not change the active slide.
+          if (!containerRef.current || window.innerWidth < 768) {
             ticking = false;
             return;
           }
@@ -105,8 +108,8 @@ const ScrollCarousel = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative h-[100dvh] md:h-[300vh] w-full bg-[#FFF8E5]">
-      <div className="sticky top-0 h-screen w-full flex flex-col pb-6 md:pb-12">
+    <div ref={containerRef} className="relative h-[100dvh] max-md:h-auto md:h-[300vh] w-full bg-[#FFF8E5]">
+      <div className="sticky top-0 h-screen w-full flex flex-col pb-6 md:pb-12 max-md:static max-md:h-auto">
 
         {/* Intro Section */}
         <Reveal>
@@ -125,20 +128,20 @@ const ScrollCarousel = () => {
         </Reveal>
 
         {/* Carousel Content */}
-        <div className="flex-1 flex flex-col md:justify-center overflow-hidden w-full relative">
+        <div className="flex-1 flex flex-col md:justify-center overflow-hidden w-full relative max-md:flex-none max-md:overflow-visible">
 
           <div
-            className="w-full flex-1 md:flex-none flex flex-col md:flex-row transition-colors duration-700 relative"
+            className="w-full flex-1 md:flex-none flex flex-col md:flex-row transition-colors duration-700 relative max-md:flex-none md:min-h-[500px] lg:min-h-[560px]"
             style={{ backgroundColor: slides[activeIndex].bgColor }}
           >
             {/* Left Side: Content */}
-            <div className="w-full flex-1 md:flex-none md:w-[60%] md:h-full relative z-10">
+            <div className="w-full flex-1 md:flex-none md:w-[60%] md:h-full relative z-10 max-md:flex-none max-md:h-auto">
               {slides.map((slide, index) => (
                 <div
                   key={slide.id}
-                  className={`absolute inset-0 pl-6 pr-6 md:pl-6 lg:pl-24 md:pr-12 py-12 flex flex-col justify-center transition-all duration-700 ${index === activeIndex
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-8 pointer-events-none'
+                  className={`absolute inset-0 pl-6 pr-6 md:pl-6 lg:pl-24 md:pr-12 py-12 flex flex-col justify-center transition-all duration-700 max-md:py-8 ${index === activeIndex
+                    ? 'opacity-100 translate-y-0 max-md:relative max-md:inset-auto'
+                    : 'opacity-0 translate-y-8 pointer-events-none max-md:hidden'
                     }`}
                 >
                   <div className="h-[20px] md:h-[24px] mb-2 md:mb-4">
@@ -146,12 +149,12 @@ const ScrollCarousel = () => {
                       {slide.section}
                     </span>
                   </div>
-                  <div className="h-[70px] md:h-[80px] lg:h-[90px] mb-2 md:mb-4">
+                  <div className="min-h-[70px] md:min-h-[80px] lg:min-h-[90px] mb-2 md:mb-4">
                     <h3 className="text-2xl md:text-3xl lg:text-4xl font-normal text-[#F2EBD9] tracking-tight leading-snug">
                       {slide.title}
                     </h3>
                   </div>
-                  <div className="h-[140px] md:h-[80px] lg:h-[96px] mb-6 md:mb-3 flex-shrink-0">
+                  <div className="min-h-[140px] md:min-h-[80px] lg:min-h-[96px] mb-6 md:mb-3 flex-shrink-0">
                     <p className="text-[15px] md:text-base font-extralight text-[#F2EBD9]/90 max-w-2xl leading-relaxed">
                       {slide.description}
                     </p>

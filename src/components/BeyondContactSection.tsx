@@ -28,8 +28,8 @@ export default function BeyondContactSection() {
         {/* Right: CTA rows */}
         <div className="w-full md:w-1/2 flex flex-col">
           {/* Top CTA */}
-          <div className="flex-1 bg-[#1A1F3D] p-10 md:p-14 flex flex-col justify-between group cursor-pointer transition-colors hover:bg-[#161B35]">
-            <h3 className="text-white text-lg md:text-xl font-normal uppercase  leading-snug mb-16">
+          <div className="flex-1 bg-[#1A1F3D] p-10 md:p-14 max-md:p-6 flex flex-col justify-between group cursor-pointer transition-colors hover:bg-[#161B35]">
+            <h3 className="text-white text-lg md:text-xl font-normal uppercase  leading-snug mb-16 max-md:mb-8">
               FOR GENERAL ENQUIRIES
             </h3>
             <div className="flex items-center gap-3">
@@ -41,8 +41,8 @@ export default function BeyondContactSection() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="flex-1 bg-[#5A74A8] p-10 md:p-14 flex flex-col justify-between group cursor-pointer transition-colors hover:bg-[#4E6593]">
-            <h3 className="text-white text-lg md:text-xl font-normal uppercase  leading-snug mb-16">
+          <div className="flex-1 bg-[#5A74A8] p-10 md:p-14 max-md:p-6 flex flex-col justify-between group cursor-pointer transition-colors hover:bg-[#4E6593]">
+            <h3 className="text-white text-lg md:text-xl font-normal uppercase  leading-snug mb-16 max-md:mb-8">
               FOR FRANCHISE/<br />COLLABORATIONS
             </h3>
             <div className="flex items-center gap-3">

@@ -5,7 +5,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function StoriesHero() {
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#53321E]">
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#53321E] max-md:h-[100dvh]">
       {/* Background image */}
       <Image
         src="/assets/images/Rider_stories/Webp/riders-hero.webp"
@@ -25,9 +25,9 @@ export default function StoriesHero() {
       />
 
       {/* Bottom-left content */}
-      <div className="absolute bottom-12 left-0 px-8 md:px-16 pb-16 md:pb-24 max-w-2xl">
+      <div className="absolute bottom-12 left-0 px-8 md:px-16 pb-16 md:pb-24 max-w-2xl max-sm:px-6 max-md:bottom-8 max-md:pb-12">
         <Reveal>
-          <h1 className="text-5xl md:text-7xl font-normal text-white leading-none mb-4">
+          <h1 className="text-5xl md:text-7xl font-normal text-white leading-none mb-4 max-sm:text-4xl">
             Rider Stories
           </h1>
         </Reveal>

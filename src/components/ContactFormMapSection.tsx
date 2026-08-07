@@ -44,29 +44,29 @@ export default function ContactFormMapSection() {
   }, []);
 
   return (
-    <section className="w-full bg-transparent py-16 md:py-24">
+    <section className="w-full bg-transparent py-16 md:py-24 max-md:py-12">
       {/* Aligned with Header container */}
-      <div className="container mx-auto px-6 md:px-12 roun">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <div className="container mx-auto px-6 md:px-12 roun max-sm:px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 max-md:gap-8">
 
           {/* LEFT: Form + Location text */}
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-12 max-md:gap-8">
 
             {/* Form */}
             <Reveal>
               <div>
-                <h1 className="text-[#85431E] text-4xl md:text-5xl font-light leading-tight mb-10">
+                <h1 className="text-[#85431E] text-4xl md:text-5xl font-light leading-tight mb-10 max-sm:text-3xl max-md:mb-6">
                   Time to take action
                 </h1>
 
-              <div className="p-6 md:p-8" style={{ backgroundColor: "#F2EBD9" }}>
+              <div className="p-6 md:p-8 max-sm:p-5" style={{ backgroundColor: "#F2EBD9" }}>
                 <div className="mb-5">
                   <label className="text-[#85431E]/70 text-xs  uppercase mb-2 block font-light">
                     Your name
                   </label>
                   <input
                     type="text"
-                    className="w-full bg-[#FFFCF4] px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0 focus:ring-1 focus:ring-[#DA7347]/30"
+                    className="w-full bg-[#FFFCF4] px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0 focus:ring-1 focus:ring-[#DA7347]/30 max-md:py-3.5"
                   />
                 </div>
 
@@ -76,7 +76,7 @@ export default function ContactFormMapSection() {
                   </label>
                   <div className="flex bg-[#FFFCF4] focus-within:ring-1 focus-within:ring-[#DA7347]/30">
                     <div
-                      className="flex items-center gap-2 px-3 py-3 cursor-pointer border-r border-[#DA7347]/20"
+                      className="flex items-center gap-2 px-3 py-3 cursor-pointer border-r border-[#DA7347]/20 max-md:py-3.5"
                       onClick={() => {
                         setIsCountryDropdownOpen(!isCountryDropdownOpen);
                         if (!isCountryDropdownOpen) setIsDropdownOpen(false);
@@ -89,7 +89,7 @@ export default function ContactFormMapSection() {
                     </div>
                     <input
                       type="tel"
-                      className="flex-1 bg-transparent px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0"
+                      className="flex-1 bg-transparent px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0 max-md:py-3.5"
                       placeholder="Phone number"
                     />
                   </div>
@@ -121,7 +121,7 @@ export default function ContactFormMapSection() {
                     I&apos;m interested in:
                   </label>
                   <div
-                    className="w-full bg-[#FFFCF4] px-4 py-3 text-sm text-[#DA7347] flex justify-between items-center cursor-pointer border-0 outline-none"
+                    className="w-full bg-[#FFFCF4] px-4 py-3 text-sm text-[#DA7347] flex justify-between items-center cursor-pointer border-0 outline-none max-md:py-3.5"
                     onClick={() => {
                       setIsDropdownOpen(!isDropdownOpen);
                       if (!isDropdownOpen) setIsCountryDropdownOpen(false);
@@ -154,8 +154,8 @@ export default function ContactFormMapSection() {
                   )}
                 </div>
 
-                <div className="flex justify-end">
-                  <button className="flex items-center gap-3 text-white text-[11px]  uppercase px-6 py-3 hover:opacity-90 transition-opacity" style={{ backgroundColor: "#DA7347" }}>
+                <div className="flex justify-end max-md:justify-center">
+                  <button className="flex items-center gap-3 text-white text-[11px]  uppercase px-6 py-3 hover:opacity-90 transition-opacity max-md:w-full max-md:justify-center max-md:py-3.5" style={{ backgroundColor: "#DA7347" }}>
                     Send Enquiry
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
                       <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -169,7 +169,7 @@ export default function ContactFormMapSection() {
             {/* Location text */}
             <Reveal delay={0.2}>
               <div>
-                <p className="text-[#1a1a1a] text-2xl md:text-3xl font-light leading-snug">
+                <p className="text-[#1a1a1a] text-2xl md:text-3xl font-light leading-snug max-sm:text-xl">
                   We&apos;re in JP Nagar, 7th Phase<br />
                   In the heart of South Bangalore.<br />
                   <span className="text-[#DA7347]">Easy to find, easy to get to.</span>
@@ -208,7 +208,7 @@ export default function ContactFormMapSection() {
 
             {/* Map — container locked to SVG's 733×982 aspect ratio so % positions are exact */}
             <div
-              className="relative w-full cursor-pointer mt-4"
+              className="relative w-full cursor-pointer mt-4 max-md:max-w-[300px] max-md:mx-auto"
               style={{ aspectRatio: "733/982" }}
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}

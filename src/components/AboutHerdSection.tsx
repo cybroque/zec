@@ -61,7 +61,7 @@ export default function AboutHerdSection() {
       style={{ height: scrollDist > 0 ? `calc(100dvh + ${scrollDist}px)` : "auto" }}
     >
       <section
-        className={`w-full bg-[#FFF8E5] overflow-hidden flex flex-col md:flex-row items-center ${
+        className={`w-full bg-[#FFF8E5] overflow-hidden flex flex-col md:flex-row items-center max-md:!pt-8 max-md:!pb-8 ${
           scrollDist > 0 ? "sticky top-0 h-dvh" : ""
         }`}
         style={{ paddingTop: "clamp(48px, 8vw, 120px)", paddingBottom: "clamp(48px, 8vw, 120px)" }}
@@ -69,7 +69,7 @@ export default function AboutHerdSection() {
         {/* Header — left-aligned */}
         <div className="w-full md:w-1/3 xl:w-[40%] flex-shrink-0 z-10">
           <Reveal delay={0.1}>
-            <div className="mb-10 md:mb-0" style={{ paddingLeft: "clamp(24px, 11.4vw, 172px)", paddingRight: "clamp(24px, 4vw, 40px)" }}>
+            <div className="mb-10 max-md:mb-6 md:mb-0" style={{ paddingLeft: "clamp(24px, 11.4vw, 172px)", paddingRight: "clamp(24px, 4vw, 40px)" }}>
               <h2
                 className="font-normal leading-[1.1] text-[#85431e] mb-6"
                 style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}

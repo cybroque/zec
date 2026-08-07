@@ -3,7 +3,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function AboutLocationSection() {
   return (
-    <section className="relative w-full bg-[#85431E] py-20 md:py-32 overflow-hidden">
+    <section className="relative w-full bg-[#85431E] py-20 md:py-32 max-md:py-14 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text */}

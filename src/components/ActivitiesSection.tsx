@@ -36,7 +36,7 @@ const ActivityCard = ({
       />
 
       {/* Content Overlay */}
-      <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
+      <div className="absolute inset-0 p-8 flex flex-col justify-end text-white max-md:p-6">
         <h3 className="text-2xl md:text-[28px] font-light mb-2 leading-tight tracking-tight">
           {title}
         </h3>

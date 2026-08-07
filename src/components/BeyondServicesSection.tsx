@@ -191,7 +191,7 @@ export default function BeyondServicesSection() {
               >
                 {/* Left: image */}
                 <div
-                  className="relative w-full md:w-[40%] shrink-0"
+                  className="relative w-full md:w-[40%] shrink-0 max-md:!min-h-[220px]"
                   style={{ minHeight: "340px" }}
                 >
                   <Image loading="lazy"
@@ -205,7 +205,7 @@ export default function BeyondServicesSection() {
 
                 {/* Right: content */}
                 <div
-                  className="flex-1 flex flex-col justify-between px-8 md:px-12 py-10 md:py-12"
+                  className="flex-1 flex flex-col justify-between px-8 md:px-12 py-10 md:py-12 max-md:px-6 max-md:py-8"
                   style={{ backgroundColor: service.color }}
                 >
                   <div>
@@ -245,7 +245,7 @@ export default function BeyondServicesSection() {
 
                     <Link
                       href="/contact"
-                      className="mt-6 sm:mt-0 self-end bg-[#FFF8E5] px-5 py-3 text-[13px] text-[#DA7347] font-medium flex items-center gap-3 hover:bg-[#FFF8E5]/90 transition-colors shrink-0 rounded-sm"
+                      className="mt-6 sm:mt-0 self-end bg-[#FFF8E5] px-5 py-3 text-[13px] text-[#DA7347] font-medium flex items-center gap-3 hover:bg-[#FFF8E5]/90 transition-colors shrink-0 rounded-sm max-md:w-full max-md:justify-center max-md:self-stretch"
                     >
                       {service.cta}
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none">

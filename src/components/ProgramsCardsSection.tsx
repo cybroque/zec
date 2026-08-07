@@ -254,7 +254,7 @@ export default function ProgramsCardsSection() {
                 <div className="w-px bg-black/10 mx-3 md:mx-6 h-full" />
               )}
 
-              <div className="flex-shrink-0 w-[85vw] md:w-[429px] flex flex-col h-[591px]">
+              <div className="flex-shrink-0 w-[85vw] md:w-[429px] flex flex-col h-[591px] max-md:h-[480px]">
                 {/* Category Header */}
                 <div className={`uppercase text-[11px] md:text-xl font-normal  ${card.categoryColor} min-h-[16px] mb-2 md:mb-3 flex-shrink-0`}>
                   {card.category}
@@ -321,10 +321,10 @@ export default function ProgramsCardsSection() {
 
         {/* Bottom Banner */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-8 z-30 flex-shrink-0 pb-2 md:pb-4">
-          <Reveal direction="none" delay={0.2}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+          <Reveal direction="none" delay={0.2} className="max-md:w-full max-md:px-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8 max-md:w-full">
               <span className="bottom-banner-text text-[#D9734A] text-xs md:text-xl font-medium transition-colors duration-300">Pick your level and start ride withing us</span>
-              <Link href={"/contact"} className="bottom-banner-btn bg-[#D9734A] text-white px-5 py-2 md:py-3 text-sm md:text-md font-medium hover:bg-[#C2613D] transition-colors duration-300 flex items-center gap-2 rounded-sm border border-[#D9734A]">
+              <Link href={"/contact"} className="bottom-banner-btn bg-[#D9734A] text-white px-5 py-2 md:py-3 text-sm md:text-md font-medium hover:bg-[#C2613D] transition-colors duration-300 flex items-center gap-2 rounded-sm border border-[#D9734A] max-md:w-full max-md:justify-center">
                 Enroll now
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14" />

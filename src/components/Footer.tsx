@@ -21,26 +21,17 @@ const PaintingLogo = ({ src, className, delay = 0 }: { src: string; className?: 
 
   return (
     <div ref={ref} className={`relative ${className}`}>
+      {/* Left-to-right reveal that also slides in from the left — matches the
+          site loader's letters (power4.out feel, ~0.8s). */}
       <motion.div
         className="relative w-full h-full bg-[#7A4027]"
         style={maskStyle}
-        initial={{ clipPath: 'inset(0 0 100% 0)' }}
+        initial={{ clipPath: 'inset(0 100% 0 0)', x: -28 }}
         animate={isInView
-          ? { clipPath: 'inset(0 0 0% 0)' }
-          : { clipPath: 'inset(0 0 100% 0)' }}
-        transition={{ duration: 1.6, delay, ease: [0.45, 0, 0.35, 1] }}
-      >
-        <motion.div
-          className="absolute left-0 right-0 h-1/3"
-          style={{
-            background: 'linear-gradient(to top, transparent, rgba(94,47,28,0.4) 45%, rgba(94,47,28,0.7) 100%)',
-            filter: 'blur(8px)',
-          }}
-          initial={{ bottom: '-40%' }}
-          animate={isInView ? { bottom: '100%' } : { bottom: '-40%' }}
-          transition={{ duration: 1.6, delay, ease: [0.45, 0, 0.35, 1] }}
-        />
-      </motion.div>
+          ? { clipPath: 'inset(0 0% 0 0)', x: 0 }
+          : { clipPath: 'inset(0 100% 0 0)', x: -28 }}
+        transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+      />
     </div>
   );
 };
@@ -77,28 +68,20 @@ const Footer = () => {
       <div className="container mx-auto max-w-7xl px-4 md:px-16 lg:px-20">
 
         {/* Main Grid: Left for Logos, Right for Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 lg:gap-16 mb-24 md:mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 lg:gap-16 mb-24 md:mb-32 max-md:gap-10 max-md:mb-16">
 
           {/* Left Column: Logos */}
           <div className="flex flex-col justify-center h-full">
             {/* Horse Rider Logo — aligns with CTA section */}
-            <div className="flex justify-start mb-16 md:mb-20">
+            <div className="flex justify-start mb-16 md:mb-20 max-md:mb-10">
               <PaintingLogo src="/assets/images/zippyfooter1.svg" className="w-56 h-56 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px]" />
             </div>
             {/* Zippy Equestrian Center — aligns with nav links */}
             <div className="flex items-start justify-start">
-              <div
-                className="relative w-48 h-16 md:w-[240px] md:h-[68px] lg:w-[280px] lg:h-[80px] bg-[#7A4027]"
-                style={{
-                  maskImage: 'url(/assets/images/zippyfooter2.svg)',
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskImage: 'url(/assets/images/zippyfooter2.svg)',
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center'
-                }}
+              <PaintingLogo
+                src="/assets/images/zippyfooter2.svg"
+                className="w-48 h-16 md:w-[240px] md:h-[68px] lg:w-[280px] lg:h-[80px]"
+                delay={0.15}
               />
             </div>
           </div>
@@ -107,11 +90,11 @@ const Footer = () => {
           <div className="flex flex-col justify-center h-full max-w-lg mx-auto md:mx-0 md:pl-8 lg:pl-16">
 
             {/* Top CTA Section */}
-            <div className={`text-center md:text-left mb-16 md:mb-20 ${textColor}`}>
-              <h2 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium leading-[1.15] mb-6 tracking-tight">
+            <div className={`text-center md:text-left mb-16 md:mb-20 max-md:mb-10 ${textColor}`}>
+              <h2 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium leading-[1.15] mb-6 tracking-tight max-md:text-[32px] max-md:mb-4">
                 The rider in you is<br />just a ride away.
               </h2>
-              <p className="text-base md:text-lg opacity-90 mb-10 font-light leading-relaxed">
+              <p className="text-base md:text-lg opacity-90 mb-10 font-light leading-relaxed max-md:text-sm max-md:mb-6">
                 Your first ride is 30 minutes away. Call us<br />and let&apos;s get you started.
               </p>
               <Link href="/contact" className={`group flex items-center justify-center md:justify-start gap-4 px-8 py-4 border rounded transition-all duration-300 mx-auto md:mx-0 w-fit ${borderColor} ${buttonHover}`}>

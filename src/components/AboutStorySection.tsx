@@ -3,7 +3,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function AboutStorySection() {
   return (
-    <section className="relative w-full bg-[#1C2245] py-20 md:py-24 overflow-hidden">
+    <section className="relative w-full bg-[#1C2245] py-20 md:py-24 max-md:py-14 overflow-hidden">
       {/* Top right pattern */}
       <div className="absolute top-0 right-0 w-[70%] md:w-[50%] lg:w-[40%] max-w-[600px] aspect-square opacity-60 pointer-events-none">
         <Image loading="lazy"
@@ -15,13 +15,13 @@ export default function AboutStorySection() {
         />
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10 pt-12">
+      <div className="container mx-auto px-6 md:px-12 relative z-10 pt-12 max-md:pt-8">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-16 max-md:gap-y-10 items-start">
             {/* Left Column: Top 3 Paragraphs */}
-            <div className="pl-16 lg:col-span-7 flex flex-col text-[#FFF8E5] font-extralight text-[15px] md:text-[17px] leading-[1.4]">
+            <div className="pl-16 max-md:pl-0 lg:col-span-7 flex flex-col text-[#FFF8E5] font-extralight text-[15px] md:text-[17px] leading-[1.4]">
               <Reveal>
-                <h2 className="text-white font-sans text-xl md:text-2xl font-bold tracking-[0.1em] uppercase mb-12 md:mb-16">
+                <h2 className="text-white font-sans text-xl md:text-2xl font-bold tracking-[0.1em] uppercase mb-12 md:mb-16 max-md:mb-8">
                   Where it all began
                 </h2>
               </Reveal>
@@ -58,7 +58,7 @@ export default function AboutStorySection() {
             </Reveal>
 
             {/* Bottom Paragraph */}
-            <div className="pl-16 lg:col-span-12 text-[#FFF8E5] font-normal text-[15px] md:text-[17px] leading-[1.4] max-w-[1000px]">
+            <div className="pl-16 max-md:pl-0 lg:col-span-12 text-[#FFF8E5] font-normal text-[15px] md:text-[17px] leading-[1.4] max-w-[1000px]">
               <Reveal delay={0.28}>
                 <p>
                   Over time, word spread. Friends came to ride. Then friends of friends. Then families with children and adults ticking riding off their list, and people who just wanted to spend their weekend somewhere different. The small setup became something real, a proper equestrian center, built entirely on the idea that horse riding should be open to everyone. That&apos;s still what Zippy Equestrian Center is today.

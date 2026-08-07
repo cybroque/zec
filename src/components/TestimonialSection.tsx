@@ -12,7 +12,7 @@ const TestimonialSection = () => {
           {/* Left Column: Heading */}
           <div className="flex flex-col">
             <Reveal>
-              <h2 className="text-5xl md:text-[85px] font-light leading-[1.1] text-[#85431E] mb-10 tracking-tight">
+              <h2 className="text-5xl md:text-[85px] max-md:text-4xl font-light leading-[1.1] text-[#85431E] mb-10 tracking-tight">
                 Words from<br />
                 the <span className="text-[#DA7347]">horseback</span>
               </h2>
@@ -25,8 +25,8 @@ const TestimonialSection = () => {
           </div>
 
           {/* Right Column: Testimonial */}
-          <div className="relative pt-12">
-            <div className="absolute top-12 left-0 -translate-x-8 -translate-y-4">
+          <div className="relative pt-12 max-md:pt-6">
+            <div className="absolute top-12 left-0 -translate-x-8 -translate-y-4 max-md:translate-x-0">
               <Reveal delay={0.12}>
                 <div className="relative w-16 h-12 opacity-80">
                   <Image loading="lazy"

@@ -171,7 +171,7 @@ export default function StoriesRidersSection() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.32 }}
-                  className="w-full px-8 md:px-16 grid grid-cols-3 items-center h-[110px]"
+                  className="w-full px-8 md:px-16 grid grid-cols-3 items-center h-[110px] max-md:grid-cols-1 max-md:h-auto max-md:gap-1.5 max-md:px-6 max-md:py-4"
                 >
                   <span
                     className="text-white/85 text-3xl md:text-4xl font-light "
@@ -180,14 +180,14 @@ export default function StoriesRidersSection() {
                     {rider.name}
                   </span>
 
-                  <div className="text-center">
+                  <div className="text-center max-md:text-left">
                     <span className="text-white/45 text-[11px]  uppercase block mb-1">
                       Joined ·
                     </span>
                     <span className="text-white/75 text-sm">{rider.joinedDate}</span>
                   </div>
 
-                  <div className="text-right">
+                  <div className="text-right max-md:text-left">
                     <span className="text-white/45 text-[11px]  uppercase block mb-1">
                       {rider.location} ·
                     </span>
@@ -202,10 +202,10 @@ export default function StoriesRidersSection() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.32 }}
-                  className="flex min-h-[380px]"
+                  className="flex min-h-[380px] max-md:flex-col max-md:min-h-0"
                 >
                   {/* Left: photo with name overlay */}
-                  <div className="relative w-[38%] min-h-[380px] flex-shrink-0">
+                  <div className="relative w-[38%] min-h-[380px] flex-shrink-0 max-md:w-full max-md:min-h-[280px]">
                     <Image loading="lazy"
                       src={rider.image}
                       alt={rider.name}
@@ -214,9 +214,9 @@ export default function StoriesRidersSection() {
                       className="object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
+                    <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 max-md:p-6">
                       <h3
-                        className="text-white text-3xl md:text-4xl font-bold leading-none mb-2"
+                        className="text-white text-3xl md:text-4xl font-bold leading-none mb-2 max-sm:text-2xl"
                         style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                       >
                         {rider.name}
@@ -228,7 +228,7 @@ export default function StoriesRidersSection() {
                   </div>
 
                   {/* Right: before / after */}
-                  <div className="flex-1 px-8 md:px-12 py-10 flex flex-col justify-center gap-8">
+                  <div className="flex-1 px-8 md:px-12 py-10 flex flex-col justify-center gap-8 max-md:px-6 max-md:py-8 max-md:gap-6">
                     <div>
                       <p className="text-white/45 text-[11px] tracking-[0.2em] uppercase mb-3">
                         Before Zippy
