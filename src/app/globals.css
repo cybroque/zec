@@ -84,6 +84,11 @@ body.footer-active [class*="bg-[#FFFBF2]"] {
   background-color: #DA7347 !important;
 }
 
+/* Zippy Family heading transitions for footer */
+body.footer-active .zippy-family-text {
+  color: #F2EBD9 !important;
+}
+
 /* Instagram section transitions for footer */
 body.footer-active .insta-heading-text {
   color: #F2EBD9 !important;

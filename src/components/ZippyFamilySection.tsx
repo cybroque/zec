@@ -15,7 +15,7 @@ const ZippyFamilySection = () => {
             <div className="flex flex-col text-center md:text-left">
               <h2 className="text-[36px] md:text-6xl font-light leading-[1.05] tracking-tight">
                 <span className="text-[#85431E] block">Part of the</span>
-                <span className="text-[#DA7347]">Zippy Family</span>
+                <span className="zippy-family-text text-[#DA7347] transition-colors duration-300">Zippy Family</span>
               </h2>
             </div>
           </Reveal>

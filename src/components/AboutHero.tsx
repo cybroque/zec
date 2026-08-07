@@ -14,7 +14,7 @@ export default function AboutHero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[80%_20%]"
+          className="object-cover object-[80%_20%] max-md:object-[50%_20%]"
         />
       </div>
 

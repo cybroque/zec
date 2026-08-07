@@ -29,6 +29,12 @@ export default function AboutHerdSection() {
   useEffect(() => {
     const measure = () => {
       if (!trackRef.current || !trackRef.current.parentElement) return;
+      // Mobile gets a plain swipeable carousel instead of the pinned
+      // scroll-jack animation — skip the scroll-distance math entirely.
+      if (window.innerWidth < 768) {
+        setScrollDist(0);
+        return;
+      }
       // Calculate how much the scrolling track overflows its container (the right side of the screen)
       const containerWidth = trackRef.current.parentElement.clientWidth;
       // We want the last horse to stop exactly at the center of the container.
@@ -71,13 +77,13 @@ export default function AboutHerdSection() {
           <Reveal delay={0.1}>
             <div className="mb-10 max-md:mb-6 md:mb-0" style={{ paddingLeft: "clamp(24px, 11.4vw, 172px)", paddingRight: "clamp(24px, 4vw, 40px)" }}>
               <h2
-                className="font-normal leading-[1.1] text-[#85431e] mb-6"
+                className="font-normal leading-[1.1] text-[#85431e] mb-6 max-md:!text-[34px]"
                 style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
               >
                 Meet the Herd
               </h2>
               <p
-                className="font-light text-[#85431e] leading-[1.25]"
+                className="font-light text-[#85431e] leading-[1.25] max-md:!text-[15px] max-md:!leading-[1.5]"
                 style={{ fontSize: "clamp(12px, 1.2vw, 18px)", maxWidth: "400px" }}
               >
                 Every horse at Zippy Equestrian Center is well-cared for, regularly vetted, and matched to
@@ -89,7 +95,7 @@ export default function AboutHerdSection() {
         </div>
 
         {/* Scrolling track */}
-        <div className="w-full md:w-2/3 xl:w-[60%] overflow-hidden pl-6 md:pl-0">
+        <div className="w-full md:w-2/3 xl:w-[60%] overflow-x-auto md:overflow-hidden pl-6 md:pl-0 snap-x snap-proximity md:snap-none no-scrollbar touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch]">
           <motion.div
             ref={trackRef}
             className="flex"
@@ -99,7 +105,7 @@ export default function AboutHerdSection() {
             }}
           >
             {horses.map((horse, i) => (
-              <div key={i} className="flex-none" style={{ width: `${CARD_W}px` }}>
+              <div key={i} className="flex-none snap-center md:snap-none select-none [-webkit-touch-callout:none]" style={{ width: `${CARD_W}px` }}>
                 {/* Card image —  layer structure */}
                 <Reveal delay={0.05 * Math.min(i, 4)}>
                 <div
@@ -107,7 +113,7 @@ export default function AboutHerdSection() {
                   style={{ height: "330px" }}
                 >
                   <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-                    <Image loading="lazy" src={horse.image} alt={horse.name} fill sizes="254px" className="object-cover" />
+                    <Image loading="lazy" src={horse.image} alt={horse.name} fill draggable={false} sizes="254px" className="object-cover [-webkit-user-drag:none] pointer-events-none" />
                   </div>
                 </div>
                 </Reveal>

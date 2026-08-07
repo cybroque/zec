@@ -36,7 +36,7 @@ export default function AboutTeamSection() {
           </h2>
         </Reveal>
 
-        <div className="relative max-w-[1800px] mx-auto">
+        <div ref={ref} className="relative max-w-[1800px] mx-auto">
           {/* Background Pattern */}
           <div className="absolute top-[-30px] md:top-[-60px] left-0 w-full h-[120px] md:h-[160px] z-0 pointer-events-none flex justify-center">
             <div className="relative w-full h-full max-w-[900px] mx-auto">
@@ -46,7 +46,6 @@ export default function AboutTeamSection() {
 
           {/* Desktop: 4-column grid with hover scale */}
           <motion.div
-            ref={ref}
             className="hidden md:grid grid-cols-4 gap-5 relative z-10 items-end"
             variants={containerVariants}
             initial="hidden"

@@ -14,7 +14,7 @@ export default function ProgramsHero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover max-md:object-[6%_50%] max-md:![transform:scale(1)]"
           style={{ transform: "scale(1.6)", transformOrigin: "10% 15%" }}
         />
       </div>

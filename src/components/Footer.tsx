@@ -63,7 +63,7 @@ const Footer = () => {
   return (
     <footer
       ref={ref}
-      className="relative w-full pt-48 pb-8 md:pt-64 md:pb-10 transition-colors duration-300 bg-[#FFF8E5]"
+      className="relative w-full pt-48 pb-8 md:pt-64 md:pb-10 max-md:!pt-16 transition-colors duration-300 bg-[#FFF8E5]"
     >
       <div className="container mx-auto max-w-7xl px-4 md:px-16 lg:px-20">
 
