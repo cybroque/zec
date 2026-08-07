@@ -9,7 +9,7 @@ export default function AboutHero() {
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
-          src="/assets/images/about-hero.webp"
+          src="/assets/images/about/Webp/hero.webp"
           alt="Woman in riding gear"
           fill
           priority
@@ -17,6 +17,12 @@ export default function AboutHero() {
           className="object-cover object-[80%_20%]"
         />
       </div>
+
+      {/* Figma Linear Overlay */}
+      <div
+        aria-hidden
+        className="absolute inset-0 w-full h-full z-[1] bg-[linear-gradient(to_right,rgba(28,34,69,0.5)_20%,rgba(255,248,229,0)_95%)]"
+      />
 
       {/* Content Container */}
       <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col justify-center h-full pt-32">
