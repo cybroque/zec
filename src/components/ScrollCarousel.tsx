@@ -193,7 +193,7 @@ const ScrollCarousel = () => {
             <div className="hidden md:block w-[40%] relative z-10 overflow-visible">
               {/* Invisible spacer to dictate container height proportionally to image aspect ratio */}
               <Image loading="lazy"
-                src="/assets/images/r2.webp"
+                src="/assets/images/HomePage/Webp/ridewithus2.webp"
                 alt="spacer"
                 width={744}
                 height={497}

@@ -1,9 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
+import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
 import { routeForPath, imagesForRoute } from "@/lib/images";
+
+gsap.registerPlugin(SplitText);
+
+const WORD = "ZIPPY";
 
 const MIN_VISIBLE_MS = 1200;
 const PRELOAD_TIMEOUT_MS = 8000;
@@ -12,7 +17,9 @@ const SAFETY_TIMEOUT_MS = 6000;
 type Phase = "hidden" | "loading" | "fading";
 
 /**
- * LoadingScreen — branded full-screen splash (logo + animated bar).
+ * LoadingScreen — branded full-screen splash: full-bleed "ZIPPY" whose
+ * characters slide up from behind a mask (GSAP SplitText) with a 0%→100%
+ * counter top-right; on exit the word slides off to the right.
  *
  * Shows on the first load / refresh and on every client-side page change.
  * While visible it eagerly preloads every image on the target route so the
@@ -32,6 +39,10 @@ export default function LoadingScreen() {
   const firstRunRef = useRef(true);
   const pendingNavRef = useRef<string | null>(null);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const rootRef = useRef<HTMLDivElement>(null);
+  const wordRef = useRef<HTMLDivElement>(null);
+  const splitRef = useRef<SplitText | null>(null);
 
   const clearTimers = () => {
     timersRef.current.forEach((t) => clearTimeout(t));
@@ -138,43 +149,95 @@ const preload = (route: string): Promise<void> => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
+  // Intro reveal — replays every time the loader (re)enters the loading phase.
+  // Each ZIPPY character slides in from the left, one after another, into its
+  // slot (GSAP SplitText masks each letter).
+  useEffect(() => {
+    if (phase !== "loading") return;
+    const word = wordRef.current;
+    if (!word) return;
+
+    splitRef.current?.revert();
+
+    // Fit the word to the full viewport width (edge to edge) before splitting
+    // so each letter mask is sized at the final scale. The 0.99 keeps the end
+    // glyphs from clipping at the screen edges.
+    word.style.transform = "none";
+    const box = word.parentElement;
+    const parentW = box?.clientWidth ?? window.innerWidth;
+    const naturalW = word.getBoundingClientRect().width;
+    if (naturalW > 0) {
+      const curPx = parseFloat(getComputedStyle(word).fontSize);
+      word.style.fontSize = `${(curPx * parentW * 0.99) / naturalW}px`;
+    }
+
+    // On mobile the width-fit leaves the letters short — stretch them
+    // vertically so they fill the same bottom-half height as on desktop.
+    if (window.innerWidth < 768 && box) {
+      const wordH = word.getBoundingClientRect().height;
+      if (wordH > 0) {
+        word.style.transformOrigin = "center";
+        word.style.transform = `scaleY(${(box.clientHeight * 0.9) / wordH})`;
+      }
+    }
+
+    const split = new SplitText(word, { type: "chars", mask: "chars" });
+    splitRef.current = split;
+
+    const tl = gsap.timeline();
+    tl.from(split.chars, {
+      xPercent: -140,
+      duration: 0.7,
+      ease: "power4.out",
+      stagger: 0.11,
+    });
+
+    return () => {
+      tl.kill();
+    };
+  }, [phase]);
+
+  // Exit — each letter slides off to the right and vanishes, one after another.
+  useEffect(() => {
+    if (phase !== "fading") return;
+    const chars = splitRef.current?.chars;
+    if (chars) {
+      gsap.to(chars, {
+        xPercent: 140,
+        autoAlpha: 0,
+        duration: 0.5,
+        ease: "power3.in",
+        stagger: 0.07,
+      });
+    }
+  }, [phase]);
+
+  // Free the SplitText DOM wrappers when the loader unmounts for good.
+  useEffect(() => () => splitRef.current?.revert(), []);
+
   if (phase === "hidden") return null;
 
   return (
     <div
+      ref={rootRef}
       aria-label="Loading Zippy Equestrian Center"
       role="status"
-      className="site-loader fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FFF8E5]"
+      className="site-loader fixed inset-0 z-[9999] overflow-hidden bg-[#85431E]"
       style={{
         transition: "opacity 0.7s ease",
         opacity: phase === "fading" ? 0 : 1,
         pointerEvents: phase === "fading" ? "none" : "all",
       }}
     >
-      <div className="relative w-40 h-20 mb-12">
-        <Image
-          src="/assets/images/zippylogo-dark.svg"
-          alt="Zippy Equestrian Center"
-          fill
-          priority
-          className="object-contain select-none"
-        />
-      </div>
-
-      <div className="w-48 h-[1px] bg-[#DA7347]/20 rounded-full overflow-hidden">
+      <div className="absolute inset-x-0 bottom-0 h-1/2 flex items-center justify-center">
         <div
-          className="h-full bg-[#DA7347] rounded-full"
-          style={{ animation: "zec-loader-bar 2s ease-in-out infinite" }}
-        />
+          ref={wordRef}
+          aria-hidden
+          className="whitespace-nowrap font-[family-name:var(--font-ultra)] font-black uppercase leading-[0.8] tracking-normal text-[#DA7347] text-[clamp(6rem,27vw,26rem)]"
+        >
+          {WORD}
+        </div>
       </div>
-
-      <style>{`
-        @keyframes zec-loader-bar {
-          0%   { width: 0%;   margin-left: 0%; }
-          50%  { width: 70%;  margin-left: 15%; }
-          100% { width: 0%;   margin-left: 100%; }
-        }
-      `}</style>
     </div>
   );
 }

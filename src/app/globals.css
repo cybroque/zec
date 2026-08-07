@@ -107,7 +107,7 @@ body.footer-active .bottom-banner-btn {
   color: #F2EBD9 !important;
 }
 
-/* Loader splash must stay cream — footer's orange override must not reach it */
+/* Loader splash keeps its own brown — footer's orange override must not reach it */
 body.footer-active div.site-loader {
-  background-color: #FFF8E5 !important;
+  background-color: #85431E !important;
 }

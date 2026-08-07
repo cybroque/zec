@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days
     dangerouslyAllowSVG: false, // Prevent SVG as images (force conversion)
+    qualities: [100, 75],
   },
   // Aggressive caching for static assets
   async headers() {

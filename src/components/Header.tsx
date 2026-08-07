@@ -6,10 +6,10 @@ import { useState, useEffect, useCallback } from "react";
 
 // Map of route → hero image to silently prefetch when the user hovers the link
 const ROUTE_PREFETCH: Record<string, string> = {
-  "/about":    "/assets/images/about-hero.webp",
-  "/programs": "/assets/images/pro-hero.webp",
-  "/beyond":   "/assets/images/beyond-hero.webp",
-  "/stories":  "/assets/images/riders-hero.webp",
+  "/about":    "/assets/images/About/Webp/hero.webp",
+  "/programs": "/assets/images/Programs/Webp/Hero.webp",
+  "/beyond":   "/assets/images/BeyondRide/Webp/beyond-hero.webp",
+  "/stories":  "/assets/images/Rider_stories/Webp/riders-hero.webp",
 };
 
 /** Kicks off a background download so the image is cached before navigation. */
