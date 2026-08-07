@@ -26,9 +26,9 @@ const TestimonialSection = () => {
 
           {/* Right Column: Testimonial */}
           <div className="relative pt-12 max-md:pt-6">
-            <div className="absolute top-12 left-0 -translate-x-8 -translate-y-4 max-md:translate-x-0">
+            <div className="absolute md:top-10 md:left-0 -md:translate-x-8 -md:translate-y-4 max-md:translate-x-0">
               <Reveal delay={0.12}>
-                <div className="relative w-16 h-12 opacity-80">
+                <div className="relative w-8 h-6 md:w-16 md:h-12 opacity-80">
                   <Image loading="lazy"
                     src="/assets/images/quotationmark.png"
                     alt="Quotation Mark"

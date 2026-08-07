@@ -19,14 +19,15 @@ const ActivityCard = ({
   href: string;
 }) => {
   return (
-    <Link href={href} className="relative group block overflow-hidden rounded-sm aspect-[423/556.5] w-full cursor-pointer">
+    <Link href={href} className="relative group block overflow-hidden rounded-sm aspect-[423/556.5] w-[78vw] max-w-[320px] flex-shrink-0 snap-center md:w-full md:max-w-none md:flex-shrink md:snap-none cursor-pointer select-none [-webkit-touch-callout:none]">
       {/* Image */}
       <Image loading="lazy"
         src={imageSrc}
         alt={title}
         fill
+        draggable={false}
         sizes="(max-width: 768px) 100vw, 33vw"
-        className="object-cover transition-transform duration-700 group-hover:scale-110"
+        className="object-cover transition-transform duration-700 group-hover:scale-110 [-webkit-user-drag:none] pointer-events-none"
       />
 
       {/* Color Overlay */}
@@ -91,10 +92,10 @@ const ActivitiesSection = () => {
           </Reveal>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 lg:gap-6 mb-12">
+        {/* Grid / Mobile scroll carousel */}
+        <div className="flex overflow-x-auto snap-x snap-proximity no-scrollbar gap-4 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] md:grid md:grid-cols-3 md:gap-4 lg:gap-6 md:overflow-visible md:snap-none mb-12">
           {activities.map((activity, index) => (
-            <Reveal key={index} delay={0.06 * (index + 1)}>
+            <Reveal key={index} delay={0.06 * (index + 1)} className="flex-shrink-0 snap-center md:flex-shrink md:snap-none">
               <ActivityCard {...activity} />
             </Reveal>
           ))}

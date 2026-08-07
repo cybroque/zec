@@ -71,13 +71,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 lg:gap-16 mb-24 md:mb-32 max-md:gap-10 max-md:mb-16">
 
           {/* Left Column: Logos */}
-          <div className="flex flex-col justify-center h-full">
+          <div className="flex flex-col justify-center items-center md:items-stretch h-full">
             {/* Horse Rider Logo — aligns with CTA section */}
-            <div className="flex justify-start mb-16 md:mb-20 max-md:mb-10">
+            <div className="flex justify-center md:justify-start mb-16 md:mb-20 max-md:mb-10">
               <PaintingLogo src="/assets/images/zippyfooter1.svg" className="w-56 h-56 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px]" />
             </div>
             {/* Zippy Equestrian Center — aligns with nav links */}
-            <div className="flex items-start justify-start">
+            <div className="flex items-start justify-center md:justify-start">
               <PaintingLogo
                 src="/assets/images/zippyfooter2.svg"
                 className="w-48 h-16 md:w-[240px] md:h-[68px] lg:w-[280px] lg:h-[80px]"
