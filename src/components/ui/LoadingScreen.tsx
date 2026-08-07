@@ -162,7 +162,6 @@ const preload = (route: string): Promise<void> => {
     // Fit the word to the full viewport width (edge to edge) before splitting
     // so each letter mask is sized at the final scale. The 0.99 keeps the end
     // glyphs from clipping at the screen edges.
-    word.style.transform = "none";
     const box = word.parentElement;
     const parentW = box?.clientWidth ?? window.innerWidth;
     const naturalW = word.getBoundingClientRect().width;
@@ -171,19 +170,12 @@ const preload = (route: string): Promise<void> => {
       word.style.fontSize = `${(curPx * parentW * 0.99) / naturalW}px`;
     }
 
-    // On mobile the width-fit leaves the letters short — stretch them
-    // vertically so they fill the same bottom-half height as on desktop.
-    if (window.innerWidth < 768 && box) {
-      const wordH = word.getBoundingClientRect().height;
-      if (wordH > 0) {
-        word.style.transformOrigin = "center";
-        word.style.transform = `scaleY(${(box.clientHeight * 0.9) / wordH})`;
-      }
-    }
-
     const split = new SplitText(word, { type: "chars", mask: "chars" });
     splitRef.current = split;
 
+    // Reveal only once the word has been fitted + split, so the un-fitted
+    // clamp-size text never flashes on screen first.
+    gsap.set(word, { autoAlpha: 1 });
     const tl = gsap.timeline();
     tl.from(split.chars, {
       xPercent: -140,
@@ -233,7 +225,7 @@ const preload = (route: string): Promise<void> => {
         <div
           ref={wordRef}
           aria-hidden
-          className="whitespace-nowrap font-[family-name:var(--font-ultra)] font-black uppercase leading-[0.8] tracking-normal text-[#DA7347] text-[clamp(6rem,27vw,26rem)]"
+          className="whitespace-nowrap opacity-0 font-[family-name:var(--font-ultra)] font-black uppercase leading-[0.8] tracking-normal text-[#DA7347] text-[clamp(6rem,27vw,26rem)]"
         >
           {WORD}
         </div>
