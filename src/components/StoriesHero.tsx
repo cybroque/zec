@@ -8,7 +8,7 @@ export default function StoriesHero() {
     <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#53321E]">
       {/* Background image */}
       <Image
-        src="/assets/images/riders-hero.webp"
+        src="/assets/images/Rider_stories/Webp/riders-hero.webp"
         alt="Zippy riders group photo"
         fill
         priority

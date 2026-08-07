@@ -6,10 +6,10 @@ import { motion, useInView } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
 
 const teamMembers = [
-  { name: "Narasimha Murthy", role: "Chief Advisor", image: "/assets/images/about-p1.png" },
-  { name: "Dilip Kirani", role: "Founder & CEO", image: "/assets/images/about-p2.png" },
-  { name: "Mohamed Nouman", role: "Operational Head", image: "/assets/images/about-p3.png" },
-  { name: "Barath Manoharan", role: "Chief of Training", image: "/assets/images/about-p4.png" },
+  { name: "Narasimha Murthy", role: "Chief Advisor", image: "/assets/images/About/Webp/about-p1.webp" },
+  { name: "Dilip Kirani", role: "Founder & CEO", image: "/assets/images/About/Webp/about-p2.webp" },
+  { name: "Mohamed Nouman", role: "Operational Head", image: "/assets/images/About/Webp/about-p3.webp" },
+  { name: "Rounak Murthy", role: "Director", image: "/assets/images/About/Webp/about-p4.webp" },
 ];
 
 const containerVariants = {

@@ -47,12 +47,12 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
           <div className="flex flex-col gap-[6px] w-[324px]">
             <Reveal delay={0.1} className="w-full h-[369px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
-                <Image loading="lazy" src="/assets/images/g1.webp" alt="Zippy 1" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+                <Image loading="lazy" src="/assets/images/Contact/Webp/g1.webp" alt="Zippy 1" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
               </div>
             </Reveal>
             <Reveal delay={0.2} className="w-full h-[216px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
-                <Image loading="lazy" src="/assets/images/g2.webp" alt="Zippy 2" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+                <Image loading="lazy" src="/assets/images/Contact/Webp/g2.webp" alt="Zippy 2" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
               </div>
             </Reveal>
           </div>
@@ -61,7 +61,7 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
           <div className="flex flex-col w-[331px]">
             <Reveal delay={0.15} className="w-full h-[591px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
-                <Image loading="lazy" src="/assets/images/g3.webp" alt="Zippy 3" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+                <Image loading="lazy" src="/assets/images/Contact/Webp/g3.webp" alt="Zippy 3" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
               </div>
             </Reveal>
           </div>
@@ -70,12 +70,12 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
           <div className="flex flex-col gap-[11px] w-[393px]">
             <Reveal delay={0.2} className="w-full h-[337px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
-                <Image loading="lazy" src="/assets/images/g4.webp" alt="Zippy 4" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+                <Image loading="lazy" src="/assets/images/Contact/Webp/g4.webp" alt="Zippy 4" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
               </div>
             </Reveal>
             <Reveal delay={0.3} className="w-full h-[243px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
-                <Image loading="lazy" src="/assets/images/g5.webp" alt="Zippy 5" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+                <Image loading="lazy" src="/assets/images/Contact/Webp/g5.webp" alt="Zippy 5" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
               </div>
             </Reveal>
           </div>
@@ -84,12 +84,12 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
           <div className="flex flex-col gap-[9px] w-[337px]">
             <Reveal delay={0.25} className="w-full h-[319px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
-                <Image loading="lazy" src="/assets/images/g6.webp" alt="Zippy 6" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+                <Image loading="lazy" src="/assets/images/Contact/Webp/g6.webp" alt="Zippy 6" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
               </div>
             </Reveal>
             <Reveal delay={0.35} className="w-full h-[263px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
-                <Image loading="lazy" src="/assets/images/g7.webp" alt="Zippy 7" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+                <Image loading="lazy" src="/assets/images/Contact/Webp/g7.webp" alt="Zippy 7" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
               </div>
             </Reveal>
           </div>

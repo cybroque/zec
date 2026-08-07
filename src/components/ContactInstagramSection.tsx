@@ -43,12 +43,12 @@ export default function ContactInstagramSection({ bgColor = "#FFFBF2" }: Contact
             <div className="flex flex-col gap-[4px] w-[227px]">
               <Reveal delay={0.1} className="w-full h-[258px]">
                 <div className="relative w-full h-full bg-[#E5DCC8]">
-                  <Image loading="lazy" src="/assets/images/g1.webp" alt="Zippy 1" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                  <Image loading="lazy" src="/assets/images/Contact/Webp/g1.webp" alt="Zippy 1" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
                 </div>
               </Reveal>
               <Reveal delay={0.2} className="w-full h-[151px]">
                 <div className="relative w-full h-full bg-[#E5DCC8]">
-                  <Image loading="lazy" src="/assets/images/g2.webp" alt="Zippy 2" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                  <Image loading="lazy" src="/assets/images/Contact/Webp/g2.webp" alt="Zippy 2" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
                 </div>
               </Reveal>
             </div>
@@ -57,7 +57,7 @@ export default function ContactInstagramSection({ bgColor = "#FFFBF2" }: Contact
             <div className="flex flex-col w-[232px]">
               <Reveal delay={0.15} className="w-full h-[413px]">
                 <div className="relative w-full h-full bg-[#E5DCC8]">
-                  <Image loading="lazy" src="/assets/images/g3.webp" alt="Zippy 3" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                  <Image loading="lazy" src="/assets/images/Contact/Webp/g3.webp" alt="Zippy 3" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
                 </div>
               </Reveal>
             </div>
@@ -66,12 +66,12 @@ export default function ContactInstagramSection({ bgColor = "#FFFBF2" }: Contact
             <div className="flex flex-col gap-[7px] w-[275px]">
               <Reveal delay={0.2} className="w-full h-[236px]">
                 <div className="relative w-full h-full bg-[#E5DCC8]">
-                  <Image loading="lazy" src="/assets/images/g4.webp" alt="Zippy 4" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                  <Image loading="lazy" src="/assets/images/Contact/Webp/g4.webp" alt="Zippy 4" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
                 </div>
               </Reveal>
               <Reveal delay={0.3} className="w-full h-[170px]">
                 <div className="relative w-full h-full bg-[#E5DCC8]">
-                  <Image loading="lazy" src="/assets/images/g5.webp" alt="Zippy 5" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                  <Image loading="lazy" src="/assets/images/Contact/Webp/g5.webp" alt="Zippy 5" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
                 </div>
               </Reveal>
             </div>
@@ -80,12 +80,12 @@ export default function ContactInstagramSection({ bgColor = "#FFFBF2" }: Contact
             <div className="flex flex-col gap-[6px] w-[236px]">
               <Reveal delay={0.25} className="w-full h-[223px]">
                 <div className="relative w-full h-full bg-[#E5DCC8]">
-                  <Image loading="lazy" src="/assets/images/g6.webp" alt="Zippy 6" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                  <Image loading="lazy" src="/assets/images/Contact/Webp/g6.webp" alt="Zippy 6" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
                 </div>
               </Reveal>
               <Reveal delay={0.35} className="w-full h-[184px]">
                 <div className="relative w-full h-full bg-[#E5DCC8]">
-                  <Image loading="lazy" src="/assets/images/g7.webp" alt="Zippy 7" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                  <Image loading="lazy" src="/assets/images/Contact/Webp/g7.webp" alt="Zippy 7" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
                 </div>
               </Reveal>
             </div>

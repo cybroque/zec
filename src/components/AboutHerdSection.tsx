@@ -9,13 +9,13 @@ const CARD_W = 254;
 const CARD_GAP = 35;
 
 const horses = [
-  { name: "Chargano fly PS", ageType: "10 Years | Gelding", breed: "Breed: Holsteiner", image: "/assets/images/herd0.webp" },
-  { name: "Maharaja", ageType: "9 Years | Gelding", breed: "Breed: Thoroughbred", image: "/assets/images/herd1.webp" },
-  { name: "Arjuna", ageType: "9 Years | Gelding", breed: "Breed: Thoroughbred", image: "/assets/images/herd2.webp" },
-  { name: "Gwen", ageType: "12 Years | Mare", breed: "Breed: Pony", image: "/assets/images/herd3.webp" },
-  { name: "CHF Party Time", ageType: "8 Years | Gelding", breed: "Breed: Irish Sport Horse", image: "/assets/images/herd4.webp" },
-  { name: "Dawn", ageType: "12 Years | Gelding", breed: "Breed: Arabian", image: "/assets/images/herd5.webp" },
-  { name: "Vedette Van Splabeek Z", ageType: "10 Years | Gelding", breed: "Breed: Zangersheide", image: "/assets/images/herd6.webp" },
+  { name: "Chargano fly PS", ageType: "10 Years | Gelding", breed: "Breed: Holsteiner", image: "/assets/images/About/Webp/herd0.webp" },
+  { name: "Maharaja", ageType: "9 Years | Gelding", breed: "Breed: Thoroughbred", image: "/assets/images/About/Webp/herd1.webp" },
+  { name: "Arjuna", ageType: "9 Years | Gelding", breed: "Breed: Thoroughbred", image: "/assets/images/About/Webp/herd2.webp" },
+  { name: "Gwen", ageType: "12 Years | Mare", breed: "Breed: Pony", image: "/assets/images/About/Webp/herd3.webp" },
+  { name: "CHF Party Time", ageType: "8 Years | Gelding", breed: "Breed: Irish Sport Horse", image: "/assets/images/About/Webp/herd4.webp" },
+  { name: "Dawn", ageType: "12 Years | Gelding", breed: "Breed: Arabian", image: "/assets/images/About/Webp/herd5.webp" },
+  { name: "Vedette Van Splabeek Z", ageType: "10 Years | Gelding", breed: "Breed: Zangersheide", image: "/assets/images/About/Webp/herd6.webp" },
 ];
 
 // Trailing empty slot so the last card never sits flush at the right edge

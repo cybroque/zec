@@ -48,7 +48,7 @@ export default function AboutStorySection() {
             <Reveal delay={0.12} className="lg:col-span-5 flex justify-center lg:justify-start">
               <div className="relative w-full max-w-[240px] sm:max-w-[260px] lg:max-w-[280px] aspect-[4/5] rounded-lg overflow-hidden shadow-2xl hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
                 <Image loading="lazy"
-                  src="/assets/images/about-main.webp"
+                  src="/assets/images/About/Webp/Founding_Partner.webp"
                   alt="Dilip Kirani - Founding Partner"
                   fill
                   sizes="(max-width: 640px) 240px, (max-width: 1024px) 260px, 280px"

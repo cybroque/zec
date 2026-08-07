@@ -17,7 +17,7 @@ export default function BeyondContactSection() {
         {/* Left: image */}
         <div className="relative w-full md:w-1/2 min-h-[300px] md:min-h-[450px] shrink-0">
           <Image loading="eager" fetchPriority="low"
-            src="/assets/images/know-more.png"
+            src="/assets/images/BeyondRide/Webp/franchise.webp"
             alt="Know more about Zippy Equestrian Center"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
