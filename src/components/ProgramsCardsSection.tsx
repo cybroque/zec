@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
@@ -171,8 +171,75 @@ const cardsData = [
 const cardIndexMap: Record<string, number> = {};
 cardsData.forEach((c, i) => { cardIndexMap[c.id] = i; });
 
+// Shared card renderer used by both the desktop scroll strip and the mobile carousel
+function renderCard(card: (typeof cardsData)[number]) {
+  return (
+    <div className="flex-shrink-0 w-[85vw] md:w-[429px] flex flex-col h-[591px] max-md:h-[480px]">
+      {/* Category Header */}
+      <div className={`uppercase text-[11px] md:text-xl font-normal  ${card.categoryColor} min-h-[16px] mb-2 md:mb-3 flex-shrink-0`}>
+        {card.category}
+      </div>
+
+      {/* Card Body (Image + Content attached) */}
+      <div className="flex flex-col flex-1 shadow-sm hover:shadow-lg overflow-hidden rounded-md md:rounded-sm transition-all duration-500 ease-out hover:scale-[1.015] hover:-translate-y-1 group cursor-pointer">
+        {/* Image */}
+        <div className="relative h-[22vh] min-h-[130px] max-h-[194px] w-full flex-shrink-0 overflow-hidden">
+          <Image loading="lazy"
+            src={card.image}
+            alt={card.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 429px"
+            style={{
+              transform: `translateY(${card.translateY ?? 0}px) scale(${card.scale})`,
+              transformOrigin: card.transformOrigin,
+              objectPosition: card.objectPosition ?? "50% 50%"
+            }}
+          />
+        </div>
+
+        {/* Content Box */}
+        <div className={`flex flex-col flex-1 ${card.bgColor} ${card.textColor} overflow-hidden`}>
+          <div className="flex flex-col flex-1 p-4 md:p-5">
+            <h3 className="text-lg md:text-xl font-medium mb-2 leading-tight">
+              {card.title}
+            </h3>
+
+            <p className={`text-[11px] md:text-[12px] mb-3 md:mb-4 leading-relaxed opacity-90`}>
+              {card.description}
+            </p>
+
+            <div className="flex flex-col gap-1.5 mt-auto">
+              {card.features.map((feature, i) => (
+                <div key={i} className={`border-t ${card.featureBorder} pt-1.5 md:pt-2 text-[10px] md:text-[11px] leading-relaxed opacity-90`}>
+                  {feature}
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-3 md:pt-4 flex gap-6 items-end mt-3 flex-shrink-0">
+              {card.sessions && (
+                <div className="flex flex-col">
+                  <span className="text-[8.5px] md:text-[9px]  uppercase opacity-80 mb-0.5">Number of Sessions</span>
+                  <span className="text-[11px] md:text-[12px] font-medium">{card.sessions}</span>
+                </div>
+              )}
+              <div className="flex flex-col">
+                <span className="text-[8.5px] md:text-[9px]  uppercase opacity-80 mb-0.5">Duration</span>
+                <span className="text-[11px] md:text-[12px] font-medium">{card.duration}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ProgramsCardsSection() {
   const targetRef = useRef<HTMLDivElement>(null);
+  const mobileTrackRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -182,23 +249,43 @@ export default function ProgramsCardsSection() {
   const vwOffset = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const x = useMotionTemplate`calc(${xPercent}% + ${vwOffset}vw)`;
 
+  // Track the viewport breakpoint: desktop drives the background from scroll, mobile uses a static cream
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   // Hash-based card scroll: jump to the scroll position that reveals the target card
   useEffect(() => {
     const hash = window.location.hash.replace('#', '');
     if (!hash || !(hash in cardIndexMap)) return;
 
     const cardIndex = cardIndexMap[hash];
-    const totalCards = cardsData.length;
 
     const scrollToCard = () => {
       const el = targetRef.current;
       if (!el) return;
 
+      // Mobile: scroll the carousel track to the target card (no page scroll-lock on mobile)
+      if (window.innerWidth < 768) {
+        const track = mobileTrackRef.current;
+        const card = track?.querySelectorAll<HTMLElement>("[data-card]")[cardIndex];
+        if (!track || !card) return;
+        const trackRect = track.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        const targetLeft = track.scrollLeft + (cardRect.left - trackRect.left) - (track.clientWidth - cardRect.width) / 2;
+        track.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+        return;
+      }
+
       const sectionTop = el.getBoundingClientRect().top + window.scrollY;
       const sectionHeight = el.getBoundingClientRect().height;
 
       // scrollYProgress goes 0→1 over sectionHeight, each card occupies 1/totalCards of that
-      const targetProgress = cardIndex / (totalCards - 1);
+      const targetProgress = cardIndex / (cardsData.length - 1);
       const targetScrollY = sectionTop + targetProgress * (sectionHeight - window.innerHeight);
 
       window.scrollTo({ top: Math.max(0, targetScrollY), behavior: 'auto' });
@@ -226,20 +313,25 @@ export default function ProgramsCardsSection() {
   const sectionBgColor = useTransform(scrollYProgress, colorStops, sectionBgColors);
 
   return (
-    <motion.section id="programs-cards" ref={targetRef} style={{ backgroundColor: sectionBgColor }} className="relative h-[300vh] z-[60] bg-[#FFF8E5]">
-      <div className="sticky top-0 flex flex-col h-screen overflow-hidden justify-between py-6 md:py-8">
+    <motion.section
+      id="programs-cards"
+      ref={targetRef}
+      style={{ backgroundColor: isMobile ? "#FFF8E5" : sectionBgColor }}
+      className="relative h-[300vh] z-[60] max-md:h-auto max-md:z-0 bg-[#FFF8E5]"
+    >
+      <div className="sticky top-0 flex flex-col h-screen overflow-hidden justify-between py-6 md:py-8 max-md:static max-md:h-auto">
 
         {/* Top Title */}
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex-shrink-0 pt-2 md:pt-4">
           <Reveal>
-            <h2 className="text-2xl md:text-5xl font-normal text-[#85431E]">
+            <h2 className="programs-heading text-2xl md:text-5xl font-normal text-[#85431E]">
               FIND YOUR RIGHT RIDE
             </h2>
           </Reveal>
         </div>
 
         {/* Cards Container */}
-        <Reveal delay={0.3}>
+        <Reveal delay={0.3} className="max-md:hidden">
         <motion.div
           style={{ x }}
           className="flex w-max items-stretch flex-1 py-4 md:py-6 overflow-hidden pr-6 md:pr-12"
@@ -254,70 +346,26 @@ export default function ProgramsCardsSection() {
                 <div className="w-px bg-black/10 mx-3 md:mx-6 h-full" />
               )}
 
-              <div className="flex-shrink-0 w-[85vw] md:w-[429px] flex flex-col h-[591px] max-md:h-[480px]">
-                {/* Category Header */}
-                <div className={`uppercase text-[11px] md:text-xl font-normal  ${card.categoryColor} min-h-[16px] mb-2 md:mb-3 flex-shrink-0`}>
-                  {card.category}
-                </div>
-
-                {/* Card Body (Image + Content attached) */}
-                <div className="flex flex-col flex-1 shadow-sm hover:shadow-lg overflow-hidden rounded-md md:rounded-sm transition-all duration-500 ease-out hover:scale-[1.015] hover:-translate-y-1 group cursor-pointer">
-                  {/* Image */}
-                  <div className="relative h-[22vh] min-h-[130px] max-h-[194px] w-full flex-shrink-0 overflow-hidden">
-                    <Image loading="lazy"
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 429px"
-                      style={{
-                        transform: `translateY(${card.translateY ?? 0}px) scale(${card.scale})`,
-                        transformOrigin: card.transformOrigin,
-                        objectPosition: card.objectPosition ?? "50% 50%"
-                      }}
-                    />
-                  </div>
-
-                  {/* Content Box */}
-                  <div className={`flex flex-col flex-1 ${card.bgColor} ${card.textColor} overflow-hidden`}>
-                    <div className="flex flex-col flex-1 p-4 md:p-5">
-                      <h3 className="text-lg md:text-xl font-medium mb-2 leading-tight">
-                        {card.title}
-                      </h3>
-
-                      <p className={`text-[11px] md:text-[12px] mb-3 md:mb-4 leading-relaxed opacity-90`}>
-                        {card.description}
-                      </p>
-
-                      <div className="flex flex-col gap-1.5 mt-auto">
-                        {card.features.map((feature, i) => (
-                          <div key={i} className={`border-t ${card.featureBorder} pt-1.5 md:pt-2 text-[10px] md:text-[11px] leading-relaxed opacity-90`}>
-                            {feature}
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="pt-3 md:pt-4 flex gap-6 items-end mt-3 flex-shrink-0">
-                        {card.sessions && (
-                          <div className="flex flex-col">
-                            <span className="text-[8.5px] md:text-[9px]  uppercase opacity-80 mb-0.5">Number of Sessions</span>
-                            <span className="text-[11px] md:text-[12px] font-medium">{card.sessions}</span>
-                          </div>
-                        )}
-                        <div className="flex flex-col">
-                          <span className="text-[8.5px] md:text-[9px]  uppercase opacity-80 mb-0.5">Duration</span>
-                          <span className="text-[11px] md:text-[12px] font-medium">{card.duration}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+              {renderCard(card)}
             </div>
           ))}
         </motion.div>
         </Reveal>
+
+        {/* Mobile Carousel — swipeable cards; color shifts per swiped card */}
+        <div className="md:hidden">
+          <div
+            ref={mobileTrackRef}
+            data-mobile-carousel
+            className="flex overflow-x-auto snap-x snap-proximity no-scrollbar gap-4 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] px-6 py-4"
+          >
+            {cardsData.map((card) => (
+              <div key={card.id} data-card className="flex-shrink-0 snap-center w-[85vw]">
+                {renderCard(card)}
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Bottom Banner */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-8 z-30 flex-shrink-0 pb-2 md:pb-4">

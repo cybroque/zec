@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
@@ -140,6 +140,16 @@ const riders: Rider[] = [
 export default function StoriesRidersSection() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
+  // Desktop reveals on hover; mobile has no hover so each row is tapped to toggle
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   return (
     <section className="w-full">
       {/* Preload images in the background so they display instantly on hover */}
@@ -157,10 +167,11 @@ export default function StoriesRidersSection() {
           <Reveal key={rider.name} delay={0.05 * i} className="w-full">
             <motion.div
               layout
-              onMouseEnter={() => setExpandedIndex(i)}
-              onMouseLeave={() => setExpandedIndex(null)}
+              onMouseEnter={!isMobile ? () => setExpandedIndex(i) : undefined}
+              onMouseLeave={!isMobile ? () => setExpandedIndex(null) : undefined}
+              onClick={isMobile ? () => setExpandedIndex(prev => (prev === i ? null : i)) : undefined}
               style={{ backgroundColor: bg }}
-              className="w-full overflow-hidden"
+              className="w-full overflow-hidden cursor-pointer"
             >
             <AnimatePresence initial={false} mode="wait">
               {!isExpanded ? (

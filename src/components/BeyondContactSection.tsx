@@ -7,7 +7,7 @@ export default function BeyondContactSection() {
   return (
     <section className="bg-[#F5F1E8] py-16 md:py-20 px-6 md:px-16">
       <Reveal>
-        <p className="text-center text-[#85431E] text-2xl md:text-3xl font-light mb-10">
+        <p className="beyond-contact-text text-center text-[#85431E] text-2xl md:text-3xl font-light mb-10">
           Know more what Zippy has to offer
         </p>
       </Reveal>

@@ -39,12 +39,12 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
       </div>
 
       {/* ── Image Grid ── */}
-      <div className="w-full overflow-x-auto pb-12 no-scrollbar max-md:pb-6">
-        <div className="flex gap-[8px] w-max max-md:gap-[5px]">
+      <div className="w-full overflow-x-auto pb-12 no-scrollbar max-md:pb-6 max-md:overflow-visible">
+        <div className="flex gap-[8px] w-max max-md:grid max-md:grid-cols-2 max-md:gap-[8px] max-md:w-auto max-md:mx-auto max-md:px-6">
           {/* Dynamic Left Spacer for perfect centering on large screens and equal padding on small ones */}
-          <div className="flex-none" style={{ width: "max(40px, calc(50vw - 705px))" }} />
+          <div className="flex-none max-md:hidden" style={{ width: "max(40px, calc(50vw - 705px))" }} />
           {/* Column 1 */}
-          <div className="flex flex-col gap-[6px] w-[324px] max-md:w-[150px] max-md:gap-[4px]">
+          <div className="flex flex-col gap-[6px] w-[324px] max-md:w-auto max-md:gap-[4px]">
             <Reveal delay={0.1} className="w-full h-[369px] max-md:h-[170px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g1.webp" alt="Zippy 1" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
@@ -58,7 +58,7 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
           </div>
 
           {/* Column 2 */}
-          <div className="flex flex-col w-[331px] max-md:w-[152px]">
+          <div className="flex flex-col w-[331px] max-md:w-auto">
             <Reveal delay={0.15} className="w-full h-[591px] max-md:h-[272px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g3.webp" alt="Zippy 3" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
@@ -67,7 +67,7 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
           </div>
 
           {/* Column 3 */}
-          <div className="flex flex-col gap-[11px] w-[393px] max-md:w-[181px] max-md:gap-[6px]">
+          <div className="flex flex-col gap-[11px] w-[393px] max-md:w-auto max-md:gap-[6px]">
             <Reveal delay={0.2} className="w-full h-[337px] max-md:h-[155px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g4.webp" alt="Zippy 4" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
@@ -81,7 +81,7 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
           </div>
 
           {/* Column 4 */}
-          <div className="flex flex-col gap-[9px] w-[337px] max-md:w-[155px] max-md:gap-[5px]">
+          <div className="flex flex-col gap-[9px] w-[337px] max-md:w-auto max-md:gap-[5px]">
             <Reveal delay={0.25} className="w-full h-[319px] max-md:h-[147px]">
               <div className="relative w-full h-full bg-[#E5DCC8]">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g6.webp" alt="Zippy 6" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
@@ -95,7 +95,7 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
           </div>
 
           {/* Dynamic Right Spacer */}
-          <div className="flex-none" style={{ width: "max(40px, calc(50vw - 705px))" }} />
+          <div className="flex-none max-md:hidden" style={{ width: "max(40px, calc(50vw - 705px))" }} />
         </div>
       </div>
 

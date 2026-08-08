@@ -8,19 +8,24 @@ export default function ProgramsHero() {
   return (
     <section className="relative w-full h-screen min-h-[700px] max-md:min-h-[550px] flex items-center overflow-hidden bg-[#242A59]">
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/assets/images/Programs/Webp/Hero.webp"
-          alt="Horse and rider"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover max-md:object-[6%_50%] max-md:![transform:scale(1)]"
-          style={{ transform: "scale(1.6)", transformOrigin: "10% 15%" }}
-        />
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcSet="/assets/images/Programs/Webp/Hero.webp"
+          />
+          <Image
+            src="/assets/images/Programs/Webp/Hero.webp"
+            alt="Horse and rider"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover max-md:object-[34%_50%] md:scale-[1.6] md:origin-[10%_15%]"
+          />
+        </picture>
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-end pb-32 md:pb-68 max-md:pb-16 h-full">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-end pb-32 md:pb-68 max-md:pb-76 h-full">
         <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-top">
           {/* Left Heading */}
           <div className="md:col-span-7 lg:col-span-7 pb-4">

@@ -43,6 +43,23 @@ export default function ProgramsJourney() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const scrollToCard = (index: number) => {
+    if (window.innerWidth < 768) {
+      // Mobile: scroll the carousel track to the target card instead of the page
+      const section = document.getElementById("programs-cards");
+      const track = document.querySelector<HTMLElement>("[data-mobile-carousel]");
+      if (track) {
+        section?.scrollIntoView({ behavior: "smooth", block: "start" });
+        const card = track.querySelectorAll<HTMLElement>("[data-card]")[index];
+        if (card) {
+          const trackRect = track.getBoundingClientRect();
+          const cardRect = card.getBoundingClientRect();
+          const targetLeft = track.scrollLeft + (cardRect.left - trackRect.left) - (track.clientWidth - cardRect.width) / 2;
+          track.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+        }
+      }
+      return;
+    }
+
     const section = document.getElementById("programs-cards");
     if (section) {
       const rect = section.getBoundingClientRect();
