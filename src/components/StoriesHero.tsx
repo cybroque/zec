@@ -7,14 +7,20 @@ export default function StoriesHero() {
   return (
     <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-[#53321E] max-md:h-[100dvh]">
       {/* Background image */}
-      <Image
-        src="/assets/images/Rider_stories/Webp/riders-hero.webp"
-        alt="Zippy riders group photo"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-center"
-      />
+      <picture>
+        <source
+          media="(max-width: 767px)"
+          srcSet="/assets/images/Rider_stories/Webp/riders-hero.webp"
+        />
+        <Image
+          src="/assets/images/Rider_stories/Webp/riders-hero.webp"
+          alt="Zippy riders group photo"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </picture>
 
       {/* Gradient overlay — strong at bottom, fades upward */}
       <div
