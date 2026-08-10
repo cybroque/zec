@@ -95,8 +95,24 @@ const gtUltraFineUltra = localFont({
   variable: "--font-gt-ultra-fine-ultra",
 });
 
-const optimaMedium = localFont({
-  src: "../../public/assets/fonts/Optima Medium.ttf",
+const optimaFont = localFont({
+  src: [
+    {
+      path: "../../public/assets/fonts/Optima Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/Optima-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/Optima-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
   variable: "--font-optima-medium",
 });
 
@@ -111,7 +127,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${gtUltra.variable} ${gtUltraUltra.variable} ${gtUltraFine.variable} ${gtUltraFineUltra.variable} ${optimaMedium.variable} antialiased`}>
+    <html lang="en" className={`${gtUltra.variable} ${gtUltraUltra.variable} ${gtUltraFine.variable} ${gtUltraFineUltra.variable} ${optimaFont.variable} antialiased`}>
       <body className="font-sans">
         <LoadingScreen />
         {children}
