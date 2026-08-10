@@ -95,6 +95,11 @@ const gtUltraFineUltra = localFont({
   variable: "--font-gt-ultra-fine-ultra",
 });
 
+const optimaMedium = localFont({
+  src: "../../public/assets/fonts/Optima Medium.ttf",
+  variable: "--font-optima-medium",
+});
+
 export const metadata: Metadata = {
   title: "Zippy Equestrian Center | Real Riding. Real Feeling.",
   description: "Experience the thrill of riding in Bangalore.",
@@ -106,7 +111,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${gtUltra.variable} ${gtUltraUltra.variable} ${gtUltraFine.variable} ${gtUltraFineUltra.variable} antialiased`}>
+    <html lang="en" className={`${gtUltra.variable} ${gtUltraUltra.variable} ${gtUltraFine.variable} ${gtUltraFineUltra.variable} ${optimaMedium.variable} antialiased`}>
       <body className="font-sans">
         <LoadingScreen />
         {children}

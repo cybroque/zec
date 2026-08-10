@@ -12,6 +12,7 @@
   --font-ultra: var(--font-gt-ultra-ultra), var(--font-gt-ultra), ui-sans-serif, system-ui, sans-serif;
   --font-gt-ultra-fine: var(--font-gt-ultra-fine), ui-sans-serif, system-ui, sans-serif;
   --font-ultra-fine: var(--font-gt-ultra-fine-ultra), var(--font-gt-ultra-fine), ui-sans-serif, system-ui, sans-serif;
+  --font-optima-medium: var(--font-optima-medium), ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
