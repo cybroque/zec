@@ -29,7 +29,7 @@ interface HeaderProps {
 export default function Header({ theme = "dark", disableThemeChangeOnScroll = false, navVariant = "default" }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
-  const [isPastTestimonial, setIsPastTestimonial] = useState(false);
+  const [isFooterActive, setIsFooterActive] = useState(false);
   const [isHerdInView, setIsHerdInView] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -41,6 +41,19 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  // Observe body class for footer-active
+  useEffect(() => {
+    setIsFooterActive(document.body.classList.contains("footer-active"));
+
+    const observer = new MutationObserver(() => {
+      setIsFooterActive(document.body.classList.contains("footer-active"));
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
 
   const NAV_LINKS: [string, string][] = [
     ["/", "HOME"],
@@ -62,15 +75,6 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
           // Switch to light theme when scrolling past the hero section (~100vh)
           // Minus 80px to transition smoothly right as it crosses the boundary
           setIsPastHero(currentY > window.innerHeight - 80);
-          
-          const testimonialSection = document.getElementById("testimonial-section");
-          if (testimonialSection) {
-            const rect = testimonialSection.getBoundingClientRect();
-            // Header is ~80px. Check if the bottom of the testimonial section has passed the header.
-            setIsPastTestimonial(rect.bottom <= 80);
-          } else {
-            setIsPastTestimonial(false);
-          }
           
           const herdSection = document.getElementById("herd-section");
           if (herdSection) {
@@ -94,12 +98,12 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
   }, []);
 
   let isLight = theme === "light" || (!disableThemeChangeOnScroll && isPastHero);
-  if (pathname === '/') {
-    isLight = theme === "light" || (!disableThemeChangeOnScroll && isPastTestimonial);
+  if (isFooterActive) {
+    isLight = false;
   }
   
   let showDarkLogo = isLight;
-  if (pathname === '/about' && isPastHero) {
+  if (pathname === '/about' && isPastHero && !isFooterActive) {
     showDarkLogo = isHerdInView;
   }
 
