@@ -7,14 +7,12 @@ import Reveal from "@/components/ui/Reveal";
 
 type Rider = {
   name: string;
+  age: string;
   joinedDate: string;
   location: string;
   startingLevel: string;
-  role: string;
-  program: string;
-  beforeQuote: string;
-  afterMonths: number;
-  afterQuote: string;
+  role?: string;
+  quote: string;
   image: string;
 };
 
@@ -28,64 +26,54 @@ const rowColors = [
 
 const riders: Rider[] = [
   {
-    name: "Mohak",
-    joinedDate: "2023 March",
-    location: "Bangalore",
-    startingLevel: "Started as a complete beginner",
-    role: "Product Designer, Bangalore",
-    program: "Beginners → Novice",
-    beforeQuote: "I'd never been near a horse in my life. I booked the trial on a whim after seeing a photo on Instagram. I was nervous the whole drive there.",
-    afterMonths: 6,
-    afterQuote: "Can trot independently and canter with support. Competed in the first inter-club event. Confident around all the horses at ZEC.",
-    image: "/assets/images/rider1.webp",
-  },
-  {
-    name: "Priya S",
-    joinedDate: "2023 March",
-    location: "Bangalore",
-    startingLevel: "Started as a complete beginner",
-    role: "Software Engineer, Bangalore",
-    program: "Beginners → Intermediate",
-    beforeQuote: "I'd never been near a horse in my life. I booked the trial on a whim after seeing a photo on Instagram. I was nervous the whole drive there.",
-    afterMonths: 8,
-    afterQuote: "Completed Beginners and Novice programs. Now in Intermediate. Can trot independently and has been introduced to canter.",
-    image: "/assets/images/rider2.webp",
-  },
-  {
-    name: "Tushita",
-    joinedDate: "2023 March",
-    location: "Bangalore",
-    startingLevel: "Started as a complete beginner",
-    role: "Architect, Bangalore",
-    program: "Beginners → Novice",
-    beforeQuote: "Horses seemed majestic but intimidating. I wasn't sure I'd last more than a few sessions.",
-    afterMonths: 8,
-    afterQuote: "Now rides three days a week. Has started learning jumping fundamentals and helps newer riders settle in.",
-    image: "/assets/images/rider3.webp",
-  },
-  {
-    name: "Arnav",
-    joinedDate: "2023 March",
-    location: "Bangalore",
-    startingLevel: "Started as a complete beginner",
-    role: "Marketing Manager, Bangalore",
-    program: "Beginners → Novice",
-    beforeQuote: "I wanted something different from the gym. Horses were on the bucket list since childhood.",
-    afterMonths: 5,
-    afterQuote: "Progressed to Novice program in five months. Now working on posting trot and balance exercises.",
-    image: "/assets/images/rider4.webp",
-  },
-  {
     name: "Anagha",
+    age: "15",
     joinedDate: "2023 March",
     location: "Bangalore",
     startingLevel: "Started as a complete beginner",
-    role: "Teacher, Bangalore",
-    program: "Beginners → Novice",
-    beforeQuote: "I was scared of large animals. My daughter convinced me to try the trial ride and I never looked back.",
-    afterMonths: 7,
-    afterQuote: "Rides confidently on all horses in the school string. Recently started light trail rides on weekend sessions.",
-    image: "/assets/images/rider5.webp",
+    role: "Competitive Rider",
+    quote: "Being a part of Zippy has been one of the happiest experiences of my life. What I love most about Zippy is the warm, welcoming environment. Every visit feels special, and I always leave feeling more confident, responsible, and connected to the horses. I’m truly grateful to the trainers and team for making my riding journey so memorable.",
+    image: "/assets/images/Rider_stories/Webp/Anagha.webp",
+  },
+  {
+    name: "AV Aravindh",
+    age: "40+",
+    joinedDate: "2023 March",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Dressage Rider",
+    quote: "There has always been something about horses and riding that I’ve loved. As a child, I would paint horses, though I never had the opportunity to ride. I finally started riding close to 40, but struggled physically and was almost ready to quit after a difficult experience elsewhere. Finding Zippy about a year ago changed that journey completely. I’ve grown in confidence, learned to understand and care for horses, and even competed in dressage. Most importantly, Zippy has given me a wonderful community and special bonds with my horse friends—Hercules, BlackHawck, and Arjuna Maverick.",
+    image: "/assets/images/Rider_stories/Webp/Aravindh.webp",
+  },
+  {
+    name: "Shaurya Subramanian",
+    age: "10",
+    joinedDate: "2023 March",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "Learning to ride here has been an incredible journey. The instructors are supportive and motivating, helping riders progress at their own pace. The horses are well cared for, and the positive atmosphere makes every visit enjoyable. I look forward to every lesson and have gained both confidence and valuable riding skills.",
+    image: "/assets/images/Rider_stories/Webp/Shaurya.webp",
+  },
+  {
+    name: "Ira Singal",
+    age: "14",
+    joinedDate: "2023 March",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "I’ve been riding for a while now, and it has become my favourite place to spend my evening. It feels calm, friendly, and easygoing. It’s not just about riding; I enjoy hanging around after lessons, spending time with the horses, talking with other riders, and just being around the stable. The trainers are supportive and always there when I need help. Every visit feels like a mix of riding, learning, and having a good time. I’ve made some great memories at Zippy. It genuinely feels like a second home.",
+    image: "/assets/images/Rider_stories/Webp/Ira.webp",
+  },
+  {
+    name: "Salma Salim",
+    age: "25",
+    joinedDate: "2023 March",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "I love that it doesn’t feel like just another commitment, it’s a space where I can slow down, ride, spend time with the horses, and simply unwind. The atmosphere is relaxed and welcoming, and the trainers are supportive without making the experience feel overly serious. I’ve also really enjoyed getting to know the horses and their different personalities. Riding at Zippy gives me something to look forward to after a busy week",
+    image: "/assets/images/Rider_stories/Webp/Salma.webp",
   },
 ];
 
@@ -137,7 +125,7 @@ export default function StoriesRidersSection() {
                   className="w-full px-8 md:px-16 grid grid-cols-3 items-center h-[110px] max-md:grid-cols-1 max-md:h-auto max-md:gap-1.5 max-md:px-6 max-md:py-4"
                 >
                   <span
-                    className="text-white/60 text-3xl md:text-5xl font-light "
+                    className="text-white/60 text-3xl md:text-3xl font-light "
                   >
                     {rider.name}
                   </span>
@@ -184,18 +172,14 @@ export default function StoriesRidersSection() {
                         {rider.name}
                       </h3>
                       <p className="text-white/70 text-sm">{rider.role}</p>
-                      <p className="text-white/55 text-xs mt-1">Joined {rider.joinedDate}</p>
-                      <p className="text-white/55 text-xs">Program: {rider.program}</p>
+                      <p className="text-white/55 text-xs mt-1">Age: {rider.age}</p>
                     </div>
                   </div>
 
                   {/* Right: review */}
                   <div className="flex-1 px-8 md:px-16 py-10 flex flex-col justify-center max-md:px-6 max-md:py-8">
-                    <p className="text-white text-[13px] md:text-sm mb-2">
-                      After {rider.afterMonths} Months of riding
-                    </p>
                     <p className="text-white text-base md:text-lg leading-relaxed max-w-2xl font-light">
-                      {rider.afterQuote}
+                      &quot;{rider.quote}&quot;
                     </p>
                   </div>
                 </motion.div>

@@ -19,7 +19,7 @@ export default function AboutHero() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[80%_20%] max-md:object-[50%_20%]"
+            className="object-cover max-md:object-[50%_20%] md:scale-130 md:translate-x-[15%]"
           />
         </picture>
       </div>

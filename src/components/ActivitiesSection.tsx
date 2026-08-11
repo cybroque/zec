@@ -19,7 +19,7 @@ const ActivityCard = ({
   href: string;
 }) => {
   return (
-    <Link href={href} className="relative group block overflow-hidden rounded-sm aspect-[423/500] w-[78vw] max-w-[320px] flex-shrink-0 snap-center md:w-full md:max-w-none md:flex-shrink md:snap-none cursor-pointer select-none [-webkit-touch-callout:none]">
+    <Link href={href} className="relative group block overflow-hidden rounded-sm aspect-[3/4] w-[78vw] max-w-[320px] flex-shrink-0 snap-center md:w-full md:max-w-none md:flex-shrink md:snap-none cursor-pointer select-none [-webkit-touch-callout:none]">
       {/* Image */}
       <Image loading="lazy"
         src={imageSrc}
@@ -76,16 +76,16 @@ const ActivitiesSection = () => {
 
   return (
     <section className="bg-[#FFF8E5] py-14 md:py-18 px-6">
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto">
         {/* Header */}
-        <div className="text-center max-w-4xl mx-auto mb-10 md:mb-12">
+        <div className="text-center max-w-7xl mx-auto mb-10 md:mb-12">
           <Reveal>
             <h2 className="text-[38px] md:text-[50px] font-normal text-[#DA7347] mb-4 leading-[1.1] tracking-tight">
               For All Seasons &amp; All Reasons
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="text-sm md:text-base text-[#1a1a1a] max-w-2xl lg:max-w-3xl mx-auto leading-[1.5] font-normal opacity-90 px-4">
+            <p className="text-sm md:text-base text-[#1a1a1a] max-w-2xl lg:max-w-7xl mx-auto font-normal opacity-90 px-4">
               ZEC is more than a riding school. From summer camps for kids to corporate experiences,
               photoshoots, and venue hire there&apos;s always something on at the stables.
             </p>
@@ -93,7 +93,7 @@ const ActivitiesSection = () => {
         </div>
 
         {/* Grid / Mobile scroll carousel */}
-        <div className="max-w-5xl mx-auto flex overflow-x-auto snap-x snap-proximity no-scrollbar gap-4 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] md:grid md:grid-cols-3 md:gap-5 lg:gap-6 md:overflow-visible md:snap-none mb-10">
+        <div className="max-w-6xl mx-auto flex overflow-x-auto snap-x snap-proximity no-scrollbar gap-4 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] md:grid md:grid-cols-3 md:gap-6 lg:gap-8 md:overflow-visible md:snap-none mb-10 px-4 md:px-0">
           {activities.map((activity, index) => (
             <Reveal key={index} delay={0.06 * (index + 1)} className="flex-shrink-0 snap-center md:flex-shrink md:snap-none">
               <ActivityCard {...activity} />

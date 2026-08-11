@@ -3,10 +3,12 @@
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 
+const INSTA_LINK = "https://www.instagram.com/zippy.equestrian?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==";
+
 const socialLinks = [
   { 
     name: "Instagram", 
-    href: "https://www.instagram.com/zippy.equestrian?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+    href: INSTA_LINK,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
         <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
@@ -82,51 +84,51 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
           {/* Column 1 */}
           <div className="flex flex-col gap-[6px] w-[324px] max-md:w-auto max-md:gap-[4px]">
             <Reveal delay={0.1} className="w-full h-[369px] max-md:h-[170px]">
-              <div className="relative w-full h-full bg-[#E5DCC8]">
+              <a href={INSTA_LINK} target="_blank" rel="noopener noreferrer" className="block relative w-full h-full bg-[#E5DCC8] hover:opacity-90 transition-opacity">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g1.webp" alt="Zippy 1" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
-              </div>
+              </a>
             </Reveal>
             <Reveal delay={0.2} className="w-full h-[216px] max-md:h-[99px]">
-              <div className="relative w-full h-full bg-[#E5DCC8]">
+              <a href={INSTA_LINK} target="_blank" rel="noopener noreferrer" className="block relative w-full h-full bg-[#E5DCC8] hover:opacity-90 transition-opacity">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g2.webp" alt="Zippy 2" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
-              </div>
+              </a>
             </Reveal>
           </div>
 
           {/* Column 2 */}
           <div className="flex flex-col w-[331px] max-md:w-auto">
             <Reveal delay={0.15} className="w-full h-[591px] max-md:h-[272px]">
-              <div className="relative w-full h-full bg-[#E5DCC8]">
+              <a href={INSTA_LINK} target="_blank" rel="noopener noreferrer" className="block relative w-full h-full bg-[#E5DCC8] hover:opacity-90 transition-opacity">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g3.webp" alt="Zippy 3" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
-              </div>
+              </a>
             </Reveal>
           </div>
 
           {/* Column 3 */}
           <div className="flex flex-col gap-[11px] w-[393px] max-md:w-auto max-md:gap-[6px]">
             <Reveal delay={0.2} className="w-full h-[337px] max-md:h-[155px]">
-              <div className="relative w-full h-full bg-[#E5DCC8]">
+              <a href={INSTA_LINK} target="_blank" rel="noopener noreferrer" className="block relative w-full h-full bg-[#E5DCC8] hover:opacity-90 transition-opacity">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g4.webp" alt="Zippy 4" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
-              </div>
+              </a>
             </Reveal>
             <Reveal delay={0.3} className="w-full h-[243px] max-md:h-[112px]">
-              <div className="relative w-full h-full bg-[#E5DCC8]">
+              <a href={INSTA_LINK} target="_blank" rel="noopener noreferrer" className="block relative w-full h-full bg-[#E5DCC8] hover:opacity-90 transition-opacity">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g5.webp" alt="Zippy 5" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
-              </div>
+              </a>
             </Reveal>
           </div>
 
           {/* Column 4 */}
           <div className="flex flex-col gap-[9px] w-[337px] max-md:w-auto max-md:gap-[5px]">
             <Reveal delay={0.25} className="w-full h-[319px] max-md:h-[147px]">
-              <div className="relative w-full h-full bg-[#E5DCC8]">
+              <a href={INSTA_LINK} target="_blank" rel="noopener noreferrer" className="block relative w-full h-full bg-[#E5DCC8] hover:opacity-90 transition-opacity">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g6.webp" alt="Zippy 6" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
-              </div>
+              </a>
             </Reveal>
             <Reveal delay={0.35} className="w-full h-[263px] max-md:h-[121px]">
-              <div className="relative w-full h-full bg-[#E5DCC8]">
+              <a href={INSTA_LINK} target="_blank" rel="noopener noreferrer" className="block relative w-full h-full bg-[#E5DCC8] hover:opacity-90 transition-opacity">
                 <Image loading="lazy" src="/assets/images/Contact/Webp/g7.webp" alt="Zippy 7" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
-              </div>
+              </a>
             </Reveal>
           </div>
 
@@ -137,18 +139,20 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
 
       {/* ── "Follow us" + social links ── */}
       {!hideFooter && (
-        <div className="container mx-auto max-w-5xl px-10 pt-16 pb-24 mt-8 max-md:px-6 max-md:pt-10 max-md:pb-12 max-md:mt-4">
-          <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-20 max-w-4xl mx-auto max-md:gap-8 text-center md:text-left">
+        <div className="container mx-auto max-w-5xl px-4 md:px-6 pt-16 pb-24 mt-8 max-md:pt-10 max-md:pb-12 max-md:mt-4">
+          <div className="flex flex-col md:flex-row justify-start items-start md:items-center gap-16 md:gap-20 max-w-5xl mx-auto max-md:gap-8 text-left">
             
             {/* Left text */}
-            <div className="flex-1 max-w-[420px]">
+            <div className="flex-1 max-w-[650px]">
               <Reveal>
-                <h3 className="text-[#85431E] font-medium mb-6 md:mb-8 insta-heading-text transition-colors duration-300" style={{ fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)" }}>
-                  Follow us for stable updates and rider stories
-                </h3>
+                <a href={INSTA_LINK} target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-80 transition-opacity mb-2">
+                  <h3 className="text-[#85431E] font-medium leading-[1.1] insta-heading-text transition-colors duration-300" style={{ fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)" }}>
+                    Follow us for stable updates and rider<br/>stories
+                  </h3>
+                </a>
               </Reveal>
               <Reveal delay={0.2}>
-                <p className="text-[#85431E]/90 text-[14px] md:text-[15px] leading-[1.6] insta-heading-text transition-colors duration-300">
+                <p className="text-[#85431E]/90 text-[14px] md:text-[15px] leading-tight insta-heading-text transition-colors duration-300">
                   Learn about Horses and get the best tips on riding, taking care, competitions, and most importantly having fun!
                 </p>
               </Reveal>
