@@ -101,13 +101,13 @@ export default function AboutHerdSection() {
           <Reveal delay={0.1}>
             <div className="mb-10 max-md:mb-6 md:mb-0" style={{ paddingLeft: "clamp(24px, 11.4vw, 172px)", paddingRight: "clamp(24px, 4vw, 40px)" }}>
               <h2
-                className="font-normal leading-[1.1] text-[#85431e] mb-6 max-md:!text-[34px]"
+                className="herd-heading-text font-normal leading-[1.1] text-[#85431e] mb-6 max-md:!text-[34px]"
                 style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
               >
                 Meet the Herd
               </h2>
               <p
-                className="font-light text-[#85431e] leading-[1.25] max-md:!text-[15px] max-md:!leading-[1.5]"
+                className="herd-body-text font-light text-[#85431e] leading-[1.25] max-md:!text-[15px] max-md:!leading-[1.5]"
                 style={{ fontSize: "clamp(12px, 1.2vw, 18px)", maxWidth: "400px" }}
               >
                 Every horse at Zippy Equestrian Center is well-cared for, regularly vetted, and matched to
@@ -136,8 +136,8 @@ export default function AboutHerdSection() {
                   }
                 }}
                 aria-label={`Go to horse ${i + 1}`}
-                className={`w-3.5 h-3.5 p-0 cursor-pointer block transition-all duration-300 ${
-                  i === activeIndex ? 'bg-[#85431e]' : 'bg-transparent border border-[#85431e]'
+                className={`herd-tracker-dot w-3.5 h-3.5 p-0 cursor-pointer block transition-all duration-300 ${
+                  i === activeIndex ? 'tracker-active bg-[#85431e]' : 'bg-transparent border border-[#85431e]'
                 }`}
               />
             ))}
@@ -180,13 +180,13 @@ export default function AboutHerdSection() {
                   {/* Info below card */}
                   <Reveal delay={0.05 * Math.min(i, 4)}>
                   <div className="mt-[15px]">
-                    <p className="text-[#85431e] font-normal leading-[1.25]" style={{ fontSize: "22px" }}>
+                    <p className="herd-body-text text-[#85431e] font-normal leading-[1.25]" style={{ fontSize: "22px" }}>
                       {horse.name}
                     </p>
-                    <p className="text-black font-light uppercase leading-[1.25] mt-1" style={{ fontSize: "13px" }}>
+                    <p className="herd-body-text text-black font-light uppercase leading-[1.25] mt-1" style={{ fontSize: "13px" }}>
                       {horse.ageType}
                     </p>
-                    <p className="text-black font-light leading-[1.25]" style={{ fontSize: "13px" }}>
+                    <p className="herd-body-text text-black font-light leading-[1.25]" style={{ fontSize: "13px" }}>
                       {horse.breed}
                     </p>
                   </div>
