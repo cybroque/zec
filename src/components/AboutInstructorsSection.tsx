@@ -180,7 +180,7 @@ export default function AboutInstructorsSection() {
                   className="backdrop-blur-[3px] rounded-none p-3.5 lg:p-4 shadow-lg border border-[#DA7347]/30"
                   style={{ background: "rgba(218,115,71,0.55)" }}
                 >
-                  <p className="text-[#f2ebd9] text-[10px] lg:text-[11px] uppercase font-bold mb-1.5 tracking-wider">
+                  <p className="text-[#f2ebd9] text-[10px] lg:text-[11px] uppercase font-bold mb-1.5">
                     Zippy Equestrian Center
                   </p>
                   <p className="text-[#f2ebd9]/90 text-[11px] lg:text-[12px] font-light leading-relaxed">

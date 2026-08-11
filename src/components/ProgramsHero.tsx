@@ -30,7 +30,7 @@ export default function ProgramsHero() {
           {/* Left Heading */}
           <div className="md:col-span-7 lg:col-span-7 pb-4">
             <Reveal>
-              <h1 className="text-[#FBEECC] text-[30px] md:text-[45px] lg:text-[55px] leading-[1.05] tracking-medium mb-4 md:mb-0 lg:pt-4">
+              <h1 className="text-[#FBEECC] text-[30px] md:text-[45px] lg:text-[55px] leading-[1.05] mb-4 md:mb-0 lg:pt-4">
                 Your equestrian<br />
                 journey starts here.
               </h1>

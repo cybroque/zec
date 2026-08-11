@@ -24,7 +24,7 @@ export default function ContactDirectorySection() {
 
         {/* Heading — sits on top, spanning */}
         <Reveal>
-          <h2 className="text-[#85431E] text-2xl md:text-3xl font-light tracking-[0.08em] uppercase leading-tight mb-12 lg:mb-16">
+          <h2 className="text-[#85431E] text-2xl md:text-3xl font-light uppercase leading-tight mb-12 lg:mb-16">
             Contact<br />Directory
           </h2>
         </Reveal>
@@ -38,7 +38,7 @@ export default function ContactDirectorySection() {
                   {contact.phone}
                 </p>
                 <div className="dir-divider w-full h-px mb-3" style={{ backgroundColor: "#85431E33" }} />
-                <p className="text-[#DA7347] text-[10px] tracking-[0.2em] uppercase font-medium mb-1">
+                <p className="text-[#DA7347] text-[10px] uppercase font-medium mb-1">
                   {contact.role}
                 </p>
                 {contact.name && (

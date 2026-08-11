@@ -86,7 +86,7 @@ export default function AboutTeamSection() {
                   <h3 className="text-[#FFF8E5] text-[18px] font-normal  mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-[#FFF8E5]/70 text-[10px] uppercase tracking-[0.15em] font-light">
+                  <p className="text-[#FFF8E5]/70 text-[10px] uppercase font-light">
                     {member.role}
                   </p>
                 </motion.div>
@@ -107,7 +107,7 @@ export default function AboutTeamSection() {
                   <Image loading="eager" fetchPriority="low" src={member.image} alt={member.name} fill sizes="50vw" className="object-cover object-center" />
                 </div>
                 <h3 className="text-[#FFF8E5] text-[15px] font-normal  mb-0.5">{member.name}</h3>
-                <p className="text-[#FFF8E5]/70 text-[9px] uppercase tracking-[0.15em] font-light">{member.role}</p>
+                <p className="text-[#FFF8E5]/70 text-[9px] uppercase font-light">{member.role}</p>
               </motion.div>
             ))}
           </motion.div>

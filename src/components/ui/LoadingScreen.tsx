@@ -225,7 +225,7 @@ const preload = (route: string): Promise<void> => {
         <div
           ref={wordRef}
           aria-hidden
-          className="whitespace-nowrap opacity-0 font-[family-name:var(--font-optima-medium)] font-bold uppercase leading-[0.8] tracking-normal text-[#DA7347] text-[clamp(6rem,27vw,26rem)]"
+          className="whitespace-nowrap opacity-0 font-[family-name:var(--font-optima-medium)] font-bold uppercase leading-[0.8] text-[#DA7347] text-[clamp(6rem,27vw,26rem)]"
         >
           {WORD}
         </div>

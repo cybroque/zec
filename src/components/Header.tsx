@@ -171,7 +171,7 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
                 href={href}
                 onClick={() => setMenuOpen(false)}
                 onMouseEnter={() => handleNavHover(href)}
-                className={`py-4 border-[#F2EBD9]/15 text-lg font-medium tracking-wide transition-colors ${label === "JOIN ZIPPY" ? "bg-[#F2EBD9] !text-[#85431E] hover:bg-[#DA7347] hover:!text-[#F2EBD9] font-black mt-4 rounded-md text-center border-none" : "border-b hover:text-white"}`}
+                className={`py-4 border-[#F2EBD9]/15 text-lg font-medium transition-colors ${label === "JOIN ZIPPY" ? "bg-[#F2EBD9] !text-[#85431E] hover:bg-[#DA7347] hover:!text-[#F2EBD9] font-black mt-4 rounded-md text-center border-none" : "border-b hover:text-white"}`}
               >
                 {label}
               </Link>

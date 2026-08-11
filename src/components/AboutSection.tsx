@@ -91,7 +91,7 @@ const AboutSection = () => {
               </span>
             </Reveal>
             <Reveal delay={0.2}>
-              <h2 className="text-5xl md:text-[75px] max-md:text-4xl font-normal text-[#85431E] leading-[1.2] mb-12 tracking-[-0.03em]">
+              <h2 className="text-5xl md:text-[75px] max-md:text-4xl font-normal text-[#85431E] leading-[1.2] mb-12 ">
                 Horses, People<br />
                 Good Time
               </h2>

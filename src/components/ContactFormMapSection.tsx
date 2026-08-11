@@ -244,7 +244,7 @@ export default function ContactFormMapSection() {
                 href="https://wa.me/98829 88267"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between gap-4 w-full max-w-[420px]  text-white text-sm tracking-[0.12em] uppercase px-5 py-2 rounded-sm hover:opacity-90 transition-opacity"
+                className="flex items-center justify-between gap-4 w-full max-w-[420px]  text-white text-sm uppercase px-5 py-2 rounded-sm hover:opacity-90 transition-opacity"
                 style={{ backgroundColor: "#DA7347" }}
               >
                 <div className="flex items-center gap-3">
