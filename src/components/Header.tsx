@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 
 // Map of route → hero image to silently prefetch when the user hovers the link
 const ROUTE_PREFETCH: Record<string, string> = {
@@ -28,7 +29,9 @@ interface HeaderProps {
 export default function Header({ theme = "dark", disableThemeChangeOnScroll = false, navVariant = "default" }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
+  const [isHerdInView, setIsHerdInView] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   // Lock body scroll while the mobile drawer is open.
   useEffect(() => {
@@ -58,6 +61,15 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
           // Switch to light theme when scrolling past the hero section (~100vh)
           // Minus 80px to transition smoothly right as it crosses the boundary
           setIsPastHero(currentY > window.innerHeight - 80);
+          
+          const herdSection = document.getElementById("herd-section");
+          if (herdSection) {
+            const rect = herdSection.getBoundingClientRect();
+            // Header is ~80px. Check if herd section is overlapping the header area.
+            setIsHerdInView(rect.top <= 80 && rect.bottom >= 50);
+          } else {
+            setIsHerdInView(false);
+          }
           ticking = false;
         });
         ticking = true;
@@ -72,6 +84,11 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
   }, []);
 
   const isLight = theme === "light" || (!disableThemeChangeOnScroll && isPastHero);
+  
+  let showDarkLogo = isLight;
+  if (pathname === '/about' && isPastHero) {
+    showDarkLogo = isHerdInView;
+  }
 
   const handleNavHover = useCallback((href: string) => {
     if (ROUTE_PREFETCH[href]) {
@@ -86,7 +103,7 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
         <Link href="/" className="flex items-center gap-4 group">
           <div className="relative w-36 h-16 md:w-56 md:h-24 transition-transform group-hover:scale-105 duration-500">
             <Image
-              src={isLight ? "/assets/images/zippylogo-dark.svg" : "/assets/images/zippylogo2.svg"}
+              src={showDarkLogo ? "/assets/images/zippylogo-dark.svg" : "/assets/images/zippylogo2.svg"}
               alt="Zippy Equestrian Logo"
               fill
               sizes="(max-width: 768px) 144px, 224px"
@@ -103,7 +120,7 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
           <Link href="/programs" onMouseEnter={() => handleNavHover("/programs")} className={`px-6 py-2 text-[11px] font-medium transition-colors ${navVariant === 'cream' ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>PROGRAMS</Link>
           <Link href="/stories" onMouseEnter={() => handleNavHover("/stories")} className={`px-6 py-2 text-[11px] font-medium transition-colors ${navVariant === 'cream' ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>RIDERS STORIES</Link>
           <Link href="/beyond" onMouseEnter={() => handleNavHover("/beyond")} className={`px-6 py-2 text-[11px] font-medium transition-colors ${navVariant === 'cream' ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#F2EBD9] hover:text-white'}`}>BEYOND THE RIDE</Link>
-          <Link href="/contact" className={`px-8 py-2 h-full flex items-center font-black text-xs transition-all ${navVariant === 'cream' ? 'text-[#85431E] hover:text-[#DA7347]' : 'text-[#FFEF60]'}`}>JOIN ZIPPY</Link>
+          <Link href="/contact" className={`px-8 py-2 h-full flex items-center font-black text-xs transition-all bg-[#F2EBD9] text-[#85431E] hover:bg-[#DA7347] hover:text-[#F2EBD9] rounded-r-[5px]`}>JOIN ZIPPY</Link>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -111,7 +128,7 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
           onClick={() => setMenuOpen(true)}
           aria-label="Open menu"
           aria-expanded={menuOpen}
-          className={`lg:hidden p-2 ${isLight ? 'text-[#85431E]' : 'text-[#F2EBD9]'}`}
+          className={`lg:hidden p-2 ${showDarkLogo ? 'text-[#85431E]' : 'text-[#F2EBD9]'}`}
         >
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -154,7 +171,7 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
                 href={href}
                 onClick={() => setMenuOpen(false)}
                 onMouseEnter={() => handleNavHover(href)}
-                className={`py-4 border-b border-[#F2EBD9]/15 text-lg font-medium tracking-wide transition-colors hover:text-white ${label === "JOIN ZIPPY" ? "text-[#FFEF60] font-black" : ""}`}
+                className={`py-4 border-[#F2EBD9]/15 text-lg font-medium tracking-wide transition-colors ${label === "JOIN ZIPPY" ? "bg-[#F2EBD9] !text-[#85431E] hover:bg-[#DA7347] hover:!text-[#F2EBD9] font-black mt-4 rounded-md text-center border-none" : "border-b hover:text-white"}`}
               >
                 {label}
               </Link>

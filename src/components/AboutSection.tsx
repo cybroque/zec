@@ -86,8 +86,8 @@ const AboutSection = () => {
           {/* Left Column */}
           <div className="flex flex-col items-center md:items-start max-w-xl">
             <Reveal>
-              <span className="text-[15px] md:text-2xl uppercase  text-[#DA7347] font-gt-ultra mb-8 block">
-                WELCOME TO ZEC
+              <span className="text-[15px] md:text-lg uppercase  text-[#DA7347] font-gt-ultra mb-8 block">
+                WELCOME TO Zippy Equestrian Center
               </span>
             </Reveal>
             <Reveal delay={0.2}>

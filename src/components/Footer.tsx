@@ -82,34 +82,16 @@ const Footer = () => {
     >
       <div className="container mx-auto max-w-7xl px-4 md:px-16 lg:px-20">
 
-        {/* Main Grid: Left for Logos, Right for Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 lg:gap-16 mb-24 md:mb-32 max-md:gap-8 max-md:mb-12">
+        {/* Main Grid: Left for Logos, Right for Content on Desktop; CTA -> Logos -> Links on Mobile */}
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-8 lg:gap-16 mb-24 md:mb-32 max-md:mb-12">
 
-          {/* Left Column: Logos */}
-          <div className="flex flex-col justify-center items-center md:items-stretch h-full">
-            {/* Horse Rider Logo — aligns with CTA section */}
-            <div className="flex justify-center md:justify-start mb-16 md:mb-20 max-md:mb-8">
-              <PaintingLogo src="/assets/images/zippyfooter1.svg" className="w-56 h-56 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px] max-md:w-44 max-md:h-44" />
-            </div>
-            {/* Zippy Equestrian Center — aligns with nav links */}
-            <div className="flex items-start justify-center md:justify-start">
-              <PaintingLogo
-                src="/assets/images/zippyfooter2.svg"
-                className="w-48 h-16 md:w-[240px] md:h-[68px] lg:w-[280px] lg:h-[80px] max-md:w-40 max-md:h-12"
-                delay={0.15}
-              />
-            </div>
-          </div>
-
-          {/* Right Column: CTA and Links */}
-          <div className="flex flex-col justify-center h-full max-w-lg mx-auto md:mx-0 md:pl-8 lg:pl-16">
-
-            {/* Top CTA Section */}
-            <div className={`text-center md:text-left mb-16 md:mb-20 max-md:mb-8 ${textColor}`}>
+          {/* CTA Section - Order 1 on mobile */}
+          <div className="order-1 md:order-2 md:col-start-2 md:row-start-1 flex flex-col justify-center max-w-lg mx-auto md:mx-0 md:pl-8 lg:pl-16">
+            <div className={`text-center md:text-left ${textColor}`}>
               <h2 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium leading-[1.15] mb-6 tracking-tight max-md:text-[28px] max-md:mb-3">
                 The rider in you is<br />just a ride away.
               </h2>
-              <p className="text-base md:text-lg opacity-90 mb-10 font-light leading-relaxed max-md:text-sm max-md:mb-4">
+              <p className="text-base md:text-lg opacity-90 mb-10 font-light leading-relaxed max-md:text-sm max-md:mb-6">
                 Your first ride is 30 minutes away. Call us<br />and let&apos;s get you started.
               </p>
               <Link href="/contact" className={`group flex items-center justify-center md:justify-start gap-4 px-8 py-4 border rounded transition-all duration-300 mx-auto md:mx-0 w-fit ${borderColor} ${buttonHover} max-md:px-6 max-md:py-3`}>
@@ -139,8 +121,26 @@ const Footer = () => {
                 </svg>
               </Link>
             </div>
+          </div>
 
-            {/* Bottom Links Section */}
+          {/* Left Column: Logos - Order 2 on mobile (placed after the button!) */}
+          <div className="order-2 md:order-1 md:col-start-1 md:row-start-1 md:row-span-2 flex flex-col justify-center items-center md:items-stretch h-full py-4 md:py-0">
+            {/* Horse Rider Logo — aligns with CTA section */}
+            <div className="flex justify-center md:justify-start mb-12 md:mb-20 max-md:mb-6">
+              <PaintingLogo src="/assets/images/zippyfooter1.svg" className="w-56 h-56 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px] max-md:w-44 max-md:h-44" />
+            </div>
+            {/* Zippy Equestrian Center — aligns with nav links */}
+            <div className="flex items-start justify-center md:justify-start">
+              <PaintingLogo
+                src="/assets/images/zippyfooter2.svg"
+                className="w-48 h-16 md:w-[240px] md:h-[68px] lg:w-[280px] lg:h-[80px] max-md:w-40 max-md:h-12"
+                delay={0.15}
+              />
+            </div>
+          </div>
+
+          {/* Bottom Links Section - Order 3 on mobile */}
+          <div className="order-3 md:order-3 md:col-start-2 md:row-start-2 flex flex-col justify-end max-w-lg mx-auto md:mx-0 md:pl-8 lg:pl-16">
             <div className={`grid grid-cols-2 gap-x-10 md:gap-x-16 gap-y-5 max-md:gap-y-3 ${textColor}`}>
               <Link href="/" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Zippy Home</Link>
               <Link href="/about" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>About ZEC</Link>
@@ -149,8 +149,8 @@ const Footer = () => {
               <Link href="/beyond" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Beyond the ride</Link>
               <Link href="/stories" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Rider Stories</Link>
             </div>
-
           </div>
+
         </div>
 
         {/* Copyright Row */}

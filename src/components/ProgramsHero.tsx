@@ -8,7 +8,7 @@ export default function ProgramsHero() {
   return (
     <section className="relative w-full h-screen min-h-[700px] max-md:min-h-[550px] flex items-center overflow-hidden bg-[#242A59]">
       <div className="absolute inset-0 z-0">
-        <picture>
+        <picture className="absolute inset-0 w-full h-full">
           <source
             media="(max-width: 767px)"
             srcSet="/assets/images/Programs/Webp/Hero.webp"

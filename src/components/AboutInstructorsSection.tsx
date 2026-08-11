@@ -28,7 +28,6 @@ const instructors = [
 
 export default function AboutInstructorsSection() {
   const containerRef = useRef<HTMLElement>(null);
-  const [showTooltip, setShowTooltip] = useState(false);
 
   const isInView = useInView(containerRef, { amount: 0.15, once: true });
   const progress = useMotionValue(0);
@@ -49,17 +48,17 @@ export default function AboutInstructorsSection() {
       style={{ background }}
     >
       {/* ── Instructors ── */}
-      <div className="pt-24 pb-16 md:pt-42 md:pb-24 max-md:pt-16 relative z-10">
+      <div className="pt-24 pb-4 md:pt-36 md:pb-8 max-md:pt-16 relative z-10">
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20 max-md:mb-10">
             <Reveal>
-              <h2 className="text-[#FFF8E5] font-sans text-3xl md:text-5xl font-normal  mb-5">
+              <h2 className="text-[#FFF8E5] font-sans text-3xl md:text-5xl font-normal md:pt-12 mb-5">
                 The People You&apos;ll Ride With
               </h2>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="text-[#FFF8E5]/80 text-sm md:text-base leading-relaxed font-light max-w-2xl lg:max-w-[600px] mx-auto">
+              <p className="text-[#FFF8E5]/80 text-sm md:text-base leading-relaxed font-light max-w-3xl lg:max-w-[760px] mx-auto">
                 The right guidance changes everything. And that&apos;s exactly what you&apos;ll find here,
                 instructors who care about how you ride and how you feel while doing it.
               </p>
@@ -119,84 +118,78 @@ export default function AboutInstructorsSection() {
       </div>
 
       {/* ── Location / Map ── */}
-      <div className="pt-24 pb-0 md:pt-32">
-        <div className="container mx-auto pl-6 md:pl-12 pr-0 lg:pr-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0 items-start">
-            {/* Left: Text */}
-            <div className="flex flex-col gap-10 pr-6 md:pr-12 lg:pr-8 lg:pt-22">
+      <div className="pt-12 pb-12 md:pt-16 md:pb-16 overflow-hidden">
+        <div className="w-full pr-0">
+          <div className="flex flex-col lg:flex-row items-center">
+            {/* Left: Text — using exact clamp padding from Meet the Herd while maintaining full paragraph width */}
+            <div
+              className="w-full lg:w-[45%] xl:w-[42%] flex-shrink-0 flex flex-col gap-6 py-4"
+              style={{ paddingLeft: "clamp(24px, 11.4vw, 172px)", paddingRight: "clamp(12px, 1.5vw, 24px)" }}
+            >
               <Reveal>
-                <h2 className="text-[#FFF8E5] font-sans text-4xl md:text-[55px] font-normal leading-[1.1]">
+                <h2 className="text-[#FFF8E5] font-sans text-4xl md:text-[50px] lg:text-[54px] font-normal leading-[1.1]">
                   The Center That&apos;s<br />Right in the City.
                 </h2>
               </Reveal>
               <Reveal delay={0.08}>
-                <p className="text-[#f2ebd9]/80 text-base md:text-[15px] font-light leading-[1.25] max-w-[400px]">
+                <p className="text-[#f2ebd9]/80 text-base md:text-[15px] font-light leading-[1.4] max-w-[500px]">
                   Zippy Equestrian Center is located in JP Nagar, 7th Phase, right in the heart of
                   South Bangalore with a well-maintained arena, proper stabling for our horses and
                   everything you need to show up, ride and leave with a smile.
                 </p>
               </Reveal>
               <Reveal delay={0.16}>
-                <p className="text-white text-base md:text-[15px] font-normal leading-[1.25] max-w-[420px]">
+                <p className="text-white text-base md:text-[15px] font-normal leading-[1.4] max-w-[500px]">
                   No lengthy commute, no remote farm, zero fuss. Just a fully equipped riding center
                   that is minutes away from where you are.
                 </p>
               </Reveal>
             </div>
 
-            {/* Right: Map */}
+            {/* Right: Map (Touches right edge with 0 right padding & moderate scale) */}
             <div
-              className="relative w-full max-w-[450px] lg:max-w-[733px] ml-auto cursor-pointer mt-12 lg:-mt-[150px] lg:-mb-0 z-0 max-md:!mr-0"
+              className="w-full lg:w-[55%] xl:w-[58%] relative max-w-[500px] lg:max-w-[580px] xl:max-w-[620px] ml-auto mr-0 z-0 max-md:pr-6 mt-6 lg:mt-0"
               style={{
-                marginRight: "calc(-48vw + 100%)",
                 aspectRatio: "733/982",
-                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 100%)",
-                maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 100%)"
+                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 100%)",
+                maskImage: "linear-gradient(to bottom, transparent 0%, black 10%, black 100%)"
               }}
-              onMouseEnter={() => setShowTooltip(true)}
-              onMouseLeave={() => setShowTooltip(false)}
             >
               <Image loading="lazy"
-                src="/assets/images/map2.svg"
+                src="/assets/images/about-map.svg"
                 alt="ZEC Location Map"
                 fill
-                sizes="(max-width: 768px) 100vw, 700px"
+                sizes="(max-width: 768px) 100vw, 620px"
                 className="object-contain"
               />
 
-              {/* Dot marker */}
+              {/* Statically visible Dot marker */}
               <div
                 className="absolute pointer-events-none"
                 style={{ left: "calc(34.1% - 10px)", top: "calc(56.8% - 10px)", width: 20, height: 20 }}
               >
-                <div
-                  className={`w-full h-full rounded-full border-2 border-[#DA7347] transition-opacity duration-300 ${showTooltip ? "opacity-100" : "opacity-0"
-                    }`}
-                />
+                <div className="w-full h-full rounded-full border-2 border-[#DA7347]" />
               </div>
 
-              {/* Address card */}
-              <motion.div
-                initial={false}
-                animate={showTooltip ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
-                transition={{ duration: 0.22, ease: "easeOut" }}
-                className="absolute pointer-events-none z-30"
+              {/* Statically visible Square Address card */}
+              <div
+                className="absolute z-30 pointer-events-auto"
                 style={{ left: "34.65%", top: "57.43%", width: "50%" }}
               >
                 <div
-                  className="backdrop-blur-[3px] rounded-[7px] p-4 lg:p-5"
-                  style={{ background: "rgba(218,115,71,0.4)" }}
+                  className="backdrop-blur-[3px] rounded-none p-3.5 lg:p-4 shadow-lg border border-[#DA7347]/30"
+                  style={{ background: "rgba(218,115,71,0.55)" }}
                 >
-                  <p className="text-[#f2ebd9] text-[10px] lg:text-[11px] uppercase font-bold mb-2 tracking-wider">
+                  <p className="text-[#f2ebd9] text-[10px] lg:text-[11px] uppercase font-bold mb-1.5 tracking-wider">
                     Zippy Equestrian Center
                   </p>
-                  <p className="text-[#f2ebd9]/90 text-[12px] lg:text-[13px] font-light leading-relaxed">
+                  <p className="text-[#f2ebd9]/90 text-[11px] lg:text-[12px] font-light leading-relaxed">
                     102/2, next to Sports Drome,<br />
                     Opposite Jain Public School, Puttenahalli,<br />
                     JP Nagar 7th Phase, Bengaluru – 560078
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

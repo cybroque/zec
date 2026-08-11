@@ -17,15 +17,15 @@ export default function AboutStorySection() {
 
       <div className="container mx-auto px-6 md:px-12 relative z-10 pt-12 max-md:pt-8">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-16 max-md:gap-y-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-10 gap-x-12 gap-y-16 max-md:gap-y-10 items-start">
             {/* Left Column: Top 3 Paragraphs */}
             <div className="pl-16 max-md:pl-0 lg:col-span-7 flex flex-col text-[#FFF8E5] font-extralight text-[15px] md:text-[17px] leading-[1.4]">
               <Reveal>
-                <h2 className="text-white font-sans text-xl md:text-2xl font-bold tracking-[0.1em] uppercase mb-12 md:mb-16 max-md:mb-8">
+                <h2 className="text-white font-sans text-xl md:text-2xl font-bold  uppercase mb-12 md:mb-16 max-md:mb-8">
                   Where it all began
                 </h2>
               </Reveal>
-              <div className="flex flex-col gap-4 max-w-xl">
+              <div className="flex flex-col gap-4 max-w-3xl">
                 <Reveal delay={0.08}>
                   <p>
                     After finishing his engineering degree, Dilip Kirani (Founding Partner) wanted to try something he'd always meant to get around to, 'Horse riding'.
@@ -45,7 +45,7 @@ export default function AboutStorySection() {
             </div>
 
             {/* Right Column: Image */}
-            <Reveal delay={0.12} className="lg:col-span-5 flex justify-center lg:justify-start">
+            <Reveal delay={0.12} className="lg:col-span-5 md:pl-12 flex justify-center lg:justify-start">
               <div className="relative w-full max-w-[240px] sm:max-w-[260px] lg:max-w-[280px] aspect-[4/5] rounded-lg overflow-hidden shadow-2xl hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
                 <Image loading="lazy"
                   src="/assets/images/About/Webp/Founding_Partner.webp"

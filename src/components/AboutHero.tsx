@@ -8,7 +8,7 @@ export default function AboutHero() {
     <section className="relative w-full h-[100svh] min-h-[600px] flex items-center overflow-hidden bg-[#9eb9da] pb-24 max-md:pb-16">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
-        <picture>
+        <picture className="absolute inset-0 w-full h-full">
           <source
             media="(max-width: 767px)"
             srcSet="/assets/images/About/Webp/hero.webp"

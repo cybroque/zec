@@ -30,6 +30,7 @@ export const IMAGES_BY_ROUTE: Record<string, string[]> = {
     "/assets/images/About/Webp/herd4.webp",
     "/assets/images/About/Webp/herd5.webp",
     "/assets/images/About/Webp/herd6.webp",
+    "/assets/images/Group.svg",
     "/assets/images/about-map.svg",
   ],
   "/programs": [

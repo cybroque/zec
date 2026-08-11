@@ -36,10 +36,10 @@ export default function Hero() {
 
         <Reveal delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-6">
-            <Link href="/contact" className="px-10 py-5 bg-[#DA7347] text-[#F2EBD9] font-normal text-sm tracking-[0.15em] rounded-sm hover:bg-white hover:text-zippy-orange transition-all duration-300 shadow-2xl max-sm:w-full max-sm:block max-sm:text-center">
+            <Link href="/contact" className="px-10 py-5 bg-[#DA7347] text-[#F2EBD9] font-semibold text-sm rounded-sm hover:bg-white hover:text-zippy-orange transition-all duration-300 shadow-2xl max-sm:w-full max-sm:block max-sm:text-center">
               Book a trial ride
             </Link>
-            <Link href="/programs" className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/30 text-[#F2EBD9] font-normal text-sm tracking-[0.15em] rounded-sm hover:bg-white/20 transition-all duration-300 max-sm:w-full max-sm:block max-sm:text-center">
+            <Link href="/programs" className="px-10 py-5 border border-white/30 text-[#F2EBD9] font-semibold text-sm rounded-sm hover:bg-white/20 transition-all duration-300 max-sm:w-full max-sm:block max-sm:text-center">
               Explore Programs
             </Link>
           </div>

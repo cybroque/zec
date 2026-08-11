@@ -19,7 +19,7 @@ const ActivityCard = ({
   href: string;
 }) => {
   return (
-    <Link href={href} className="relative group block overflow-hidden rounded-sm aspect-[423/556.5] w-[78vw] max-w-[320px] flex-shrink-0 snap-center md:w-full md:max-w-none md:flex-shrink md:snap-none cursor-pointer select-none [-webkit-touch-callout:none]">
+    <Link href={href} className="relative group block overflow-hidden rounded-sm aspect-[423/500] w-[78vw] max-w-[320px] flex-shrink-0 snap-center md:w-full md:max-w-none md:flex-shrink md:snap-none cursor-pointer select-none [-webkit-touch-callout:none]">
       {/* Image */}
       <Image loading="lazy"
         src={imageSrc}
@@ -37,11 +37,11 @@ const ActivityCard = ({
       />
 
       {/* Content Overlay */}
-      <div className="absolute inset-0 p-8 flex flex-col justify-end text-white max-md:p-6">
-        <h3 className="text-2xl md:text-[28px] font-light mb-2 leading-tight tracking-tight">
+      <div className="absolute inset-0 p-6 flex flex-col justify-end text-white max-md:p-5">
+        <h3 className="text-xl md:text-2xl font-light mb-1.5 leading-tight tracking-tight">
           {title}
         </h3>
-        <p className="text-[13px] md:text-[15px] font-extralight opacity-90 max-w-[260px]">
+        <p className="text-[13px] md:text-sm font-extralight opacity-90 max-w-[260px]">
           {description}
         </p>
       </div>
@@ -75,17 +75,17 @@ const ActivitiesSection = () => {
   ];
 
   return (
-    <section className="bg-[#FFF8E5] py-16 md:py-20 px-6">
-      <div className="container mx-auto max-w-7xl">
+    <section className="bg-[#FFF8E5] py-14 md:py-18 px-6">
+      <div className="container mx-auto max-w-6xl">
         {/* Header */}
-        <div className="text-center max-w-5xl mx-auto mb-12 md:mb-16">
+        <div className="text-center max-w-4xl mx-auto mb-10 md:mb-12">
           <Reveal>
-            <h2 className="text-[42px] md:text-[54px] font-normal text-[#DA7347] mb-8 leading-[1.1] tracking-tight">
-              For All Seasons & All Reasons
+            <h2 className="text-[38px] md:text-[50px] font-normal text-[#DA7347] mb-4 leading-[1.1] tracking-tight">
+              For All Seasons &amp; All Reasons
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="text-md md:text-md text-[#1a1a1a] max-w-3xl mx-auto leading-[1.6] font-normal opacity-90 px-4">
+            <p className="text-sm md:text-base text-[#1a1a1a] max-w-2xl lg:max-w-3xl mx-auto leading-[1.5] font-normal opacity-90 px-4">
               ZEC is more than a riding school. From summer camps for kids to corporate experiences,
               photoshoots, and venue hire there&apos;s always something on at the stables.
             </p>
@@ -93,7 +93,7 @@ const ActivitiesSection = () => {
         </div>
 
         {/* Grid / Mobile scroll carousel */}
-        <div className="flex overflow-x-auto snap-x snap-proximity no-scrollbar gap-4 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] md:grid md:grid-cols-3 md:gap-4 lg:gap-6 md:overflow-visible md:snap-none mb-12">
+        <div className="max-w-5xl mx-auto flex overflow-x-auto snap-x snap-proximity no-scrollbar gap-4 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] md:grid md:grid-cols-3 md:gap-5 lg:gap-6 md:overflow-visible md:snap-none mb-10">
           {activities.map((activity, index) => (
             <Reveal key={index} delay={0.06 * (index + 1)} className="flex-shrink-0 snap-center md:flex-shrink md:snap-none">
               <ActivityCard {...activity} />

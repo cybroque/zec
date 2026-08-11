@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import Reveal from "./ui/Reveal";
 
 const CARD_W = 254;
@@ -24,7 +24,9 @@ const TRAIL_PX = 80;
 export default function AboutHerdSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef     = useRef<HTMLDivElement>(null);
+  const trackContainerRef = useRef<HTMLDivElement>(null);
   const [scrollDist, setScrollDist] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const measure = () => {
@@ -54,6 +56,13 @@ export default function AboutHerdSection() {
     offset: ["start start", "end end"],
   });
 
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (window.innerWidth >= 768) {
+      const idx = Math.min(horses.length - 1, Math.max(0, Math.round(latest * (horses.length - 1))));
+      setActiveIndex(idx);
+    }
+  });
+
   // Translate track leftward as user scrolls down through the container
   const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDist]);
 
@@ -67,13 +76,28 @@ export default function AboutHerdSection() {
       style={{ height: scrollDist > 0 ? `calc(100dvh + ${scrollDist}px)` : "auto" }}
     >
       <section
-        className={`w-full bg-[#FFF8E5] overflow-hidden flex flex-col md:flex-row items-center max-md:!pt-8 max-md:!pb-8 ${
+        id="herd-section"
+        className={`relative w-full bg-[#f2ebd9] overflow-hidden flex flex-col md:flex-row items-center max-md:!pt-4 max-md:!pb-4 ${
           scrollDist > 0 ? "sticky top-0 h-dvh" : ""
         }`}
-        style={{ paddingTop: "clamp(48px, 8vw, 120px)", paddingBottom: "clamp(48px, 8vw, 120px)" }}
+        style={{ 
+          paddingTop: "clamp(40px, 6vw, 96px)", 
+          paddingBottom: "clamp(40px, 6vw, 96px)" 
+        }}
       >
+        {/* Grid Background Layer */}
+        <div 
+          className="absolute inset-0 z-0 transition-opacity duration-300 herd-grid-layer"
+          style={{
+            backgroundImage: `url('/assets/images/Group.svg')`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+
         {/* Header — left-aligned */}
-        <div className="w-full md:w-1/3 xl:w-[40%] flex-shrink-0 z-10">
+        <div className="relative z-10 w-full md:w-1/3 xl:w-[40%] flex-shrink-0">
           <Reveal delay={0.1}>
             <div className="mb-10 max-md:mb-6 md:mb-0" style={{ paddingLeft: "clamp(24px, 11.4vw, 172px)", paddingRight: "clamp(24px, 4vw, 40px)" }}>
               <h2
@@ -94,49 +118,85 @@ export default function AboutHerdSection() {
           </Reveal>
         </div>
 
-        {/* Scrolling track */}
-        <div className="w-full md:w-2/3 xl:w-[60%] overflow-x-auto md:overflow-hidden pl-6 md:pl-0 snap-x snap-proximity md:snap-none no-scrollbar touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch]">
-          <motion.div
-            ref={trackRef}
-            className="flex"
-            style={{
-              x,
-              gap: `${CARD_GAP}px`,
-            }}
-          >
-            {horses.map((horse, i) => (
-              <div key={i} className="flex-none snap-center md:snap-none select-none [-webkit-touch-callout:none]" style={{ width: `${CARD_W}px` }}>
-                {/* Card image —  layer structure */}
-                <Reveal delay={0.05 * Math.min(i, 4)}>
-                <div
-                  className="relative rounded-[6px] overflow-hidden hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out"
-                  style={{ height: "330px" }}
-                >
-                  <div className="absolute inset-0 overflow-hidden rounded-[6px]">
-                    <Image loading="lazy" src={horse.image} alt={horse.name} fill draggable={false} sizes="254px" className="object-cover [-webkit-user-drag:none] pointer-events-none" />
-                  </div>
-                </div>
-                </Reveal>
-
-                {/* Info below card */}
-                <Reveal delay={0.05 * Math.min(i, 4)}>
-                <div className="mt-[15px]">
-                  <p className="text-[#85431e] font-normal leading-[1.25]" style={{ fontSize: "22px" }}>
-                    {horse.name}
-                  </p>
-                  <p className="text-black font-light uppercase leading-[1.25] mt-1" style={{ fontSize: "13px" }}>
-                    {horse.ageType}
-                  </p>
-                  <p className="text-black font-light leading-[1.25]" style={{ fontSize: "13px" }}>
-                    {horse.breed}
-                  </p>
-                </div>
-                </Reveal>
-              </div>
+        {/* Right Column: Card Tracker & Scrolling track */}
+        <div className="relative z-10 w-full md:w-2/3 xl:w-[60%] flex flex-col">
+          {/* Card Tracker directly above image cards */}
+          <div className="flex gap-3 items-center mb-4 md:mb-6 pl-6 md:pl-0">
+            {horses.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => {
+                  setActiveIndex(i);
+                  if (window.innerWidth < 768 && trackContainerRef.current) {
+                    trackContainerRef.current.scrollTo({
+                      left: i * (CARD_W + CARD_GAP),
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+                aria-label={`Go to horse ${i + 1}`}
+                className={`w-3.5 h-3.5 p-0 cursor-pointer block transition-all duration-300 ${
+                  i === activeIndex ? 'bg-[#85431e]' : 'bg-transparent border border-[#85431e]'
+                }`}
+              />
             ))}
-            {/* Trailing empty slot to prevent flex padding collapse and ensure proper scroll math */}
-            <div className="flex-none" style={{ width: `${TRAIL_PX}px` }} />
-          </motion.div>
+          </div>
+
+          {/* Scrolling track */}
+          <div
+            ref={trackContainerRef}
+            onScroll={(e) => {
+              if (window.innerWidth < 768) {
+                const scrollLeft = e.currentTarget.scrollLeft;
+                const idx = Math.min(horses.length - 1, Math.max(0, Math.round(scrollLeft / (CARD_W + CARD_GAP))));
+                setActiveIndex(idx);
+              }
+            }}
+            className="w-full overflow-x-auto md:overflow-hidden pl-6 md:pl-0 snap-x snap-proximity md:snap-none no-scrollbar touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch]"
+          >
+            <motion.div
+              ref={trackRef}
+              className="flex"
+              style={{
+                x,
+                gap: `${CARD_GAP}px`,
+              }}
+            >
+              {horses.map((horse, i) => (
+                <div key={i} className="flex-none snap-center md:snap-none select-none [-webkit-touch-callout:none]" style={{ width: `${CARD_W}px` }}>
+                  {/* Card image — layer structure */}
+                  <Reveal delay={0.05 * Math.min(i, 4)}>
+                  <div
+                    className="relative rounded-[6px] overflow-hidden hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out"
+                    style={{ height: "330px" }}
+                  >
+                    <div className="absolute inset-0 overflow-hidden rounded-[6px]">
+                      <Image loading="lazy" src={horse.image} alt={horse.name} fill draggable={false} sizes="254px" className="object-cover [-webkit-user-drag:none] pointer-events-none" />
+                    </div>
+                  </div>
+                  </Reveal>
+
+                  {/* Info below card */}
+                  <Reveal delay={0.05 * Math.min(i, 4)}>
+                  <div className="mt-[15px]">
+                    <p className="text-[#85431e] font-normal leading-[1.25]" style={{ fontSize: "22px" }}>
+                      {horse.name}
+                    </p>
+                    <p className="text-black font-light uppercase leading-[1.25] mt-1" style={{ fontSize: "13px" }}>
+                      {horse.ageType}
+                    </p>
+                    <p className="text-black font-light leading-[1.25]" style={{ fontSize: "13px" }}>
+                      {horse.breed}
+                    </p>
+                  </div>
+                  </Reveal>
+                </div>
+              ))}
+              {/* Trailing empty slot to prevent flex padding collapse and ensure proper scroll math */}
+              <div className="flex-none" style={{ width: `${TRAIL_PX}px` }} />
+            </motion.div>
+          </div>
         </div>
        
       </section>
