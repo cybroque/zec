@@ -8,8 +8,8 @@
 
 **Tech Stack:** Next.js 16 (App Router), `next/font/local`, Tailwind CSS v4, GSAP.
 
-## Global Constraints
-- Font file path: `public/assets/fonts/Optima Medium.ttf`
+## Global Constraints 
+- Font file  path: `public/assets/fonts/Optima Medium.ttf`
 - CSS variable name: `--font-optima-medium`
 - Text styling: Optima Medium, bold weight (`font-bold`) on mobile & desktop views
 
