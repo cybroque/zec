@@ -26,6 +26,16 @@ const rowColors = [
 
 const riders: Rider[] = [
   {
+    name: "Aazeen",
+    age: "16",
+    joinedDate: "2021",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "My experience at Zippy over the past two and a half years has been truly rewarding. It has become much more than a riding academy—it is a place where I feel comfortable, supported, and inspired. The trainers go beyond teaching riding; they help us understand horses, their behaviour, grooming, saddling, and care. Their patience and dedication have helped me grow in confidence, discipline, and horsemanship. The horses are well-trained, well cared for, and treated with genuine compassion, creating a safe and positive environment for everyone.",
+    image: "/assets/images/Rider_stories/Webp/Aazeen.webp",
+  },
+  {
     name: "Anagha",
     age: "15",
     joinedDate: "2023 March",
@@ -91,7 +101,7 @@ export default function StoriesRidersSection() {
   }, []);
 
   return (
-    <section className="w-full">
+    <section id="stories-riders-section" className="w-full">
       {/* Preload images in the background so they display instantly on hover */}
       <div className="hidden">
         {riders.map((rider) => (

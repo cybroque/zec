@@ -8,6 +8,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const testimonials = [
   {
+    quote: "My experience at Zippy over the past two and a half years has been truly rewarding. It has become much more than a riding academy—it is a place where I feel comfortable, supported, and inspired. The trainers go beyond teaching riding; they help us understand horses, their behaviour, grooming, saddling, and care. Their patience and dedication have helped me grow in confidence, discipline, and horsemanship. The horses are well-trained, well cared for, and treated with genuine compassion, creating a safe and positive environment for everyone.",
+    name: "Aazeen",
+    location: "Bangalore",
+    level: "Rider"
+  },
+  {
     quote: "I booked a trial session thinking I'd do it once. That was eight months ago. I'm now in the Intermediate program and I can't imagine my weekends without it.",
     name: "Priya S",
     location: "Bangalore",

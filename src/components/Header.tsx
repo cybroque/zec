@@ -31,6 +31,8 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
   const [isPastHero, setIsPastHero] = useState(false);
   const [isFooterActive, setIsFooterActive] = useState(false);
   const [isHerdInView, setIsHerdInView] = useState(false);
+  const [isInTestimonial, setIsInTestimonial] = useState(false);
+  const [isInStoriesRiders, setIsInStoriesRiders] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -84,6 +86,23 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
           } else {
             setIsHerdInView(false);
           }
+          
+          const testimonialSection = document.getElementById("testimonial-section");
+          if (testimonialSection) {
+            const rect = testimonialSection.getBoundingClientRect();
+            setIsInTestimonial(rect.top <= 80 && rect.bottom >= 50);
+          } else {
+            setIsInTestimonial(false);
+          }
+          
+          const storiesRidersSection = document.getElementById("stories-riders-section");
+          if (storiesRidersSection) {
+            const rect = storiesRidersSection.getBoundingClientRect();
+            setIsInStoriesRiders(rect.top <= 80 && rect.bottom >= 50);
+          } else {
+            setIsInStoriesRiders(false);
+          }
+          
           ticking = false;
         });
         ticking = true;
@@ -98,7 +117,7 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
   }, []);
 
   let isLight = theme === "light" || (!disableThemeChangeOnScroll && isPastHero);
-  if (isFooterActive) {
+  if (isFooterActive || isInTestimonial || isInStoriesRiders) {
     isLight = false;
   }
   
