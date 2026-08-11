@@ -58,7 +58,7 @@ const TestimonialSection = () => {
   const current = testimonials[index];
 
   return (
-    <section className="bg-[#FFF8E5] py-24 md:py-40 px-6">
+    <section id="testimonial-section" className="bg-[#FFF8E5] py-24 md:py-40 px-6">
       <div className="container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
 

@@ -122,7 +122,7 @@ export default function StoriesRidersSection() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.32 }}
-                  className="w-full px-8 md:px-16 grid grid-cols-3 items-center h-[110px] max-md:grid-cols-1 max-md:h-auto max-md:gap-1.5 max-md:px-6 max-md:py-4"
+                  className="container mx-auto px-6 md:px-12 w-full grid grid-cols-3 items-center h-[110px] max-md:grid-cols-1 max-md:h-auto max-md:gap-1.5 max-md:py-4"
                 >
                   <span
                     className="text-white/60 text-3xl md:text-3xl font-light "
@@ -152,7 +152,7 @@ export default function StoriesRidersSection() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.32 }}
-                  className="flex min-h-[380px] max-md:flex-col max-md:min-h-0"
+                  className="flex min-h-[380px] max-md:flex-col max-md:min-h-0 relative"
                 >
                   {/* Left: photo with name overlay */}
                   <div className="relative w-[38%] min-h-[380px] flex-shrink-0 max-md:w-full max-md:min-h-[280px]">
@@ -164,15 +164,20 @@ export default function StoriesRidersSection() {
                       className="object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 max-md:p-6">
-                      <h3
-                        className="text-white text-3xl md:text-4xl font-bold leading-none mb-2 max-sm:text-2xl"
-                        style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-                      >
-                        {rider.name}
-                      </h3>
-                      <p className="text-white/70 text-sm">{rider.role}</p>
-                      <p className="text-white/55 text-xs mt-1">Age: {rider.age}</p>
+                  </div>
+
+                  {/* Rider Name Overlay Aligned to Container */}
+                  <div className="absolute bottom-0 left-0 w-full pointer-events-none max-md:top-0 max-md:bottom-auto">
+                    {/* On mobile, we position it relative to the image which is 280px min height, 
+                        so we place it at the bottom of the image area. */}
+                    <div className="container mx-auto px-6 md:px-12 h-full flex items-end">
+                      <div className="pb-8 md:pb-16 max-md:h-[280px] max-md:pb-6 flex flex-col justify-end pointer-events-auto max-w-md">
+                        <h3 className="text-white text-3xl md:text-4xl font-bold leading-none mb-2 max-sm:text-2xl">
+                          {rider.name}
+                        </h3>
+                        <p className="text-white/70 text-sm">{rider.role}</p>
+                        <p className="text-white/55 text-xs mt-1">Age: {rider.age}</p>
+                      </div>
                     </div>
                   </div>
 

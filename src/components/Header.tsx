@@ -29,6 +29,7 @@ interface HeaderProps {
 export default function Header({ theme = "dark", disableThemeChangeOnScroll = false, navVariant = "default" }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
+  const [isPastTestimonial, setIsPastTestimonial] = useState(false);
   const [isHerdInView, setIsHerdInView] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -62,6 +63,15 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
           // Minus 80px to transition smoothly right as it crosses the boundary
           setIsPastHero(currentY > window.innerHeight - 80);
           
+          const testimonialSection = document.getElementById("testimonial-section");
+          if (testimonialSection) {
+            const rect = testimonialSection.getBoundingClientRect();
+            // Header is ~80px. Check if the bottom of the testimonial section has passed the header.
+            setIsPastTestimonial(rect.bottom <= 80);
+          } else {
+            setIsPastTestimonial(false);
+          }
+          
           const herdSection = document.getElementById("herd-section");
           if (herdSection) {
             const rect = herdSection.getBoundingClientRect();
@@ -83,7 +93,10 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isLight = theme === "light" || (!disableThemeChangeOnScroll && isPastHero);
+  let isLight = theme === "light" || (!disableThemeChangeOnScroll && isPastHero);
+  if (pathname === '/') {
+    isLight = theme === "light" || (!disableThemeChangeOnScroll && isPastTestimonial);
+  }
   
   let showDarkLogo = isLight;
   if (pathname === '/about' && isPastHero) {

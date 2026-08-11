@@ -31,25 +31,29 @@ export default function StoriesHero() {
       />
 
       {/* Bottom-left content */}
-      <div className="absolute bottom-12 left-0 px-8 md:px-16 pb-16 md:pb-24 max-w-2xl max-sm:px-6 max-md:bottom-8 max-md:pb-12">
-        <Reveal>
-          <h1 className="text-5xl md:text-7xl font-normal text-white leading-none mb-4 max-sm:text-4xl">
-            Rider Stories
-          </h1>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <p className="text-[16px] text-[#F2EBD9] font-gt-ultra   uppercase font-bold mb-3">
-            Featured Stories
-          </p>
-        </Reveal>
-        <Reveal delay={0.16}>
-          <p className="text-white/85 text-sm md:text-base leading-relaxed">
-            Every rider at Zippy Equestrian Center has a before and an after.
-            Here&apos;s what that journey looks like — in their own words. These
-            are real people who showed up not knowing what to expect,
-            and kept coming back.
-          </p>
-        </Reveal>
+      <div className="absolute bottom-12 md:bottom-24 max-md:bottom-12 left-0 w-full pointer-events-none">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-2xl pointer-events-auto">
+            <Reveal>
+              <h1 className="text-5xl md:text-7xl font-normal text-white leading-none mb-4 max-sm:text-4xl">
+                Rider Stories
+              </h1>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="text-[16px] text-[#F2EBD9] font-gt-ultra uppercase font-bold mb-3">
+                Featured Stories
+              </p>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="text-white/85 text-sm md:text-base leading-relaxed">
+                Every rider at Zippy Equestrian Center has a before and an after.
+                Here&apos;s what that journey looks like — in their own words. These
+                are real people who showed up not knowing what to expect,
+                and kept coming back.
+              </p>
+            </Reveal>
+          </div>
+        </div>
       </div>
     </section>
   );
