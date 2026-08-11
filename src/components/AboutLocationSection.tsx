@@ -44,11 +44,11 @@ export default function AboutLocationSection() {
               className="object-contain"
             />
             {/* Address card */}
-            <div className="absolute bottom-8 right-4 md:bottom-12 md:right-8 bg-[#FFF8E5]/90 backdrop-blur-sm p-4 md:p-5 max-w-[210px] shadow-lg">
-              <p className="text-[#85431E] text-[9px] uppercase  font-bold mb-2">
+            <div className="absolute bottom-8 right-4 md:bottom-12 md:right-8 bg-[#FFF8E5]/90 backdrop-blur-sm rounded-lg p-5 md:p-6 w-[85%] max-w-[320px] shadow-lg flex flex-col justify-center">
+              <p className="text-[#85431E] text-[10px] md:text-[11px] uppercase font-bold mb-2 md:mb-3">
                 ZIPPY EQUESTRIAN CENTER
               </p>
-              <p className="text-[#85431E]/80 text-[11px] font-light leading-relaxed">
+              <p className="text-[#85431E]/80 text-[11px] md:text-[13px] font-light leading-relaxed">
                 102/2, next to Sports Drome,<br />
                 Opposite Jain Public School, Puttenahalli,<br />
                 JP Nagar 7th Phase, Bengaluru – 560078

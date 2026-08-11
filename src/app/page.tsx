@@ -5,6 +5,7 @@ import ScrollCarousel from "@/components/ScrollCarousel";
 import ActivitiesSection from "@/components/ActivitiesSection";
 import ZippyFamilySection from "@/components/ZippyFamilySection";
 import TestimonialSection from "@/components/TestimonialSection";
+import StoriesInstagramSection from "@/components/StoriesInstagramSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <TestimonialSection />
       <ActivitiesSection />
       <ZippyFamilySection />
+      <StoriesInstagramSection />
       <Footer />
     </main>
   );

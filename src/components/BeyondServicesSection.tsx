@@ -142,35 +142,6 @@ export default function BeyondServicesSection() {
     <section className="relative w-full bg-[#F5F1E8]">
       {/* Background SVGs wrapped in overflow-hidden to not break sticky */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <img
-          src="/assets/images/top.svg"
-          alt=""
-          className="absolute top-0 pointer-events-none"
-          style={{
-            left: "-28%",
-            width: "100%",
-            height: "140px",
-          }}
-        />
-
-        <img
-          src="/assets/images/beyond.svg"
-          alt=""
-          className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
-          style={{
-            width: "134px",
-            height: "60%",
-          }}
-        />
-        <img
-          src="/assets/images/beyond.svg"
-          alt=""
-          className="absolute left-0 bottom-0 pointer-events-none transform -scale-x-100"
-          style={{
-            width: "134px",
-            height: "70%",
-          }}
-        />
       </div>
 
       {/* Anchor for summer-camps — placed at the top of the sticky section */}

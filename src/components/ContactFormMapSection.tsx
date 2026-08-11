@@ -297,16 +297,16 @@ export default function ContactFormMapSection() {
                   animate={showTooltip ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
                   transition={{ duration: 0.22, ease: "easeOut" }}
                   className="absolute pointer-events-none"
-                  style={{ left: "34.65%", top: "57.43%", width: "52%" }}
+                  style={{ left: "34.65%", top: "57.43%", width: "55%" }}
                 >
                   <div
-                    className="backdrop-blur-[3px] rounded-[4px] p-4"
+                    className="backdrop-blur-[3px] rounded-lg p-5 md:p-6 flex flex-col justify-center"
                     style={{ backgroundColor: "rgba(218,115,71,0.88)" }}
                   >
-                    <p className="text-white text-[9px] uppercase  font-bold mb-2">
-                      Zippy Equestrian Center
+                    <p className="text-white text-[10px] md:text-[11px] uppercase font-bold mb-2 md:mb-3">
+                      ZIPPY EQUESTRIAN CENTER
                     </p>
-                    <p className="text-white/90 text-[11px] font-light leading-relaxed">
+                    <p className="text-white/90 text-[11px] md:text-[13px] font-light leading-relaxed">
                       102/2, next to Sports Drome,<br />
                       Opposite Jain Public School, Puttenahalli,<br />
                       JP Nagar 7th Phase, Bengaluru – 560078

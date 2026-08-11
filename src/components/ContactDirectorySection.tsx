@@ -38,7 +38,7 @@ export default function ContactDirectorySection() {
                   {contact.phone}
                 </p>
                 <div className="dir-divider w-full h-px mb-3" style={{ backgroundColor: "#85431E33" }} />
-                <p className="text-[#DA7347] text-[10px] uppercase font-medium mb-1">
+                <p className="text-[#DA7347] text-sm uppercase font-medium mb-1">
                   {contact.role}
                 </p>
                 {contact.name && (

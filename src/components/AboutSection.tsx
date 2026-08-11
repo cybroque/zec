@@ -97,7 +97,7 @@ const AboutSection = () => {
               </h2>
             </Reveal>
             <Reveal delay={0.4}>
-              <Link href="/about" className="group flex items-center gap-8 px-4 py-4 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-[#FFF8E5] transition-all duration-500 shadow-sm">
+              <Link href="/about#story" className="group flex items-center gap-8 px-4 py-4 border border-[#DA7347] rounded-sm hover:bg-[#DA7347] hover:text-[#FFF8E5] transition-all duration-500 shadow-sm">
                 <span className="text-lg font-gt-ultra text-[#DA7347] transition-colors group-hover:text-inherit">Read our story</span>
                 <svg
                   width="28"

@@ -3,7 +3,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function AboutStorySection() {
   return (
-    <section className="relative w-full bg-[#1C2245] py-20 md:py-24 max-md:py-14 overflow-hidden">
+    <section id="story" className="relative w-full bg-[#1C2245] py-20 md:py-24 max-md:py-14 overflow-hidden">
       {/* Top right pattern */}
       <div className="absolute top-0 right-0 w-[70%] md:w-[50%] lg:w-[40%] max-w-[600px] aspect-square opacity-60 pointer-events-none">
         <Image loading="lazy"
