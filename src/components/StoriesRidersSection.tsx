@@ -26,6 +26,16 @@ const rowColors = [
 
 const riders: Rider[] = [
   {
+    name: "Nandana",
+    age: "25",
+    joinedDate: "2023",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "I’ve realised that riding teaches you much more than technique. The routine of coming to the stable, preparing the horse, riding, and caring for them has brought a sense of discipline and balance into my life. What I value most is the mutual understanding of me and the horse which is, to listen, communicate, and build trust without words. The calm atmosphere, time with the horses, and the community make Zippy a place I genuinely look forward to every week.",
+    image: "/assets/images/Rider_stories/Webp/Nandana.webp",
+  },
+  {
     name: "Aazeen",
     age: "16",
     joinedDate: "2021",

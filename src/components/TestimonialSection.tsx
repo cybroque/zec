@@ -8,6 +8,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const testimonials = [
   {
+    quote: "I’ve realised that riding teaches you much more than technique. The routine of coming to the stable, preparing the horse, riding, and caring for them has brought a sense of discipline and balance into my life. What I value most is the mutual understanding of me and the horse which is, to listen, communicate, and build trust without words. The calm atmosphere, time with the horses, and the community make Zippy a place I genuinely look forward to every week.",
+    name: "Nandana",
+    location: "Bangalore",
+    level: "Rider"
+  },
+  {
     quote: "My experience at Zippy over the past two and a half years has been truly rewarding. It has become much more than a riding academy—it is a place where I feel comfortable, supported, and inspired. The trainers go beyond teaching riding; they help us understand horses, their behaviour, grooming, saddling, and care. Their patience and dedication have helped me grow in confidence, discipline, and horsemanship. The horses are well-trained, well cared for, and treated with genuine compassion, creating a safe and positive environment for everyone.",
     name: "Aazeen",
     location: "Bangalore",
