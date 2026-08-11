@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
 
@@ -24,9 +25,32 @@ export default function ContactFormMapSection() {
   const [selectedOption, setSelectedOption] = useState("Riding Programs");
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(COUNTRY_CODES[0]);
+  
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
 
   const countryDropdownRef = useRef<HTMLDivElement>(null);
   const programDropdownRef = useRef<HTMLDivElement>(null);
+
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const program = searchParams?.get("program");
+    const interest = searchParams?.get("interest");
+    const msg = searchParams?.get("message");
+    
+    if (interest && INTEREST_OPTIONS.includes(interest)) {
+      setSelectedOption(interest);
+    } else if (program) {
+      setSelectedOption("Riding Programs");
+    }
+
+    const finalMessage = msg || program;
+    if (finalMessage) {
+      setMessage(`${finalMessage}`);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -42,6 +66,12 @@ export default function ContactFormMapSection() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleSendEmail = () => {
+    const subject = encodeURIComponent(`Enquiry from ${name || "Website Visitor"}`);
+    const body = encodeURIComponent(`Name: ${name}\nPhone: ${selectedCountry.code} ${phone}\nInterested in: ${selectedOption}\n\nMessage/Notes:\n${message}`);
+    window.location.href = `mailto:info@teamzippy.in?subject=${subject}&body=${body}`;
+  };
 
   return (
     <section className="w-full bg-transparent pt-16 md:pt-24 pb-4 md:pb-6 max-md:pt-12">
@@ -66,6 +96,8 @@ export default function ContactFormMapSection() {
                     </label>
                     <input
                       type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full bg-[#FFFCF4] px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0 rounded-sm focus:ring-1 focus:ring-[#DA7347]/30 max-md:py-3.5"
                     />
                   </div>
@@ -89,6 +121,8 @@ export default function ContactFormMapSection() {
                       </div>
                       <input
                         type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         className="flex-1 bg-transparent px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0 max-md:py-3.5"
                         placeholder="Phone number"
                       />
@@ -160,13 +194,19 @@ export default function ContactFormMapSection() {
                     </label>
                     <textarea
                       rows={3}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       placeholder="Write here"
                       className="w-full bg-[#FFFCF4] px-4 py-3 text-sm text-[#1a1a1a] outline-none border-0 rounded-sm focus:ring-1 focus:ring-[#DA7347]/30 resize-none placeholder:text-[#1a1a1a]/35"
                     />
                   </div>
 
                   <div className="flex justify-end max-md:justify-center">
-                    <button className="flex items-center gap-3 text-white text-[11px]  uppercase px-6 py-3 rounded-sm hover:opacity-90 transition-opacity max-md:w-full max-md:justify-center max-md:py-3.5" style={{ backgroundColor: "#DA7347" }}>
+                    <button 
+                      onClick={handleSendEmail}
+                      className="flex items-center gap-3 text-white text-[11px]  uppercase px-6 py-3 rounded-sm hover:opacity-90 transition-opacity max-md:w-full max-md:justify-center max-md:py-3.5" 
+                      style={{ backgroundColor: "#DA7347" }}
+                    >
                       Send Enquiry
                       <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
                         <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -201,7 +241,7 @@ export default function ContactFormMapSection() {
 
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/919901794713"
+                href="https://wa.me/98829 88267"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between gap-4 w-full max-w-[420px]  text-white text-sm tracking-[0.12em] uppercase px-5 py-2 rounded-sm hover:opacity-90 transition-opacity"

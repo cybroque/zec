@@ -42,11 +42,6 @@ const services: Service[] = [
       "Professional training services for horses conducted by our experienced instructors. Whether you're looking to train a young horse or work on specific skills, our team brings the same structured, patient approach we use with our riders.",
     color: "#526FAE",
     image: "/assets/images/BeyondRide/Webp/horse-training.webp",
-    meta: {
-      forWho: "All types of horses",
-      season: "Any time of the year",
-      duration: "As per the requirement",
-    },
     cta: "Book your slot",
   },
   {
@@ -119,6 +114,29 @@ const services: Service[] = [
   },
 ];
 
+const getContactHref = (service: Service) => {
+  let interest = "";
+  switch (service.id) {
+    case "summer-camps": interest = "Children's camps"; break;
+    case "horse-training": interest = "Riding Programs"; break;
+    case "buy-a-horse": interest = "Buy a horse"; break;
+    case "parties-and-venues": interest = "Book a venue"; break;
+    case "equestrian-consultation": interest = "Consultation"; break;
+    case "horse-rent-lease": interest = "Horse Rent / Lease"; break;
+    case "photoshoots": interest = "Photoshoot"; break;
+    case "franchise": interest = "Franchise"; break;
+    case "horse-boarding": interest = "Horse boarding"; break;
+  }
+  let query = "";
+  if (interest) {
+    query += `interest=${encodeURIComponent(interest)}`;
+  }
+  if (service.title) {
+    query += `${query ? '&' : ''}message=${encodeURIComponent(service.title)}`;
+  }
+  return `/contact${query ? '?' + query : ''}`;
+};
+
 export default function BeyondServicesSection() {
   return (
     <section className="relative w-full bg-[#F5F1E8]">
@@ -187,7 +205,7 @@ export default function BeyondServicesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className={`flex flex-col md:flex-row w-full mb-0 shadow-2xl ${rotateClass}`}
+                className={`flex flex-col md:flex-row w-full mb-0 shadow-2xl rounded-sm overflow-hidden ${rotateClass}`}
               >
                 {/* Left: image */}
                 <div
@@ -205,7 +223,7 @@ export default function BeyondServicesSection() {
 
                 {/* Right: content */}
                 <div
-                  className="flex-1 flex flex-col justify-between px-8 md:px-12 py-10 md:py-12 max-md:px-6 max-md:py-8"
+                  className="flex-1 flex flex-col justify-between max-md:justify-start px-8 md:px-12 py-10 md:py-12 max-md:px-6 max-md:py-8"
                   style={{ backgroundColor: service.color }}
                 >
                   <div>
@@ -217,7 +235,7 @@ export default function BeyondServicesSection() {
                     </p>
                   </div>
 
-                  <div className="mt-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+                  <div className="mt-12 max-md:mt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 max-md:gap-4">
                     {service.meta ? (
                       <div className="w-full sm:w-auto flex-1 max-w-sm">
                         {service.meta.forWho && (
@@ -244,8 +262,8 @@ export default function BeyondServicesSection() {
                     )}
 
                     <Link
-                      href="/contact"
-                      className="mt-6 sm:mt-0 self-end bg-[#FFF8E5] px-5 py-3 text-[13px] text-[#DA7347] font-medium flex items-center gap-3 hover:bg-[#FFF8E5]/90 transition-colors shrink-0 rounded-sm max-md:w-full max-md:justify-center max-md:self-stretch"
+                      href={getContactHref(service)}
+                      className="mt-6 sm:mt-0 self-end bg-[#FFF8E5] px-5 py-3 text-[13px] text-[#DA7347] font-medium flex items-center justify-center gap-3 hover:bg-[#FFF8E5]/90 transition-colors shrink-0 rounded-sm max-md:w-fit max-md:self-end max-md:px-4 max-md:py-2 max-md:text-[12px]"
                     >
                       {service.cta}
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none">

@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { Suspense } from "react";
 import Footer from "@/components/Footer";
 import ContactFormMapSection from "@/components/ContactFormMapSection";
 import ContactDirectorySection from "@/components/ContactDirectorySection";
@@ -8,7 +9,9 @@ export default function ContactPage() {
     <main className="relative min-h-screen bg-[#FFF8E5]">
       <Header theme="light" />
       <div className="pt-36">
-        <ContactFormMapSection />
+        <Suspense fallback={<div>Loading form...</div>}>
+          <ContactFormMapSection />
+        </Suspense>
         <ContactDirectorySection />
         <ContactInstagramSection bgColor="#FFF8E5" />
       </div>

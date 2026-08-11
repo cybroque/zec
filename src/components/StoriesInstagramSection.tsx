@@ -4,10 +4,46 @@ import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 
 const socialLinks = [
-  { name: "Instagram", href: "#" },
-  { name: "Facebook", href: "#" },
-  { name: "Linked In", href: "#" },
-  { name: "Whatsapp", href: "#" },
+  { 
+    name: "Instagram", 
+    href: "https://www.instagram.com/zippy.equestrian?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+      </svg>
+    )
+  },
+  { 
+    name: "Facebook", 
+    href: "https://www.facebook.com/zippyequestriancenter",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+    )
+  },
+  { 
+    name: "LinkedIn", 
+    href: "https://www.linkedin.com/company/zippy-horse-riding-academy/posts/?feedView=all",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect width="4" height="12" x="2" y="9"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+    )
+  },
+  { 
+    name: "Whatsapp", 
+    href: "https://wa.me/919882988267",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+      </svg>
+    )
+  },
 ];
 
 interface StoriesInstagramSectionProps {
@@ -102,12 +138,12 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
       {/* ── "Follow us" + social links ── */}
       {!hideFooter && (
         <div className="container mx-auto max-w-5xl px-10 pt-16 pb-24 mt-8 max-md:px-6 max-md:pt-10 max-md:pb-12 max-md:mt-4">
-          <div className="flex flex-col md:flex-row justify-center items-start gap-16 md:gap-20 max-w-4xl mx-auto max-md:gap-8">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-20 max-w-4xl mx-auto max-md:gap-8 text-center md:text-left">
             
             {/* Left text */}
-            <div className="flex-1 max-w-[420px] md:text-left">
+            <div className="flex-1 max-w-[420px]">
               <Reveal>
-                <h3 className="text-[#85431E] font-medium mb-8 insta-heading-text transition-colors duration-300" style={{ fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)" }}>
+                <h3 className="text-[#85431E] font-medium mb-6 md:mb-8 insta-heading-text transition-colors duration-300" style={{ fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)" }}>
                   Follow us for stable updates and rider stories
                 </h3>
               </Reveal>
@@ -122,24 +158,29 @@ export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFoote
             <div className="w-[1px] bg-black/40 hidden md:block self-stretch mx-4" />
 
             {/* Right social links */}
-            <div className="flex-1 max-w-[200px]">
+            <div className="flex-1 max-w-[280px]">
               <Reveal delay={0.4}>
-                <p
-                  className="font-bold text-[#2C1A0E] mb-6 insta-heading-text transition-colors duration-300"
-                  style={{ fontSize: "0.9rem", letterSpacing: "0.05em", textTransform: "uppercase" }}
-                >
-                  FOLLOW US ON
-                </p>
-                <div className="flex flex-col gap-4">
-                  {socialLinks.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link.href}
-                      className="text-[#85431E] font-medium text-[15px] underline decoration-[#85431E]/40 underline-offset-4 hover:decoration-[#85431E] transition-all w-fit insta-heading-text"
-                    >
-                      {link.name}
-                    </a>
-                  ))}
+                <div className="flex flex-col items-center">
+                  <p
+                    className="font-bold text-[#2C1A0E] mb-6 insta-heading-text transition-colors duration-300 text-center"
+                    style={{ fontSize: "0.9rem", letterSpacing: "0.05em", textTransform: "uppercase" }}
+                  >
+                    FOLLOW US ON
+                  </p>
+                  <div className="flex flex-row justify-center gap-8">
+                    {socialLinks.map((link, index) => (
+                      <a
+                        key={index}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#85431E] hover:opacity-70 transition-all flex items-center justify-center insta-heading-text"
+                        aria-label={link.name}
+                      >
+                        {link.icon}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </Reveal>
             </div>

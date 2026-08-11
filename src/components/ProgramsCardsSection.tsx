@@ -172,7 +172,7 @@ const cardIndexMap: Record<string, number> = {};
 cardsData.forEach((c, i) => { cardIndexMap[c.id] = i; });
 
 // Shared card renderer used by both the desktop scroll strip and the mobile carousel
-function renderCard(card: (typeof cardsData)[number]) {
+function renderCard(card: (typeof cardsData)[number], isSelected: boolean, onSelect: (id: string) => void) {
   return (
     <div className="flex-shrink-0 w-[85vw] md:w-[429px] flex flex-col h-[591px] max-md:h-[480px]">
       {/* Category Header */}
@@ -181,7 +181,14 @@ function renderCard(card: (typeof cardsData)[number]) {
       </div>
 
       {/* Card Body (Image + Content attached) */}
-      <div className="flex flex-col flex-1 shadow-sm hover:shadow-lg overflow-hidden rounded-md md:rounded-sm transition-all duration-500 ease-out hover:scale-[1.015] hover:-translate-y-1 group cursor-pointer">
+      <div
+        onClick={() => onSelect(card.id)}
+        className={`flex flex-col flex-1 shadow-sm overflow-hidden rounded-md md:rounded-sm transition-all duration-500 ease-out cursor-pointer group ${
+          isSelected 
+            ? "shadow-lg scale-[1.015] -translate-y-1 ring-2 ring-[#DA7347]" 
+            : "hover:shadow-lg hover:scale-[1.015] hover:-translate-y-1"
+        }`}
+      >
         {/* Image */}
         <div className="relative h-[22vh] min-h-[130px] max-h-[194px] w-full flex-shrink-0 overflow-hidden">
           <Image loading="lazy"
@@ -240,6 +247,7 @@ export default function ProgramsCardsSection() {
   const targetRef = useRef<HTMLDivElement>(null);
   const mobileTrackRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -346,7 +354,7 @@ export default function ProgramsCardsSection() {
                 <div className="w-px bg-black/10 mx-3 md:mx-6 h-full" />
               )}
 
-              {renderCard(card)}
+              {renderCard(card, selectedCardId === card.id, setSelectedCardId)}
             </div>
           ))}
         </motion.div>
@@ -361,7 +369,7 @@ export default function ProgramsCardsSection() {
           >
             {cardsData.map((card) => (
               <div key={card.id} data-card className="flex-shrink-0 snap-center w-[85vw]">
-                {renderCard(card)}
+                {renderCard(card, selectedCardId === card.id, setSelectedCardId)}
               </div>
             ))}
           </div>
@@ -372,7 +380,10 @@ export default function ProgramsCardsSection() {
           <Reveal direction="none" delay={0.2} className="max-md:w-full max-md:px-6">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8 max-md:w-full">
               <span className="bottom-banner-text text-[#D9734A] text-xs md:text-xl font-medium transition-colors duration-300">Pick your level and start ride withing us</span>
-              <Link href={"/contact"} className="bottom-banner-btn bg-[#D9734A] text-white px-5 py-2 md:py-3 text-sm md:text-md font-medium hover:bg-[#C2613D] transition-colors duration-300 flex items-center gap-2 rounded-sm border border-[#D9734A] max-md:w-full max-md:justify-center">
+              <Link 
+                href={selectedCardId ? `/contact?program=${encodeURIComponent(cardsData.find(c => c.id === selectedCardId)?.title || '')}` : "/contact"} 
+                className="bottom-banner-btn bg-[#D9734A] text-white px-5 py-2 md:py-3 text-sm md:text-md font-medium hover:bg-[#C2613D] transition-colors duration-300 flex items-center gap-2 rounded-sm border border-[#D9734A] max-md:w-full max-md:justify-center"
+              >
                 Enroll now
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14" />

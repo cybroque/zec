@@ -87,54 +87,6 @@ const riders: Rider[] = [
     afterQuote: "Rides confidently on all horses in the school string. Recently started light trail rides on weekend sessions.",
     image: "/assets/images/rider5.webp",
   },
-  {
-    name: "Ritesh",
-    joinedDate: "2023 June",
-    location: "Bangalore",
-    startingLevel: "Had some prior experience",
-    role: "Finance Analyst, Bangalore",
-    program: "Novice → Intermediate",
-    beforeQuote: "Rode a couple of times on holiday trips but never had proper training. Wanted to do it right.",
-    afterMonths: 4,
-    afterQuote: "Built solid fundamentals. Now working through the Intermediate syllabus with focus on seat and contact.",
-    image: "/assets/images/rider6.webp",
-  },
-  {
-    name: "Kavya",
-    joinedDate: "2022 September",
-    location: "Bangalore",
-    startingLevel: "Started as a complete beginner",
-    role: "Graphic Designer, Bangalore",
-    program: "Beginners → Intermediate",
-    beforeQuote: "I was the person who always said 'I'd love to try that someday.' ZEC made someday happen.",
-    afterMonths: 9,
-    afterQuote: "One of our most consistent riders. Currently preparing for the regional beginner category event.",
-    image: "/assets/images/rider7.webp",
-  },
-  {
-    name: "Sameer",
-    joinedDate: "2023 June",
-    location: "Bangalore",
-    startingLevel: "Started as a complete beginner",
-    role: "Developer, Bangalore",
-    program: "Beginners → Novice",
-    beforeQuote: "Came in knowing nothing. The first time I sat on a horse I thought I was going to fall off.",
-    afterMonths: 3,
-    afterQuote: "Trotting independently after three months. Quick learner — will move to Novice in the next cycle.",
-    image: "/assets/images/rider8.webp",
-  },
-  {
-    name: "Divya",
-    joinedDate: "2021 November",
-    location: "Bangalore",
-    startingLevel: "Started as a complete beginner",
-    role: "Homemaker, Bangalore",
-    program: "Beginners → Novice",
-    beforeQuote: "I joined with my daughter. She was the brave one — I just wanted to keep up with her.",
-    afterMonths: 12,
-    afterQuote: "Now rides at the same level as her daughter. They school together on Saturday mornings. A family that rides together.",
-    image: "/assets/images/rider9.webp",
-  },
 ];
 
 export default function StoriesRidersSection() {
@@ -185,24 +137,23 @@ export default function StoriesRidersSection() {
                   className="w-full px-8 md:px-16 grid grid-cols-3 items-center h-[110px] max-md:grid-cols-1 max-md:h-auto max-md:gap-1.5 max-md:px-6 max-md:py-4"
                 >
                   <span
-                    className="text-white/85 text-3xl md:text-4xl font-light "
-                    style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                    className="text-white/60 text-3xl md:text-5xl font-light "
                   >
                     {rider.name}
                   </span>
 
-                  <div className="text-center max-md:text-left">
-                    <span className="text-white/45 text-[11px]  uppercase block mb-1">
-                      Joined ·
+                  <div className="text-left flex flex-col justify-center">
+                    <span className="text-white/30 text-[11px] md:text-base block leading-tight">
+                      Joined &middot;
                     </span>
-                    <span className="text-white/75 text-sm">{rider.joinedDate}</span>
+                    <span className="text-white/50 text-sm md:text-base leading-tight">{rider.joinedDate}</span>
                   </div>
 
-                  <div className="text-right max-md:text-left">
-                    <span className="text-white/45 text-[11px]  uppercase block mb-1">
-                      {rider.location} ·
+                  <div className="text-left flex flex-col justify-center">
+                    <span className="text-white/30 text-[11px] md:text-base block leading-tight">
+                      {rider.location} &middot;
                     </span>
-                    <span className="text-white/75 text-sm">{rider.startingLevel}</span>
+                    <span className="text-white/50 text-sm md:text-base leading-tight">{rider.startingLevel}</span>
                   </div>
                 </motion.div>
               ) : (
@@ -238,28 +189,14 @@ export default function StoriesRidersSection() {
                     </div>
                   </div>
 
-                  {/* Right: before / after */}
-                  <div className="flex-1 px-8 md:px-12 py-10 flex flex-col justify-center gap-8 max-md:px-6 max-md:py-8 max-md:gap-6">
-                    <div>
-                      <p className="text-white/45 text-[11px] tracking-[0.2em] uppercase mb-3">
-                        Before Zippy
-                      </p>
-                      <p className="text-white/75 text-sm md:text-base italic leading-relaxed max-w-xl">
-                        &ldquo;{rider.beforeQuote}&rdquo;
-                      </p>
-                    </div>
-
-                    <div>
-                      <p className="text-white/45 text-[11px] tracking-[0.2em] uppercase mb-3">
-                        After {rider.afterMonths} Months
-                      </p>
-                      <div className="flex items-start gap-3">
-                        <span className="text-white/25 text-5xl leading-none font-serif mt-1 flex-shrink-0">&ldquo;</span>
-                        <p className="text-white text-lg md:text-2xl font-semibold leading-snug max-w-xl">
-                          {rider.afterQuote}
-                        </p>
-                      </div>
-                    </div>
+                  {/* Right: review */}
+                  <div className="flex-1 px-8 md:px-16 py-10 flex flex-col justify-center max-md:px-6 max-md:py-8">
+                    <p className="text-white text-[13px] md:text-sm mb-2">
+                      After {rider.afterMonths} Months of riding
+                    </p>
+                    <p className="text-white text-base md:text-lg leading-relaxed max-w-2xl font-light">
+                      {rider.afterQuote}
+                    </p>
                   </div>
                 </motion.div>
               )}

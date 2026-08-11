@@ -12,8 +12,9 @@ export default function BeyondHero() {
           alt="The Equestrian Center for All Seasons and All Reasons"
           fill
           priority
-          sizes="100vw"
-          className="object-cover object-top"
+          sizes="(max-width: 768px) 300vw, 100vw"
+          quality={90}
+          className="object-cover object-top max-md:object-[55%_top]"
         />
       </div>
 
