@@ -79,32 +79,31 @@ const TestimonialSection = () => {
 
           {/* Right Column: Testimonial */}
           <div className="relative pt-12 max-md:pt-6 h-full flex flex-col justify-center min-h-[550px] md:min-h-[450px] lg:min-h-[380px]">
-            <div className="absolute md:top-10 md:left-0 -md:translate-x-8 -md:translate-y-4 max-md:translate-x-0 z-0">
-              <Reveal delay={0.12}>
-                <div className="relative w-8 h-6 md:w-16 md:h-12 opacity-80">
-                  <Image loading="lazy"
-                    src="/assets/images/quotationmark.png"
-                    alt="Quotation Mark"
-                    fill
-                    sizes="64px"
-                    className="object-contain"
-                  />
-                </div>
-              </Reveal>
-            </div>
-
             <div className="flex flex-col relative z-10">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.5 }}
+                  className="relative"
                 >
+                  <div className="absolute top-0 left-0 -translate-x-2 -translate-y-4 md:-translate-x-6 md:-translate-y-4 z-0 pointer-events-none">
+                    <div className="relative w-8 h-6 md:w-16 md:h-12 opacity-80">
+                      <Image loading="lazy"
+                        src="/assets/images/quotationmark.png"
+                        alt="Quotation Mark"
+                        fill
+                        sizes="64px"
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+
                   <Link
                     href="/stories"
-                    className="block text-lg pl-4 md:text-2xl font-light leading-[1.4] md:leading-[1.4] text-[#4A2D1B] hover:text-[#DA7347] mb-8 md:mb-10 tracking-tight transition-colors cursor-pointer"
+                    className="block relative z-10 text-lg pl-4 md:text-2xl font-light leading-[1.4] md:leading-[1.4] text-[#4A2D1B] hover:text-[#DA7347] mb-8 md:mb-10 tracking-tight transition-colors cursor-pointer"
                   >
                     <blockquote>
                       {current.quote}
