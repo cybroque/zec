@@ -12,7 +12,7 @@ const contacts = [
   {
     phone: "+91 98829 88267",
     role: "MOHAMED NOUMAN",
-    name: "Director",
+    name: "Operational Head",
     description: "For events, activities, franchise and consultation enquiries",
   },
 ];
