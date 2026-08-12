@@ -35,7 +35,9 @@ export default function ContactDirectorySection() {
             <Reveal key={i} delay={i * 0.1}>
               <div>
                 <p className="text-[#DA7347] text-base font-light mb-2">
-                  {contact.phone}
+                  <a href={`tel:${contact.phone.replace(/\\s/g, '')}`} className="hover:underline">
+                    {contact.phone}
+                  </a>
                 </p>
                 <div className="dir-divider w-full h-px mb-3" style={{ backgroundColor: "#85431E33" }} />
                 <p className="text-[#DA7347] text-sm uppercase font-medium mb-1">
