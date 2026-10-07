@@ -57,17 +57,33 @@ const testimonials = [
   }
 ];
 
-const TestimonialSection = () => {
+interface TestimonialSectionProps {
+  initialTestimonials?: any[];
+}
+
+const TestimonialSection = ({ initialTestimonials }: TestimonialSectionProps) => {
+  const activeTestimonials = (initialTestimonials && initialTestimonials.length > 0)
+    ? initialTestimonials.map((item, i) => {
+        const fallback = testimonials[i % testimonials.length];
+        return {
+          quote: item.quote || fallback.quote,
+          name: item.name || fallback.name,
+          location: item.location || fallback.location,
+          level: item.startingLevel || item.level || fallback.level,
+        };
+      })
+    : testimonials;
+
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % testimonials.length);
+      setIndex((prev) => (prev + 1) % activeTestimonials.length);
     }, 6000); // Shuffle every 6 seconds
     return () => clearInterval(timer);
-  }, []);
+  }, [activeTestimonials.length]);
 
-  const current = testimonials[index];
+  const current = activeTestimonials[index] || activeTestimonials[0] || testimonials[0];
 
   return (
     <section id="testimonial-section" className="bg-[#FFF8E5] py-24 md:py-40 px-6">

@@ -8,14 +8,18 @@ import TestimonialSection from "@/components/TestimonialSection";
 import StoriesInstagramSection from "@/components/StoriesInstagramSection";
 import Footer from "@/components/Footer";
 
-export default function Home() {
+import { getRiderStories } from "@/sanity/lib/fetch";
+
+export default async function Home() {
+  const testimonials = await getRiderStories([]);
+
   return (
     <main className="relative min-h-screen">
       <Header />
       <Hero />
       <AboutSection />
       <ScrollCarousel />
-      <TestimonialSection />
+      <TestimonialSection initialTestimonials={testimonials} />
       <ActivitiesSection />
       <ZippyFamilySection />
       <StoriesInstagramSection />

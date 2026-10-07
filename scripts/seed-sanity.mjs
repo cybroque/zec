@@ -494,6 +494,105 @@ const teamMembers = [
   { _id: "team-rounak",   _type: "teamMember", name: "Rounak Murthy",    role: "Director", isFounder: false, order: 4 },
 ];
 
+const riderStories = [
+  {
+    _id: "rider-nandana",
+    _type: "riderStory",
+    name: "Nandana",
+    age: "25",
+    joinedDate: "2023",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "I’ve realised that riding teaches you much more than technique. The routine of coming to the stable, preparing the horse, riding, and caring for them has brought a sense of discipline and balance into my life. What I value most is the mutual understanding of me and the horse which is, to listen, communicate, and build trust without words. The calm atmosphere, time with the horses, and the community make Zippy a place I genuinely look forward to every week.",
+    order: 1,
+  },
+  {
+    _id: "rider-aazeen",
+    _type: "riderStory",
+    name: "Aazeen",
+    age: "16",
+    joinedDate: "2021",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "My experience at Zippy over the past two and a half years has been truly rewarding. It has become much more than a riding academy—it is a place where I feel comfortable, supported, and inspired. The trainers go beyond teaching riding; they help us understand horses, their behaviour, grooming, saddling, and care. Their patience and dedication have helped me grow in confidence, discipline, and horsemanship. The horses are well-trained, well cared for, and treated with genuine compassion, creating a safe and positive environment for everyone.",
+    order: 2,
+  },
+  {
+    _id: "rider-priya",
+    _type: "riderStory",
+    name: "Priya S",
+    age: "28",
+    joinedDate: "2024",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Intermediate Rider",
+    quote: "I booked a trial session thinking I'd do it once. That was eight months ago. I'm now in the Intermediate program and I can't imagine my weekends without it.",
+    order: 3,
+  },
+  {
+    _id: "rider-anagha",
+    _type: "riderStory",
+    name: "Anagha",
+    age: "15",
+    joinedDate: "2023 March",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Competitive Rider",
+    quote: "Being a part of Zippy has been one of the happiest experiences of my life. What I love most about Zippy is the warm, welcoming environment. Every visit feels special, and I always leave feeling more confident, responsible, and connected to the horses. I’m truly grateful to the trainers and team for making my riding journey so memorable.",
+    order: 4,
+  },
+  {
+    _id: "rider-aravindh",
+    _type: "riderStory",
+    name: "AV Aravindh",
+    age: "40+",
+    joinedDate: "2023 March",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Dressage Rider",
+    quote: "There has always been something about horses and riding that I’ve loved. As a child, I would paint horses, though I never had the opportunity to ride. I finally started riding close to 40, but struggled physically and was almost ready to quit after a difficult experience elsewhere. Finding Zippy about a year ago changed that journey completely. I’ve grown in confidence, learned to understand and care for horses, and even competed in dressage. Most importantly, Zippy has given me a wonderful community and special bonds with my horse friends—Hercules, BlackHawck, and Arjuna Maverick.",
+    order: 5,
+  },
+  {
+    _id: "rider-shaurya",
+    _type: "riderStory",
+    name: "Shaurya Subramanian",
+    age: "10",
+    joinedDate: "2023 March",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "Learning to ride here has been an incredible journey. The instructors are supportive and motivating, helping riders progress at their own pace. The horses are well cared for, and the positive atmosphere makes every visit enjoyable. I look forward to every lesson and have gained both confidence and valuable riding skills.",
+    order: 6,
+  },
+  {
+    _id: "rider-ira",
+    _type: "riderStory",
+    name: "Ira Singal",
+    age: "14",
+    joinedDate: "2023 March",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "I’ve been riding for a while now, and it has become my favourite place to spend my evening. It feels calm, friendly, and easygoing. It’s not just about riding; I enjoy hanging around after lessons, spending time with the horses, talking with other riders, and just being around the stable. The trainers are supportive and always there when I need help. Every visit feels like a mix of riding, learning, and having a good time. I’ve made some great memories at Zippy. It genuinely feels like a second home.",
+    order: 7,
+  },
+  {
+    _id: "rider-salma",
+    _type: "riderStory",
+    name: "Salma Salim",
+    age: "25",
+    joinedDate: "2023 March",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "I love that it doesn’t feel like just another commitment, it’s a space where I can slow down, ride, spend time with the horses, and simply unwind. The atmosphere is relaxed and welcoming, and the trainers are supportive without making the experience feel overly serious. I’ve also really enjoyed getting to know the horses and their different personalities. Riding at Zippy gives me something to look forward to after a busy week.",
+    order: 8,
+  },
+];
+
 /* ════════════════════════════════════════════════════════
    MAIN
 ════════════════════════════════════════════════════════ */
@@ -512,6 +611,9 @@ async function main() {
 
   console.log("\n📝  Blog Posts");
   for (const doc of blogPosts) await upsert(doc);
+
+  console.log("\n💬  Rider Stories & Testimonials");
+  for (const doc of riderStories) await upsert(doc);
 
   console.log("\n👨‍🏫  Instructors");
   for (const doc of instructors) await upsert(doc);

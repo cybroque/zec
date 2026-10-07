@@ -102,13 +102,26 @@ export async function getPrograms(): Promise<ProgramSeoItem[]> {
 /**
  * Fetches a Program by slug (with fallback)
  */
+/**
+ * Fetches a Program by slug (with fallback)
+ */
 export async function fetchProgramBySlug(slug: string): Promise<ProgramSeoItem | undefined> {
   const fallback = getProgramBySlug(slug);
   if (!isSanityConfigured) return fallback;
 
   try {
     const cmsProgram = await client.fetch(PROGRAM_BY_SLUG_QUERY, { slug }, { next: { revalidate: 60 } });
-    if (cmsProgram) return cmsProgram;
+    if (cmsProgram && cmsProgram.title) {
+      return {
+        ...fallback,
+        ...cmsProgram,
+        bannerImage: cmsProgram.bannerImage || fallback?.bannerImage || "/assets/images/programs/banner.webp",
+        ctaHref: fallback?.ctaHref || `/contact?program=${cmsProgram.slug || slug}`,
+        paragraphs: (cmsProgram.paragraphs && cmsProgram.paragraphs.length > 0) ? cmsProgram.paragraphs : fallback?.paragraphs || [],
+        curriculumList: (cmsProgram.curriculumList && cmsProgram.curriculumList.length > 0) ? cmsProgram.curriculumList : fallback?.curriculumList || [],
+        experiences: (cmsProgram.experiences && cmsProgram.experiences.length > 0) ? cmsProgram.experiences : fallback?.experiences || [],
+      } as ProgramSeoItem;
+    }
   } catch (err) {
     // ignore, fall back
   }
@@ -119,9 +132,18 @@ export async function fetchProgramBySlug(slug: string): Promise<ProgramSeoItem |
  * Fetches all Beyond the Ride services (with fallback)
  */
 export async function getBeyondServices(): Promise<BeyondServiceSeoItem[]> {
-  return sanityFetch<BeyondServiceSeoItem[]>({
+  const data = await sanityFetch<any[]>({
     query: BEYOND_SERVICES_QUERY,
     fallback: beyondServicesSeoList,
+  });
+  return data.map((item: any) => {
+    const fallback = getBeyondServiceBySlug(item.slug);
+    return {
+      ...fallback,
+      ...item,
+      ctaHref: fallback?.ctaHref || `/contact?interest=${item.contactInterest || item.slug}`,
+      image: item.image || fallback?.image || "",
+    } as BeyondServiceSeoItem;
   });
 }
 
@@ -134,7 +156,16 @@ export async function fetchBeyondServiceBySlug(slug: string): Promise<BeyondServ
 
   try {
     const cmsService = await client.fetch(BEYOND_SERVICE_BY_SLUG_QUERY, { slug }, { next: { revalidate: 60 } });
-    if (cmsService) return cmsService;
+    if (cmsService && cmsService.title) {
+      return {
+        ...fallback,
+        ...cmsService,
+        ctaHref: fallback?.ctaHref || `/contact?interest=${cmsService.contactInterest || cmsService.slug || slug}`,
+        image: cmsService.image || fallback?.image || "/assets/images/beyond/summer-camp.webp",
+        contentParagraphs: (cmsService.contentParagraphs && cmsService.contentParagraphs.length > 0) ? cmsService.contentParagraphs : fallback?.contentParagraphs || [],
+        keywords: fallback?.keywords || [],
+      } as BeyondServiceSeoItem;
+    }
   } catch (err) {
     // ignore, fall back
   }
@@ -145,9 +176,17 @@ export async function fetchBeyondServiceBySlug(slug: string): Promise<BeyondServ
  * Fetches all Blog Posts (with fallback)
  */
 export async function getBlogPosts(): Promise<BlogPost[]> {
-  return sanityFetch<BlogPost[]>({
+  const data = await sanityFetch<BlogPost[]>({
     query: BLOG_POSTS_QUERY,
     fallback: blogPosts,
+  });
+  return data.map((item) => {
+    const fallback = getBlogPostBySlug(item.slug);
+    return {
+      ...fallback,
+      ...item,
+      bannerImage: item.bannerImage || fallback?.bannerImage || "",
+    } as BlogPost;
   });
 }
 
@@ -160,7 +199,15 @@ export async function fetchBlogPostBySlug(slug: string): Promise<BlogPost | unde
 
   try {
     const cmsPost = await client.fetch(BLOG_POST_BY_SLUG_QUERY, { slug }, { next: { revalidate: 60 } });
-    if (cmsPost) return cmsPost;
+    if (cmsPost && cmsPost.title) {
+      return {
+        ...fallback,
+        ...cmsPost,
+        bannerImage: cmsPost.bannerImage || fallback?.bannerImage || "/assets/images/blog/blog1.webp",
+        quoteOverlay: cmsPost.quoteOverlay || fallback?.quoteOverlay,
+        contentSections: (cmsPost.contentSections && cmsPost.contentSections.length > 0) ? cmsPost.contentSections : fallback?.contentSections || [],
+      } as BlogPost;
+    }
   } catch (err) {
     // ignore, fall back
   }
