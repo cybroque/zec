@@ -21,12 +21,29 @@ const horses = [
 // Trailing empty slot so the last card never sits flush at the right edge
 const TRAIL_PX = 80;
 
-export default function AboutHerdSection() {
+interface AboutHerdSectionProps {
+  initialHorses?: any[];
+}
+
+export default function AboutHerdSection({ initialHorses }: AboutHerdSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef     = useRef<HTMLDivElement>(null);
   const trackContainerRef = useRef<HTMLDivElement>(null);
   const [scrollDist, setScrollDist] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const activeHorses = (initialHorses && initialHorses.length > 0)
+    ? initialHorses.map((item, i) => {
+        const fallback = horses[i % horses.length];
+        return {
+          ...fallback,
+          name: item.name || fallback.name,
+          ageType: item.discipline || fallback.ageType,
+          breed: item.breed ? `Breed: ${item.breed}` : fallback.breed,
+          image: item.image || fallback.image,
+        };
+      })
+    : horses;
 
   useEffect(() => {
     const measure = () => {
@@ -122,7 +139,7 @@ export default function AboutHerdSection() {
         <div className="relative z-10 w-full md:w-2/3 xl:w-[60%] flex flex-col">
           {/* Card Tracker directly above image cards */}
           <div className="flex gap-3 items-center mb-4 md:mb-6 pl-6 md:pl-0">
-            {horses.map((_, i) => (
+            {activeHorses.map((_, i) => (
               <button
                 key={i}
                 type="button"
@@ -149,7 +166,7 @@ export default function AboutHerdSection() {
             onScroll={(e) => {
               if (window.innerWidth < 768) {
                 const scrollLeft = e.currentTarget.scrollLeft;
-                const idx = Math.min(horses.length - 1, Math.max(0, Math.round(scrollLeft / (CARD_W + CARD_GAP))));
+                const idx = Math.min(activeHorses.length - 1, Math.max(0, Math.round(scrollLeft / (CARD_W + CARD_GAP))));
                 setActiveIndex(idx);
               }
             }}
@@ -163,7 +180,7 @@ export default function AboutHerdSection() {
                 gap: `${CARD_GAP}px`,
               }}
             >
-              {horses.map((horse, i) => (
+              {activeHorses.map((horse, i) => (
                 <div key={i} className="flex-none snap-center md:snap-none select-none [-webkit-touch-callout:none]" style={{ width: `${CARD_W}px` }}>
                   {/* Card image — layer structure */}
                   <Reveal delay={0.05 * Math.min(i, 4)}>

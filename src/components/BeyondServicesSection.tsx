@@ -137,7 +137,24 @@ const getContactHref = (service: Service) => {
   return `/contact${query ? '?' + query : ''}`;
 };
 
-export default function BeyondServicesSection() {
+interface BeyondServicesSectionProps {
+  initialServices?: any[];
+}
+
+export default function BeyondServicesSection({ initialServices }: BeyondServicesSectionProps) {
+  const activeServices: Service[] = (initialServices && initialServices.length > 0)
+    ? initialServices.map((item, i) => {
+        const fallback = services.find((s) => s.id === item.slug || s.id === item.id) || services[i % services.length];
+        return {
+          ...fallback,
+          title: item.title || fallback.title,
+          description: item.heroDescription || item.description || fallback.description,
+          image: item.image || fallback.image,
+          cta: item.ctaText || fallback.cta,
+        };
+      })
+    : services;
+
   return (
     <section className="relative w-full bg-[#F5F1E8]">
       {/* Background SVGs wrapped in overflow-hidden to not break sticky */}
@@ -149,7 +166,7 @@ export default function BeyondServicesSection() {
 
       {/* Service cards — spaced out so they scroll up and stick */}
       <div className="relative z-10 pt-[200px] pb-24 md:pb-36 px-2 md:px-2 lg:px-2 max-w-7xl mx-auto flex flex-col gap-16 md:gap-32">
-        {services.map((service, index) => {
+        {activeServices.map((service, index) => {
           let staggerClass = "";
           if (index % 3 === 1) staggerClass = "md:ml-[1%]";
           else if (index % 3 === 2) staggerClass = "md:ml-[2%]";

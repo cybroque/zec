@@ -79,6 +79,11 @@ export const IMAGES_BY_ROUTE: Record<string, string[]> = {
     "/assets/images/insta-bg.svg",
     "/assets/images/contact-map.svg",
   ],
+  "/blog": [
+    "/assets/images/Rider_stories/Webp/riders-hero.webp",
+    "/assets/images/HomePage/Webp/Hero.webp",
+    "/assets/images/Programs/Webp/Hero.webp",
+  ],
 };
 
 const COMMON_IMAGES = [

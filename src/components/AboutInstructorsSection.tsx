@@ -26,11 +26,29 @@ const instructors = [
   },
 ];
 
-export default function AboutInstructorsSection() {
+interface AboutInstructorsSectionProps {
+  initialInstructors?: any[];
+}
+
+export default function AboutInstructorsSection({ initialInstructors }: AboutInstructorsSectionProps) {
   const containerRef = useRef<HTMLElement>(null);
 
   const isInView = useInView(containerRef, { amount: 0.15, once: true });
   const progress = useMotionValue(0);
+
+  const activeInstructors = (initialInstructors && initialInstructors.length > 0)
+    ? initialInstructors.map((item, i) => {
+        const fallback = instructors[i % instructors.length];
+        return {
+          ...fallback,
+          id: item.id || fallback.id || i + 1,
+          name: item.name || fallback.name,
+          role: item.role || fallback.role,
+          desc: item.bio || item.desc || fallback.desc,
+          image: item.image || fallback.image,
+        };
+      })
+    : instructors;
 
   useEffect(() => {
     animate(progress, isInView ? 1 : 0, { duration: 0.8, ease: "easeInOut" });
@@ -67,7 +85,7 @@ export default function AboutInstructorsSection() {
 
           {/* Desktop Grid — staggered layout */}
           <div className="hidden md:grid grid-cols-12 gap-y-16 relative w-full">
-            {instructors.map((instructor) => (
+            {activeInstructors.map((instructor) => (
               <div key={instructor.id} className="contents">
                 <div className={instructor.gridImage}>
                   <Reveal delay={0.05 * instructor.id} className="w-full h-full">
@@ -101,7 +119,7 @@ export default function AboutInstructorsSection() {
 
           {/* Mobile */}
           <div className="flex md:hidden flex-col gap-12">
-            {instructors.map((instructor) => (
+            {activeInstructors.map((instructor) => (
               <Reveal key={instructor.id} delay={0.08}>
                 <div className="flex flex-col items-center text-center">
                   <div className="relative w-[248px] h-[332px] shadow-2xl mb-6 rounded-sm overflow-hidden hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">

@@ -36,7 +36,19 @@ const PaintingLogo = ({ src, className, delay = 0 }: { src: string; className?: 
   );
 };
 
-const Footer = () => {
+interface FooterProps {
+  forceTerracotta?: boolean;
+  heading?: string;
+  subheading?: string;
+  ctaText?: string;
+}
+
+const Footer = ({
+  forceTerracotta = false,
+  heading = "The rider in you is\njust a ride away.",
+  subheading = "Your first ride is 30 minutes away. Call us\nand let's get you started.",
+  ctaText = "Book your trial ride",
+}: FooterProps) => {
   const ref = useRef<HTMLElement>(null);
 
   // Amount of the footer that must be visible before `footer-active` kicks in.
@@ -54,9 +66,10 @@ const Footer = () => {
   }, []);
 
   const isInView = useInView(ref, { amount: inViewAmount });
+  const active = forceTerracotta || isInView;
 
   useEffect(() => {
-    if (isInView) {
+    if (active) {
       document.body.classList.add('footer-active');
     } else {
       document.body.classList.remove('footer-active');
@@ -66,19 +79,19 @@ const Footer = () => {
     return () => {
       document.body.classList.remove('footer-active');
     };
-  }, [isInView]);
+  }, [active]);
 
-  const textColor = isInView ? "text-[#F2EBD9]" : "text-[#DA7347]";
-  const borderColor = isInView ? "border-[#F2EBD9]" : "border-[#DA7347]";
-  const buttonHover = isInView 
+  const textColor = active ? "text-[#F2EBD9]" : "text-[#DA7347]";
+  const borderColor = active ? "border-[#F2EBD9]" : "border-[#DA7347]";
+  const buttonHover = active 
     ? "hover:bg-[#F2EBD9] hover:text-[#D27C55]" 
     : "hover:bg-[#DA7347] hover:text-[#FFF8E5]";
-  const underlineColor = isInView ? "decoration-[#F2EBD9]/60" : "decoration-[#DA7347]/60";
+  const underlineColor = active ? "decoration-[#F2EBD9]/60" : "decoration-[#DA7347]/60";
 
   return (
     <footer
       ref={ref}
-      className="relative w-full pt-48 pb-8 md:pt-64 md:pb-10 max-md:!pt-12 transition-colors duration-300 bg-[#FFF8E5]"
+      className={`relative w-full pt-48 pb-8 md:pt-64 md:pb-10 max-md:!pt-12 transition-colors duration-300 ${active ? 'bg-[#DA7347]' : 'bg-[#FFF8E5]'}`}
     >
       <div className="container mx-auto max-w-7xl px-4 md:px-16 lg:px-20">
 
@@ -88,14 +101,14 @@ const Footer = () => {
           {/* CTA Section - Order 1 on mobile */}
           <div className="order-1 md:order-2 md:col-start-2 md:row-start-1 flex flex-col justify-center max-w-lg mx-auto md:mx-0 md:pl-8 lg:pl-16">
             <div className={`text-center md:text-left ${textColor}`}>
-              <h2 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium leading-[1.15] mb-6 tracking-tight max-md:text-[28px] max-md:mb-3">
-                The rider in you is<br />just a ride away.
+              <h2 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium leading-[1.15] mb-6 tracking-tight max-md:text-[28px] max-md:mb-3 whitespace-pre-line">
+                {heading}
               </h2>
-              <p className="text-base md:text-lg opacity-90 mb-10 font-light leading-relaxed max-md:text-sm max-md:mb-6">
-                Your first ride is 30 minutes away. Call us<br />and let&apos;s get you started.
+              <p className="text-base md:text-lg opacity-90 mb-10 font-light leading-relaxed max-md:text-sm max-md:mb-6 whitespace-pre-line">
+                {subheading}
               </p>
               <Link href="/contact" className={`group flex items-center justify-center md:justify-start gap-4 px-8 py-4 border rounded transition-all duration-300 mx-auto md:mx-0 w-fit ${borderColor} ${buttonHover} max-md:px-6 max-md:py-3`}>
-                <span className="text-lg font-light max-md:text-base">Book your trial ride</span>
+                <span className="text-lg font-light max-md:text-base">{ctaText}</span>
                 <svg
                   width="24"
                   height="24"

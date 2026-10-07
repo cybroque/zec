@@ -97,8 +97,13 @@ const riders: Rider[] = [
   },
 ];
 
-export default function StoriesRidersSection() {
+interface StoriesRidersSectionProps {
+  initialRiders?: Rider[];
+}
+
+export default function StoriesRidersSection({ initialRiders }: StoriesRidersSectionProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const activeRiders = (initialRiders && initialRiders.length > 0) ? initialRiders : riders;
 
   // Desktop reveals on hover; mobile has no hover so each row is tapped to toggle
   const [isMobile, setIsMobile] = useState(false);
@@ -114,12 +119,12 @@ export default function StoriesRidersSection() {
     <section id="stories-riders-section" className="w-full">
       {/* Preload images in the background so they display instantly on hover */}
       <div className="hidden">
-        {riders.map((rider) => (
+        {activeRiders.map((rider) => (
           <Image key={`preload-${rider.name}`} src={rider.image} alt="" width={10} height={10} priority />
         ))}
       </div>
 
-      {riders.map((rider, i) => {
+      {activeRiders.map((rider, i) => {
         const bg = rowColors[i % rowColors.length];
         const isExpanded = expandedIndex === i;
 

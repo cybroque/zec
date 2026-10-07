@@ -22,10 +22,25 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeOut" as const } },
 };
 
-export default function AboutTeamSection() {
+interface AboutTeamSectionProps {
+  initialTeam?: any[];
+}
+
+export default function AboutTeamSection({ initialTeam }: AboutTeamSectionProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const activeTeam = (initialTeam && initialTeam.length > 0)
+    ? initialTeam.map((item, i) => {
+        const fallback = teamMembers[i % teamMembers.length];
+        return {
+          name: item.name || fallback.name,
+          role: item.role || fallback.role,
+          image: item.image || fallback.image,
+        };
+      })
+    : teamMembers;
 
   return (
     <section className="relative w-full bg-[#1C2245] py-16 md:py-24 max-md:py-12 overflow-hidden">
@@ -51,7 +66,7 @@ export default function AboutTeamSection() {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
           >
-            {teamMembers.map((member, index) => {
+            {activeTeam.map((member, index) => {
               const isHovered = hoveredIndex === index;
               const anyHovered = hoveredIndex !== null;
               return (
@@ -101,7 +116,7 @@ export default function AboutTeamSection() {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
           >
-            {teamMembers.map((member, index) => (
+            {activeTeam.map((member, index) => (
               <motion.div key={index} variants={cardVariants} className="flex flex-col items-center text-center">
                 <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden shadow-xl mb-3">
                   <Image loading="eager" fetchPriority="low" src={member.image} alt={member.name} fill sizes="50vw" className="object-cover object-center" />

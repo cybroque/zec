@@ -117,6 +117,7 @@ const optimaFont = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://zippyec.com"),
   title: "Zippy Equestrian Center | Real Riding. Real Feeling.",
   description: "Experience the thrill of riding in Bangalore.",
 };

@@ -243,11 +243,31 @@ function renderCard(card: (typeof cardsData)[number], isSelected: boolean, onSel
   );
 }
 
-export default function ProgramsCardsSection() {
+interface ProgramsCardsSectionProps {
+  initialCards?: any[];
+}
+
+export default function ProgramsCardsSection({ initialCards }: ProgramsCardsSectionProps) {
   const targetRef = useRef<HTMLDivElement>(null);
   const mobileTrackRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
+
+  const activeCards = (initialCards && initialCards.length > 0)
+    ? initialCards.map((card, i) => {
+        const defaultMeta = cardsData.find((c) => c.id === card.slug || c.id === card.id) || cardsData[i % cardsData.length];
+        return {
+          ...defaultMeta,
+          title: card.title || defaultMeta.title,
+          description: card.shortDescription || card.description || defaultMeta.description,
+          category: card.category || defaultMeta.category,
+          features: (card.curriculumList && card.curriculumList.length > 0) ? card.curriculumList : (card.features || defaultMeta.features),
+          image: card.bannerImage || card.image || defaultMeta.image,
+          duration: card.duration || defaultMeta.duration,
+          sessions: card.sessions !== undefined ? card.sessions : defaultMeta.sessions,
+        };
+      })
+    : cardsData;
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -347,7 +367,7 @@ export default function ProgramsCardsSection() {
           {/* Dynamic Spacer to perfectly align first card with max-w-7xl container */}
           <div className="flex-shrink-0 w-[1.5rem] md:w-[max(3rem,calc((100vw-80rem)/2+3rem))]" />
 
-          {cardsData.map((card, idx) => (
+          {activeCards.map((card, idx) => (
             <div key={card.id} className="flex h-full items-stretch">
               {/* Divider Line */}
               {idx > 0 && (
@@ -367,7 +387,7 @@ export default function ProgramsCardsSection() {
             data-mobile-carousel
             className="flex overflow-x-auto snap-x snap-proximity no-scrollbar gap-4 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] px-6 py-4"
           >
-            {cardsData.map((card) => (
+            {activeCards.map((card) => (
               <div key={card.id} data-card className="flex-shrink-0 snap-center w-[85vw]">
                 {renderCard(card, selectedCardId === card.id, setSelectedCardId)}
               </div>
