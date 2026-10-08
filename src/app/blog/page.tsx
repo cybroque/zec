@@ -30,10 +30,10 @@ export default async function BlogIndexPage() {
   return (
     <main className="relative min-h-screen bg-white">
       {/* Global Fixed Header */}
-      <Header theme="dark" disableThemeChangeOnScroll={true} />
+      <Header theme="dark" bodyTheme="light" />
 
       {/* Hero Header in Terracotta */}
-      <section className="w-full bg-[#DA7347] text-white pt-28 pb-16 md:pt-36 md:pb-20 px-6 md:px-12 lg:px-16">
+      <section id="page-hero-section" className="w-full bg-[#DA7347] text-white pt-28 pb-16 md:pt-36 md:pb-20 px-6 md:px-12 lg:px-16">
         <div className="max-w-6xl mx-auto text-center md:text-left">
           <span className="text-xs md:text-sm font-semibold tracking-widest uppercase text-white/80 block mb-2">
             STORIES &amp; HORSEMANSHIP INSIGHTS

@@ -22,11 +22,17 @@ function prefetchImage(src: string) {
 
 interface HeaderProps {
   theme?: "dark" | "light";
+  bodyTheme?: "dark" | "light";
   disableThemeChangeOnScroll?: boolean;
   navVariant?: "default" | "cream";
 }
 
-export default function Header({ theme = "dark", disableThemeChangeOnScroll = false, navVariant = "default" }: HeaderProps) {
+export default function Header({
+  theme = "dark",
+  bodyTheme,
+  disableThemeChangeOnScroll = false,
+  navVariant = "default",
+}: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
   const [isFooterActive, setIsFooterActive] = useState(false);
@@ -74,9 +80,16 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
           const currentY = window.scrollY;
           setIsScrolled(currentY > 50);
           
-          // Switch to light theme when scrolling past the hero section (~100vh)
-          // Minus 80px to transition smoothly right as it crosses the boundary
-          setIsPastHero(currentY > window.innerHeight - 80);
+          // Switch theme when scrolling past the hero section
+          // If page has a specific hero element (id="page-hero-section"), measure its bottom boundary against the header (~80px).
+          // Otherwise, fall back to window.innerHeight - 80px (standard full-viewport hero).
+          const heroSection = document.getElementById("page-hero-section") || document.getElementById("hero-section");
+          if (heroSection) {
+            const rect = heroSection.getBoundingClientRect();
+            setIsPastHero(rect.bottom <= 80);
+          } else {
+            setIsPastHero(currentY > window.innerHeight - 80);
+          }
           
           const herdSection = document.getElementById("herd-section");
           if (herdSection) {
@@ -116,15 +129,20 @@ export default function Header({ theme = "dark", disableThemeChangeOnScroll = fa
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  let isLight = theme === "light" || (!disableThemeChangeOnScroll && isPastHero);
+  let isLight = theme === "light";
+  if (!disableThemeChangeOnScroll && isPastHero) {
+    isLight = bodyTheme !== undefined ? bodyTheme === "light" : true;
+  }
+
+  if (pathname === '/about' && isPastHero && !isFooterActive) {
+    isLight = isHerdInView;
+  }
+
   if (isFooterActive || isInTestimonial || isInStoriesRiders) {
     isLight = false;
   }
   
-  let showDarkLogo = isLight;
-  if (pathname === '/about' && isPastHero && !isFooterActive) {
-    showDarkLogo = isHerdInView;
-  }
+  const showDarkLogo = isLight;
 
   const handleNavHover = useCallback((href: string) => {
     if (ROUTE_PREFETCH[href]) {

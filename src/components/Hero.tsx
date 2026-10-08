@@ -6,7 +6,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[700px] max-md:min-h-[600px] w-full overflow-hidden flex items-center justify-center text-center font-sans">
+    <section id="page-hero-section" className="relative h-screen min-h-[700px] max-md:min-h-[600px] w-full overflow-hidden flex items-center justify-center text-center font-sans">
       {/* Video Background Placeholder */}
       <div className="absolute inset-0 z-0 bg-[#FFF8E5]">
         <Image 

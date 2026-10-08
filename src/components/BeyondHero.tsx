@@ -5,7 +5,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function BeyondHero() {
   return (
-    <section className="relative w-full h-screen min-h-[600px] max-md:h-[80vh] max-md:min-h-[520px] overflow-hidden bg-[#FFF8E5]">
+    <section id="page-hero-section" className="relative w-full h-screen min-h-[600px] max-md:h-[80vh] max-md:min-h-[520px] overflow-hidden bg-[#FFF8E5]">
       <div className="absolute -top-[1.5%] left-0 right-0 h-[101.5%]">
         <Image
           src="/assets/images/BeyondRide/Webp/beyond-hero.webp"

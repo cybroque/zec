@@ -123,10 +123,10 @@ export default async function BeyondDetailPage({ params }: PageProps) {
       />
 
       {/* Global Fixed Header */}
-      <Header theme="dark" disableThemeChangeOnScroll={true} />
+      <Header theme="dark" bodyTheme="light" />
 
       {/* Split Hero Section - Left Image, Right Card Color Box */}
-      <section className="relative w-full overflow-hidden">
+      <section id="page-hero-section" className="relative w-full overflow-hidden">
         <div className="flex flex-col lg:grid lg:grid-cols-12 min-h-[560px] lg:min-h-[640px]">
           {/* Left Column: Image */}
           <div className="lg:col-span-5 relative w-full h-[360px] md:h-[480px] lg:h-auto min-h-[380px]">

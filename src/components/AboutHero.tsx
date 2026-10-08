@@ -5,7 +5,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function AboutHero() {
   return (
-    <section className="relative w-full h-[100svh] min-h-[600px] flex items-center overflow-hidden bg-[#9eb9da] pb-24 max-md:pb-16">
+    <section id="page-hero-section" className="relative w-full h-[100svh] min-h-[600px] flex items-center overflow-hidden bg-[#9eb9da] pb-24 max-md:pb-16">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
         <picture className="absolute inset-0 w-full h-full">

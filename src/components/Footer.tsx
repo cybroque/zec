@@ -66,10 +66,10 @@ const Footer = ({
   }, []);
 
   const isInView = useInView(ref, { amount: inViewAmount });
-  const active = forceTerracotta || isInView;
+  const isTerracotta = forceTerracotta || isInView;
 
   useEffect(() => {
-    if (active) {
+    if (isInView) {
       document.body.classList.add('footer-active');
     } else {
       document.body.classList.remove('footer-active');
@@ -79,19 +79,19 @@ const Footer = ({
     return () => {
       document.body.classList.remove('footer-active');
     };
-  }, [active]);
+  }, [isInView]);
 
-  const textColor = active ? "text-[#F2EBD9]" : "text-[#DA7347]";
-  const borderColor = active ? "border-[#F2EBD9]" : "border-[#DA7347]";
-  const buttonHover = active 
+  const textColor = isTerracotta ? "text-[#F2EBD9]" : "text-[#DA7347]";
+  const borderColor = isTerracotta ? "border-[#F2EBD9]" : "border-[#DA7347]";
+  const buttonHover = isTerracotta 
     ? "hover:bg-[#F2EBD9] hover:text-[#D27C55]" 
     : "hover:bg-[#DA7347] hover:text-[#FFF8E5]";
-  const underlineColor = active ? "decoration-[#F2EBD9]/60" : "decoration-[#DA7347]/60";
+  const underlineColor = isTerracotta ? "decoration-[#F2EBD9]/60" : "decoration-[#DA7347]/60";
 
   return (
     <footer
       ref={ref}
-      className={`relative w-full pt-48 pb-8 md:pt-64 md:pb-10 max-md:!pt-12 transition-colors duration-300 ${active ? 'bg-[#DA7347]' : 'bg-[#FFF8E5]'}`}
+      className={`relative w-full pt-48 pb-8 md:pt-64 md:pb-10 max-md:!pt-12 transition-colors duration-300 ${isTerracotta ? 'bg-[#DA7347]' : 'bg-[#FFF8E5]'}`}
     >
       <div className="container mx-auto max-w-7xl px-4 md:px-16 lg:px-20">
 

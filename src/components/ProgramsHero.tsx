@@ -6,7 +6,7 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function ProgramsHero() {
   return (
-    <section className="relative w-full h-screen min-h-[700px] max-md:min-h-[550px] flex items-center overflow-hidden bg-[#242A59]">
+    <section id="page-hero-section" className="relative w-full h-screen min-h-[700px] max-md:min-h-[550px] flex items-center overflow-hidden bg-[#242A59]">
       <div className="absolute inset-0 z-0">
         <picture className="absolute inset-0 w-full h-full">
           <source

@@ -229,10 +229,10 @@ export default async function ProgramDetailPage({ params }: PageProps) {
       />
 
       {/* Global Fixed Header */}
-      <Header theme="dark" disableThemeChangeOnScroll={true} />
+      <Header theme="dark" bodyTheme={theme.isLight ? "light" : "dark"} />
 
       {/* Hero Banner Image */}
-      <section className="relative w-full h-[340px] md:h-[480px] lg:h-[540px] overflow-hidden">
+      <section id="page-hero-section" className="relative w-full h-[340px] md:h-[480px] lg:h-[540px] overflow-hidden">
         <Image
           src={program.bannerImage}
           alt={program.bannerImageAlt}

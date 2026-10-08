@@ -105,7 +105,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
       />
 
       {/* Global Fixed Header */}
-      <Header theme="dark" disableThemeChangeOnScroll={true} />
+      <Header theme="dark" bodyTheme="light" />
 
       {/* Top Terracotta Header Section (Matching Image 3) */}
       <section className="w-full bg-[#DA7347] text-white pt-28 pb-12 md:pt-36 md:pb-16 px-6 md:px-16 lg:px-24">
@@ -129,7 +129,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
       </section>
 
       {/* Large Banner Image with Quote Overlay (Matching Image 3) */}
-      <section className="relative w-full h-[320px] md:h-[480px] lg:h-[540px] overflow-hidden">
+      <section id="page-hero-section" className="relative w-full h-[320px] md:h-[480px] lg:h-[540px] overflow-hidden">
         <Image
           src={post.bannerImage}
           alt={post.bannerImageAlt}
