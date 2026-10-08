@@ -336,8 +336,8 @@ export default async function ProgramDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Footer matching Card Theme */}
-      <Footer customBgColor={theme.footerBg} />
+      {/* Standard Footer */}
+      <Footer forceTerracotta={true} />
     </main>
   );
 }

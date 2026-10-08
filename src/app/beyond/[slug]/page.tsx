@@ -212,16 +212,11 @@ export default async function BeyondDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Gentle transition gradient to the card-colored footer */}
-      <div
-        className="w-full h-32 md:h-44"
-        style={{
-          background: `linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 20%, ${themeColor} 100%)`,
-        }}
-      />
+      {/* Gentle transition gradient to the terracotta footer */}
+      <div className="w-full h-32 md:h-44 bg-gradient-to-b from-white via-[#F5E6DC] to-[#DA7347]" />
 
-      {/* Footer matching Card Theme */}
-      <Footer customBgColor={themeColor} />
+      {/* Standard Footer in Terracotta */}
+      <Footer forceTerracotta={true} />
     </main>
   );
 }
