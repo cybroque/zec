@@ -5,6 +5,8 @@ import ProgramsCardsSection from "@/components/ProgramsCardsSection";
 import Footer from "@/components/Footer";
 import { getPrograms } from "@/sanity/lib/fetch";
 
+export const revalidate = 0;
+
 export default async function ProgramsPage() {
   const dynamicPrograms = await getPrograms();
 

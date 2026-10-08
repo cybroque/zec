@@ -38,6 +38,7 @@ const PaintingLogo = ({ src, className, delay = 0 }: { src: string; className?: 
 
 interface FooterProps {
   forceTerracotta?: boolean;
+  customBgColor?: string;
   heading?: string;
   subheading?: string;
   ctaText?: string;
@@ -45,6 +46,7 @@ interface FooterProps {
 
 const Footer = ({
   forceTerracotta = false,
+  customBgColor,
   heading = "The rider in you is\njust a ride away.",
   subheading = "Your first ride is 30 minutes away. Call us\nand let's get you started.",
   ctaText = "Book your trial ride",
@@ -66,20 +68,21 @@ const Footer = ({
   }, []);
 
   const isInView = useInView(ref, { amount: inViewAmount });
-  const active = forceTerracotta || isInView;
+  const active = forceTerracotta || Boolean(customBgColor) || isInView;
 
   useEffect(() => {
-    if (active) {
+    // Only toggle footer-active for default terracotta footer transitions, NOT when customBgColor is used
+    if (!customBgColor && (forceTerracotta || isInView)) {
       document.body.classList.add('footer-active');
     } else {
       document.body.classList.remove('footer-active');
     }
     
-    // Cleanup
+    // Cleanup: ensure footer-active is always cleared when component unmounts
     return () => {
       document.body.classList.remove('footer-active');
     };
-  }, [active]);
+  }, [forceTerracotta, customBgColor, isInView]);
 
   const textColor = active ? "text-[#F2EBD9]" : "text-[#DA7347]";
   const borderColor = active ? "border-[#F2EBD9]" : "border-[#DA7347]";
@@ -91,7 +94,10 @@ const Footer = ({
   return (
     <footer
       ref={ref}
-      className={`relative w-full pt-48 pb-8 md:pt-64 md:pb-10 max-md:!pt-12 transition-colors duration-300 ${active ? 'bg-[#DA7347]' : 'bg-[#FFF8E5]'}`}
+      style={{ backgroundColor: customBgColor || undefined }}
+      className={`relative w-full pt-48 pb-8 md:pt-64 md:pb-10 max-md:!pt-12 transition-colors duration-300 ${
+        customBgColor ? '' : active ? 'bg-[#DA7347]' : 'bg-[#FFF8E5]'
+      }`}
     >
       <div className="container mx-auto max-w-7xl px-4 md:px-16 lg:px-20">
 

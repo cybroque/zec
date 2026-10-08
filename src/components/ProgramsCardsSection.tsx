@@ -9,6 +9,7 @@ import Link from "next/link";
 const cardsData = [
   {
     id: "discovery",
+    slug: "discovery-ride",
     category: "TRIAL EXPERIENCE",
     categoryColor: "text-[#D9734A]",
     categoryBorder: "",
@@ -32,6 +33,7 @@ const cardsData = [
   },
   {
     id: "foundation",
+    slug: "foundation-program",
     category: "BEGINNER LEVEL",
     categoryColor: "text-[#4271B3]",
     categoryBorder: "",
@@ -55,6 +57,7 @@ const cardsData = [
   },
   {
     id: "development",
+    slug: "development-program",
     category: "INTERMEDIATE",
     categoryColor: "text-[#5A7BB5]",
     categoryBorder: "",
@@ -78,6 +81,7 @@ const cardsData = [
   },
   {
     id: "performance",
+    slug: "performance-program",
     category: "ADVANCED / COMPETITIVE",
     categoryColor: "text-[#91572D]",
     categoryBorder: "",
@@ -101,6 +105,7 @@ const cardsData = [
   },
   {
     id: "dressage",
+    slug: "dressage-program",
     category: "SPECIALIZATION",
     categoryColor: "text-[#242A59]",
     categoryBorder: "",
@@ -125,6 +130,7 @@ const cardsData = [
   },
   {
     id: "showjumping",
+    slug: "showjumping-program",
     category: "SPECIALIZATION",
     categoryColor: "text-[#242A59]",
     categoryBorder: "",
@@ -148,6 +154,7 @@ const cardsData = [
   },
   {
     id: "practice",
+    slug: "practice-program",
     category: "FOR PRACTICE ADD ON",
     categoryColor: "text-[#111111]",
     categoryBorder: "",
@@ -167,12 +174,21 @@ const cardsData = [
   }
 ];
 
-// Map card id → its index in cardsData
+// Map card id & slug → its index in cardsData
 const cardIndexMap: Record<string, number> = {};
-cardsData.forEach((c, i) => { cardIndexMap[c.id] = i; });
+cardsData.forEach((c, i) => {
+  cardIndexMap[c.id] = i;
+  if (c.slug) cardIndexMap[c.slug] = i;
+});
 
 // Shared card renderer used by both the desktop scroll strip and the mobile carousel
-function renderCard(card: (typeof cardsData)[number], isSelected: boolean, onSelect: (id: string) => void) {
+function renderCard(
+  card: (typeof cardsData)[number] & { slug?: string },
+  isSelected: boolean,
+  onSelect: (id: string) => void
+) {
+  const cardSlug = card.slug || card.id;
+
   return (
     <div className="flex-shrink-0 w-[85vw] md:w-[429px] flex flex-col h-[591px] max-md:h-[480px]">
       {/* Category Header */}
@@ -209,7 +225,27 @@ function renderCard(card: (typeof cardsData)[number], isSelected: boolean, onSel
         <div className={`flex flex-col flex-1 ${card.bgColor} ${card.textColor} overflow-hidden`}>
           <div className="flex flex-col flex-1 p-4 md:p-5">
             <h3 className="text-lg md:text-xl font-medium mb-2 leading-tight">
-              {card.title}
+              <Link
+                href={`/programs/${cardSlug}`}
+                onClick={(e) => e.stopPropagation()}
+                className="hover:underline inline-flex items-center gap-1.5"
+                title={`View ${card.title} details`}
+              >
+                <span>{card.title}</span>
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all flex-shrink-0"
+                >
+                  <path d="M7 17l9.2-9.2M17 17V7H7" />
+                </svg>
+              </Link>
             </h3>
 
             <p className={`text-[11px] md:text-[12px] mb-3 md:mb-4 leading-relaxed opacity-90`}>
@@ -255,9 +291,27 @@ export default function ProgramsCardsSection({ initialCards }: ProgramsCardsSect
 
   const activeCards = (initialCards && initialCards.length > 0)
     ? initialCards.map((card, i) => {
-        const defaultMeta = cardsData.find((c) => c.id === card.slug || c.id === card.id) || cardsData[i % cardsData.length];
+        const cardSlug = (card.slug || "").toLowerCase().trim();
+        const defaultMeta =
+          cardsData.find((c) => {
+            const cSlug = (c.slug || "").toLowerCase().trim();
+            const cleanCardSlug = cardSlug.replace(/-program$|-ride$/, "");
+            const cleanCSlug = cSlug.replace(/-program$|-ride$/, "");
+            return (
+              c.id === cardSlug ||
+              cSlug === cardSlug ||
+              (cleanCardSlug.length > 0 && cleanCardSlug === c.id) ||
+              (cleanCardSlug.length > 0 && cleanCardSlug === cleanCSlug) ||
+              cardSlug.includes(c.id) ||
+              c.id === card.id ||
+              (card.aliases && card.aliases.includes(c.id))
+            );
+          }) || cardsData[i % cardsData.length];
+
         return {
           ...defaultMeta,
+          id: defaultMeta.id,
+          slug: card.slug || defaultMeta.slug || defaultMeta.id,
           title: card.title || defaultMeta.title,
           description: card.shortDescription || card.description || defaultMeta.description,
           category: card.category || defaultMeta.category,
@@ -401,7 +455,7 @@ export default function ProgramsCardsSection({ initialCards }: ProgramsCardsSect
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8 max-md:w-full">
               <span className="bottom-banner-text text-[#D9734A] text-xs md:text-xl font-medium transition-colors duration-300">Pick your level and start ride withing us</span>
               <Link 
-                href={selectedCardId ? `/contact?program=${encodeURIComponent(cardsData.find(c => c.id === selectedCardId)?.title || '')}` : "/contact"} 
+                href={selectedCardId ? `/contact?program=${encodeURIComponent(activeCards.find(c => c.id === selectedCardId)?.title || '')}` : "/contact"} 
                 className="bottom-banner-btn bg-[#D9734A] text-white px-5 py-2 md:py-3 text-sm md:text-md font-medium hover:bg-[#C2613D] transition-colors duration-300 flex items-center gap-2 rounded-sm border border-[#D9734A] max-md:w-full max-md:justify-center"
               >
                 Enroll now

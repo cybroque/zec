@@ -144,9 +144,17 @@ interface BeyondServicesSectionProps {
 export default function BeyondServicesSection({ initialServices }: BeyondServicesSectionProps) {
   const activeServices: Service[] = (initialServices && initialServices.length > 0)
     ? initialServices.map((item, i) => {
-        const fallback = services.find((s) => s.id === item.slug || s.id === item.id) || services[i % services.length];
+        const itemSlug = (item.slug || item.id || "").toLowerCase().trim();
+        const fallback =
+          services.find(
+            (s) =>
+              s.id?.toLowerCase().trim() === itemSlug ||
+              (item.aliases && item.aliases.includes(s.id?.toLowerCase().trim()))
+          ) || services[i % services.length];
+
         return {
           ...fallback,
+          id: fallback.id || item.slug,
           title: item.title || fallback.title,
           description: item.heroDescription || item.description || fallback.description,
           image: item.image || fallback.image,
@@ -215,8 +223,27 @@ export default function BeyondServicesSection({ initialServices }: BeyondService
                   style={{ backgroundColor: service.color }}
                 >
                   <div>
-                    <h2 className="text-3xl md:text-[34px]  uppercase text-[#FFF8E5] font-medium mb-4">
-                      {service.title}
+                    <h2 className="text-3xl md:text-[34px] uppercase text-[#FFF8E5] font-medium mb-4">
+                      <Link
+                        href={`/beyond/${service.id}`}
+                        className="hover:underline inline-flex items-center gap-2.5 transition-all group/title"
+                        title={`View ${service.title} details`}
+                      >
+                        <span>{service.title}</span>
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="opacity-70 group-hover/title:opacity-100 group-hover/title:translate-x-1 transition-all"
+                        >
+                          <path d="M7 17l9.2-9.2M17 17V7H7" />
+                        </svg>
+                      </Link>
                     </h2>
                     <p className="text-white text-[14px] md:text-[15px] leading-relaxed font-light max-w-2xl">
                       {service.description}

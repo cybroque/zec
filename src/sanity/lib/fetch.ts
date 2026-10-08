@@ -63,8 +63,9 @@ export async function sanityFetch<T>({
   }
 
   try {
+    const isDev = process.env.NODE_ENV === "development";
     const data = await client.fetch<T>(query, params, {
-      next: { revalidate: 60 },
+      next: { revalidate: isDev ? 0 : 60 },
     });
     if (data === null || data === undefined) {
       return fallback;
@@ -90,18 +91,104 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 }
 
 /**
- * Fetches all Programs (with fallback)
+ * Fetches all Programs (with fallback and seamless merging)
  */
 export async function getPrograms(): Promise<ProgramSeoItem[]> {
-  return sanityFetch<ProgramSeoItem[]>({
+  const data = await sanityFetch<any[]>({
     query: PROGRAMS_QUERY,
     fallback: programsSeoList,
   });
+
+  if (!Array.isArray(data) || data.length === 0) {
+    return programsSeoList;
+  }
+
+  // Merge each fallback program with any matching program from Sanity
+  const merged = programsSeoList.map((fallbackItem) => {
+    const cmsMatch = data.find((cms) => {
+      const cmsSlug = (cms.slug || "").toLowerCase().trim();
+      const fbSlug = fallbackItem.slug.toLowerCase().trim();
+      const cmsClean = cmsSlug.replace(/-program$|-ride$/, "");
+      const fbClean = fbSlug.replace(/-program$|-ride$/, "");
+
+      return (
+        cmsSlug === fbSlug ||
+        fallbackItem.aliases?.includes(cmsSlug) ||
+        (cmsClean.length > 0 && cmsClean === fbClean)
+      );
+    });
+
+    if (!cmsMatch) return fallbackItem;
+
+    return {
+      ...fallbackItem,
+      ...cmsMatch,
+      title: cmsMatch.title || fallbackItem.title,
+      category: cmsMatch.category || fallbackItem.category,
+      shortDescription: cmsMatch.shortDescription || fallbackItem.paragraphs?.[0] || "",
+      bannerImage: cmsMatch.bannerImage || fallbackItem.bannerImage,
+      curriculumList:
+        cmsMatch.curriculumList && cmsMatch.curriculumList.length > 0
+          ? cmsMatch.curriculumList
+          : fallbackItem.curriculumList,
+      experiences:
+        cmsMatch.experiences && cmsMatch.experiences.length > 0
+          ? cmsMatch.experiences
+          : fallbackItem.experiences,
+      duration: cmsMatch.duration || "1 session - 45 minutes",
+      sessions: cmsMatch.sessions !== undefined ? cmsMatch.sessions : null,
+      ctaText: cmsMatch.ctaText || fallbackItem.ctaText,
+      ctaHref:
+        fallbackItem.ctaHref ||
+        `/contact?interest=Riding%20Programs&message=${encodeURIComponent(
+          cmsMatch.title || fallbackItem.title
+        )}`,
+    } as ProgramSeoItem;
+  });
+
+  // Also include any new programs created in Sanity that aren't in the default 7
+  const extraCmsPrograms = data
+    .filter((cms) => {
+      const cmsSlug = (cms.slug || "").toLowerCase().trim();
+      return !programsSeoList.some((item) => {
+        const fbSlug = item.slug.toLowerCase().trim();
+        const cmsClean = cmsSlug.replace(/-program$|-ride$/, "");
+        const fbClean = fbSlug.replace(/-program$|-ride$/, "");
+        return (
+          fbSlug === cmsSlug ||
+          item.aliases?.includes(cmsSlug) ||
+          (cmsClean.length > 0 && cmsClean === fbClean)
+        );
+      });
+    })
+    .map(
+      (cms) =>
+        ({
+          slug: cms.slug,
+          aliases: [],
+          category: cms.category || "PROGRAM",
+          title: cms.title,
+          shortDescription: cms.shortDescription || "",
+          bannerImage: cms.bannerImage || "/assets/images/Programs/Webp/r1.webp",
+          bannerImageAlt: cms.title,
+          paragraphs: cms.paragraphs || [],
+          curriculumList: cms.curriculumList || [],
+          experiences: cms.experiences || [],
+          duration: cms.duration || "1 session - 45 minutes",
+          sessions: cms.sessions ?? null,
+          ctaText: cms.ctaText || "Enroll now",
+          ctaHref: `/contact?interest=Riding%20Programs&message=${encodeURIComponent(
+            cms.title
+          )}`,
+          metaTitle: cms.metaTitle || cms.title,
+          metaDescription: cms.metaDescription || "",
+          keywords: [],
+        }) as ProgramSeoItem
+    );
+
+  return [...merged, ...extraCmsPrograms];
 }
 
-/**
- * Fetches a Program by slug (with fallback)
- */
 /**
  * Fetches a Program by slug (with fallback)
  */
@@ -110,7 +197,12 @@ export async function fetchProgramBySlug(slug: string): Promise<ProgramSeoItem |
   if (!isSanityConfigured) return fallback;
 
   try {
-    const cmsProgram = await client.fetch(PROGRAM_BY_SLUG_QUERY, { slug }, { next: { revalidate: 60 } });
+    const isDev = process.env.NODE_ENV === "development";
+    const cmsProgram = await client.fetch(
+      PROGRAM_BY_SLUG_QUERY,
+      { slug },
+      { next: { revalidate: isDev ? 0 : 60 } }
+    );
     if (cmsProgram && cmsProgram.title) {
       return {
         ...fallback,
@@ -129,22 +221,87 @@ export async function fetchProgramBySlug(slug: string): Promise<ProgramSeoItem |
 }
 
 /**
- * Fetches all Beyond the Ride services (with fallback)
+ * Fetches all Beyond the Ride services (with fallback and seamless merging)
  */
 export async function getBeyondServices(): Promise<BeyondServiceSeoItem[]> {
   const data = await sanityFetch<any[]>({
     query: BEYOND_SERVICES_QUERY,
     fallback: beyondServicesSeoList,
   });
-  return data.map((item: any) => {
-    const fallback = getBeyondServiceBySlug(item.slug);
+
+  if (!Array.isArray(data) || data.length === 0) {
+    return beyondServicesSeoList;
+  }
+
+  // Merge each fallback item with any matching CMS item
+  const merged = beyondServicesSeoList.map((fallbackItem) => {
+    const cmsMatch = data.find((cms) => {
+      const cmsSlug = (cms.slug || "").toLowerCase().trim();
+      const fbSlug = fallbackItem.slug.toLowerCase().trim();
+      return (
+        cmsSlug === fbSlug ||
+        fallbackItem.aliases?.includes(cmsSlug) ||
+        cmsSlug.replace(/-service$/, "") === fbSlug.replace(/-service$/, "")
+      );
+    });
+
+    if (!cmsMatch) return fallbackItem;
+
     return {
-      ...fallback,
-      ...item,
-      ctaHref: fallback?.ctaHref || `/contact?interest=${item.contactInterest || item.slug}`,
-      image: item.image || fallback?.image || "",
+      ...fallbackItem,
+      ...cmsMatch,
+      title: cmsMatch.title || fallbackItem.title,
+      heroDescription: cmsMatch.heroDescription || fallbackItem.heroDescription,
+      ctaText: cmsMatch.ctaText || fallbackItem.ctaText,
+      ctaHref:
+        fallbackItem.ctaHref ||
+        `/contact?interest=${encodeURIComponent(
+          cmsMatch.contactInterest || fallbackItem.title
+        )}`,
+      image: cmsMatch.image || fallbackItem.image,
+      contentParagraphs:
+        cmsMatch.contentParagraphs && cmsMatch.contentParagraphs.length > 0
+          ? cmsMatch.contentParagraphs
+          : fallbackItem.contentParagraphs,
+      highlightText: cmsMatch.highlightText || fallbackItem.highlightText,
     } as BeyondServiceSeoItem;
   });
+
+  // Also include any newly created services in Sanity that aren't in the default list
+  const extraCmsServices = data
+    .filter((cms) => {
+      const cmsSlug = (cms.slug || "").toLowerCase().trim();
+      return !beyondServicesSeoList.some((item) => {
+        const fbSlug = item.slug.toLowerCase().trim();
+        return (
+          fbSlug === cmsSlug ||
+          item.aliases?.includes(cmsSlug) ||
+          cmsSlug.replace(/-service$/, "") === fbSlug.replace(/-service$/, "")
+        );
+      });
+    })
+    .map(
+      (cms) =>
+        ({
+          slug: cms.slug,
+          aliases: [],
+          title: cms.title,
+          heroDescription: cms.heroDescription || "",
+          ctaText: cms.ctaText || "Book your slot",
+          ctaHref: `/contact?interest=${encodeURIComponent(
+            cms.contactInterest || cms.title
+          )}`,
+          image: cms.image || "/assets/images/BeyondRide/Webp/summer-camp.webp",
+          imageAlt: cms.title,
+          contentParagraphs: cms.contentParagraphs || [],
+          highlightText: cms.highlightText || "",
+          metaTitle: cms.metaTitle || cms.title,
+          metaDescription: cms.metaDescription || "",
+          keywords: [],
+        }) as BeyondServiceSeoItem
+    );
+
+  return [...merged, ...extraCmsServices];
 }
 
 /**
@@ -155,7 +312,12 @@ export async function fetchBeyondServiceBySlug(slug: string): Promise<BeyondServ
   if (!isSanityConfigured) return fallback;
 
   try {
-    const cmsService = await client.fetch(BEYOND_SERVICE_BY_SLUG_QUERY, { slug }, { next: { revalidate: 60 } });
+    const isDev = process.env.NODE_ENV === "development";
+    const cmsService = await client.fetch(
+      BEYOND_SERVICE_BY_SLUG_QUERY,
+      { slug },
+      { next: { revalidate: isDev ? 0 : 60 } }
+    );
     if (cmsService && cmsService.title) {
       return {
         ...fallback,

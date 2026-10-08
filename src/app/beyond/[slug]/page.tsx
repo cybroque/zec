@@ -62,6 +62,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+const BEYOND_SERVICE_COLORS: Record<string, string> = {
+  "summer-camps": "#DA7347",
+  "horse-training": "#526FAE",
+  "buy-a-horse": "#85431E",
+  "parties-and-venues": "#AE5834",
+  "equestrian-consultation": "#1C2245",
+  "horse-rent-lease": "#85431E",
+  "photoshoots": "#526FAE",
+  "franchise": "#DA7347",
+  "horse-boarding": "#1C2245",
+};
+
+function getBeyondServiceColor(slug: string): string {
+  const clean = slug.toLowerCase().trim();
+  return BEYOND_SERVICE_COLORS[clean] || "#DA7347";
+}
+
+export const revalidate = 0;
+
 export default async function BeyondDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const service = await fetchBeyondServiceBySlug(slug);
@@ -69,6 +88,8 @@ export default async function BeyondDetailPage({ params }: PageProps) {
   if (!service) {
     notFound();
   }
+
+  const themeColor = getBeyondServiceColor(service.slug || slug);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -104,7 +125,7 @@ export default async function BeyondDetailPage({ params }: PageProps) {
       {/* Global Fixed Header */}
       <Header theme="dark" disableThemeChangeOnScroll={true} />
 
-      {/* Split Hero Section - Left Image, Right Terracotta Card */}
+      {/* Split Hero Section - Left Image, Right Card Color Box */}
       <section className="relative w-full overflow-hidden">
         <div className="flex flex-col lg:grid lg:grid-cols-12 min-h-[560px] lg:min-h-[640px]">
           {/* Left Column: Image */}
@@ -119,8 +140,11 @@ export default async function BeyondDetailPage({ params }: PageProps) {
             />
           </div>
 
-          {/* Right Column: Terracotta Box */}
-          <div className="lg:col-span-7 bg-[#DA7347] text-white px-6 md:px-14 lg:px-20 pt-28 pb-16 md:pt-36 md:pb-20 lg:py-28 flex flex-col justify-center">
+          {/* Right Column: Card-Colored Box */}
+          <div
+            className="lg:col-span-7 text-white px-6 md:px-14 lg:px-20 pt-28 pb-16 md:pt-36 md:pb-20 lg:py-28 flex flex-col justify-center transition-colors duration-300"
+            style={{ backgroundColor: themeColor }}
+          >
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight uppercase text-white font-heading">
               {service.title}
             </h1>
@@ -132,7 +156,8 @@ export default async function BeyondDetailPage({ params }: PageProps) {
             <div className="mt-8">
               <Link
                 href={service.ctaHref}
-                className="bg-white text-[#DA7347] px-6 py-3.5 rounded-md font-medium text-sm inline-flex items-center gap-3 hover:bg-[#FFFBF7] transition-all shadow-sm group"
+                className="bg-white px-6 py-3.5 rounded-md font-medium text-sm inline-flex items-center gap-3 hover:bg-[#FFFBF7] transition-all shadow-sm group"
+                style={{ color: themeColor }}
               >
                 <span>{service.ctaText}</span>
                 <svg
@@ -177,18 +202,26 @@ export default async function BeyondDetailPage({ params }: PageProps) {
           ))}
 
           {service.highlightText && (
-            <h2 className="text-[#85431E] text-xl md:text-2xl lg:text-3xl font-medium tracking-tight mt-6">
+            <h2
+              className="text-xl md:text-2xl lg:text-3xl font-medium tracking-tight mt-6"
+              style={{ color: themeColor }}
+            >
               {service.highlightText}
             </h2>
           )}
         </div>
       </section>
 
-      {/* Gentle transition gradient to the terracotta footer */}
-      <div className="w-full h-32 md:h-44 bg-gradient-to-b from-white via-[#F5E6DC] to-[#DA7347]" />
+      {/* Gentle transition gradient to the card-colored footer */}
+      <div
+        className="w-full h-32 md:h-44"
+        style={{
+          background: `linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 20%, ${themeColor} 100%)`,
+        }}
+      />
 
-      {/* Footer in Terracotta matching Image 1 */}
-      <Footer forceTerracotta={true} />
+      {/* Footer matching Card Theme */}
+      <Footer customBgColor={themeColor} />
     </main>
   );
 }

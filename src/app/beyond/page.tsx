@@ -5,6 +5,8 @@ import BeyondServicesSection from "@/components/BeyondServicesSection";
 import BeyondContactSection from "@/components/BeyondContactSection";
 import { getBeyondServices } from "@/sanity/lib/fetch";
 
+export const revalidate = 0;
+
 export default async function BeyondPage() {
   const dynamicServices = await getBeyondServices();
 
