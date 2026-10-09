@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
 
 const INTEREST_OPTIONS = [
@@ -20,7 +18,6 @@ const INTEREST_OPTIONS = [
 import { COUNTRY_CODES } from "@/data/countryCodes";
 
 export default function ContactFormMapSection() {
-  const [showTooltip, setShowTooltip] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Riding Programs");
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
@@ -231,88 +228,66 @@ export default function ContactFormMapSection() {
 
           {/* RIGHT: Info + WhatsApp + Map */}
           <Reveal delay={0.4}>
-            <div className="flex flex-col gap-5 md:pt-12">
-              <div className="md:pl-12">
+            <div className="flex flex-col gap-6 md:pt-12 md:pl-8 lg:pl-12">
+              <div>
                 <p className="text-[#85431E] text-[14px] md:pb-4 font-light max-w-[28rem]">
                   Call us or find us when you are ready or when you feel like you need to know more.
                   We&apos;re ready to assist you to experience the fun of being around horses.
                 </p>
-              
 
-              {/* WhatsApp CTA */}
-              <a
-                href="https://wa.me/98829 88267"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between gap-4 w-full max-w-[420px]  text-white text-sm uppercase px-5 py-2 rounded-sm hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: "#DA7347" }}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#25D366] shrink-0">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
-                  </span>
-                  <span>Text us now</span>
-                </div>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 12H19M12 5L19 12L12 19" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
+                {/* WhatsApp CTA */}
+                <a
+                  href="https://wa.me/919882988267"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between gap-4 w-full max-w-[420px] text-white text-sm uppercase px-5 py-2 rounded-sm hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: "#DA7347" }}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#25D366] shrink-0">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                      </svg>
+                    </span>
+                    <span>Text us now</span>
+                  </div>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12H19M12 5L19 12L12 19" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
               </div>
 
-              {/* Map — container locked to SVG's 733×982 aspect ratio so % positions are exact */}
-              <div
-                className="relative w-full cursor-pointer mt-4 max-md:max-w-[300px] max-md:mx-auto"
-                style={{ aspectRatio: "733/982" }}
-                onMouseEnter={() => setShowTooltip(true)}
-                onMouseLeave={() => setShowTooltip(false)}
-              >
-                <Image loading="lazy"
-                  src="/assets/images/contact-map.svg"
-                  alt="ZEC Location Map"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-contain"
-                />
-
-                {/* Dot: cx=250.313 cy=557.88 in 733×982 → 34.1% left, 56.8% top */}
-                <div
-                  className="absolute pointer-events-none"
-                  style={{ left: "calc(34.1% - 10px)", top: "calc(56.8% - 10px)", width: 20, height: 20 }}
-                >
-                  <div
-                    className={`w-full h-full rounded-full border-2 border-[#DA7347] transition-opacity duration-300 ${showTooltip ? "opacity-100" : "opacity-0"
-                      }`}
+              {/* Interactive Google Map Embed */}
+              <div className="flex flex-col gap-2 mt-2">
+                <div className="w-full h-[400px] sm:h-[460px] md:h-[480px] lg:h-[500px] rounded-sm overflow-hidden border border-[#85431E]/20 shadow-sm bg-[#F2EBD9]">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.1872075629976!2d77.57611261430367!3d12.895680720030047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae401309c2b543%3A0xfb9d4ad860f22c8a!2sZippy%20Equestrian%20Center!5e0!3m2!1sen!2sin!4v1642764924543!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Zippy Equestrian Center Google Map Location"
+                    className="w-full h-full block"
                   />
                 </div>
-                <div
-                  className="absolute pointer-events-none rounded-full bg-[#DA7347]"
-                  style={{ left: "calc(34.1% - 5px)", top: "calc(56.8% - 5px)", width: 10, height: 10 }}
-                />
-
-                {/* Address card — fades in on hover */}
-                <motion.div
-                  initial={false}
-                  animate={showTooltip ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
-                  transition={{ duration: 0.22, ease: "easeOut" }}
-                  className="absolute pointer-events-none"
-                  style={{ left: "34.65%", top: "57.43%", width: "55%" }}
-                >
-                  <div
-                    className="backdrop-blur-[3px] rounded-lg p-5 md:p-6 flex flex-col justify-center"
-                    style={{ backgroundColor: "rgba(218,115,71,0.88)" }}
+                <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-[#85431E]/75 px-0.5">
+                  <span>102/2, Puttenahalli, JP Nagar 7th Phase, Bengaluru</span>
+                  <a
+                    href="https://maps.google.com/?q=Zippy+Equestrian+Center"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#DA7347] hover:underline flex items-center gap-1 font-medium shrink-0"
                   >
-                    <p className="text-white text-[10px] md:text-[11px] uppercase font-bold mb-2 md:mb-3">
-                      ZIPPY EQUESTRIAN CENTER
-                    </p>
-                    <p className="text-white/90 text-[11px] md:text-[13px] font-light leading-relaxed">
-                      102/2, next to Sports Drome,<br />
-                      Opposite Jain Public School, Puttenahalli,<br />
-                      JP Nagar 7th Phase, Bengaluru – 560078
-                    </p>
-                  </div>
-                </motion.div>
+                    <span>Open in Google Maps</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                </div>
               </div>
 
             </div>
