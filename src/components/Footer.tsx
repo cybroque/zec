@@ -143,7 +143,7 @@ const Footer = ({
               <PaintingLogo src="/assets/images/zippyfooter1.svg" className="w-56 h-56 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px] max-md:w-44 max-md:h-44" />
             </div>
             {/* Zippy Equestrian Center — aligns with nav links */}
-            <div className="flex items-start justify-center md:justify-start mb-6 md:mb-8">
+            <div className="flex items-start justify-center md:justify-start mb-8 md:mb-20">
               <PaintingLogo
                 src="/assets/images/zippyfooter2.svg"
                 className="w-48 h-16 md:w-[240px] md:h-[68px] lg:w-[280px] lg:h-[80px] max-md:w-40 max-md:h-12"
@@ -160,7 +160,7 @@ const Footer = ({
                 <span>Visit Our Stables</span>
               </p>
               <address className="not-italic text-xs md:text-sm font-light leading-relaxed opacity-85">
-                102/2, next to Sports Drome, Opposite Jain Public School, Puttenahalli, JP Nagar 7th Phase, Bengaluru, Karnataka – 560078
+                102/2, Puttenahalli, JP Nagar 7th Phase, Bengaluru, Karnataka – 560078
               </address>
               <a
                 href="https://maps.google.com/?q=Zippy+Equestrian+Center"

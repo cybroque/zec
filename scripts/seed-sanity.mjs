@@ -481,8 +481,9 @@ const blogPosts = [
 ];
 
 const instructors = [
-  { _id: "instructor-barath", _type: "instructor", name: "Barath Manoharan", role: "HEAD OF TRAINING", bio: "Equestrian national champion guiding our riders with confidence and real sportsman spirit", order: 1 },
-  { _id: "instructor-vishwa", _type: "instructor", name: "Vishwa Premalal", role: "TRAINER", bio: "Equestrian and Showjumping rider and champion from Sri Lanka training our riders of all levels", order: 2 },
+  { _id: "instructor-barath", _type: "instructor", name: "Barath Manoharan", role: "HEAD OF TRAINING", bio: "Equestrian national champion guiding our riders with confidence for major competitions and leagues.", order: 1 },
+  { _id: "instructor-vishwa", _type: "instructor", name: "Vishwa Premalal", role: "TRAINER", bio: "Equestrian and show jumping rider and champion from Sri Lanka, helping new riders find their rhythm in the saddle.", order: 2 },
+  { _id: "instructor-chinmay", _type: "instructor", name: "Chinmay Vishwanath Masurkar", role: "TRAINER", bio: "Helping riders refine their technique, build confidence, and progress into competitive levels", order: 3 },
 ];
 
 const horses = [

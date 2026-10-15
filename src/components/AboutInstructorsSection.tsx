@@ -10,7 +10,7 @@ const instructors = [
     id: 1,
     name: "Barath Manoharan",
     role: "HEAD OF TRAINING",
-    desc: "Equestrian national champion guiding our riders with confidence and real sportsman spirit",
+    desc: "Equestrian national champion guiding our riders with confidence for major competitions and leagues.",
     image: "/assets/images/About/Webp/people-c.webp",
     gridImage: "col-start-6 col-span-3",
     gridText: "col-start-9 col-span-4",
@@ -19,10 +19,19 @@ const instructors = [
     id: 2,
     name: "Vishwa Premalal",
     role: "TRAINER",
-    desc: "Equestrian and Showjumping rider and champion from Sri Lanka training our riders of all levels",
+    desc: "Equestrian and show jumping rider and champion from Sri Lanka, helping new riders find their rhythm in the saddle.",
     image: "/assets/images/About/Webp/about-img2.webp",
     gridImage: "col-start-2 col-span-3",
     gridText: "col-start-5 col-span-4",
+  },
+  {
+    id: 3,
+    name: "Chinmay Vishwanath Masurkar",
+    role: "TRAINER",
+    desc: "Helping riders refine their technique, build confidence, and progress into competitive levels",
+    image: "/assets/images/About/Webp/DSC02110.webp",
+    gridImage: "col-start-6 col-span-3",
+    gridText: "col-start-9 col-span-4",
   },
 ];
 
@@ -36,19 +45,45 @@ export default function AboutInstructorsSection({ initialInstructors }: AboutIns
   const isInView = useInView(containerRef, { amount: 0.15, once: true });
   const progress = useMotionValue(0);
 
-  const activeInstructors = (initialInstructors && initialInstructors.length > 0)
-    ? initialInstructors.map((item, i) => {
-        const fallback = instructors[i % instructors.length];
-        return {
-          ...fallback,
-          id: item.id || fallback.id || i + 1,
-          name: item.name || fallback.name,
-          role: item.role || fallback.role,
-          desc: item.bio || item.desc || fallback.desc,
-          image: item.image || fallback.image,
-        };
-      })
-    : instructors;
+  const activeInstructors = (() => {
+    if (!initialInstructors || initialInstructors.length === 0) {
+      return instructors;
+    }
+
+    const merged = instructors.map((fallback) => {
+      const match = initialInstructors.find(
+        (item) =>
+          item.name &&
+          item.name.toLowerCase().trim() === fallback.name.toLowerCase().trim()
+      );
+
+      if (!match) return fallback;
+
+      return {
+        ...fallback,
+        id: match._id || match.id || fallback.id,
+        name: match.name || fallback.name,
+        role: match.role || fallback.role,
+        desc: match.bio || match.desc || fallback.desc,
+        image: match.image || fallback.image,
+      };
+    });
+
+    const extra = initialInstructors.slice(instructors.length).map((item, i) => {
+      const isEven = (instructors.length + i) % 2 === 0;
+      return {
+        id: item.id || instructors.length + i + 1,
+        name: item.name,
+        role: item.role,
+        desc: item.bio || item.desc,
+        image: item.image || "/assets/images/About/Webp/about-img2.webp",
+        gridImage: isEven ? "col-start-6 col-span-3" : "col-start-2 col-span-3",
+        gridText: isEven ? "col-start-9 col-span-4" : "col-start-5 col-span-4",
+      };
+    });
+
+    return [...merged, ...extra];
+  })();
 
   useEffect(() => {
     animate(progress, isInView ? 1 : 0, { duration: 0.8, ease: "easeInOut" });
