@@ -61,13 +61,19 @@ const StatItem = ({ number, label }: { number: string, label: string }) => {
   );
 };
 
-const AboutSection = () => {
-  const stats = [
-    { number: "5+", label: "Years of riding in\nBangalore" },
-    { number: "250+", label: "Riders trained and\ncounting" },
-    { number: "45", label: "Horses at the\ncenter" },
-    { number: "6", label: "Structured riding\nprograms" },
-  ];
+interface AboutSectionProps {
+  initialStats?: { number: string; label: string }[];
+}
+
+const defaultStatsList = [
+  { number: "10+", label: "Years of riding in\nBangalore" },
+  { number: "1000+", label: "Riders trained and\ncounting" },
+  { number: "45", label: "Horses at the\ncenter" },
+  { number: "6", label: "Structured riding\nprograms" },
+];
+
+const AboutSection = ({ initialStats }: AboutSectionProps = {}) => {
+  const stats = initialStats && initialStats.length > 0 ? initialStats : defaultStatsList;
 
   return (
     <section className="bg-[#FFF8E5] py-20 md:py-32 px-6 overflow-hidden">

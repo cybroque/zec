@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
+import { GalleryItem } from "@/data/galleryData";
 
 const INSTA_LINK = "https://www.instagram.com/zippy.equestrian?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==";
 
@@ -51,12 +52,46 @@ const socialLinks = [
 interface StoriesInstagramSectionProps {
   bgColor?: string;
   hideFooter?: boolean;
+  initialGallery?: GalleryItem[];
 }
 
-export default function StoriesInstagramSection({ bgColor = "#FFF8E5", hideFooter = false }: StoriesInstagramSectionProps) {
+export default function StoriesInstagramSection({
+  bgColor = "#FFF8E5",
+  hideFooter = false,
+  initialGallery = [],
+}: StoriesInstagramSectionProps) {
+  const img1 = initialGallery[0]?.image || "/assets/images/Contact/Webp/g1.webp";
+  const link1 = initialGallery[0]?.instagramUrl || INSTA_LINK;
+  const alt1 = initialGallery[0]?.alt || "Zippy 1";
+
+  const img2 = initialGallery[1]?.image || "/assets/images/Contact/Webp/g2.webp";
+  const link2 = initialGallery[1]?.instagramUrl || INSTA_LINK;
+  const alt2 = initialGallery[1]?.alt || "Zippy 2";
+
+  const img3 = initialGallery[2]?.image || "/assets/images/Contact/Webp/g3.webp";
+  const link3 = initialGallery[2]?.instagramUrl || INSTA_LINK;
+  const alt3 = initialGallery[2]?.alt || "Zippy 3";
+
+  const img4 = initialGallery[3]?.image || "/assets/images/Contact/Webp/g4.webp";
+  const link4 = initialGallery[3]?.instagramUrl || INSTA_LINK;
+  const alt4 = initialGallery[3]?.alt || "Zippy 4";
+
+  const img5 = initialGallery[4]?.image || "/assets/images/Contact/Webp/g5.webp";
+  const link5 = initialGallery[4]?.instagramUrl || INSTA_LINK;
+  const alt5 = initialGallery[4]?.alt || "Zippy 5";
+
+  const img6 = initialGallery[5]?.image || "/assets/images/Contact/Webp/g6.webp";
+  const link6 = initialGallery[5]?.instagramUrl || INSTA_LINK;
+  const alt6 = initialGallery[5]?.alt || "Zippy 6";
+
+  const img7 = initialGallery[6]?.image || "/assets/images/Contact/Webp/g7.webp";
+  const link7 = initialGallery[6]?.instagramUrl || INSTA_LINK;
+  const alt7 = initialGallery[6]?.alt || "Zippy 7";
+
   return (
     <section 
-      className={`w-full ${bgColor === "#FFF8E5" ? "bg-[#FFF8E5]" : ""}`} 
+      id="gallery"
+      className={`w-full scroll-mt-24 ${bgColor === "#FFF8E5" ? "bg-[#FFF8E5]" : ""}`} 
       style={bgColor !== "#FFF8E5" ? { backgroundColor: bgColor } : undefined}
     >
       {/* ── Heading ── */}

@@ -12,10 +12,18 @@ import {
   INSTRUCTORS_QUERY,
   HORSES_QUERY,
   TEAM_MEMBERS_QUERY,
+  CHAT_FAQS_QUERY,
+  FAQS_QUERY,
+  GALLERY_QUERY,
+  STATS_QUERY,
+  ACTIVITIES_QUERY,
 } from "./queries";
 import { programsSeoList, getProgramBySlug, ProgramSeoItem } from "@/data/programsSeoData";
 import { beyondServicesSeoList, getBeyondServiceBySlug, BeyondServiceSeoItem } from "@/data/beyondSeoData";
 import { blogPosts, getBlogPostBySlug, BlogPost } from "@/data/blogData";
+import { chatFaqs as fallbackChatFaqs, ChatFaq } from "@/data/chatFaqs";
+import { defaultFaqs, WebsiteFaq } from "@/data/faqData";
+import { defaultGalleryItems, GalleryItem } from "@/data/galleryData";
 
 export interface SiteSettings {
   siteName: string;
@@ -415,3 +423,108 @@ export async function getTeamMembers(fallback: any[]): Promise<any[]> {
     fallback,
   });
 }
+
+/**
+ * Fetches the chatbot Q&A set. Falls back to the hardcoded list so the widget
+ * never renders empty, even before anything is published in the Studio.
+ */
+export async function getChatFaqs(): Promise<ChatFaq[]> {
+  const data = await sanityFetch<Partial<ChatFaq>[]>({
+    query: CHAT_FAQS_QUERY,
+    fallback: [],
+  });
+
+  const valid = data.filter(
+    (faq): faq is ChatFaq =>
+      Boolean(faq && faq.question && faq.answer) &&
+      !faq.question!.includes("<") &&
+      !faq.answer!.includes("<")
+  );
+
+  return valid.length > 0 ? valid : fallbackChatFaqs;
+}
+
+/**
+ * Fetches website FAQs from Sanity, falling back to default curated FAQs.
+ */
+export async function getWebsiteFaqs(): Promise<WebsiteFaq[]> {
+  const data = await sanityFetch<WebsiteFaq[]>({
+    query: FAQS_QUERY,
+    fallback: [],
+  });
+
+  const valid = (data || []).filter(
+    (faq) => Boolean(faq && faq.question && faq.answer)
+  );
+
+  return valid.length > 0 ? valid : defaultFaqs;
+}
+
+/**
+ * Fetches gallery photos from Sanity, falling back to default stable photos.
+ */
+export async function getGalleryItems(): Promise<GalleryItem[]> {
+  const data = await sanityFetch<GalleryItem[]>({
+    query: GALLERY_QUERY,
+    fallback: [],
+  });
+
+  const valid = (data || []).filter(
+    (item) => Boolean(item && item.image)
+  );
+
+  return valid.length > 0 ? valid : defaultGalleryItems;
+}
+
+export interface StatItem {
+  _id?: string;
+  number: string;
+  label: string;
+  order?: number;
+}
+
+export const defaultStats: StatItem[] = [
+  { number: "10+", label: "Years of riding in\nBangalore", order: 1 },
+  { number: "1000+", label: "Riders trained and\ncounting", order: 2 },
+  { number: "45", label: "Horses at the\ncenter", order: 3 },
+  { number: "6", label: "Structured riding\nprograms", order: 4 },
+];
+
+/**
+ * Fetches milestone statistics from Sanity, falling back to default numbers.
+ */
+export async function getStats(): Promise<StatItem[]> {
+  const data = await sanityFetch<StatItem[]>({
+    query: STATS_QUERY,
+    fallback: [],
+  });
+
+  const valid = (data || []).filter(
+    (item) => Boolean(item && item.number && item.label)
+  );
+
+  return valid.length > 0 ? valid : defaultStats;
+}
+
+export interface ActivityItem {
+  _id?: string;
+  title: string;
+  description: string;
+  image: string;
+  ctaText?: string;
+  ctaHref?: string;
+  order?: number;
+}
+
+/**
+ * Fetches activities from Sanity, falling back to provided list.
+ */
+export async function getActivities(fallback: ActivityItem[] = []): Promise<ActivityItem[]> {
+  const data = await sanityFetch<ActivityItem[]>({
+    query: ACTIVITIES_QUERY,
+    fallback,
+  });
+
+  return data && data.length > 0 ? data : fallback;
+}
+

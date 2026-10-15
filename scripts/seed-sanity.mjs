@@ -3,7 +3,12 @@
  * Imports all existing local fallback data into your Sanity dataset.
  *
  * Usage:
- *   node scripts/seed-sanity.mjs
+ *   node scripts/seed-sanity.mjs                    # seed everything
+ *   node scripts/seed-sanity.mjs chatFaq            # seed only chatbot Q&A
+ *   node scripts/seed-sanity.mjs faq stats          # seed a few sections
+ *
+ * Seeding is `createOrReplace` on fixed IDs, so a full run overwrites anything
+ * edited in the Studio. Pass a section name to leave the rest untouched.
  *
  * Requires:
  *   NEXT_PUBLIC_SANITY_PROJECT_ID in .env.local
@@ -48,6 +53,9 @@ const key = (prefix = "k") => `${prefix}-${++_keyCounter}-${Math.random().toStri
 
 /** Adds _key to every object in an array (non-recursive) */
 const withKeys = (arr) => arr.map(item => ({ _key: key(), ...item }));
+
+/** Sanity stores arrays of primitives as {_key, _type:"string", value} — not bare strings */
+const stringArray = (arr) => arr.map((value) => ({ _key: key(), _type: "string", value }));
 
 async function upsert(doc) {
   await client.createOrReplace(doc);
@@ -593,38 +601,238 @@ const riderStories = [
   },
 ];
 
+const faqs = [
+  {
+    _id: "faq-1", _type: "faq",
+    question: "How difficult is horse riding?",
+    answer: "Horse riding requires balance, core stability, and clear communication with the horse, but it is accessible to learners of all ages and fitness levels. Beginners start with gentle walk lessons on calm school horses where you learn balance, posture, and rein control under guided supervision. With structured instruction, most riders feel confident and balanced within just a few sessions.",
+    category: "general", order: 1,
+  },
+  {
+    _id: "faq-2", _type: "faq",
+    question: "Are horseback riding classes considered exercise?",
+    answer: "Yes, absolutely. Riding is an intensive, full-body cardiovascular and isometric workout. It actively engages your core, inner thighs, lower back, and pelvic floor muscles to stay centered in rhythm with the horse's movement. A 45-minute lesson can burn between 300 to 500 calories while improving posture, flexibility, and motor coordination.",
+    category: "lessons", order: 2,
+  },
+  {
+    _id: "faq-3", _type: "faq",
+    question: "How to safely ride a horse?",
+    answer: "Safety begins with proper equipment, respect for animal psychology, and certified coaching. At Zippy, all riders wear certified equestrian helmets, supportive boots with heels, and appropriate gear. Beginners learn how to approach horses calmly, read ear and body cues, maintain balanced posture without pulling the reins, and practice inside safe, cushioned arenas with instructor supervision.",
+    category: "safety", order: 3,
+  },
+  {
+    _id: "faq-4", _type: "faq",
+    question: "How many lessons (duration of training) will it take to become a good rider?",
+    answer: "Becoming a capable, independent rider generally takes around 20 to 30 structured lessons. In your first 5 to 10 lessons (our Foundation Program), you master mounting, balanced walking, steering, and posting trot. By 15 to 25 lessons, riders comfortably canter and navigate arena figures. Advanced disciplines like showjumping and dressage are continuous paths of mastery.",
+    category: "lessons", order: 4,
+  },
+  {
+    _id: "faq-5", _type: "faq",
+    question: "Is there a weight limit for horse riding?",
+    answer: "Yes, equine welfare and back health are our utmost priorities. In accordance with international veterinary standards, a horse should carry no more than 15% to 20% of its body weight. At Zippy, our maximum rider weight limit is generally 85 kg (approx. 187 lbs), depending on the horse assigned. During your discovery ride, trainers match each rider with an appropriately sized and conditioned horse.",
+    category: "safety", order: 5,
+  },
+  {
+    _id: "faq-6", _type: "faq",
+    question: "Is social distancing and facility hygiene maintained in the academy?",
+    answer: "Yes. Our facility features expansive, open-air sand arenas and outdoor paddocks with continuous fresh airflow. Lessons are conducted in private one-on-one sessions or small semi-private groups of 2 to 4 riders, naturally maintaining wide physical separation between horses. All riding helmets, tack, and reins are sanitized between sessions.",
+    category: "facilities", order: 6,
+  },
+  {
+    _id: "faq-7", _type: "faq",
+    question: "When can I participate in the competition?",
+    answer: "Riders can typically begin competing in club-level schooling shows and gymkhana events after 6 to 12 months of consistent training (around 40–50 hours in the saddle). Once you demonstrate a secure, balanced seat across walk, trot, and canter, our trainers guide you into the Performance Program to prepare for regional EFI (Equestrian Federation of India) dressage and showjumping events.",
+    category: "competitions", order: 7,
+  },
+  {
+    _id: "faq-8", _type: "faq",
+    question: "What are the required skills to train a racehorse?",
+    answer: "Training racehorses and high-performance sport horses requires profound understanding of equine biomechanics, behavioral conditioning, and years of hands-on horsemanship. Key skills include ground handling, lunging, interval fitness conditioning, pacing management, and gait evaluation. Professional trainers must also tailor nutritional regimens and spot subtle changes in temperament or soundness.",
+    category: "competitions", order: 8,
+  },
+];
+
+const stats = [
+  { _id: "stat-1", _type: "stat", number: "10+", label: "Years of riding in\nBangalore", order: 1 },
+  { _id: "stat-2", _type: "stat", number: "1000+", label: "Riders trained and\ncounting", order: 2 },
+  { _id: "stat-3", _type: "stat", number: "45", label: "Horses at the\ncenter", order: 3 },
+  { _id: "stat-4", _type: "stat", number: "6", label: "Structured riding\nprograms", order: 4 },
+];
+
+/* Chatbot Q&A — mirrors src/data/chatFaqs.ts.
+   `keywords` drive the free-text matcher in src/components/chat/matcher.ts.
+   Keep them in sync with that file, or the chips still work but typed queries won't. */
+const chatFaqs = [
+  {
+    _id: "chatfaq-beginner",
+    _type: "chatFaq",
+    question: "I've never ridden before. Can I still join?",
+    answer:
+      "Absolutely — most of our riders arrive as complete beginners. Your first session is a private assessment where we match you with a calm schoolmaster horse and a coach who works at your pace. No prior experience or fitness level required.",
+    keywords: stringArray(["beginner", "new", "first time", "never ridden", "start", "experience"]),
+    linkLabel: "See beginner programs",
+    linkUrl: "/programs",
+    order: 1,
+  },
+  {
+    _id: "chatfaq-book",
+    _type: "chatFaq",
+    question: "How do I book a trial ride?",
+    answer:
+      "Message us on WhatsApp or call the centre and we'll slot you into a 30-minute trial ride. It usually runs from 30 minutes away, and there's no obligation to continue afterwards.",
+    keywords: stringArray(["book", "trial", "reserve", "appointment", "demo", "session"]),
+    linkLabel: "Book via contact page",
+    linkUrl: "/contact",
+    order: 2,
+  },
+  {
+    _id: "chatfaq-own-horse",
+    _type: "chatFaq",
+    question: "Do I need my own horse?",
+    answer:
+      "No. We have a full herd of schoolmasters, sport horses and ponies here, and the horse is included in your lesson. If you do own a horse, we also offer lessons on your own mount once you're riding confidently.",
+    keywords: stringArray(["own horse", "horse provided", "buy horse", "lease", "stable", "stall"]),
+    order: 3,
+  },
+  {
+    _id: "chatfaq-fees",
+    _type: "chatFaq",
+    question: "What are the fees?",
+    answer:
+      "Fees depend on whether you ride in a group or private session, and on the program. Trial rides and monthly plans are the most common starting points. Send us a WhatsApp message with the program you're eyeing and we'll share the exact pricing.",
+    keywords: stringArray(["price", "cost", "fee", "fees", "charges", "rate", "pricing", "membership", "how much"]),
+    linkLabel: "Browse programs",
+    linkUrl: "/programs",
+    order: 4,
+  },
+  {
+    _id: "chatfaq-timings",
+    _type: "chatFaq",
+    question: "What are your timings?",
+    answer:
+      "We run sessions across the day, with morning and evening slots being the busiest. Weekday slots are usually easier to book, and weekends fill up fastest. Message us for the next available time.",
+    keywords: stringArray(["timing", "timings", "hours", "open", "slot", "schedule", "morning", "evening", "when"]),
+    order: 5,
+  },
+  {
+    _id: "chatfaq-kids",
+    _type: "chatFaq",
+    question: "Do you coach children?",
+    answer:
+      "Yes. We run dedicated junior programs built around correct fundamentals and plenty of fun — ponies, games and confidence-building. Children can typically start from around 5 or 6 years old.",
+    keywords: stringArray(["child", "children", "kid", "kids", "junior", "juniors", "young", "age", "son", "daughter"]),
+    order: 6,
+  },
+  {
+    _id: "chatfaq-gear",
+    _type: "chatFaq",
+    question: "What should I wear or bring?",
+    answer:
+      "Wear trousers or leggings and closed shoes with a small heel — no sandals or trainers. Helmets are provided and are mandatory on the arena. Bring water and a hat if it's a sunny afternoon.",
+    keywords: stringArray(["wear", "dress", "clothes", "gear", "helmet", "shoes", "boots", "bring", "kit"]),
+    order: 7,
+  },
+  {
+    _id: "chatfaq-location",
+    _type: "chatFaq",
+    question: "Where exactly are you located?",
+    answer:
+      "We're on Chikkanayakanahalli, off Sarjapur Road, near Carmelaram Railway Station in Bengaluru. We have ample parking, and the yard is fully shaded.",
+    keywords: stringArray(["location", "where", "address", "directions", "map", "far", "distance"]),
+    linkLabel: "Get directions",
+    linkUrl: "/contact",
+    order: 8,
+  },
+  {
+    _id: "chatfaq-competition",
+    _type: "chatFaq",
+    question: "Can you coach me for competitions?",
+    answer:
+      "Yes. Our instructors prepare riders for local and national level events, and we also compete on the centre's own horses. Tell us which discipline you're aiming for and we'll talk through a plan.",
+    keywords: stringArray(["competition", "compete", "competitive", "events", "showjumping", "dressage", "level", "test"]),
+    linkLabel: "Meet the instructors",
+    linkUrl: "/about",
+    order: 9,
+  },
+  {
+    _id: "chatfaq-other",
+    _type: "chatFaq",
+    question: "What else do you offer besides lessons?",
+    answer:
+      "Beyond coaching we run birthday experiences, corporate team sessions, horse photography and content shoots, plus stalls and events from the yard. Tell us what you have in mind and we'll build something around it.",
+    keywords: stringArray(["other", "else", "extra", "birthday", "corporate", "events", "photography", "shoot", "party"]),
+    linkLabel: "Beyond the ride",
+    linkUrl: "/beyond",
+    order: 10,
+  },
+];
+
 /* ════════════════════════════════════════════════════════
    MAIN
 ════════════════════════════════════════════════════════ */
+/** Section names accepted as CLI args, e.g. `node scripts/seed-sanity.mjs chatFaq` */
+const only = process.argv.slice(2).filter((arg) => !arg.startsWith("-"));
+const shouldSeed = (section) => only.length === 0 || only.includes(section);
+
 async function main() {
   console.log("\n🐴  Zippy Equestrian — Sanity Seed Script");
-  console.log(`📦  Project: ${projectId}  |  Dataset: ${dataset}\n`);
+  console.log(`📦  Project: ${projectId}  |  Dataset: ${dataset}`);
+  if (only.length > 0) console.log(`🎯  Only: ${only.join(", ")}`);
+  console.log("");
 
-  console.log("📌  Site Settings");
-  await upsert(siteSettings);
+  const seeded = [];
+  const step = async (name, title, run) => {
+    if (!shouldSeed(name)) return;
+    console.log(title);
+    await run();
+    seeded.push(name);
+  };
 
-  console.log("\n🎯  Riding Programs");
-  for (const doc of programs) await upsert(doc);
+  await step("siteSettings", "📌  Site Settings", async () => {
+    await upsert(siteSettings);
+  });
 
-  console.log("\n🌿  Beyond the Ride Services");
-  for (const doc of beyondServices) await upsert(doc);
+  await step("program", "🎯  Riding Programs", async () => {
+    for (const doc of programs) await upsert(doc);
+  });
 
-  console.log("\n📝  Blog Posts");
-  for (const doc of blogPosts) await upsert(doc);
+  await step("beyondService", "🌿  Beyond the Ride Services", async () => {
+    for (const doc of beyondServices) await upsert(doc);
+  });
 
-  console.log("\n💬  Rider Stories & Testimonials");
-  for (const doc of riderStories) await upsert(doc);
+  await step("blogPost", "📝  Blog Posts", async () => {
+    for (const doc of blogPosts) await upsert(doc);
+  });
 
-  console.log("\n👨‍🏫  Instructors");
-  for (const doc of instructors) await upsert(doc);
+  await step("riderStory", "💬  Rider Stories & Testimonials", async () => {
+    for (const doc of riderStories) await upsert(doc);
+  });
 
-  console.log("\n🐎  Horses (Herd)");
-  for (const doc of horses) await upsert(doc);
+  await step("instructor", "👨‍🏫  Instructors", async () => {
+    for (const doc of instructors) await upsert(doc);
+  });
 
-  console.log("\n👥  Team Members");
-  for (const doc of teamMembers) await upsert(doc);
+  await step("horse", "🐎  Horses (Herd)", async () => {
+    for (const doc of horses) await upsert(doc);
+  });
 
-  console.log("\n✅  All data seeded successfully!");
+  await step("teamMember", "👥  Team Members", async () => {
+    for (const doc of teamMembers) await upsert(doc);
+  });
+
+  await step("faq", "❓  Website FAQs", async () => {
+    for (const doc of faqs) await upsert(doc);
+  });
+
+  await step("stat", "📊  Milestone Stats", async () => {
+    for (const doc of stats) await upsert(doc);
+  });
+
+  await step("chatFaq", "💭  Chatbot Q&A", async () => {
+    for (const doc of chatFaqs) await upsert(doc);
+  });
+
+  console.log(`\n✅  Seeded: ${seeded.join(", ") || "nothing (unknown section?)"}`);
   console.log("    Open http://localhost:3000/studio to view and edit your content.\n");
 }
 

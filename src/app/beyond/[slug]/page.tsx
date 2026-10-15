@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FranchiseEnquiryForm from "@/components/FranchiseEnquiryForm";
 import { beyondServicesSeoList } from "@/data/beyondSeoData";
 import { fetchBeyondServiceBySlug } from "@/sanity/lib/fetch";
 
@@ -89,7 +90,10 @@ export default async function BeyondDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const isFranchise = (service.slug || slug).toLowerCase().trim() === "franchise";
   const themeColor = getBeyondServiceColor(service.slug || slug);
+  const heroCtaHref = isFranchise ? "#enquire-details" : service.ctaHref;
+  const heroCtaText = isFranchise ? "Enquire Now" : service.ctaText;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -155,11 +159,11 @@ export default async function BeyondDetailPage({ params }: PageProps) {
 
             <div className="mt-8">
               <Link
-                href={service.ctaHref}
+                href={heroCtaHref}
                 className="bg-white px-6 py-3.5 rounded-md font-medium text-sm inline-flex items-center gap-3 hover:bg-[#FFFBF7] transition-all shadow-sm group"
                 style={{ color: themeColor }}
               >
-                <span>{service.ctaText}</span>
+                <span>{heroCtaText}</span>
                 <svg
                   width="18"
                   height="18"
@@ -191,25 +195,124 @@ export default async function BeyondDetailPage({ params }: PageProps) {
 
       {/* Content Section (White Background) */}
       <section className="w-full bg-white py-16 md:py-24 px-6 md:px-12 lg:px-16">
-        <div className="max-w-4xl mx-auto flex flex-col gap-6 text-left">
-          {service.contentParagraphs.map((paragraph, index) => (
-            <p
-              key={index}
-              className="text-[#5C381E]/90 text-base md:text-lg font-light leading-relaxed"
-            >
-              {paragraph}
-            </p>
-          ))}
+        {isFranchise ? (
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left Column: Franchise Overview & Operational Advantages */}
+            <div className="lg:col-span-7 flex flex-col gap-8 text-left">
+              <div>
+                <span className="text-xs md:text-sm font-semibold tracking-widest uppercase text-[#DA7347] block mb-3">
+                  FRANCHISE OPPORTUNITIES • EXPAND WITH ZIPPY
+                </span>
+                <h2 className="text-2xl md:text-4xl font-medium tracking-tight text-[#85431E] font-heading leading-tight">
+                  Bring World-Class Horsemanship to Your City
+                </h2>
+              </div>
 
-          {service.highlightText && (
-            <h2
-              className="text-xl md:text-2xl lg:text-3xl font-medium tracking-tight mt-6"
-              style={{ color: themeColor }}
-            >
-              {service.highlightText}
-            </h2>
-          )}
-        </div>
+              <div className="space-y-5">
+                {service.contentParagraphs.map((paragraph, index) => (
+                  <p
+                    key={index}
+                    className="text-[#5C381E]/90 text-base md:text-lg font-light leading-relaxed"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              {/* Franchise Pillars Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
+                <div className="bg-[#FFF8E5] p-5 rounded-xl border border-[#85431E]/10">
+                  <div className="w-9 h-9 rounded-lg bg-[#DA7347]/15 text-[#DA7347] flex items-center justify-center mb-3">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <h3 className="text-sm font-semibold text-[#85431E] mb-1.5 uppercase tracking-wide">
+                    Turnkey Stables &amp; Arenas
+                  </h3>
+                  <p className="text-xs text-[#5C381E]/80 font-light leading-relaxed">
+                    European-standard stable architecture, arena footing engineering, and paddock optimization for your land parcel.
+                  </p>
+                </div>
+
+                <div className="bg-[#FFF8E5] p-5 rounded-xl border border-[#85431E]/10">
+                  <div className="w-9 h-9 rounded-lg bg-[#DA7347]/15 text-[#DA7347] flex items-center justify-center mb-3">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-sm font-semibold text-[#85431E] mb-1.5 uppercase tracking-wide">
+                    Equine Sourcing &amp; Care
+                  </h3>
+                  <p className="text-xs text-[#5C381E]/80 font-light leading-relaxed">
+                    Vetted procurement of safe school and competition horses, ongoing veterinary support, and nutrition regimens.
+                  </p>
+                </div>
+
+                <div className="bg-[#FFF8E5] p-5 rounded-xl border border-[#85431E]/10">
+                  <div className="w-9 h-9 rounded-lg bg-[#DA7347]/15 text-[#DA7347] flex items-center justify-center mb-3">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  </div>
+                  <h3 className="text-sm font-semibold text-[#85431E] mb-1.5 uppercase tracking-wide">
+                    Standardized Curriculum
+                  </h3>
+                  <p className="text-xs text-[#5C381E]/80 font-light leading-relaxed">
+                    Structured 6-tier riding syllabus, certified trainer recruitment, and junior-to-competitive equestrian pipelines.
+                  </p>
+                </div>
+
+                <div className="bg-[#FFF8E5] p-5 rounded-xl border border-[#85431E]/10">
+                  <div className="w-9 h-9 rounded-lg bg-[#DA7347]/15 text-[#DA7347] flex items-center justify-center mb-3">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-sm font-semibold text-[#85431E] mb-1.5 uppercase tracking-wide">
+                    Digital Software &amp; Brand
+                  </h3>
+                  <p className="text-xs text-[#5C381E]/80 font-light leading-relaxed">
+                    Online session booking, customer billing, national brand marketing campaigns, and proven unit profitability.
+                  </p>
+                </div>
+              </div>
+
+              {service.highlightText && (
+                <div className="p-6 rounded-xl border border-[#DA7347]/30 bg-[#FFF8E5] text-left">
+                  <p className="text-base md:text-lg font-medium text-[#85431E] leading-snug">
+                    “{service.highlightText}”
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Right Column: “Enquire Details” Form */}
+            <div className="lg:col-span-5 w-full">
+              <FranchiseEnquiryForm />
+            </div>
+          </div>
+        ) : (
+          <div className="max-w-4xl mx-auto flex flex-col gap-6 text-left">
+            {service.contentParagraphs.map((paragraph, index) => (
+              <p
+                key={index}
+                className="text-[#5C381E]/90 text-base md:text-lg font-light leading-relaxed"
+              >
+                {paragraph}
+              </p>
+            ))}
+
+            {service.highlightText && (
+              <h2
+                className="text-xl md:text-2xl lg:text-3xl font-medium tracking-tight mt-6"
+                style={{ color: themeColor }}
+              >
+                {service.highlightText}
+              </h2>
+            )}
+          </div>
+        )}
       </section>
 
       {/* Gentle transition gradient to the terracotta footer */}

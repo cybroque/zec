@@ -169,3 +169,15 @@ body.footer-active .herd-tracker-dot:not(.tracker-active) {
 body.footer-active div.site-loader {
   background-color: #85431E !important;
 }
+
+/* Chat assistant typing indicator */
+@keyframes chat-typing {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="chat-typing"] {
+    animation: none !important;
+  }
+}

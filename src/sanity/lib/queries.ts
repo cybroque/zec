@@ -170,3 +170,58 @@ export const TEAM_MEMBERS_QUERY = groq`
     "image": image.asset->url
   }
 `;
+
+export const CHAT_FAQS_QUERY = groq`
+  *[_type == "chatFaq" && defined(question) && defined(answer)] | order(order asc, _createdAt asc){
+    _id,
+    question,
+    answer,
+    "keywords": keywords[].value,
+    linkLabel,
+    linkUrl
+  }
+`;
+
+export const FAQS_QUERY = groq`
+  *[_type == "faq" && defined(question) && defined(answer)] | order(order asc, _createdAt asc){
+    _id,
+    question,
+    answer,
+    category,
+    order
+  }
+`;
+
+export const GALLERY_QUERY = groq`
+  *[_type == "galleryItem" && defined(image)] | order(order asc, _createdAt asc){
+    _id,
+    title,
+    "image": image.asset->url,
+    alt,
+    category,
+    instagramUrl,
+    order
+  }
+`;
+
+export const STATS_QUERY = groq`
+  *[_type == "stat" && defined(number) && defined(label)] | order(order asc, _createdAt asc){
+    _id,
+    number,
+    label,
+    order
+  }
+`;
+
+export const ACTIVITIES_QUERY = groq`
+  *[_type == "activity"] | order(order asc, _createdAt asc){
+    _id,
+    title,
+    description,
+    "image": image.asset->url,
+    ctaText,
+    ctaHref,
+    order
+  }
+`;
+

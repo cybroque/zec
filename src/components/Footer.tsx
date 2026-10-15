@@ -136,19 +136,45 @@ const Footer = ({
             </div>
           </div>
 
-          {/* Left Column: Logos - Order 2 on mobile (placed after the button!) */}
+          {/* Left Column: Logos & Address - Order 2 on mobile (placed after the button!) */}
           <div className="order-2 md:order-1 md:col-start-1 md:row-start-1 md:row-span-2 flex flex-col justify-center items-center md:items-stretch h-full py-4 md:py-0">
             {/* Horse Rider Logo — aligns with CTA section */}
-            <div className="flex justify-center md:justify-start mb-12 md:mb-20 max-md:mb-6">
+            <div className="flex justify-center md:justify-start mb-10 md:mb-14 max-md:mb-6">
               <PaintingLogo src="/assets/images/zippyfooter1.svg" className="w-56 h-56 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px] max-md:w-44 max-md:h-44" />
             </div>
             {/* Zippy Equestrian Center — aligns with nav links */}
-            <div className="flex items-start justify-center md:justify-start">
+            <div className="flex items-start justify-center md:justify-start mb-6 md:mb-8">
               <PaintingLogo
                 src="/assets/images/zippyfooter2.svg"
                 className="w-48 h-16 md:w-[240px] md:h-[68px] lg:w-[280px] lg:h-[80px] max-md:w-40 max-md:h-12"
                 delay={0.15}
               />
+            </div>
+            {/* Address */}
+            <div className={`text-center md:text-left ${textColor} max-w-sm`}>
+              <p className="text-[11px] md:text-xs font-bold uppercase tracking-wider mb-2 opacity-90 flex items-center justify-center md:justify-start gap-1.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Visit Our Stables</span>
+              </p>
+              <address className="not-italic text-xs md:text-sm font-light leading-relaxed opacity-85">
+                102/2, next to Sports Drome, Opposite Jain Public School, Puttenahalli, JP Nagar 7th Phase, Bengaluru, Karnataka – 560078
+              </address>
+              <a
+                href="https://maps.google.com/?q=Zippy+Equestrian+Center"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-1.5 text-xs font-medium mt-2.5 underline underline-offset-4 ${underlineColor} hover:opacity-80 transition-opacity`}
+              >
+                <span>Get Directions (Google Maps)</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              </a>
             </div>
           </div>
 
@@ -158,9 +184,11 @@ const Footer = ({
               <Link href="/" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Zippy Home</Link>
               <Link href="/about" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>About ZEC</Link>
               <Link href="/programs" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Riding programs</Link>
-              <Link href="/contact" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Contact Zippy</Link>
               <Link href="/beyond" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Beyond the ride</Link>
               <Link href="/stories" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Rider Stories</Link>
+              <Link href="/stories#gallery" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Gallery</Link>
+              <Link href="/blog" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Blog</Link>
+              <Link href="/contact" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Contact Zippy</Link>
             </div>
           </div>
 

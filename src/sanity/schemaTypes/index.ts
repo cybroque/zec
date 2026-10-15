@@ -7,6 +7,11 @@ import { riderStoryType } from "./riderStory";
 import { instructorType } from "./instructor";
 import { horseType } from "./horse";
 import { teamMemberType } from "./teamMember";
+import { chatFaqType } from "./chatFaq";
+import { faqType } from "./faq";
+import { galleryItemType } from "./galleryItem";
+import { statType } from "./stat";
+import { activityType } from "./activity";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -18,5 +23,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     instructorType,
     horseType,
     teamMemberType,
+    chatFaqType,
+    faqType,
+    galleryItemType,
+    statType,
+    activityType,
   ],
 };

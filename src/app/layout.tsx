@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import FloatingWidgets from "@/components/FloatingWidgets";
+import { getChatFaqs } from "@/sanity/lib/fetch";
 
 const gtUltra = localFont({
   src: [
@@ -122,16 +124,19 @@ export const metadata: Metadata = {
   description: "Experience the thrill of riding in Bangalore.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const chatFaqs = await getChatFaqs();
+
   return (
     <html lang="en" className={`${gtUltra.variable} ${gtUltraUltra.variable} ${gtUltraFine.variable} ${gtUltraFineUltra.variable} ${optimaFont.variable} antialiased`}>
       <body className="font-sans">
         <LoadingScreen />
         {children}
+        <FloatingWidgets faqs={chatFaqs} />
       </body>
     </html>
   );
