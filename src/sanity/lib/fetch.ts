@@ -429,17 +429,26 @@ export async function getTeamMembers(fallback: any[]): Promise<any[]> {
  * never renders empty, even before anything is published in the Studio.
  */
 export async function getChatFaqs(): Promise<ChatFaq[]> {
-  const data = await sanityFetch<Partial<ChatFaq>[]>({
+  const data = await sanityFetch<(Partial<ChatFaq> & { _id?: string })[]>({
     query: CHAT_FAQS_QUERY,
     fallback: [],
   });
 
-  const valid = data.filter(
-    (faq): faq is ChatFaq =>
-      Boolean(faq && faq.question && faq.answer) &&
-      !faq.question!.includes("<") &&
-      !faq.answer!.includes("<")
-  );
+  const valid = data
+    .filter(
+      (faq) =>
+        Boolean(faq && faq.question && faq.answer) &&
+        !faq.question!.includes("<") &&
+        !faq.answer!.includes("<")
+    )
+    .map((faq, index) => ({
+      id: faq.id || faq._id || `sanity-faq-${index}`,
+      question: faq.question!,
+      answer: faq.answer!,
+      keywords: Array.isArray(faq.keywords) ? faq.keywords : [],
+      linkLabel: faq.linkLabel,
+      linkUrl: faq.linkUrl,
+    }));
 
   return valid.length > 0 ? valid : fallbackChatFaqs;
 }

@@ -94,4 +94,48 @@ export const chatFaqs: ChatFaq[] = [
     linkLabel: "Beyond the ride",
     linkUrl: "/beyond",
   },
+  {
+    id: "faq-hello",
+    question: "Hello / Hi",
+    answer:
+      "Hello there! 👋 Welcome to Zippy Equestrian Center. How can I help you today? You can ask me about our riding lessons, trial rides, timings, membership fees, or locations!",
+    keywords: ["hi", "hii", "hiii", "hello", "hey", "heyy", "hola", "namaste", "greetings", "good morning", "good evening", "howdy"],
+    linkLabel: "Book a trial ride",
+    linkUrl: "/contact",
+  },
+  {
+    id: "faq-how-are-you",
+    question: "How are you?",
+    answer:
+      "I'm doing wonderful, thank you for asking! 🐴 Ready to assist you with everything related to horses and riding at ZEC. How can I help you today?",
+    keywords: ["how are you", "how r u", "how do you do", "how is it going", "hows it going", "how are you doing"],
+    linkLabel: "Explore programs",
+    linkUrl: "/programs",
+  },
+  {
+    id: "faq-who-are-you",
+    question: "Who are you?",
+    answer:
+      "I'm ZEC's AI Concierge! I'm here to answer your questions about horse riding programs, trial ride bookings, coaching for adults & kids, and visits to our Sarjapur center.",
+    keywords: ["who are you", "who r u", "what are you", "what can you do", "your name", "what is this"],
+    linkLabel: "Meet our instructors",
+    linkUrl: "/about",
+  },
+  {
+    id: "faq-thanks",
+    question: "Thank you",
+    answer:
+      "You're very welcome! 😊 Feel free to ask if there's anything else you'd like to know, or reach out to our team directly on WhatsApp to book a visit.",
+    keywords: ["thanks", "thank you", "thx", "ty", "thank you so much", "awesome", "great", "perfect", "cool", "ok", "okay"],
+    linkLabel: "Contact Us",
+    linkUrl: "/contact",
+  },
+  {
+    id: "faq-goodbye",
+    question: "Goodbye",
+    answer:
+      "Goodbye! 🐎 We look forward to seeing you at the arena soon. Have a wonderful day ahead!",
+    keywords: ["bye", "goodbye", "cya", "see you", "see ya", "take care", "good night"],
+  },
 ];
+

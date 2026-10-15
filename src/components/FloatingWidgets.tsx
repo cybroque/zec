@@ -42,19 +42,28 @@ export default function FloatingWidgets({ faqs }: { faqs: ChatFaq[] }) {
       }`}
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <a
-        href={`https://wa.me/${WHATSAPP_NUMBER}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat with us on WhatsApp"
-        className="group relative flex items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.4)] transition-transform duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/60 focus-visible:ring-offset-2"
-        style={{ height: "3.25rem", width: "3.25rem" }}
-      >
-        <WhatsAppIcon />
-        <span className="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap bg-[#85431E] px-3 py-1.5 text-xs font-light text-[#F2EBD9] opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 md:block">
-          Chat on WhatsApp
-        </span>
-      </a>
+      <AnimatePresence>
+        {!isChatOpen && (
+          <motion.a
+            key="floating-whatsapp"
+            initial={{ opacity: 0, scale: 0.8, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 8 }}
+            transition={{ duration: 0.18 }}
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat with us on WhatsApp"
+            className="group relative flex items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.4)] transition-transform duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/60 focus-visible:ring-offset-2"
+            style={{ height: "3.25rem", width: "3.25rem" }}
+          >
+            <WhatsAppIcon />
+            <span className="pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-lg bg-[#85431E] px-3 py-1.5 text-xs font-light text-[#F2EBD9] opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 md:block">
+              Chat on WhatsApp
+            </span>
+          </motion.a>
+        )}
+      </AnimatePresence>
 
       <button
         type="button"
