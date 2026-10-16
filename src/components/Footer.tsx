@@ -91,31 +91,31 @@ const Footer = ({
   return (
     <footer
       ref={ref}
-      className={`relative w-full pt-48 pb-8 md:pt-64 md:pb-10 max-md:!pt-12 transition-colors duration-300 ${isTerracotta ? 'bg-[#DA7347]' : 'bg-[#FFF8E5]'}`}
+      className={`relative w-full pt-8 pb-8 sm:pt-12 sm:pb-10 md:pt-64 md:pb-10 transition-colors duration-300 ${isTerracotta ? 'bg-[#DA7347]' : 'bg-[#FFF8E5]'}`}
     >
-      <div className="container mx-auto max-w-7xl px-4 md:px-16 lg:px-20">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-8 md:px-16 lg:px-20">
 
         {/* Main Grid: Left for Logos, Right for Content on Desktop; CTA -> Logos -> Links on Mobile */}
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-8 lg:gap-16 mb-24 md:mb-32 max-md:mb-12">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-5 sm:gap-6 md:gap-8 lg:gap-16 mb-5 sm:mb-8 md:mb-32">
 
           {/* CTA Section - Order 1 on mobile */}
-          <div className="order-1 md:order-2 md:col-start-2 md:row-start-1 flex flex-col justify-center max-w-lg mx-auto md:mx-0 md:pl-8 lg:pl-16">
+          <div className="order-1 md:order-2 md:col-start-2 md:row-start-1 flex flex-col justify-center max-w-lg mx-auto md:mx-0 md:pl-8 lg:pl-16 w-full">
             <div className={`text-center md:text-left ${textColor}`}>
-              <h2 className="text-[40px] md:text-[48px] lg:text-[56px] font-medium leading-[1.15] mb-6 tracking-tight max-md:text-[28px] max-md:mb-3 whitespace-pre-line">
+              <h2 className="text-2xl sm:text-3xl md:text-[48px] lg:text-[56px] font-medium leading-[1.15] mb-2 sm:mb-3 md:mb-6 tracking-tight whitespace-pre-line">
                 {heading}
               </h2>
-              <p className="text-base md:text-lg opacity-90 mb-10 font-light leading-relaxed max-md:text-sm max-md:mb-6 whitespace-pre-line">
+              <p className="text-xs sm:text-sm md:text-lg opacity-90 mb-3 sm:mb-5 md:mb-10 font-light leading-relaxed whitespace-pre-line max-w-md mx-auto md:mx-0">
                 {subheading}
               </p>
-              <Link href="/contact" className={`group flex items-center justify-center md:justify-start gap-4 px-8 py-4 border rounded transition-all duration-300 mx-auto md:mx-0 w-fit ${borderColor} ${buttonHover} max-md:px-6 max-md:py-3`}>
-                <span className="text-lg font-light max-md:text-base">{ctaText}</span>
+              <Link href="/contact" className={`group flex items-center justify-center md:justify-start gap-2.5 sm:gap-4 px-5 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-4 border rounded transition-all duration-300 mx-auto md:mx-0 w-fit ${borderColor} ${buttonHover}`}>
+                <span className="text-xs sm:text-sm md:text-lg font-light">{ctaText}</span>
                 <svg
-                  width="24"
-                  height="24"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="transition-transform duration-300 group-hover:translate-x-1 max-md:w-5 max-md:h-5"
+                  className="transition-transform duration-300 group-hover:translate-x-1 w-4 h-4 md:w-6 md:h-6"
                 >
                   <path
                     d="M5 12H19"
@@ -137,39 +137,43 @@ const Footer = ({
           </div>
 
           {/* Left Column: Logos & Address - Order 2 on mobile (placed after the button!) */}
-          <div className="order-2 md:order-1 md:col-start-1 md:row-start-1 md:row-span-2 flex flex-col justify-center items-center md:items-stretch h-full py-4 md:py-0">
-            {/* Horse Rider Logo — aligns with CTA section */}
-            <div className="flex justify-center md:justify-start mb-10 md:mb-14 max-md:mb-6">
-              <PaintingLogo src="/assets/images/zippyfooter1.svg" className="w-56 h-56 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px] max-md:w-44 max-md:h-44" />
+          <div className="order-2 md:order-1 md:col-start-1 md:row-start-1 md:row-span-2 flex flex-col justify-center items-center md:items-stretch h-full py-1 md:py-0 w-full">
+            {/* Logos: compact horizontal row on mobile, stacked on desktop */}
+            <div className="flex flex-row md:flex-col items-center justify-center md:items-start gap-3 md:gap-0 mb-2 md:mb-0">
+              {/* Horse Rider Logo */}
+              <div className="flex justify-center md:justify-start md:mb-14">
+                <PaintingLogo src="/assets/images/zippyfooter1.svg" className="w-12 h-12 sm:w-16 sm:h-16 md:w-[280px] md:h-[280px] lg:w-[280px] lg:h-[280px]" />
+              </div>
+              {/* Zippy Equestrian Center */}
+              <div className="flex items-start justify-center md:justify-start md:mb-20">
+                <PaintingLogo
+                  src="/assets/images/zippyfooter2.svg"
+                  className="w-28 h-8 sm:w-36 sm:h-10 md:w-[240px] md:h-[68px] lg:w-[280px] lg:h-[80px]"
+                  delay={0.15}
+                />
+              </div>
             </div>
-            {/* Zippy Equestrian Center — aligns with nav links */}
-            <div className="flex items-start justify-center md:justify-start mb-8 md:mb-20">
-              <PaintingLogo
-                src="/assets/images/zippyfooter2.svg"
-                className="w-48 h-16 md:w-[240px] md:h-[68px] lg:w-[280px] lg:h-[80px] max-md:w-40 max-md:h-12"
-                delay={0.15}
-              />
-            </div>
+
             {/* Address */}
-            <div className={`text-center md:text-left ${textColor} max-w-sm`}>
-              <p className="text-[11px] md:text-xs font-bold uppercase tracking-wider mb-2 opacity-90 flex items-center justify-center md:justify-start gap-1.5">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+            <div className={`text-center md:text-left ${textColor} max-w-xs sm:max-w-sm mx-auto md:mx-0`}>
+              <p className="text-[10px] sm:text-[11px] md:text-xs font-bold uppercase tracking-wider mb-1 opacity-90 flex items-center justify-center md:justify-start gap-1">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 md:w-3.5 md:h-3.5">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
                 <span>Visit Our Stables</span>
               </p>
-              <address className="not-italic text-xs md:text-sm font-light leading-relaxed opacity-85">
+              <address className="not-italic text-[11px] sm:text-xs md:text-sm font-light leading-snug md:leading-relaxed opacity-85 px-2 sm:px-0">
                 102/2, Puttenahalli, JP Nagar 7th Phase, Bengaluru, Karnataka – 560078
               </address>
               <a
                 href="https://maps.google.com/?q=Zippy+Equestrian+Center"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-1.5 text-xs font-medium mt-2.5 underline underline-offset-4 ${underlineColor} hover:opacity-80 transition-opacity`}
+                className={`inline-flex items-center gap-1 text-[11px] sm:text-xs font-medium mt-1 md:mt-2.5 underline underline-offset-4 ${underlineColor} hover:opacity-80 transition-opacity`}
               >
                 <span>Get Directions (Google Maps)</span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                   <polyline points="15 3 21 3 21 9" />
                   <line x1="10" y1="14" x2="21" y2="3" />
@@ -179,25 +183,27 @@ const Footer = ({
           </div>
 
           {/* Bottom Links Section - Order 3 on mobile */}
-          <div className="order-3 md:order-3 md:col-start-2 md:row-start-2 flex flex-col justify-end max-w-lg mx-auto md:mx-0 md:pl-8 lg:pl-16">
-            <div className={`grid grid-cols-2 gap-x-10 md:gap-x-16 gap-y-5 max-md:gap-y-3 ${textColor}`}>
-              <Link href="/" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Zippy Home</Link>
-              <Link href="/about" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>About ZEC</Link>
-              <Link href="/programs" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Riding programs</Link>
-              <Link href="/beyond" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Beyond the ride</Link>
-              <Link href="/stories" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Rider Stories</Link>
-              <Link href="/stories#gallery" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Gallery</Link>
-              <Link href="/blog" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Blog</Link>
-              <Link href="/contact" className={`text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Contact Zippy</Link>
+          <div className="order-3 md:order-3 md:col-start-2 md:row-start-2 flex flex-col justify-end max-w-lg mx-auto md:mx-0 md:pl-8 lg:pl-16 w-full">
+            <div className={`grid grid-cols-2 gap-x-6 sm:gap-x-10 md:gap-x-16 gap-y-1.5 md:gap-y-2.5 max-w-[280px] sm:max-w-sm md:max-w-none mx-auto md:mx-0 w-full ${textColor}`}>
+              <Link href="/" className={`text-xs sm:text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Zippy Home</Link>
+              <Link href="/about" className={`text-xs sm:text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>About ZEC</Link>
+              <Link href="/programs" className={`text-xs sm:text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Riding programs</Link>
+              <Link href="/beyond" className={`text-xs sm:text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Beyond the ride</Link>
+              <Link href="/stories" className={`text-xs sm:text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Rider Stories</Link>
+              <Link href="/stories#gallery" className={`text-xs sm:text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Gallery</Link>
+              <Link href="/blog" className={`text-xs sm:text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Blog</Link>
+              <Link href="/contact" className={`text-xs sm:text-sm md:text-[15px] font-light hover:opacity-80 transition-opacity underline underline-offset-4 ${underlineColor}`}>Contact Zippy</Link>
             </div>
           </div>
 
         </div>
 
         {/* Copyright Row */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[#7A4027] text-xs lg:text-sm font-medium ">
-          <p>© 2026 Zippy Equestrian Pvt Ltd.</p>
-          <p className="text-center md:text-right">All Rights Reserved. ZEC and Zippy is a registered trademark of Zippy Equestrian Pvt Ltd.</p>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-1.5 sm:gap-2 md:gap-4 text-[#7A4027] text-[10px] sm:text-xs lg:text-sm font-medium text-center w-full">
+          <p className="whitespace-nowrap md:text-left">© 2026 Zippy Equestrian Pvt Ltd.</p>
+          <p className="max-w-[280px] sm:max-w-md md:max-w-none text-center md:text-right leading-snug">
+            All Rights Reserved. ZEC and Zippy is a registered trademark of Zippy Equestrian Pvt Ltd.
+          </p>
         </div>
        
       </div>

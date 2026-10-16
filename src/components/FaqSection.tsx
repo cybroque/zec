@@ -10,7 +10,7 @@ interface FaqSectionProps {
 }
 
 export default function FaqSection({ initialFaqs }: FaqSectionProps) {
-  const faqs = initialFaqs && initialFaqs.length > 0 ? initialFaqs : defaultFaqs;
+  const faqs = (initialFaqs && initialFaqs.length > 0 ? initialFaqs : defaultFaqs).slice(0, 5);
 
   // First item open by default, matching Image 1
   const [openIndex, setOpenIndex] = useState<number | null>(0);

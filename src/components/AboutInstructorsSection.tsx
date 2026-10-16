@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, useInView, useMotionValue, useTransform, useMotionTemplate, animate } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
 
 const instructors = [
@@ -42,8 +42,16 @@ interface AboutInstructorsSectionProps {
 export default function AboutInstructorsSection({ initialInstructors }: AboutInstructorsSectionProps) {
   const containerRef = useRef<HTMLElement>(null);
 
-  const isInView = useInView(containerRef, { amount: 0.15, once: true });
-  const progress = useMotionValue(0);
+  const [inViewAmount, setInViewAmount] = useState(0.25);
+
+  useEffect(() => {
+    const update = () => setInViewAmount(window.innerWidth < 768 ? 0.05 : 0.25);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const isInView = useInView(containerRef, { amount: inViewAmount });
 
   const activeInstructors = (() => {
     if (!initialInstructors || initialInstructors.length === 0) {
@@ -85,20 +93,12 @@ export default function AboutInstructorsSection({ initialInstructors }: AboutIns
     return [...merged, ...extra];
   })();
 
-  useEffect(() => {
-    animate(progress, isInView ? 1 : 0, { duration: 0.8, ease: "easeInOut" });
-  }, [isInView, progress]);
-
-  const color1 = useTransform(progress, [0, 1], ["#1C2245", "#1C2245"]);
-  const color2 = useTransform(progress, [0, 1], ["#1C2245", "#85431E"]);
-  const color3 = useTransform(progress, [0, 1], ["#1C2245", "#85431E"]);
-  const background = useMotionTemplate`linear-gradient(to bottom, ${color1} 0px, ${color2} 120px, ${color3} 100%)`;
-
   return (
-    <motion.section
+    <section
       ref={containerRef}
-      className="relative w-full overflow-hidden"
-      style={{ background }}
+      className={`relative w-full overflow-hidden transition-colors duration-500 ease-in-out ${
+        isInView ? "bg-[#85431E]" : "bg-[#1C2245]"
+      }`}
     >
       {/* ── Instructors ── */}
       <div className="pt-24 pb-4 md:pt-36 md:pb-8 max-md:pt-16 relative z-10">
@@ -120,19 +120,32 @@ export default function AboutInstructorsSection({ initialInstructors }: AboutIns
 
           {/* Desktop Grid — staggered layout */}
           <div className="hidden md:grid grid-cols-12 gap-y-16 relative w-full">
-            {activeInstructors.map((instructor) => (
+            {activeInstructors.map((instructor, index) => (
               <div key={instructor.id} className="contents">
                 <div className={instructor.gridImage}>
                   <Reveal delay={0.05 * instructor.id} className="w-full h-full">
-                    <div className="relative shadow-2xl rounded-sm overflow-hidden w-[248px] h-[332px] hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
-                      <Image loading="lazy"
+                    <motion.div
+                      initial={{ clipPath: "inset(0 100% 0 0)", x: -24 }}
+                      animate={
+                        isInView
+                          ? { clipPath: "inset(0 0% 0 0)", x: 0 }
+                          : { clipPath: "inset(0 100% 0 0)", x: -24 }
+                      }
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.15 * index,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      className="relative shadow-2xl rounded-sm overflow-hidden w-[248px] h-[332px] hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out"
+                    >
+                      <Image
                         src={instructor.image}
                         alt={instructor.name}
                         fill
                         sizes="(max-width: 768px) 100vw, 25vw"
                         className="object-cover"
                       />
-                    </div>
+                    </motion.div>
                   </Reveal>
                 </div>
                 <div className={instructor.gridText}>
@@ -154,12 +167,25 @@ export default function AboutInstructorsSection({ initialInstructors }: AboutIns
 
           {/* Mobile */}
           <div className="flex md:hidden flex-col gap-12">
-            {activeInstructors.map((instructor) => (
+            {activeInstructors.map((instructor, index) => (
               <Reveal key={instructor.id} delay={0.08}>
                 <div className="flex flex-col items-center text-center">
-                  <div className="relative w-[248px] h-[332px] shadow-2xl mb-6 rounded-sm overflow-hidden hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out">
-                    <Image loading="lazy" src={instructor.image} alt={instructor.name} fill sizes="248px" className="object-cover" />
-                  </div>
+                  <motion.div
+                    initial={{ clipPath: "inset(0 100% 0 0)", x: -20 }}
+                    animate={
+                      isInView
+                        ? { clipPath: "inset(0 0% 0 0)", x: 0 }
+                        : { clipPath: "inset(0 100% 0 0)", x: -20 }
+                    }
+                    transition={{
+                      duration: 0.8,
+                      delay: 0.15 * index,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="relative w-[248px] h-[332px] shadow-2xl mb-6 rounded-sm overflow-hidden hover:scale-[1.03] hover:-translate-y-[3px] transition-transform duration-[400ms] ease-out"
+                  >
+                    <Image src={instructor.image} alt={instructor.name} fill sizes="248px" className="object-cover" />
+                  </motion.div>
                   <h3 className="text-[#FFF8E5] text-xl font-normal mb-1.5">{instructor.name}</h3>
                   <p className="text-[#FFF8E5]/80 text-[10px] uppercase  font-light mb-3">{instructor.role}</p>
                   <p className="text-[#DA7347] text-sm font-light leading-relaxed max-w-[260px]">{instructor.desc}</p>
@@ -247,6 +273,6 @@ export default function AboutInstructorsSection({ initialInstructors }: AboutIns
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

@@ -46,6 +46,16 @@ const riders: Rider[] = [
     image: "/assets/images/Rider_stories/Webp/Aazeen.webp",
   },
   {
+    name: "Priya S",
+    age: "28",
+    joinedDate: "2024",
+    location: "Bangalore",
+    startingLevel: "Started as a complete beginner",
+    role: "Rider",
+    quote: "I booked a trial session thinking I'd do it once. That was eight months ago. I'm now in the Intermediate program and I can't imagine my weekends without it.",
+    image: "/assets/images/Rider_stories/Webp/Rectangle 189.webp",
+  },
+  {
     name: "Anagha",
     age: "15",
     joinedDate: "2023 March",
@@ -97,6 +107,59 @@ const riders: Rider[] = [
   },
 ];
 
+const fallbackImageMap: Record<string, string> = {
+  nandana: "/assets/images/Rider_stories/Webp/Nandana.webp",
+  aazeen: "/assets/images/Rider_stories/Webp/Aazeen.webp",
+  "priya s": "/assets/images/Rider_stories/Webp/Rectangle 189.webp",
+  priya: "/assets/images/Rider_stories/Webp/Rectangle 189.webp",
+  anagha: "/assets/images/Rider_stories/Webp/Anagha.webp",
+  "av aravindh": "/assets/images/Rider_stories/Webp/Aravindh.webp",
+  aravindh: "/assets/images/Rider_stories/Webp/Aravindh.webp",
+  "shaurya subramanian": "/assets/images/Rider_stories/Webp/Shaurya.webp",
+  shaurya: "/assets/images/Rider_stories/Webp/Shaurya.webp",
+  "ira singal": "/assets/images/Rider_stories/Webp/Ira.webp",
+  ira: "/assets/images/Rider_stories/Webp/Ira.webp",
+  "salma salim": "/assets/images/Rider_stories/Webp/Salma.webp",
+  salma: "/assets/images/Rider_stories/Webp/Salma.webp",
+};
+
+function getFallbackImage(name: string): string {
+  const key = (name || "").toLowerCase().trim();
+  if (fallbackImageMap[key]) return fallbackImageMap[key];
+  for (const [k, v] of Object.entries(fallbackImageMap)) {
+    if (key.includes(k) || k.includes(key)) return v;
+  }
+  return "/assets/images/Rider_stories/Webp/Rectangle 189.webp";
+}
+
+function RiderPhoto({ src, name }: { src?: string; name: string }) {
+  const fallback = getFallbackImage(name);
+  const [currentSrc, setCurrentSrc] = useState(src || fallback);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setCurrentSrc(src || fallback);
+    setHasError(false);
+  }, [src, fallback]);
+
+  return (
+    <Image
+      src={hasError ? fallback : currentSrc}
+      alt={name}
+      fill
+      priority
+      sizes="(max-width: 768px) 100vw, 38vw"
+      className="object-cover object-top transition-opacity duration-200"
+      onError={() => {
+        if (!hasError) {
+          setHasError(true);
+          setCurrentSrc(fallback);
+        }
+      }}
+    />
+  );
+}
+
 interface StoriesRidersSectionProps {
   initialRiders?: Rider[];
 }
@@ -117,11 +180,26 @@ export default function StoriesRidersSection({ initialRiders }: StoriesRidersSec
 
   return (
     <section id="stories-riders-section" className="w-full">
-      {/* Preload images in the background so they display instantly on hover */}
-      <div className="hidden">
-        {activeRiders.map((rider) => (
-          <Image key={`preload-${rider.name}`} src={rider.image} alt="" width={10} height={10} priority />
-        ))}
+      {/* Preload images eagerly in background so they display instantly on hover */}
+      <div
+        className="sr-only"
+        aria-hidden="true"
+        style={{ position: "absolute", width: 0, height: 0, overflow: "hidden", pointerEvents: "none" }}
+      >
+        {activeRiders.map((rider) => {
+          const fallback = getFallbackImage(rider.name);
+          const imgSrc = rider.image || fallback;
+          return (
+            <Image
+              key={`preload-${rider.name}`}
+              src={imgSrc}
+              alt=""
+              width={400}
+              height={400}
+              priority
+            />
+          );
+        })}
       </div>
 
       {activeRiders.map((rider, i) => {
@@ -180,15 +258,12 @@ export default function StoriesRidersSection({ initialRiders }: StoriesRidersSec
                   className="flex min-h-[380px] max-md:flex-col max-md:min-h-0 relative"
                 >
                   {/* Left: photo with name overlay */}
-                  <div className="relative w-[38%] min-h-[380px] flex-shrink-0 max-md:w-full max-md:min-h-[280px]">
-                    <Image loading="lazy"
+                  <div className="relative w-[38%] min-h-[380px] flex-shrink-0 max-md:w-full max-md:min-h-[280px] bg-black/20">
+                    <RiderPhoto
                       src={rider.image}
-                      alt={rider.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 38vw"
-                      className="object-cover object-top"
+                      name={rider.name}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
                   </div>
 
                   {/* Rider Name Overlay Aligned to Container */}

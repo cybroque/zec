@@ -48,28 +48,4 @@ export const defaultFaqs: WebsiteFaq[] = [
     category: "safety",
     order: 5,
   },
-  {
-    id: 6,
-    question: "Is social distancing and facility hygiene maintained in the academy?",
-    answer:
-      "Yes. Our facility features expansive, open-air sand arenas and outdoor paddocks with continuous fresh airflow. Lessons are conducted in private one-on-one sessions or small semi-private groups of 2 to 4 riders, naturally maintaining wide physical separation between horses. All riding helmets, tack, and reins are sanitized between sessions.",
-    category: "facilities",
-    order: 6,
-  },
-  {
-    id: 7,
-    question: "When can I participate in the competition?",
-    answer:
-      "Riders can typically begin competing in club-level schooling shows and gymkhana events after 6 to 12 months of consistent training (around 40–50 hours in the saddle). Once you demonstrate a secure, balanced seat across walk, trot, and canter, our trainers guide you into the Performance Program to prepare for regional EFI (Equestrian Federation of India) dressage and showjumping events.",
-    category: "competitions",
-    order: 7,
-  },
-  {
-    id: 8,
-    question: "What are the required skills to train a racehorse?",
-    answer:
-      "Training racehorses and high-performance sport horses requires profound understanding of equine biomechanics, behavioral conditioning, and years of hands-on horsemanship. Key skills include ground handling, lunging, interval fitness conditioning, pacing management, and gait evaluation. Professional trainers must also tailor nutritional regimens and spot subtle changes in temperament or soundness.",
-    category: "competitions",
-    order: 8,
-  },
 ];
