@@ -185,14 +185,27 @@ cardsData.forEach((c, i) => {
 function renderCard(
   card: (typeof cardsData)[number] & { slug?: string },
   isSelected: boolean,
+  hasSelection: boolean,
   onSelect: (id: string) => void
 ) {
   const cardSlug = card.slug || card.id;
 
   return (
-    <div className="flex-shrink-0 w-[85vw] md:w-[429px] flex flex-col h-[591px] max-md:h-[480px]">
+    <div
+      className={`flex-shrink-0 w-[85vw] md:w-[429px] flex flex-col h-[591px] max-md:h-[480px] transition-all duration-500 ease-out ${
+        hasSelection
+          ? isSelected
+            ? "opacity-100 z-20 relative"
+            : "opacity-45 hover:opacity-80"
+          : "opacity-100"
+      }`}
+    >
       {/* Category Header */}
-      <div className={`uppercase text-[11px] md:text-xl font-normal  ${card.categoryColor} min-h-[16px] mb-2 md:mb-3 flex-shrink-0`}>
+      <div
+        className={`uppercase text-[11px] md:text-xl font-normal ${card.categoryColor} min-h-[16px] mb-2 md:mb-3 flex-shrink-0 transition-opacity duration-300 ${
+          hasSelection && !isSelected ? "opacity-60" : "opacity-100"
+        }`}
+      >
         {card.category}
       </div>
 
@@ -201,8 +214,10 @@ function renderCard(
         onClick={() => onSelect(card.id)}
         className={`flex flex-col flex-1 shadow-sm overflow-hidden rounded-md md:rounded-sm transition-all duration-500 ease-out cursor-pointer group ${
           isSelected 
-            ? "shadow-lg scale-[1.015] -translate-y-1 ring-2 ring-[#DA7347]" 
-            : "hover:shadow-lg hover:scale-[1.015] hover:-translate-y-1"
+            ? "shadow-2xl scale-[1.035] md:scale-[1.045] -translate-y-2 ring-2 ring-[#DA7347]" 
+            : hasSelection
+              ? "hover:scale-[1.01] hover:shadow-md"
+              : "hover:shadow-lg hover:scale-[1.015] hover:-translate-y-1"
         }`}
       >
         {/* Image */}
@@ -288,6 +303,10 @@ export default function ProgramsCardsSection({ initialCards }: ProgramsCardsSect
   const mobileTrackRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
+
+  const handleCardSelect = (id: string) => {
+    setSelectedCardId((prev) => (prev === id ? null : id));
+  };
 
   const activeCards = (initialCards && initialCards.length > 0)
     ? initialCards.map((card, i) => {
@@ -416,7 +435,7 @@ export default function ProgramsCardsSection({ initialCards }: ProgramsCardsSect
         <Reveal delay={0.3} className="max-md:hidden">
         <motion.div
           style={{ x }}
-          className="flex w-max items-stretch flex-1 py-4 md:py-6 overflow-hidden pr-6 md:pr-12"
+          className="flex w-max items-stretch flex-1 py-6 md:py-8 pr-6 md:pr-12"
         >
           {/* Dynamic Spacer to perfectly align first card with max-w-7xl container */}
           <div className="flex-shrink-0 w-[1.5rem] md:w-[max(3rem,calc((100vw-80rem)/2+3rem))]" />
@@ -425,10 +444,19 @@ export default function ProgramsCardsSection({ initialCards }: ProgramsCardsSect
             <div key={card.id} className="flex h-full items-stretch">
               {/* Divider Line */}
               {idx > 0 && (
-                <div className="w-px bg-black/10 mx-3 md:mx-6 h-full" />
+                <div
+                  className={`w-px bg-black/10 mx-3 md:mx-6 h-full transition-opacity duration-500 ${
+                    selectedCardId ? "opacity-30" : "opacity-100"
+                  }`}
+                />
               )}
 
-              {renderCard(card, selectedCardId === card.id, setSelectedCardId)}
+              {renderCard(
+                card,
+                selectedCardId === card.id,
+                Boolean(selectedCardId),
+                handleCardSelect
+              )}
             </div>
           ))}
         </motion.div>
@@ -439,11 +467,16 @@ export default function ProgramsCardsSection({ initialCards }: ProgramsCardsSect
           <div
             ref={mobileTrackRef}
             data-mobile-carousel
-            className="flex overflow-x-auto snap-x snap-proximity no-scrollbar gap-4 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] px-6 py-4"
+            className="flex overflow-x-auto snap-x snap-proximity no-scrollbar gap-4 touch-pan-x overscroll-x-contain [-webkit-overflow-scrolling:touch] px-6 py-6"
           >
             {activeCards.map((card) => (
               <div key={card.id} data-card className="flex-shrink-0 snap-center w-[85vw]">
-                {renderCard(card, selectedCardId === card.id, setSelectedCardId)}
+                {renderCard(
+                  card,
+                  selectedCardId === card.id,
+                  Boolean(selectedCardId),
+                  handleCardSelect
+                )}
               </div>
             ))}
           </div>
