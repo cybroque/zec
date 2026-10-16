@@ -12,19 +12,19 @@ interface FaqSectionProps {
 export default function FaqSection({ initialFaqs }: FaqSectionProps) {
   const faqs = (initialFaqs && initialFaqs.length > 0 ? initialFaqs : defaultFaqs).slice(0, 5);
 
-  // First item open by default, matching Image 1
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  // Closed by default to match the clean reference screenshot
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleItem = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
   };
 
   return (
-    <section className="bg-[#FFF8E5] py-20 md:py-28 px-6 transition-colors duration-300">
-      <div className="container mx-auto max-w-5xl">
-        {/* Section Heading matching Image 1 */}
+    <section className="bg-[#FFF8E5] py-16 md:py-24 px-6 transition-colors duration-300">
+      <div className="container mx-auto max-w-4xl">
+        {/* Section Heading */}
         <Reveal>
-          <div className="text-center mb-12 md:mb-16">
+          <div className="text-center mb-10 md:mb-14">
             <h2 className="text-[#85431E] text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-heading font-medium tracking-wide uppercase leading-tight">
               YOU&apos;VE GOT QUESTIONS &amp; WE&apos;VE GOT ANSWERS.
             </h2>
@@ -32,42 +32,51 @@ export default function FaqSection({ initialFaqs }: FaqSectionProps) {
         </Reveal>
 
         {/* FAQ List */}
-        <div className="space-y-4 md:space-y-5">
+        <div className="space-y-3 sm:space-y-3.5">
           {faqs.map((item, index) => {
             const isOpen = openIndex === index;
 
             return (
-              <Reveal key={item._id || item.id || index} delay={index * 0.05}>
+              <Reveal key={item._id || item.id || index} delay={index * 0.04}>
                 <div
                   onClick={() => toggleItem(index)}
-                  className="bg-[#ECD3BA] hover:bg-[#E8CDB2] transition-colors duration-200 rounded-xl p-5 sm:p-6 md:p-7 cursor-pointer shadow-sm border border-[#85431E]/10"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      toggleItem(index);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isOpen}
+                  className="bg-[#F1EAD9] hover:bg-[#EAE2CF] transition-colors duration-200 rounded-lg px-6 sm:px-8 py-4 sm:py-4.5 cursor-pointer select-none group"
                 >
-                  <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-center justify-between gap-4">
                     {/* Question Title */}
-                    <h3 className="text-[#85431E] text-base sm:text-lg md:text-xl font-medium tracking-tight leading-snug">
+                    <h3 className="text-[#DA7347] text-sm sm:text-base md:text-[17px] font-normal leading-snug tracking-normal">
                       {item.question}
                     </h3>
 
-                    {/* Terracotta Button with Rotating Arrow (↗ when closed, ↙ when open) */}
+                    {/* Simple Down-Right Diagonal Arrow (↘) */}
                     <motion.div
                       animate={{ rotate: isOpen ? 180 : 0 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-md bg-[#9C4328] text-white flex items-center justify-center shrink-0 shadow-sm"
+                      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                      className="shrink-0 text-[#DA7347]"
                       aria-label={isOpen ? "Collapse answer" : "Expand answer"}
                     >
-                      {/* Diagonal Arrow matching Image 1 */}
                       <svg
-                        width="18"
-                        height="18"
+                        width="20"
+                        height="20"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        strokeWidth="2.2"
+                        strokeWidth="1.6"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="w-4 h-4 sm:w-5 sm:h-5"
+                        className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:scale-105"
                       >
-                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                        <line x1="7" y1="7" x2="17" y2="17" />
+                        <polyline points="17 7 17 17 7 17" />
                       </svg>
                     </motion.div>
                   </div>
@@ -79,10 +88,10 @@ export default function FaqSection({ initialFaqs }: FaqSectionProps) {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="text-[#85431E]/90 text-sm sm:text-base font-light leading-relaxed pt-4 border-t border-[#85431E]/15 mt-3">
+                        <p className="text-[#85431E]/85 text-xs sm:text-sm md:text-base font-light leading-relaxed pt-3 mt-1 border-t border-[#DA7347]/15">
                           {item.answer}
                         </p>
                       </motion.div>

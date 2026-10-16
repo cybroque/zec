@@ -11,7 +11,7 @@ const slides = [
     id: 1,
     section: "START HERE",
     title: "Trial Ride",
-    description: "Never been on a horse? This is how you start. One 30-minute session. Guided, safe, and genuinely fun.",
+    description: "Never been on a horse? This is how you start. A guided 30-minute session with our instructors designed to be safe, encouraging, and genuinely fun. Perfect for beginners of any age.",
     image: "/assets/images/HomePage/Webp/ridewithus1.webp",
     objectPosition: "50% 30%",
     bgColor: "#DA7347", // Orange
@@ -113,14 +113,14 @@ const ScrollCarousel = () => {
 
         {/* Intro Section */}
         <Reveal>
-          <div className="pt-20 md:pt-28 pb-8 px-6 text-center bg-[#FFF8E5]">
-            <span className="text-sm md:text-lg uppercase  text-[#DA7347] font-medium mb-4 block">
+          <div className="pt-14 md:pt-28 pb-4 md:pb-8 px-6 text-center bg-[#FFF8E5]">
+            <span className="text-xs md:text-lg uppercase text-[#DA7347] font-medium mb-2 md:mb-4 block">
               RIDE WITH US
             </span>
-            <h2 className="text-4xl md:text-6xl font-normal text-[#85431E] mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-6xl font-normal text-[#85431E] mb-3 md:mb-6 tracking-tight">
               Find Your Starting Point
             </h2>
-            <p className="text-sm md:text-[18px] pb-5 text-[#85431E]/80 max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-sm md:text-[18px] pb-3 md:pb-5 text-[#85431E]/80 max-w-3xl mx-auto leading-relaxed font-light">
               We have programs for every level from your very first time in a saddle to riders who want to push
               further. New here? Start with a Trial Ride and we&apos;ll point you in the right direction.
             </p>
@@ -139,28 +139,28 @@ const ScrollCarousel = () => {
               {slides.map((slide, index) => (
                 <div
                   key={slide.id}
-                  className={`absolute inset-0 pl-6 pr-6 md:pl-6 lg:pl-24 md:pr-12 py-12 flex flex-col justify-center transition-all duration-700 max-md:py-8 ${index === activeIndex
+                  className={`absolute inset-0 pl-6 pr-6 md:pl-6 lg:pl-24 md:pr-12 py-12 flex flex-col justify-center transition-all duration-700 max-md:py-7 ${index === activeIndex
                     ? 'opacity-100 translate-y-0 max-md:relative max-md:inset-auto'
                     : 'opacity-0 translate-y-8 pointer-events-none max-md:hidden'
                     }`}
                 >
-                  <div className="h-[20px] md:h-[24px] mb-2 md:mb-4">
-                    <span className="text-xs md:text-sm uppercase  font-normal text-[#F2EBD9]/80">
+                  <div className="h-[20px] md:h-[24px] mb-1.5 md:mb-4">
+                    <span className="text-xs md:text-sm uppercase font-normal text-[#F2EBD9]/80">
                       {slide.section}
                     </span>
                   </div>
-                  <div className="min-h-[70px] md:min-h-[80px] lg:min-h-[90px] mb-2 md:mb-4">
+                  <div className="min-h-[48px] sm:min-h-[54px] md:min-h-[80px] lg:min-h-[90px] mb-2 md:mb-4">
                     <h3 className="text-2xl md:text-3xl lg:text-4xl font-normal text-[#F2EBD9] tracking-tight leading-snug">
                       {slide.title}
                     </h3>
                   </div>
-                  <div className="min-h-[140px] md:min-h-[80px] lg:min-h-[96px] mb-6 md:mb-3 flex-shrink-0">
-                    <p className="text-[15px] md:text-base font-extralight text-[#F2EBD9]/90 max-w-2xl leading-relaxed">
+                  <div className="min-h-[88px] sm:min-h-[96px] md:min-h-[80px] lg:min-h-[96px] mb-4 md:mb-3 flex-shrink-0">
+                    <p className="text-[14px] sm:text-[15px] md:text-base font-extralight text-[#F2EBD9]/90 max-w-2xl leading-relaxed">
                       {slide.description}
                     </p>
                   </div>
 
-                  <div className="flex flex-col items-start gap-6 md:gap-8">
+                  <div className="flex flex-col items-start gap-4 md:gap-8">
                     <Link
                       href={slide.link}
                       className="group flex items-center gap-4 px-8 py-3 border border-white/60 rounded-sm hover:bg-white hover:text-[#DA7347] transition-all duration-500 text-white"

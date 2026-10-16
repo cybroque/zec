@@ -54,7 +54,7 @@ export default function FloatingWidgets({ faqs }: { faqs: ChatFaq[] }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat with us on WhatsApp"
-            className="group relative flex items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.4)] transition-transform duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/60 focus-visible:ring-offset-2"
+            className="group relative flex items-center justify-center rounded-md bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.4)] transition-transform duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/60 focus-visible:ring-offset-2"
             style={{ height: "3.25rem", width: "3.25rem" }}
           >
             <WhatsAppIcon />
@@ -70,13 +70,13 @@ export default function FloatingWidgets({ faqs }: { faqs: ChatFaq[] }) {
         onClick={() => setIsChatOpen((open) => !open)}
         aria-expanded={isChatOpen}
         aria-label={isChatOpen ? "Close chat assistant" : "Open chat assistant"}
-        className="relative flex items-center justify-center rounded-full text-[#F2EBD9] shadow-[0_8px_24px_rgba(26,26,26,0.3)] transition-transform duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DA7347]/60 focus-visible:ring-offset-2"
+        className="relative flex items-center justify-center rounded-md text-[#F2EBD9] shadow-[0_8px_24px_rgba(26,26,26,0.3)] transition-transform duration-300 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DA7347]/60 focus-visible:ring-offset-2"
         style={{ height: "3.25rem", width: "3.25rem", backgroundColor: "#DA7347" }}
       >
         {!isChatOpen && (
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 animate-ping rounded-full bg-[#DA7347] opacity-60"
+            className="pointer-events-none absolute inset-0 animate-ping rounded-md bg-[#DA7347] opacity-60"
           />
         )}
 

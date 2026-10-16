@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import type { ChatFaq } from "@/data/chatFaqs";
@@ -179,21 +180,15 @@ export default function ChatWidget({
                   <HorseIcon />
                 </div>
                 <span className="absolute -bottom-0.5 -right-0.5 flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 border border-[#85431E] bg-[#25D366]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 border border-[#85431E] bg-white" />
                 </span>
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <p className="truncate text-sm font-semibold tracking-wide">ZEC Concierge</p>
-                  <span className="rounded bg-white/20 px-1.5 py-0.2 text-[9px] font-bold uppercase tracking-wider text-[#FFF8F0] border border-white/20">
-                    AI
-                  </span>
+                  <p className="truncate text-sm font-semibold tracking-wide">ZEC AI</p>
+                  
                 </div>
-                <p className="text-[11px] font-normal text-[#F2EBD9]/80 flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#25D366]" />
-                  <span>Typically replies instantly</span>
-                </p>
               </div>
             </div>
 
@@ -331,15 +326,24 @@ export default function ChatWidget({
           </form>
 
           {/* Powered by Cybroque Badge */}
-          <div className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#F4EFE5] border-t border-[#85431E]/8 text-[10.5px] tracking-wider uppercase text-[#85431E]/70 font-medium select-none">
-            <span>Powered by</span>
+          <div className="flex items-center justify-center gap-2 py-2 px-3 bg-[#F4EFE5] border-t border-[#85431E]/8 select-none">
+            <span className="text-[12px]  text-black/60 font-medium">
+              Powered by
+            </span>
             <a
-              href="https://cybroque.com"
+              href="https://cybroque.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-semibold text-[#85431E] hover:text-[#DA7347] transition-colors group"
+              aria-label="Cybroque"
+              className="group inline-flex items-center gap-1"
             >
-              <span>Cybroque</span>
+              <Image
+                src="/assets/logo.png"
+                alt="Cybroque"
+                width={884}
+                height={197}
+                className="h-[13px] w-auto  transition-opacity duration-300 group-hover:opacity-100"
+              />
               <svg
                 width="9"
                 height="9"
@@ -349,7 +353,7 @@ export default function ChatWidget({
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="opacity-60 transition-transform group-hover:translate-x-0.5 group-hover:opacity-100"
+                className="text-[#85431E]/70 opacity-60 transition-transform group-hover:translate-x-0.5 group-hover:opacity-100"
                 aria-hidden="true"
               >
                 <path d="M7 17L17 7M17 7H7M17 7V17" />

@@ -175,19 +175,19 @@ export default function StoriesInstagramSection({
       {/* ── "Follow us" + social links ── */}
       {!hideFooter && (
         <div className="container mx-auto max-w-5xl px-4 md:px-6 pt-16 pb-24 mt-8 max-md:pt-10 max-md:pb-12 max-md:mt-4">
-          <div className="flex flex-col md:flex-row justify-start items-start md:items-center gap-16 md:gap-20 max-w-5xl mx-auto max-md:gap-8 text-left">
+          <div className="flex flex-col md:flex-row justify-start items-center md:items-center gap-8 md:gap-20 max-w-5xl mx-auto text-center md:text-left">
             
             {/* Left text */}
-            <div className="flex-1 max-w-[650px]">
+            <div className="flex-1 max-w-[650px] w-full text-center md:text-left">
               <Reveal>
                 <a href={INSTA_LINK} target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-80 transition-opacity mb-2">
                   <h3 className="text-[#85431E] font-medium leading-[1.1] insta-heading-text transition-colors duration-300" style={{ fontSize: "clamp(1.4rem, 2.5vw, 1.8rem)" }}>
-                    Follow us for stable updates and rider<br/>stories
+                    Follow us for stable updates and rider<br className="hidden md:inline" /> stories
                   </h3>
                 </a>
               </Reveal>
               <Reveal delay={0.2}>
-                <p className="text-[#85431E]/90 text-[14px] md:text-[15px] leading-tight insta-heading-text transition-colors duration-300">
+                <p className="text-[#85431E]/90 text-[14px] md:text-[15px] leading-tight insta-heading-text transition-colors duration-300 max-w-md mx-auto md:mx-0">
                   Learn about Horses and get the best tips on riding, taking care, competitions, and most importantly having fun!
                 </p>
               </Reveal>
@@ -197,16 +197,16 @@ export default function StoriesInstagramSection({
             <div className="w-[1px] bg-black/40 hidden md:block self-stretch mx-4" />
 
             {/* Right social links */}
-            <div className="flex-1 max-w-[280px]">
+            <div className="flex-1 max-w-[280px] w-full mx-auto md:mx-0">
               <Reveal delay={0.4}>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center justify-center">
                   <p
-                    className="font-bold text-[#2C1A0E] mb-6 insta-heading-text transition-colors duration-300 text-center"
+                    className="font-bold text-[#2C1A0E] mb-4 md:mb-6 insta-heading-text transition-colors duration-300 text-center"
                     style={{ fontSize: "0.9rem", letterSpacing: "0.05em", textTransform: "uppercase" }}
                   >
                     FOLLOW US ON
                   </p>
-                  <div className="flex flex-row justify-center gap-8">
+                  <div className="flex flex-row justify-center items-center gap-7 sm:gap-8">
                     {socialLinks.map((link, index) => (
                       <a
                         key={index}
